@@ -3,7 +3,7 @@ import path from 'path';
 import sharp from 'sharp';
 
 const BROWSER_HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'User-Agent': 'TwiceTimelineArchive/2.0 (https://github.com/HugoAdama/Once_upon_a_Timeline; contact: archive@once.timeline.org) node-fetch/3.0',
   'Referer': 'https://en.wikipedia.org/',
 };
 
@@ -64,8 +64,11 @@ const ERA_MAP = [
   },
 ];
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function downloadPhoto(url, outPath) {
   try {
+    await sleep(1100);
     const res = await fetch(url, { headers: BROWSER_HEADERS });
     if (!res.ok) {
       console.warn(`Failed ${url}: HTTP ${res.status}`);
@@ -73,10 +76,10 @@ async function downloadPhoto(url, outPath) {
     }
     const buf = Buffer.from(await res.arrayBuffer());
     await sharp(buf)
-      .resize(600, 380, { fit: 'cover', position: 'top' })
-      .webp({ quality: 90 })
+      .resize(540, 660, { fit: 'cover', position: sharp.strategy.attention })
+      .webp({ quality: 92 })
       .toFile(outPath);
-    console.log(`Saved real photo: ${path.basename(outPath)} (${fs.statSync(outPath).size} bytes)`);
+    console.log(`Saved real portrait photo: ${path.basename(outPath)} (${fs.statSync(outPath).size} bytes)`);
     return true;
   } catch (err) {
     console.warn(`Error for ${outPath}:`, err.message);
