@@ -9,10 +9,54 @@ import MemberCard from './MemberCard.astro';
       <span class="eyebrow">01 · Integrantes y colores</span>
       <h2>Nueve tonos, nueve identidades.</h2>
     </div>
-    <p>Cada tarjeta interactiva conecta a una integrante con su Lovely y su personaje TDOONGZ. Haz clic o presiona Enter para desplegar su ficha detallada.</p>
+    <p>
+      Cada tarjeta interactiva conecta a una integrante con su Lovely y su personaje TDOONGZ.
+      Usa el filtro por era para ver sus fotografías reales y evolución de estilo a lo largo del tiempo.
+    </p>
   </div>
 
-  <div class="member-grid">
+  <!-- FILTRO DE ERAS PARA RETRATOS DE INTEGRANTES -->
+  <div class="members-era-toolbar" role="toolbar" aria-label="Filtrar fotografías de las integrantes por era musical">
+    <span class="era-toolbar-label">
+      <span aria-hidden="true">📸</span> Filtrar era fotográfica:
+    </span>
+    <div class="era-chip-group" role="radiogroup" aria-label="Seleccionar era de las integrantes">
+      <button
+        type="button"
+        class="era-chip active"
+        data-member-era-filter="current"
+        role="radio"
+        aria-checked="true"
+      >
+        <span class="era-chip-dot current"></span>
+        <span>Actual &amp; Giras (2023-2025)</span>
+      </button>
+
+      <button
+        type="button"
+        class="era-chip"
+        data-member-era-filter="between"
+        role="radio"
+        aria-checked="false"
+      >
+        <span class="era-chip-dot between"></span>
+        <span>BETWEEN 1&amp;2 (2021-2022)</span>
+      </button>
+
+      <button
+        type="button"
+        class="era-chip"
+        data-member-era-filter="classic"
+        role="radio"
+        aria-checked="false"
+      >
+        <span class="era-chip-dot classic"></span>
+        <span>Debut &amp; Clásica (2015-2018)</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="member-grid" id="member-cards-grid">
     {MEMBERS.map((member) => (
       <MemberCard member={member} />
     ))}
@@ -22,3 +66,61 @@ import MemberCard from './MemberCard.astro';
     <strong>Nota de diseño y accesibilidad:</strong> Apricot y Neon Magenta son los colores oficiales del grupo. Los nueve tonos individuales son acentos representativos para distinguir las tarjetas; cada uno cuenta con su etiqueta de texto visible. Los símbolos ♡ y ✦ son marcadores gráficos distintivos para Lovelys y TDOONGZ.
   </p>
 </section>
+
+<script>
+  function initMemberEraFilter() {
+    const eraButtons = document.querySelectorAll<HTMLButtonElement>('[data-member-era-filter]');
+    const memberCards = document.querySelectorAll<HTMLElement>('.member-card');
+
+    const ERA_LABELS: Record<string, string> = {
+      current: 'Actual (2023-2025)',
+      between: 'BETWEEN (2021-2022)',
+      classic: 'Debut (2015-2018)',
+    };
+
+    eraButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const era = btn.getAttribute('data-member-era-filter') || 'current';
+
+        // Actualizar estado activo en los botones
+        eraButtons.forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-checked', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-checked', 'true');
+
+        // Actualizar fotografías y etiquetas de cada integrante
+        memberCards.forEach((card) => {
+          const img = card.querySelector<HTMLImageElement>('.member-actual-photo');
+          const badge = card.querySelector<HTMLElement>('[data-member-era-badge]');
+
+          if (img) {
+            const newSrc = img.getAttribute(`data-photo-${era}`);
+            if (newSrc && newSrc !== img.src) {
+              // Animación suave de transición
+              img.style.opacity = '0.3';
+              img.style.transform = 'scale(0.97)';
+
+              setTimeout(() => {
+                img.src = newSrc;
+                img.style.opacity = '1';
+                img.style.transform = 'scale(1)';
+              }, 180);
+            }
+          }
+
+          if (badge) {
+            badge.textContent = ERA_LABELS[era] || 'Era Actual';
+          }
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMemberEraFilter);
+  } else {
+    initMemberEraFilter();
+  }
+</script>

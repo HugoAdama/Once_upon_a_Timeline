@@ -25,6 +25,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'La integrante mayor del grupo, reconocida por su carisma en el escenario y su tono vocal brillante que da apertura a muchos de los grandes éxitos de TWICE.',
     photo: '/assets/members/nayeon.webp',
+    eras: {
+      current: '/assets/members/nayeon-current.webp',
+      between: '/assets/members/nayeon-between.webp',
+      classic: '/assets/members/nayeon-classic.webp',
+    },
   },
   {
     id: 'member-jeongyeon',
@@ -50,6 +55,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'Voz potente, estable y con timbre maduro. Jeongyeon es pilar indispensable en las armonías y el soporte emocional del grupo.',
     photo: '/assets/members/jeongyeon.webp',
+    eras: {
+      current: '/assets/members/jeongyeon-current.webp',
+      between: '/assets/members/jeongyeon-between.webp',
+      classic: '/assets/members/jeongyeon-classic.webp',
+    },
   },
   {
     id: 'member-momo',
@@ -75,6 +85,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'La máquina de baile de TWICE y una de las bailarinas más aclamadas de la industria del K-pop por su precisión y fuerza escénica.',
     photo: '/assets/members/momo.webp',
+    eras: {
+      current: '/assets/members/momo-current.webp',
+      between: '/assets/members/momo-between.webp',
+      classic: '/assets/members/momo-classic.webp',
+    },
   },
   {
     id: 'member-sana',
@@ -100,6 +115,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'Reina del magnetismo y la espontaneidad. Su carisma natural y voz distintiva la han convertido en una figura querida mundialmente.',
     photo: '/assets/members/sana.webp',
+    eras: {
+      current: '/assets/members/sana-current.webp',
+      between: '/assets/members/sana-between.webp',
+      classic: '/assets/members/sana-classic.webp',
+    },
   },
   {
     id: 'member-jihyo',
@@ -125,6 +145,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'Líder de TWICE tras 10 años de entrenamiento previo. Su potencia vocal, presencia imponente y entrega total definen la identidad del grupo.',
     photo: '/assets/members/jihyo.webp',
+    eras: {
+      current: '/assets/members/jihyo-current.webp',
+      between: '/assets/members/jihyo-between.webp',
+      classic: '/assets/members/jihyo-classic.webp',
+    },
   },
   {
     id: 'member-mina',
@@ -150,6 +175,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'Con formación en ballet clásico por más de una década, Mina aporta una elegancia única, voz susurrada seductora y una presencia serena inigualable.',
     photo: '/assets/members/mina.webp',
+    eras: {
+      current: '/assets/members/mina-current.webp',
+      between: '/assets/members/mina-between.webp',
+      classic: '/assets/members/mina-classic.webp',
+    },
   },
   {
     id: 'member-dahyun',
@@ -175,6 +205,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'Conocida como "Tofu" por su piel clara y flexibilidad. Letrista prolífica en la discografía de TWICE con un sentido del humor y calidez adorados por ONCE.',
     photo: '/assets/members/dahyun.webp',
+    eras: {
+      current: '/assets/members/dahyun-current.webp',
+      between: '/assets/members/dahyun-between.webp',
+      classic: '/assets/members/dahyun-classic.webp',
+    },
   },
   {
     id: 'member-chaeyoung',
@@ -200,6 +235,11 @@ export const MEMBERS: Member[] = [
     },
     bio: 'Músico, artista visual y rapera. Ha escrito y diseñado portadas y temas clave del grupo con su estilo libre, fresco e introspectivo.',
     photo: '/assets/members/chaeyoung.webp',
+    eras: {
+      current: '/assets/members/chaeyoung-current.webp',
+      between: '/assets/members/chaeyoung-between.webp',
+      classic: '/assets/members/chaeyoung-classic.webp',
+    },
   },
   {
     id: 'member-tzuyu',
@@ -225,5 +265,10 @@ export const MEMBERS: Member[] = [
     },
     bio: 'La integrante más joven (maknae) de TWICE. Conocida por su porte majestuoso, crecimiento vocal continuo y su dedicación a causas benéficas.',
     photo: '/assets/members/tzuyu.webp',
+    eras: {
+      current: '/assets/members/tzuyu-current.webp',
+      between: '/assets/members/tzuyu-between.webp',
+      classic: '/assets/members/tzuyu-classic.webp',
+    },
   },
 ];

@@ -477,7 +477,49 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .character-intro p { position: relative; z-index: 1; max-width: 440px; margin: 0; color: var(--muted); font-size: .86rem; }
 .character-intro .text-link { position: relative; z-index: 1; margin-top: 17px; }
 .character-gallery { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 19px; }
-.character-tile { min-width: 0; overflow: hidden; margin: 0; border: 1px solid #eee3e8; border-radius: 6px; background: rgba(255,255,255,.88); }
+.character-tile {
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid #ebdbe2;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(78, 38, 62, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+.character-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(78, 38, 62, 0.09);
+}
+.mascot-photo-frame {
+  position: relative;
+  aspect-ratio: 1.15 / 1;
+  width: 100%;
+  overflow: hidden;
+  background: #faf8fa;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mascot-actual-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lovelys-gallery .mascot-actual-img {
+  object-fit: contain;
+  padding: 6px;
+  background: #fdfdfe;
+}
+.tdoongz-gallery .mascot-actual-img {
+  object-fit: cover;
+  object-position: center;
+}
+.character-tile:hover .mascot-actual-img {
+  transform: scale(1.08);
+}
 .mascot-photo { aspect-ratio: 1.25 / 1; border-radius: 4px 4px 0 0; }
 .mascot-photo::before { content: "✧"; position: absolute; color: rgba(117,85,112,.14); font-size: 3rem; }
 .mascot-photo.lovely-slot { background: linear-gradient(140deg, #fff5e9, #f8dbe7); }

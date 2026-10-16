@@ -19,16 +19,16 @@ import { resolveAsset } from '../utils/streaming';
         <h3>TWICE LOVELYS</h3>
         <p>Las mascotas oficiales asociadas a las integrantes. Presentes en conciertos, videos musicales y artículos de colección desde su creación.</p>
 
-        <div class="character-gallery" aria-label="Galería de TWICE Lovelys">
+        <div class="character-gallery lovelys-gallery" aria-label="Galería de TWICE Lovelys">
           {LOVELYS.map((lovely) => {
             const avatarSrc = resolveAsset(lovely.avatar || null);
             return (
               <figure class="character-tile">
-                <div class="mascot-photo-frame" role="img" aria-label={`Ilustración de ${lovely.name}, Lovely de ${lovely.member}`}>
+                <div class="mascot-photo-frame" role="img" aria-label={`Mascota oficial ${lovely.name}, Lovely de ${lovely.member}`}>
                   {avatarSrc && (
                     <img
                       src={avatarSrc}
-                      alt={`Ilustración oficial de ${lovely.name}`}
+                      alt={`Mascota oficial ${lovely.name} de ${lovely.member}`}
                       loading="lazy"
                       decoding="async"
                       width="400"
@@ -56,26 +56,26 @@ import { resolveAsset } from '../utils/streaming';
           })}
         </div>
 
-        <a class="text-link" href="https://twice.jype.com/" target="_blank" rel="noreferrer">
-          Sitio oficial de TWICE <span aria-hidden="true">↗</span>
+        <a class="text-link" href="https://jypj-store.com/collections/twice-lovelys" target="_blank" rel="noreferrer">
+          Ver colección en Tienda Oficial JYP <span aria-hidden="true">↗</span>
         </a>
       </article>
 
       <article class="character-intro tdoongz">
-        <span class="collection-label">Nuevos personajes · presentados en 2026</span>
+        <span class="collection-label">Nuevos personajes · presentados en 2024</span>
         <h3>TDOONGZ</h3>
-        <p>Nueve personajes presentados oficialmente en octubre de 2026. Protagonistas de "Dream Attic" con personalidades inspiradas en cada integrante.</p>
+        <p>Nueve personajes presentados oficialmente en octubre de 2024. Protagonistas de "Dream Attic" con personalidades inspiradas en cada integrante.</p>
 
-        <div class="character-gallery" aria-label="Galería de personajes TDOONGZ">
+        <div class="character-gallery tdoongz-gallery" aria-label="Galería de personajes TDOONGZ">
           {TDOONGZ.map((tdoong) => {
             const avatarSrc = resolveAsset(tdoong.avatar || null);
             return (
               <figure class="character-tile">
-                <div class="mascot-photo-frame" role="img" aria-label={`Ilustración de ${tdoong.name}, personaje TDOONGZ de ${tdoong.member}`}>
+                <div class="mascot-photo-frame" role="img" aria-label={`Personaje oficial ${tdoong.name} de ${tdoong.member}`}>
                   {avatarSrc && (
                     <img
                       src={avatarSrc}
-                      alt={`Ilustración oficial de ${tdoong.name}`}
+                      alt={`Personaje oficial ${tdoong.name} de ${tdoong.member}`}
                       loading="lazy"
                       decoding="async"
                       width="400"
@@ -110,7 +110,7 @@ import { resolveAsset } from '../utils/streaming';
     </div>
 
     <p class="global-note">
-      Los nombres de TDOONGZ están incluidos como personajes oficiales. El anuncio los presenta como una colección de personajes conceptuales del universo TWICE.
+      Imágenes oficiales extraídas directamente del catálogo oficial de JYP Online Store (colección Soft Toy TWICE LOVELYS) y de la revelación oficial de TDOONGZ "Dream Attic" de TWICE.
     </p>
   </div>
 </section>

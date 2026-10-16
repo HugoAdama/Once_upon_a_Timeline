@@ -30,6 +30,12 @@ export interface Release {
   officialSource?: string;
 }
 
+export interface MemberEraPhotos {
+  classic: string;
+  between: string;
+  current: string;
+}
+
 export interface Member {
   id: string;
   number: string;
@@ -55,6 +61,7 @@ export interface Member {
   };
   bio: string;
   photo?: string;
+  eras?: MemberEraPhotos;
 }
 
 export interface CharacterItem {

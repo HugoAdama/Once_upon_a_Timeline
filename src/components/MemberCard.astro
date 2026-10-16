@@ -20,11 +20,17 @@ const photoSrc = resolveAsset(member.photo || null);
           loading="lazy"
           decoding="async"
           width="600"
-          height="340"
+          height="380"
           class="member-actual-photo"
+          data-photo-current={resolveAsset(member.eras?.current || member.photo)}
+          data-photo-between={resolveAsset(member.eras?.between || member.photo)}
+          data-photo-classic={resolveAsset(member.eras?.classic || member.photo)}
           onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='grid';"
         />
       )}
+      <span class="member-era-indicator" data-member-era-badge aria-label="Era de la fotografía">
+        Era Actual
+      </span>
       <div class="image-placeholder member-photo" style={photoSrc ? 'display: none;' : ''}>
         <span class="placeholder-copy">
           <b aria-hidden="true">＋</b>
