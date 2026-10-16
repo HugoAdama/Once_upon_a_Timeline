@@ -15,7 +15,7 @@ export function getStreamingLinks(trackTitle: string, releaseTitle: string, arti
 /**
  * Resuelve rutas de assets estáticos asegurando compatibilidad con base_url en GitHub Pages.
  */
-export function resolveAsset(path: string | null): string | null {
+export function resolveAsset(path?: string | null): string | null {
   if (!path) return null;
   if (path.startsWith('http')) return path;
   const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
