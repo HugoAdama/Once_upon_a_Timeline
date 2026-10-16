@@ -45,5 +45,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hugoadam
       <slot />
     </main>
     <Footer />
+
+    <script>
+      function initScrollReveals() {
+        const reveals = document.querySelectorAll('.scroll-reveal');
+        if (!reveals.length) return;
+
+        // Detectar soporte de Scroll-Driven Animations nativo (CSS view-timeline)
+        const hasNativeTimeline = window.CSS && CSS.supports('(animation-timeline: view()) and (animation-range: entry)');
+        if (!hasNativeTimeline) {
+          document.documentElement.classList.add('no-timeline-support');
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-revealed');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: '0px 0px -40px 0px',
+            }
+          );
+          reveals.forEach((el) => observer.observe(el));
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollReveals);
+      } else {
+        initScrollReveals();
+      }
+    </script>
   </body>
 </html>

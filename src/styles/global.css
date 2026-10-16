@@ -95,7 +95,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .text-link { display: inline-flex; align-items: center; gap: 8px; color: #9b2f61; font-size: .76rem; font-weight: 800; text-decoration: none; }
 .text-link:hover { color: var(--magenta); text-decoration: underline; }
 
-/* Navegación */
+/* Navegación con microinteracciones */
 .site-header {
   position: sticky;
   z-index: 50;
@@ -103,31 +103,89 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border-bottom: 1px solid rgba(110, 75, 96, .12);
   background: rgba(255, 248, 243, .92);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background .3s ease, border-color .3s ease;
 }
 .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand-seal {
   display: grid;
-  width: 37px;
+  width: 38px;
   aspect-ratio: 1;
   place-items: center;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--magenta), #d62d75);
   color: white;
   font-family: var(--serif);
-  font-size: 1.16rem;
-  box-shadow: 0 3px 8px rgba(232, 62, 134, 0.35);
+  font-size: 1.18rem;
+  box-shadow: 0 4px 12px rgba(232, 62, 134, 0.38);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.brand:hover .brand-seal {
+  transform: rotate(12deg) scale(1.08);
+  box-shadow: 0 6px 18px rgba(232, 62, 134, 0.5);
 }
 .brand-copy { font-size: .72rem; font-weight: 900; letter-spacing: .12em; line-height: 1.15; text-transform: uppercase; }
 .brand-copy small { display: block; margin-top: 4px; color: var(--muted); font-size: .54rem; font-weight: 700; letter-spacing: .16em; }
-.nav-links { display: flex; align-items: center; gap: clamp(13px, 2.6vw, 30px); }
-.nav-links a { color: #514652; font-size: .75rem; font-weight: 700; text-decoration: none; transition: color .2s ease; }
-.nav-links a:hover { color: #b62c69; }
-.header-chip { padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; color: #655965; font-size: .6rem; letter-spacing: .09em; text-transform: uppercase; background: rgba(255, 255, 255, 0.7); }
+.nav-links { display: flex; align-items: center; gap: clamp(14px, 2.6vw, 32px); }
+.nav-links a {
+  position: relative;
+  padding: 6px 2px;
+  color: #514652;
+  font-size: .76rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--apricot), var(--magenta));
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-links a:hover {
+  color: #b62c69;
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.header-chip {
+  padding: 7px 13px;
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  border-radius: 999px;
+  color: #655965;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
 
-/* Portada (Hero) */
+/* Portada (Hero) con animaciones de entrada */
 .hero { padding-block: 70px 57px; }
 .hero-grid { display: grid; grid-template-columns: 1fr .92fr; align-items: center; gap: clamp(32px, 7vw, 88px); }
+.hero-copy {
+  animation: heroTextFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes heroTextFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .hero h1 {
   max-width: 720px;
   margin: 17px 0 20px;
@@ -152,11 +210,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   place-items: center;
   overflow: hidden;
   border: 1px solid rgba(102,65,88,.12);
-  border-radius: 12px;
+  border-radius: 18px;
   background:
     radial-gradient(circle at 48% 48%, rgba(255,255,255,.76), transparent 35%),
     linear-gradient(145deg, #ffd9cb, #f4a2be 52%, #cba9dc);
-  box-shadow: var(--shadow);
+  box-shadow: 0 20px 50px rgba(66, 37, 57, 0.12);
+  animation: heroArtFloat 7s ease-in-out infinite alternate;
+}
+@keyframes heroArtFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
 }
 .hero-art::before, .hero-art::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; pointer-events: none; }
 .hero-art::before { width: 320px; height: 320px; }
@@ -178,7 +241,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border: 1px solid rgba(255,255,255,.82);
   border-radius: 50%;
   background: repeating-radial-gradient(circle, rgba(255,255,255,.22) 0 1px, transparent 2px 14px), linear-gradient(135deg, rgba(232,62,134,.55), rgba(244,162,126,.45));
-  box-shadow: 0 16px 40px rgba(103,47,82,.18);
+  box-shadow: 0 16px 44px rgba(103,47,82,.22), 0 0 24px rgba(232,62,134,0.3);
   animation: spinSlow 30s linear infinite;
 }
 @keyframes spinSlow {
@@ -203,9 +266,39 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .art-label { position: absolute; top: 18px; left: 19px; padding: 6px 10px; border: 1px solid rgba(255,255,255,.62); border-radius: 999px; color: #58364e; font-size: .57rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: rgba(255,255,255,0.3); }
 .art-number { position: absolute; right: 18px; bottom: 16px; color: rgba(58,34,56,.63); font-size: .57rem; letter-spacing: .12em; font-weight: 700; }
 
-.ticker { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.53); }
-.ticker-track { display: flex; width: max-content; gap: 30px; padding: 13px 0; color: #6c5366; font-size: .63rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
-.ticker-track span::after { content: "✳"; padding-left: 30px; color: var(--magenta); }
+/* Marquesina Continua (Ticker Marquee) */
+.ticker {
+  overflow: hidden;
+  border-block: 1px solid rgba(110, 75, 96, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+}
+.ticker-inner {
+  display: flex;
+  width: max-content;
+}
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 13px 16px;
+  color: #6c5366;
+  font-size: .64rem;
+  font-weight: 850;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: marqueeScroll 26s linear infinite;
+  will-change: transform;
+}
+.ticker-track span::after { content: "✳"; padding-left: 32px; color: var(--magenta); }
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
 
 /* ========================================================
    INTEGRANTES Y PERFILES INTERACTIVOS (PHOTOCARD SYSTEM)
@@ -349,6 +442,29 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .member-card:hover .member-actual-photo {
   transform: scale(1.05);
+}
+.member-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.4) 48%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.4) 52%,
+    transparent 65%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  border-radius: 11px;
+}
+.member-card:hover .member-photo-frame::after {
+  transform: translateX(120%);
 }
 .member-era-indicator {
   position: absolute;
@@ -1306,10 +1422,106 @@ footer { padding: 36px 0 44px; color: #716771; font-size: .75rem; }
   .footer-row { flex-direction: column; }
 }
 
+/* ========================================================
+   SISTEMA DE ANIMACIONES SCROLL-REVEAL Y MICROINTERACCIONES
+   ======================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  /* Scroll-driven animations nativas basadas en CSS View Timeline */
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes scrollFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .scroll-reveal {
+      animation: scrollFadeUp auto cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+  }
+
+  /* Fallback para navegadores sin CSS View Timeline (activado por IntersectionObserver) */
+  .no-timeline-support .scroll-reveal {
+    opacity: 0;
+    transform: translateY(26px) scale(0.99);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .no-timeline-support .scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Pulsación de radar en los nodos de la línea de tiempo */
+@keyframes nodePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 62, 134, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(232, 62, 134, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 62, 134, 0);
+  }
+}
+.timeline-item::before {
+  animation: nodePulse 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* Microinteracción de presión activa en botones y chips */
+.button:active,
+.era-chip:active,
+.timeline-jump-btn:active,
+.chip-btn:active,
+.clear-btn:active {
+  transform: scale(0.96) !important;
+}
+
+/* Despliegue fluido de paneles de detalles */
+.member-details-drawer,
+.track-list-panel {
+  animation: accordionDown 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes accordionDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accesibilidad y reducción de movimiento */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  html {
     scroll-behavior: auto !important;
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
+  }
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .ticker-track {
+    animation: none !important;
+  }
+  .art-disc,
+  .art-orbit,
+  .hero-art,
+  .timeline-item::before {
+    animation: none !important;
+  }
+  .member-photo-frame::after {
+    display: none !important;
+  }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
   }
 }

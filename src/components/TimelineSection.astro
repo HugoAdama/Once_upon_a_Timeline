@@ -3,7 +3,7 @@ import { TIMELINE_MILESTONES } from '../data/timeline';
 ---
 
 <section class="section wrap" id="cronologia">
-  <div class="section-heading">
+  <div class="section-heading scroll-reveal">
     <div>
       <span class="eyebrow">04 · Cronología</span>
       <h2>Un recorrido por momentos clave.</h2>
@@ -13,7 +13,7 @@ import { TIMELINE_MILESTONES } from '../data/timeline';
 
   <div class="timeline" role="feed" aria-label="Cronología de lanzamientos históricos de TWICE">
     {TIMELINE_MILESTONES.map((item) => (
-      <article class="timeline-item">
+      <article class="timeline-item scroll-reveal">
         <time datetime={item.year}>{item.year} · {item.badge}</time>
         <h3>{item.title}</h3>
         <p>{item.description}</p>

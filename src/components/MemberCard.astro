@@ -10,7 +10,7 @@ const { member } = Astro.props;
 const photoSrc = resolveAsset(member.photo || null);
 ---
 
-<details class="member-card" style={`--member: ${member.colorHex};`} id={member.id}>
+<details class="member-card scroll-reveal" style={`--member: ${member.colorHex};`} id={member.id}>
   <summary aria-label={`Ver perfil y detalles de ${member.name}`}>
     <figure class="member-photo-frame" role="img" aria-label={`Retrato oficial de ${member.name}`}>
       {photoSrc && (
