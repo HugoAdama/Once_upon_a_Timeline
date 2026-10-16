@@ -320,15 +320,17 @@ const formatOptions = [
       });
 
       // Actualizar contador
-      if (visibleCount === 0) {
-        resultsCounter.textContent = 'No se encontraron lanzamientos';
-        if (noResultsMsg) noResultsMsg.style.display = 'block';
-      } else if (visibleCount === 1) {
-        resultsCounter.textContent = 'Mostrando 1 lanzamiento';
-        if (noResultsMsg) noResultsMsg.style.display = 'none';
-      } else {
-        resultsCounter.textContent = `Mostrando ${visibleCount} lanzamientos`;
-        if (noResultsMsg) noResultsMsg.style.display = 'none';
+      if (resultsCounter) {
+        if (visibleCount === 0) {
+          resultsCounter.textContent = 'No se encontraron lanzamientos';
+          if (noResultsMsg) noResultsMsg.style.display = 'block';
+        } else if (visibleCount === 1) {
+          resultsCounter.textContent = 'Mostrando 1 lanzamiento';
+          if (noResultsMsg) noResultsMsg.style.display = 'none';
+        } else {
+          resultsCounter.textContent = `Mostrando ${visibleCount} lanzamientos`;
+          if (noResultsMsg) noResultsMsg.style.display = 'none';
+        }
       }
     }
 
