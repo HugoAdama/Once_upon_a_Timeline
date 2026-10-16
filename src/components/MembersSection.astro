@@ -1,0 +1,24 @@
+---
+import { MEMBERS } from '../data/members';
+import MemberCard from './MemberCard.astro';
+---
+
+<section class="section wrap" id="integrantes">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">01 · Integrantes y colores</span>
+      <h2>Nueve tonos, nueve identidades.</h2>
+    </div>
+    <p>Cada tarjeta interactiva conecta a una integrante con su Lovely y su personaje TDOONGZ. Haz clic o presiona Enter para desplegar su ficha detallada.</p>
+  </div>
+
+  <div class="member-grid">
+    {MEMBERS.map((member) => (
+      <MemberCard member={member} />
+    ))}
+  </div>
+
+  <p class="palette-note">
+    <strong>Nota de diseño y accesibilidad:</strong> Apricot y Neon Magenta son los colores oficiales del grupo. Los nueve tonos individuales son acentos representativos para distinguir las tarjetas; cada uno cuenta con su etiqueta de texto visible. Los símbolos ♡ y ✦ son marcadores gráficos distintivos para Lovelys y TDOONGZ.
+  </p>
+</section>

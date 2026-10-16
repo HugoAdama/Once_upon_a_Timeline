@@ -1,0 +1,95 @@
+---
+import type { Release } from '../types';
+import { getStreamingLinks, resolveAsset } from '../utils/streaming';
+
+interface Props {
+  release: Release;
+}
+
+const { release } = Astro.props;
+const coverSrc = resolveAsset(release.cover);
+
+// Formateo de fecha en español (ej: "10 oct.", "24 abr.")
+const releaseDateObj = new Date(release.date + 'T00:00:00');
+const formattedDate = releaseDateObj.toLocaleDateString('es-ES', {
+  day: 'numeric',
+  month: 'short',
+});
+
+const tracksString = release.tracks.map((t) => t.title).join(' | ');
+const trackCount = release.tracks.length;
+const trackCountLabel = trackCount === 1 ? 'Mostrar 1 canción' : `Mostrar ${trackCount} canciones`;
+---
+
+<li
+  class="release-item"
+  id={release.id}
+  data-market={release.market}
+  data-year={release.year}
+  data-format={release.format}
+  data-title={release.title}
+  data-tracks={tracksString}
+>
+  <details class="release-details">
+    <summary class="release-summary" aria-label={`${release.title}, lanzado el ${release.date}. ${trackCountLabel}.`}>
+      <div class="release-cover-frame" role="img" aria-label={`Portada de ${release.title}`}>
+        {coverSrc ? (
+          <img
+            src={coverSrc}
+            alt={`Portada oficial de ${release.title}`}
+            loading="lazy"
+            decoding="async"
+            width="46"
+            height="46"
+            class="release-cover-img"
+            onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='grid';"
+          />
+        ) : null}
+        <div class="release-art-placeholder" style={coverSrc ? 'display: none;' : ''}>
+          <b aria-hidden="true">＋</b>
+          <small>Portada</small>
+        </div>
+      </div>
+
+      <time datetime={release.date}>{formattedDate}</time>
+
+      <span class="release-copy">
+        <strong>{release.title}</strong>
+        <span class="release-type">{release.formatLabel}</span>
+        <span class="release-toggle" aria-hidden="true">{trackCountLabel}</span>
+      </span>
+    </summary>
+
+    <div class="track-list-panel">
+      <p class="track-list-label">Canciones del lanzamiento</p>
+      <ol class="track-list">
+        {release.tracks.map((track) => {
+          const links = getStreamingLinks(track.title, release.title);
+          return (
+            <li>
+              <span class="track-title">{track.title}</span>
+              <span class="track-links">
+                <a
+                  href={links.youtubeMusic}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Buscar ${track.title} de TWICE en YouTube Music`}
+                >
+                  YT Music
+                </a>
+                <a
+                  href={links.spotify}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Buscar ${track.title} de TWICE en Spotify`}
+                >
+                  Spotify
+                </a>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </details>
+</li>

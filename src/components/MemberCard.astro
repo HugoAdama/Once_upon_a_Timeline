@@ -1,0 +1,77 @@
+---
+import type { Member } from '../types';
+
+interface Props {
+  member: Member;
+}
+
+const { member } = Astro.props;
+---
+
+<details class="member-card" style={`--member: ${member.colorHex};`} id={member.id}>
+  <summary aria-label={`Ver perfil y detalles de ${member.name}`}>
+    <figure class="image-placeholder member-photo" role="img" aria-label={`Espacio reservado para el retrato de ${member.name}`}>
+      <span class="placeholder-copy">
+        <b aria-hidden="true">＋</b>
+        <small>Retrato de {member.name}</small>
+      </span>
+    </figure>
+
+    <div class="member-head">
+      <div>
+        <span class="member-number">{member.number} / MEMBER</span>
+        <h3>{member.name}</h3>
+        <span class="member-color-tag">
+          <i aria-hidden="true"></i>
+          <span>Color: {member.colorName}</span>
+        </span>
+      </div>
+      <span class="member-expand-hint" aria-hidden="true">Ficha</span>
+    </div>
+
+    <div class="char-pair">
+      <div class="char-chip">
+        <span class="char-symbol" aria-hidden="true">{member.lovely.symbol}</span>
+        <span>
+          <small>LOVELY</small>
+          <strong>{member.lovely.name}</strong>
+        </span>
+      </div>
+      <div class="char-chip">
+        <span class="char-symbol" aria-hidden="true">{member.tdoongz.symbol}</span>
+        <span>
+          <small>TDOONGZ</small>
+          <strong>{member.tdoongz.name}</strong>
+        </span>
+      </div>
+    </div>
+  </summary>
+
+  <div class="member-details-drawer">
+    <div class="member-meta-grid">
+      <div class="member-meta-item">
+        <small>Nombre completo</small>
+        <strong>{member.fullName} ({member.hangul})</strong>
+      </div>
+      <div class="member-meta-item">
+        <small>Fecha de nacimiento</small>
+        <strong>{member.birthdate}</strong>
+      </div>
+      <div class="member-meta-item" style="grid-column: 1 / -1;">
+        <small>Posición y rol</small>
+        <strong>{member.role}</strong>
+      </div>
+    </div>
+
+    <p class="member-bio">{member.bio}</p>
+
+    <div class="character-bio-cards">
+      <div class="char-bio-item">
+        <b>Lovely ({member.lovely.name}):</b> {member.lovely.description}
+      </div>
+      <div class="char-bio-item">
+        <b>TDOONGZ ({member.tdoongz.name}):</b> {member.tdoongz.description}
+      </div>
+    </div>
+  </div>
+</details>

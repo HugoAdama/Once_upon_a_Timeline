@@ -1,0 +1,83 @@
+---
+import { LOVELYS, TDOONGZ } from '../data/characters';
+---
+
+<section class="section characters-section" id="personajes">
+  <div class="wrap">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">02 · Personajes</span>
+        <h2>Dos colecciones, un mismo universo.</h2>
+      </div>
+      <p>El sitio presenta los Lovelys y TDOONGZ en galerías independientes. Cada ficha resguarda la proporción fija de la ilustración y su personaje asociado.</p>
+    </div>
+
+    <div class="character-intros">
+      <article class="character-intro">
+        <span class="collection-label">La colección original · 9 Lovelys</span>
+        <h3>TWICE LOVELYS</h3>
+        <p>Las mascotas oficiales asociadas a las integrantes. Presentes en conciertos, videos musicales y artículos de colección desde su creación.</p>
+
+        <div class="character-gallery" aria-label="Galería de TWICE Lovelys">
+          {LOVELYS.map((lovely) => (
+            <figure class="character-tile">
+              <div
+                class="image-placeholder mascot-photo lovely-slot"
+                role="img"
+                aria-label={`Ilustración de ${lovely.name}, Lovely de ${lovely.member}`}
+                data-image-slot={lovely.id}
+              >
+                <span class="placeholder-copy">
+                  <b aria-hidden="true">{lovely.symbol}</b>
+                  <small>{lovely.member}</small>
+                </span>
+              </div>
+              <figcaption title={`${lovely.name} · ${lovely.tagline}`}>
+                {lovely.name}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <a class="text-link" href="https://twice.jype.com/" target="_blank" rel="noreferrer">
+          Sitio oficial de TWICE <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+
+      <article class="character-intro tdoongz">
+        <span class="collection-label">Nuevos personajes · presentados en 2026</span>
+        <h3>TDOONGZ</h3>
+        <p>Nueve personajes presentados oficialmente en octubre de 2026. Protagonistas de "Dream Attic" con personalidades inspiradas en cada integrante.</p>
+
+        <div class="character-gallery" aria-label="Galería de personajes TDOONGZ">
+          {TDOONGZ.map((tdoong) => (
+            <figure class="character-tile">
+              <div
+                class="image-placeholder mascot-photo tdoongz-slot"
+                role="img"
+                aria-label={`Ilustración de ${tdoong.name}, personaje TDOONGZ de ${tdoong.member}`}
+                data-image-slot={tdoong.id}
+              >
+                <span class="placeholder-copy">
+                  <b aria-hidden="true">{tdoong.symbol}</b>
+                  <small>{tdoong.member}</small>
+                </span>
+              </div>
+              <figcaption title={`${tdoong.name} · ${tdoong.tagline}`}>
+                {tdoong.name}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <a class="text-link" href="https://x.com/JYPETWICE" target="_blank" rel="noreferrer">
+          Ver anuncio oficial de TWICE <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+    </div>
+
+    <p class="global-note">
+      Los nombres de TDOONGZ están incluidos como personajes oficiales. El anuncio los presenta como una colección de personajes conceptuales del universo TWICE.
+    </p>
+  </div>
+</section>
