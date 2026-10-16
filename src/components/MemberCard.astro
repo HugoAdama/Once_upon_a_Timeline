@@ -1,20 +1,36 @@
 ---
 import type { Member } from '../types';
+import { resolveAsset } from '../utils/streaming';
 
 interface Props {
   member: Member;
 }
 
 const { member } = Astro.props;
+const photoSrc = resolveAsset(member.photo || null);
 ---
 
 <details class="member-card" style={`--member: ${member.colorHex};`} id={member.id}>
   <summary aria-label={`Ver perfil y detalles de ${member.name}`}>
-    <figure class="image-placeholder member-photo" role="img" aria-label={`Espacio reservado para el retrato de ${member.name}`}>
-      <span class="placeholder-copy">
-        <b aria-hidden="true">＋</b>
-        <small>Retrato de {member.name}</small>
-      </span>
+    <figure class="member-photo-frame" role="img" aria-label={`Retrato oficial de ${member.name}`}>
+      {photoSrc && (
+        <img
+          src={photoSrc}
+          alt={`Retrato oficial de ${member.name}`}
+          loading="lazy"
+          decoding="async"
+          width="600"
+          height="340"
+          class="member-actual-photo"
+          onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='grid';"
+        />
+      )}
+      <div class="image-placeholder member-photo" style={photoSrc ? 'display: none;' : ''}>
+        <span class="placeholder-copy">
+          <b aria-hidden="true">＋</b>
+          <small>Retrato de {member.name}</small>
+        </span>
+      </div>
     </figure>
 
     <div class="member-head">
