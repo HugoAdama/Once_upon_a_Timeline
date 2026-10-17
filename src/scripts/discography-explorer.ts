@@ -331,23 +331,6 @@ export function initDiscographyExplorer(): void {
     });
   }
 
-  // Handler para reproducir canciones en Candy Jukebox desde la tracklist
-  document.addEventListener('click', (e) => {
-    const jukeboxBtn = (e.target as HTMLElement)?.closest<HTMLButtonElement>('.play-jukebox-btn');
-    if (jukeboxBtn) {
-      e.preventDefault();
-      e.stopPropagation();
-      const title = jukeboxBtn.dataset.jukeboxTitle;
-      if (title) {
-        window.dispatchEvent(
-          new CustomEvent('candy-jukebox:play', {
-            detail: { title },
-          })
-        );
-      }
-    }
-  });
-
   // Restaurar estado desde la URL al inicio
   const hadParams = restoreFiltersFromUrl();
   if (hadParams) {

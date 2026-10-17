@@ -251,19 +251,6 @@
   flex-shrink: 0;
 }
 
-.play-jukebox-btn {
-  background: rgba(232, 62, 134, 0.09);
-  border: 1px solid rgba(232, 62, 134, 0.3);
-  color: #b62c69;
-  cursor: pointer;
-}
-
-.play-jukebox-btn:hover {
-  background: var(--magenta);
-  color: #ffffff;
-  border-color: var(--magenta);
-}
-
 .results-counter {
   font-weight: 850;
   color: #ad336c;
@@ -1101,18 +1088,6 @@
 }
 
 [data-theme="dark"] .toggle-all-btn:hover {
-  background: var(--magenta);
-  color: #ffffff;
-  border-color: var(--magenta);
-}
-
-[data-theme="dark"] .play-jukebox-btn {
-  background: rgba(232, 62, 134, 0.18);
-  border-color: rgba(232, 62, 134, 0.45);
-  color: #ff9bc7;
-}
-
-[data-theme="dark"] .play-jukebox-btn:hover {
   background: var(--magenta);
   color: #ffffff;
   border-color: var(--magenta);

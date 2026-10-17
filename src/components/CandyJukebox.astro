@@ -42,10 +42,10 @@
         <span>Candy Jukebox</span>
       </div>
       <div class="jukebox-header-actions">
-        <button id="jukebox-mode-btn" class="jukebox-mode-pill" type="button" title="Alternar entre Audio Real y Chime Sintetizador">
+        <span class="jukebox-live-indicator" title="Audio oficial original">
           <span class="mode-pulse-dot" aria-hidden="true"></span>
-          <span id="jukebox-mode-label">Canción Real</span>
-        </button>
+          <span>Oficial</span>
+        </span>
         <button id="jukebox-close" class="jukebox-close-btn" type="button" aria-label="Cerrar reproductor">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -63,35 +63,54 @@
             src="/Once_upon_a_Timeline/assets/covers/feel-special.webp"
             alt="Portada oficial del tema en reproducción"
             class="jukebox-art-img"
-            width="48"
-            height="48"
+            width="56"
+            height="56"
             loading="lazy"
           />
-          <svg id="jukebox-art-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-            <circle cx="12" cy="12" r="10"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
         </div>
         <div class="jukebox-track-details">
           <h4 id="jukebox-track-name" class="jukebox-track-name">Feel Special</h4>
           <p id="jukebox-track-era" class="jukebox-track-era">Feel Special (2019)</p>
+          <span class="jukebox-track-badge">Clip Oficial · 30s</span>
         </div>
       </div>
 
       <!-- Canvas Visualizer -->
       <div class="jukebox-visualizer-wrap">
-        <canvas id="jukebox-canvas" width="280" height="42" aria-label="Visualizador espectral de audio"></canvas>
+        <canvas id="jukebox-canvas" width="294" height="38" aria-label="Visualizador espectral de audio"></canvas>
+      </div>
+
+      <!-- Seekable Progress Bar -->
+      <div class="jukebox-progress-wrap">
+        <div
+          id="jukebox-progress-track"
+          class="jukebox-progress-track"
+          role="slider"
+          aria-label="Progreso de la pista"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          tabindex="0"
+        >
+          <div id="jukebox-progress-fill" class="jukebox-progress-fill" style="width: 0%;"></div>
+        </div>
+        <div class="jukebox-progress-times">
+          <span id="jukebox-current-time">0:00</span>
+          <span id="jukebox-duration">0:30</span>
+        </div>
       </div>
     </div>
 
     <!-- Playlist Pills -->
-    <div class="jukebox-playlist" role="tablist" aria-label="Lista de canciones oficiales">
-      <button class="jukebox-track-pill active" type="button" data-track-index="0">Feel Special</button>
-      <button class="jukebox-track-pill" type="button" data-track-index="1">What is Love?</button>
-      <button class="jukebox-track-pill" type="button" data-track-index="2">FANCY</button>
-      <button class="jukebox-track-pill" type="button" data-track-index="3">The Feels</button>
-      <button class="jukebox-track-pill" type="button" data-track-index="4">ONE SPARK</button>
-      <button class="jukebox-track-pill" type="button" data-track-index="5">I CAN'T STOP ME</button>
+    <div class="jukebox-playlist-wrap">
+      <div class="jukebox-playlist" role="tablist" aria-label="Lista de canciones oficiales">
+        <button class="jukebox-track-pill active" type="button" data-track-index="0">Feel Special</button>
+        <button class="jukebox-track-pill" type="button" data-track-index="1">What is Love?</button>
+        <button class="jukebox-track-pill" type="button" data-track-index="2">FANCY</button>
+        <button class="jukebox-track-pill" type="button" data-track-index="3">The Feels</button>
+        <button class="jukebox-track-pill" type="button" data-track-index="4">ONE SPARK</button>
+        <button class="jukebox-track-pill" type="button" data-track-index="5">I CAN'T STOP ME</button>
+      </div>
     </div>
 
     <!-- Elemento de audio nativo para pistas oficiales reales -->
@@ -101,24 +120,24 @@
     <div class="jukebox-controls">
       <div class="jukebox-playback-btns">
         <button id="jukebox-prev" class="jukebox-ctrl-btn" type="button" aria-label="Pista anterior" title="Pista anterior">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polygon points="19 20 9 12 19 4 19 20"/>
             <line x1="5" y1="19" x2="5" y2="5"/>
           </svg>
         </button>
 
         <button id="jukebox-play-pause" class="jukebox-play-pause-btn" type="button" aria-label="Reproducir o pausar" title="Reproducir / Pausar">
-          <svg id="jukebox-play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg id="jukebox-play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <polygon points="5 3 19 12 5 21 5 3"/>
           </svg>
-          <svg id="jukebox-pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none;" aria-hidden="true">
+          <svg id="jukebox-pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none;" aria-hidden="true">
             <rect x="6" y="4" width="4" height="16"/>
             <rect x="14" y="4" width="4" height="16"/>
           </svg>
         </button>
 
         <button id="jukebox-next" class="jukebox-ctrl-btn" type="button" aria-label="Siguiente pista" title="Siguiente pista">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polygon points="5 4 15 12 5 20 5 4"/>
             <line x1="19" y1="5" x2="19" y2="19"/>
           </svg>
@@ -126,7 +145,7 @@
       </div>
 
       <div class="jukebox-volume-wrap">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
         </svg>
@@ -137,8 +156,8 @@
           min="0"
           max="1"
           step="0.05"
-          value="0.4"
-          aria-label="Volumen del sintetizador"
+          value="0.45"
+          aria-label="Volumen del reproductor"
         />
       </div>
     </div>
