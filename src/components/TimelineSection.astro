@@ -5,27 +5,40 @@ import { TIMELINE_MILESTONES } from '../data/timeline';
 <section class="section wrap" id="cronologia">
   <div class="section-heading scroll-reveal">
     <div>
-      <span class="eyebrow">04 · Cronología</span>
+      <span class="eyebrow">04 · Cronología interactiva</span>
       <h2>Un recorrido por momentos clave.</h2>
     </div>
-    <p>Cada hito conecta directamente con su lanzamiento correspondiente en la discografía. Haz clic en cualquier era para desplegar sus canciones.</p>
+    <p>
+      Cada hito histórico conecta directamente con su lanzamiento correspondiente en la discografía. Haz clic en cualquier tarjeta para desplegar sus temas y reproducirlos.
+    </p>
   </div>
 
   <div class="timeline" role="feed" aria-label="Cronología de lanzamientos históricos de TWICE">
-    {TIMELINE_MILESTONES.map((item) => (
-      <article class="timeline-item scroll-reveal">
-        <time datetime={item.year}>{item.year} · {item.badge}</time>
-        <h3>{item.title}</h3>
-        <p>{item.description}</p>
-        <a
-          class="timeline-jump-btn"
-          href={`#${item.releaseId}`}
-          aria-label={`Ver lanzamiento ${item.title} (${item.year}) y desplegar canciones`}
-        >
-          <span>Ver canciones</span>
-          <span aria-hidden="true">↘</span>
-        </a>
-      </article>
-    ))}
+    {TIMELINE_MILESTONES.map((item, index) => {
+      const stepNum = String(index + 1).padStart(2, '0');
+      return (
+        <article class="timeline-item scroll-reveal">
+          <div class="timeline-item-header">
+            <span class="timeline-step-badge" aria-hidden="true">{stepNum}</span>
+            <div class="timeline-date-info">
+              <time datetime={item.year} class="timeline-year">{item.year}</time>
+              <span class="timeline-badge-pill">{item.badge}</span>
+            </div>
+          </div>
+
+          <h3 class="timeline-title">{item.title}</h3>
+          <p class="timeline-desc">{item.description}</p>
+
+          <a
+            class="timeline-jump-btn"
+            href={`#${item.releaseId}`}
+            aria-label={`Ver lanzamiento ${item.title} (${item.year}) y desplegar canciones`}
+          >
+            <span>Ver canciones y eras</span>
+            <span class="jump-arrow" aria-hidden="true">↘</span>
+          </a>
+        </article>
+      );
+    })}
   </div>
 </section>

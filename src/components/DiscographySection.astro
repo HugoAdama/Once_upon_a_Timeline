@@ -1,40 +1,20 @@
 ---
 import { RELEASES } from '../data/releases';
-import ReleaseItem from './ReleaseItem.astro';
+import { groupReleasesByYear, getUniqueYears } from '../utils/releases';
+import DiscographyFilterBar from './DiscographyFilterBar.astro';
+import MarketPanel from './MarketPanel.astro';
 
-// Extraer mercados
+// Extraer lanzamientos por mercado
 const koreaReleases = RELEASES.filter((r) => r.market === 'korea');
 const japanReleases = RELEASES.filter((r) => r.market === 'japan');
 const globalReleases = RELEASES.filter((r) => r.market === 'global');
 
-// Función auxiliar para agrupar por años descendentes
-function groupByYear(releases: typeof RELEASES) {
-  const years = Array.from(new Set(releases.map((r) => r.year))).sort((a, b) => b - a);
-  return years.map((year) => ({
-    year,
-    releases: releases.filter((r) => r.year === year),
-  }));
-}
+// Agrupaciones por año
+const koreaByYear = groupReleasesByYear(koreaReleases);
+const japanByYear = groupReleasesByYear(japanReleases);
+const globalByYear = groupReleasesByYear(globalReleases);
 
-const koreaByYear = groupByYear(koreaReleases);
-const japanByYear = groupByYear(japanReleases);
-const globalByYear = groupByYear(globalReleases);
-
-// Años disponibles ordenados
-const allYears = Array.from(new Set(RELEASES.map((r) => r.year))).sort((a, b) => b - a);
-
-// Formatos disponibles
-const formatOptions = [
-  { value: 'all', label: 'Todos los formatos' },
-  { value: 'album', label: 'Álbum de estudio' },
-  { value: 'mini-album', label: 'Mini álbum' },
-  { value: 'single', label: 'Sencillo' },
-  { value: 'digital-single', label: 'Sencillo digital' },
-  { value: 'special', label: 'Álbum especial' },
-  { value: 'repackage', label: 'Repackage' },
-  { value: 'compilation', label: 'Recopilatorio' },
-  { value: 'remix', label: 'Remixes' },
-];
+const allYears = getUniqueYears(RELEASES);
 ---
 
 <section class="section discography" id="discografia">
@@ -50,164 +30,44 @@ const formatOptions = [
       </p>
     </div>
 
-    <!-- EXPLORADOR DE DISCOGRAFÍA (REQUISITO 1) -->
-    <div class="filter-bar scroll-reveal" role="search" aria-label="Explorador y buscador de discografía">
-      <div class="filter-search-row">
-        <div class="search-input-wrap">
-          <span class="search-icon" aria-hidden="true">🔍</span>
-          <input
-            type="search"
-            id="search-input"
-            class="search-input"
-            placeholder="Busca un álbum o canción… (ej. Kura Kura, Feel Special, TT)"
-            aria-label="Busca un álbum o canción"
-            autocomplete="off"
-          />
-        </div>
-        <button id="clear-filters-btn" class="clear-btn" type="button" aria-label="Limpiar todos los filtros y búsqueda">
-          <span aria-hidden="true">↺</span> Limpiar filtros
-        </button>
-      </div>
+    <!-- Barra y controles de filtrado -->
+    <DiscographyFilterBar
+      totalCount={RELEASES.length}
+      koreaCount={koreaReleases.length}
+      japanCount={japanReleases.length}
+      globalCount={globalReleases.length}
+      allYears={allYears}
+    />
 
-      <div class="filter-controls-row">
-        <!-- Filtros de mercado -->
-        <div class="filter-group">
-          <span class="filter-label" id="label-market">Mercado:</span>
-          <div class="filter-chips" role="radiogroup" aria-labelledby="label-market">
-            <button type="button" class="chip-btn active" data-filter-market="all" role="radio" aria-checked="true">
-              Todos
-            </button>
-            <button type="button" class="chip-btn" data-filter-market="korea" role="radio" aria-checked="false">
-              Corea ({koreaReleases.length})
-            </button>
-            <button type="button" class="chip-btn" data-filter-market="japan" role="radio" aria-checked="false">
-              Japón ({japanReleases.length})
-            </button>
-            <button type="button" class="chip-btn" data-filter-market="global" role="radio" aria-checked="false">
-              Global ({globalReleases.length})
-            </button>
-          </div>
-        </div>
-
-        <!-- Filtro de año -->
-        <div class="filter-group">
-          <label for="filter-year" class="filter-label">Año:</label>
-          <select id="filter-year" class="filter-select" aria-label="Filtrar por año de lanzamiento">
-            <option value="all">Todos los años</option>
-            {allYears.map((yr) => (
-              <option value={yr}>{yr}</option>
-            ))}
-          </select>
-        </div>
-
-        <!-- Filtro de formato -->
-        <div class="filter-group">
-          <label for="filter-format" class="filter-label">Formato:</label>
-          <select id="filter-format" class="filter-select" aria-label="Filtrar por formato de lanzamiento">
-            {formatOptions.map((opt) => (
-              <option value={opt.value}>{opt.label}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div class="filter-status-row">
-        <span id="results-counter" class="results-counter" aria-live="polite">
-          Mostrando {RELEASES.length} lanzamientos
-        </span>
-        <span class="filter-tip">Tip: puedes escribir en minúsculas y sin acentos.</span>
-      </div>
-    </div>
-
-    <!-- MENSAJE DE COINCIDENCIAS NO ENCONTRADAS -->
-    <div id="no-results-msg" class="no-results-msg" role="status" aria-live="polite">
-      <h4>No se encontraron coincidencias</h4>
-      <p>No hay lanzamientos ni canciones que coincidan con los filtros y término de búsqueda actuales.</p>
-      <button class="button small" id="reset-empty-btn" type="button">Restablecer filtros</button>
-    </div>
-
-    <!-- CATÁLOGO DE LANZAMIENTOS -->
+    <!-- Catálogo de mercados delegados -->
     <div class="release-catalog" id="release-catalog-root">
-      <!-- MERCADO COREA -->
-      <details class="release-market scroll-reveal" open data-market-panel="korea">
-        <summary>
-          <span class="market-heading">
-            <span class="market-kicker">01 · Mercado</span>
-            <strong>Corea</strong>
-            <small>Lanzamientos coreanos publicados bajo el nombre del grupo.</small>
-          </span>
-          <span class="market-count" data-market-count-korea>{koreaReleases.length} registros</span>
-        </summary>
-        <div class="release-years">
-          {koreaByYear.map((group) => (
-            <section class="release-year" data-year-section={group.year}>
-              <h3>
-                {group.year}
-                <small>{group.releases.length} {group.releases.length === 1 ? 'lanzamiento' : 'lanzamientos'}</small>
-              </h3>
-              <ul class="release-list">
-                {group.releases.map((release) => (
-                  <ReleaseItem release={release} />
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
-      </details>
+      <MarketPanel
+        marketKey="korea"
+        kicker="01 · Mercado"
+        title="Corea"
+        description="Lanzamientos coreanos publicados bajo el nombre del grupo."
+        groups={koreaByYear}
+        totalReleases={koreaReleases.length}
+        defaultOpen={true}
+      />
 
-      <!-- MERCADO JAPÓN -->
-      <details class="release-market scroll-reveal" open data-market-panel="japan">
-        <summary>
-          <span class="market-heading">
-            <span class="market-kicker">02 · Mercado</span>
-            <strong>Japón</strong>
-            <small>Discografía japonesa y sencillos digitales publicados en ese mercado.</small>
-          </span>
-          <span class="market-count" data-market-count-japan>{japanReleases.length} registros</span>
-        </summary>
-        <div class="release-years">
-          {japanByYear.map((group) => (
-            <section class="release-year" data-year-section={group.year}>
-              <h3>
-                {group.year}
-                <small>{group.releases.length} {group.releases.length === 1 ? 'lanzamiento' : 'lanzamientos'}</small>
-              </h3>
-              <ul class="release-list">
-                {group.releases.map((release) => (
-                  <ReleaseItem release={release} />
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
-      </details>
+      <MarketPanel
+        marketKey="japan"
+        kicker="02 · Mercado"
+        title="Japón"
+        description="Discografía oficial producida por Warner Music Japan."
+        groups={japanByYear}
+        totalReleases={japanReleases.length}
+      />
 
-      <!-- MERCADO GLOBAL -->
-      <details class="release-market scroll-reveal" open data-market-panel="global">
-        <summary>
-          <span class="market-heading">
-            <span class="market-kicker">03 · Mercado</span>
-            <strong>Global · inglés</strong>
-            <small>Sencillos en inglés y lanzamiento digital de remixes.</small>
-          </span>
-          <span class="market-count" data-market-count-global>{globalReleases.length} registros</span>
-        </summary>
-        <div class="release-years">
-          {globalByYear.map((group) => (
-            <section class="release-year" data-year-section={group.year}>
-              <h3>
-                {group.year}
-                <small>{group.releases.length} {group.releases.length === 1 ? 'lanzamiento' : 'lanzamientos'}</small>
-              </h3>
-              <ul class="release-list">
-                {group.releases.map((release) => (
-                  <ReleaseItem release={release} />
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
-      </details>
+      <MarketPanel
+        marketKey="global"
+        kicker="03 · Mercado"
+        title="Global"
+        description="Sencillos en inglés, remixes y ediciones internacionales."
+        groups={globalByYear}
+        totalReleases={globalReleases.length}
+      />
     </div>
 
     <p class="catalog-note">
@@ -226,225 +86,8 @@ const formatOptions = [
 </section>
 
 <script>
-  import { normalizar } from '../utils/text';
+  import { initDiscographyExplorer } from '../scripts/discography-explorer';
 
-  // Configuración del Explorador de Discografía
-  function initDiscographyExplorer() {
-    const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
-    const yearSelect = document.getElementById('filter-year') as HTMLSelectElement | null;
-    const formatSelect = document.getElementById('filter-format') as HTMLSelectElement | null;
-    const marketChips = document.querySelectorAll<HTMLButtonElement>('[data-filter-market]');
-    const clearBtn = document.getElementById('clear-filters-btn');
-    const resetEmptyBtn = document.getElementById('reset-empty-btn');
-    const resultsCounter = document.getElementById('results-counter');
-    const noResultsMsg = document.getElementById('no-results-msg');
-
-    const releaseItems = Array.from(document.querySelectorAll<HTMLLIElement>('.release-item'));
-    const marketPanels = Array.from(document.querySelectorAll<HTMLDetailsElement>('[data-market-panel]'));
-    const yearSections = Array.from(document.querySelectorAll<HTMLElement>('[data-year-section]'));
-
-    if (!searchInput || !yearSelect || !formatSelect || !resultsCounter) return;
-
-    let selectedMarket = 'all';
-
-    // Función principal para aplicar filtros combinados
-    function applyFilters() {
-      const rawQuery = searchInput?.value || '';
-      const normalizedQuery = normalizar(rawQuery);
-      const selectedYear = yearSelect?.value || 'all';
-      const selectedFormat = formatSelect?.value || 'all';
-
-      let visibleCount = 0;
-
-      // Evaluar cada ficha de lanzamiento
-      releaseItems.forEach((item) => {
-        const itemMarket = item.getAttribute('data-market') || '';
-        const itemYear = item.getAttribute('data-year') || '';
-        const itemFormat = item.getAttribute('data-format') || '';
-        const rawTitle = item.getAttribute('data-title') || '';
-        const rawTracks = item.getAttribute('data-tracks') || '';
-
-        // Filtro de mercado
-        const matchesMarket = selectedMarket === 'all' || itemMarket === selectedMarket;
-
-        // Filtro de año
-        const matchesYear = selectedYear === 'all' || itemYear === selectedYear;
-
-        // Filtro de formato
-        const matchesFormat = selectedFormat === 'all' || itemFormat === selectedFormat;
-
-        // Búsqueda textual: revisa tanto título del álbum como canciones
-        let matchesSearch = true;
-        if (normalizedQuery !== '') {
-          const normalizedTitle = normalizar(rawTitle);
-          const normalizedTracks = normalizar(rawTracks);
-          matchesSearch = normalizedTitle.includes(normalizedQuery) || normalizedTracks.includes(normalizedQuery);
-        }
-
-        const isMatch = matchesMarket && matchesYear && matchesFormat && matchesSearch;
-
-        if (isMatch) {
-          item.style.display = '';
-          visibleCount++;
-        } else {
-          item.style.display = 'none';
-        }
-      });
-
-      // Actualizar visibilidad de secciones de año
-      yearSections.forEach((sec) => {
-        const childItems = sec.querySelectorAll<HTMLLIElement>('.release-item');
-        const hasVisibleChild = Array.from(childItems).some((el) => el.style.display !== 'none');
-        sec.style.display = hasVisibleChild ? '' : 'none';
-      });
-
-      // Actualizar visibilidad y conteos de paneles de mercado
-      marketPanels.forEach((panel) => {
-        const marketKey = panel.getAttribute('data-market-panel');
-        const childItems = panel.querySelectorAll<HTMLLIElement>('.release-item');
-        const visibleInMarket = Array.from(childItems).filter((el) => el.style.display !== 'none').length;
-
-        const countEl = panel.querySelector(`[data-market-count-${marketKey}]`);
-        if (countEl) {
-          countEl.textContent = `${visibleInMarket} ${visibleInMarket === 1 ? 'registro' : 'registros'}`;
-        }
-
-        // Si se está buscando activamente o filtrando, expandir paneles con coincidencias
-        if (normalizedQuery !== '' || selectedYear !== 'all' || selectedFormat !== 'all') {
-          if (visibleInMarket > 0) {
-            panel.open = true;
-          }
-        }
-
-        panel.style.display = visibleInMarket > 0 ? '' : 'none';
-      });
-
-      // Actualizar contador
-      if (resultsCounter) {
-        if (visibleCount === 0) {
-          resultsCounter.textContent = 'No se encontraron lanzamientos';
-          if (noResultsMsg) noResultsMsg.style.display = 'block';
-        } else if (visibleCount === 1) {
-          resultsCounter.textContent = 'Mostrando 1 lanzamiento';
-          if (noResultsMsg) noResultsMsg.style.display = 'none';
-        } else {
-          resultsCounter.textContent = `Mostrando ${visibleCount} lanzamientos`;
-          if (noResultsMsg) noResultsMsg.style.display = 'none';
-        }
-      }
-    }
-
-    // Limpiar todos los filtros
-    function resetFilters() {
-      if (searchInput) searchInput.value = '';
-      if (yearSelect) yearSelect.value = 'all';
-      if (formatSelect) formatSelect.value = 'all';
-      selectedMarket = 'all';
-
-      marketChips.forEach((btn) => {
-        const isAll = btn.getAttribute('data-filter-market') === 'all';
-        btn.classList.toggle('active', isAll);
-        btn.setAttribute('aria-checked', isAll ? 'true' : 'false');
-      });
-
-      applyFilters();
-      searchInput?.focus();
-    }
-
-    // Event listeners
-    searchInput.addEventListener('input', applyFilters);
-    yearSelect.addEventListener('change', applyFilters);
-    formatSelect.addEventListener('change', applyFilters);
-
-    marketChips.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        marketChips.forEach((b) => {
-          b.classList.remove('active');
-          b.setAttribute('aria-checked', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-checked', 'true');
-        selectedMarket = btn.getAttribute('data-filter-market') || 'all';
-        applyFilters();
-      });
-    });
-
-    clearBtn?.addEventListener('click', resetFilters);
-    resetEmptyBtn?.addEventListener('click', resetFilters);
-
-    // ========================================================
-    // CONECTAR CRONOLOGÍA CON LANZAMIENTOS (REQUISITO 2)
-    // ========================================================
-    function handleHashJump(hash: string) {
-      if (!hash || !hash.startsWith('#release-')) return;
-
-      const targetId = hash.slice(1);
-      const targetElement = document.getElementById(targetId);
-
-      if (!targetElement) return;
-
-      // Asegurar que el elemento esté visible (si los filtros lo ocultaban, resetearlos)
-      if (targetElement.style.display === 'none') {
-        resetFilters();
-      }
-
-      // Desplegar el mercado correspondiente si está cerrado
-      const parentMarket = targetElement.closest('details.release-market') as HTMLDetailsElement | null;
-      if (parentMarket) {
-        parentMarket.open = true;
-      }
-
-      // Desplegar la ficha del lanzamiento correspondiente
-      const releaseDetails = targetElement.querySelector('details.release-details') as HTMLDetailsElement | null;
-      if (releaseDetails) {
-        releaseDetails.open = true;
-      }
-
-      // Respetar preferencia de movimiento reducido
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      // Desplazar suavemente hasta el lanzamiento
-      targetElement.scrollIntoView({
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-        block: 'center',
-      });
-
-      // Efecto visual de resalte (highlight)
-      targetElement.classList.add('target-highlight');
-      setTimeout(() => {
-        targetElement.classList.remove('target-highlight');
-      }, 2500);
-
-      // Enfocar para navegación por teclado
-      const summary = targetElement.querySelector('summary');
-      summary?.focus({ preventScroll: true });
-    }
-
-    // Escuchar clics en enlaces con hash
-    document.addEventListener('click', (e) => {
-      const target = (e.target as HTMLElement)?.closest('a');
-      if (!target) return;
-      const href = target.getAttribute('href');
-      if (href && href.startsWith('#release-')) {
-        e.preventDefault();
-        window.history.pushState(null, '', href);
-        handleHashJump(href);
-      }
-    });
-
-    // Escuchar hashchange y carga inicial con hash
-    window.addEventListener('hashchange', () => {
-      handleHashJump(window.location.hash);
-    });
-
-    if (window.location.hash && window.location.hash.startsWith('#release-')) {
-      setTimeout(() => {
-        handleHashJump(window.location.hash);
-      }, 300);
-    }
-  }
-
-  // Ejecutar cuando el DOM esté listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initDiscographyExplorer);
   } else {

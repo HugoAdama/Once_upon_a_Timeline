@@ -18,7 +18,11 @@ import MemberCard from './MemberCard.astro';
   <!-- FILTRO DE ERAS PARA RETRATOS DE INTEGRANTES -->
   <div class="members-era-toolbar scroll-reveal" role="toolbar" aria-label="Filtrar fotografías de las integrantes por era musical">
     <span class="era-toolbar-label">
-      <span aria-hidden="true">📸</span> Filtrar era fotográfica:
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+      <span>Filtrar era fotográfica:</span>
     </span>
     <div class="era-chip-group" role="radiogroup" aria-label="Seleccionar era de las integrantes">
       <button
@@ -63,60 +67,12 @@ import MemberCard from './MemberCard.astro';
   </div>
 
   <p class="palette-note">
-    <strong>Nota de diseño y accesibilidad:</strong> Apricot y Neon Magenta son los colores oficiales del grupo. Los nueve tonos individuales son acentos representativos para distinguir las tarjetas; cada uno cuenta con su etiqueta de texto visible. Los símbolos ♡ y ✦ son marcadores gráficos distintivos para Lovelys y TDOONGZ.
+    <strong>Nota de diseño y accesibilidad:</strong> Apricot y Neon Magenta son los colores oficiales del grupo. Los nueve tonos individuales son acentos representativos para distinguir las tarjetas; cada uno cuenta con su etiqueta de texto visible. Los marcadores gráficos distintivos diferencian claramente las colecciones Lovelys y TDOONGZ.
   </p>
 </section>
 
 <script>
-  function initMemberEraFilter() {
-    const eraButtons = document.querySelectorAll<HTMLButtonElement>('[data-member-era-filter]');
-    const memberCards = document.querySelectorAll<HTMLElement>('.member-card');
-
-    const ERA_LABELS: Record<string, string> = {
-      current: 'Actual (2023-2025)',
-      between: 'BETWEEN (2021-2022)',
-      classic: 'Debut (2015-2018)',
-    };
-
-    eraButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const era = btn.getAttribute('data-member-era-filter') || 'current';
-
-        // Actualizar estado activo en los botones
-        eraButtons.forEach((b) => {
-          b.classList.remove('active');
-          b.setAttribute('aria-checked', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-checked', 'true');
-
-        // Actualizar fotografías y etiquetas de cada integrante
-        memberCards.forEach((card) => {
-          const img = card.querySelector<HTMLImageElement>('.member-actual-photo');
-          const badge = card.querySelector<HTMLElement>('[data-member-era-badge]');
-
-          if (img) {
-            const newSrc = img.getAttribute(`data-photo-${era}`);
-            if (newSrc && newSrc !== img.src) {
-              // Animación suave de transición
-              img.style.opacity = '0.3';
-              img.style.transform = 'scale(0.97)';
-
-              setTimeout(() => {
-                img.src = newSrc;
-                img.style.opacity = '1';
-                img.style.transform = 'scale(1)';
-              }, 180);
-            }
-          }
-
-          if (badge) {
-            badge.textContent = ERA_LABELS[era] || 'Era Actual';
-          }
-        });
-      });
-    });
-  }
+  import { initMemberEraFilter } from '../scripts/member-era-filter';
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initMemberEraFilter);

@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -9,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'Once Upon a Timeline — TWICE fan archive',
-  description = 'Once Upon a Timeline: archivo fan de TWICE, sus integrantes, música, eras y personajes.',
+  title = 'Once Upon a Timeline — TWICE Fan Archive',
+  description = 'Once Upon a Timeline: archivo interactivo de TWICE, sus 9 integrantes, discografía completa en Corea, Japón y global, eras musicales y colecciones de personajes LOVELYS y TDOONGZ.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hugoadama.github.io/Once_upon_a_Timeline/');
@@ -45,33 +46,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hugoadam
       <slot />
     </main>
     <Footer />
+    <ScrollToTop />
 
     <script>
-      function initScrollReveals() {
-        const reveals = document.querySelectorAll('.scroll-reveal');
-        if (!reveals.length) return;
-
-        // Detectar soporte de Scroll-Driven Animations nativo (CSS view-timeline)
-        const hasNativeTimeline = window.CSS && CSS.supports('(animation-timeline: view()) and (animation-range: entry)');
-        if (!hasNativeTimeline) {
-          document.documentElement.classList.add('no-timeline-support');
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('is-revealed');
-                  observer.unobserve(entry.target);
-                }
-              });
-            },
-            {
-              threshold: 0.1,
-              rootMargin: '0px 0px -40px 0px',
-            }
-          );
-          reveals.forEach((el) => observer.observe(el));
-        }
-      }
+      import { initScrollReveals } from '../scripts/scroll-reveal';
 
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initScrollReveals);

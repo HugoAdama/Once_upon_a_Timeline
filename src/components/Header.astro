@@ -1,7 +1,7 @@
 ---
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="wrap nav">
     <a class="brand" href="#inicio" aria-label="Once Upon a Timeline, volver al inicio">
       <span class="brand-seal" aria-hidden="true">O</span>
@@ -10,12 +10,45 @@
         <small>TWICE · FAN ARCHIVE</small>
       </span>
     </a>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#integrantes">Integrantes</a>
-      <a href="#personajes">Personajes</a>
-      <a href="#discografia">Discografía</a>
-      <a href="#cronologia">Cronología</a>
+
+    <nav class="nav-links" id="main-nav" aria-label="Navegación principal">
+      <a href="#integrantes" class="nav-link"><span>Integrantes</span></a>
+      <a href="#personajes" class="nav-link"><span>Personajes</span></a>
+      <a href="#discografia" class="nav-link"><span>Discografía</span></a>
+      <a href="#cronologia" class="nav-link"><span>Cronología</span></a>
     </nav>
-    <span class="header-chip">Fan site · no oficial</span>
+
+    <div class="header-actions">
+      <div class="sound-wave-badge" title="TWICE Fan Archive" aria-hidden="true">
+        <span class="wave-bar"></span>
+        <span class="wave-bar"></span>
+        <span class="wave-bar"></span>
+        <span class="wave-bar"></span>
+        <span class="sound-badge-text">ONCE ARCHIVE</span>
+      </div>
+      <span class="header-chip">Fan site · no oficial</span>
+      <button
+        class="mobile-menu-toggle"
+        id="mobile-menu-toggle"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<script>
+  import { initNavigation } from '../scripts/navigation';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavigation);
+  } else {
+    initNavigation();
+  }
+</script>

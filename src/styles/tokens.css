@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --paper: #fff9f5;
+  --paper-deep: #f8ede7;
+  --paper-glass: rgba(255, 249, 245, 0.82);
+  --ink: #231824;
+  --ink-soft: #3c2f3d;
+  --muted: #6f626f;
+  --muted-light: #948593;
+  --line: #ebdfe3;
+  --line-strong: rgba(232, 62, 134, 0.22);
+  --white: #ffffff;
+
+  /* Colores oficiales de TWICE */
+  --magenta: #e83e86; /* Neon Magenta, color oficial */
+  --apricot: #f4a27e; /* Apricot, color oficial */
+  --candy-pink: #ff5e97;
+  --lilac: #8c73a8;
+  --lilac-soft: #f2edf8;
+
+  /* Tipografías */
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --display: "Outfit", var(--sans);
+
+  /* Sombras y elevaciones */
+  --shadow-sm: 0 4px 14px rgba(66, 37, 57, 0.05);
+  --shadow-md: 0 12px 32px rgba(66, 37, 57, 0.08);
+  --shadow-lg: 0 24px 56px rgba(66, 37, 57, 0.12);
+  --shadow-glow: 0 0 24px rgba(232, 62, 134, 0.35);
+  --shadow-apricot: 0 8px 24px rgba(244, 162, 126, 0.35);
+
+  /* Gradientes de marca */
+  --gradient-twice: linear-gradient(135deg, #e83e86 0%, #f4a27e 100%);
+  --gradient-twice-soft: linear-gradient(135deg, rgba(232, 62, 134, 0.08), rgba(244, 162, 126, 0.12));
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.65));
+}

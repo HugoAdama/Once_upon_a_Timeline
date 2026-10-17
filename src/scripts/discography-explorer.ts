@@ -1,0 +1,217 @@
+import { normalizar } from '../utils/text';
+
+/**
+ * Inicializa la lógica interactiva del Explorador de Discografía:
+ * - Filtrado instantáneo por texto (título y tracks)
+ * - Filtros combinados por mercado, año y formato
+ * - Atajo de teclado '/'
+ * - Salto con animación y resalte desde la cronología
+ */
+export function initDiscographyExplorer(): void {
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  const yearSelect = document.getElementById('filter-year') as HTMLSelectElement | null;
+  const formatSelect = document.getElementById('filter-format') as HTMLSelectElement | null;
+  const marketChips = document.querySelectorAll<HTMLButtonElement>('[data-filter-market]');
+  const clearBtn = document.getElementById('clear-filters-btn');
+  const resetEmptyBtn = document.getElementById('reset-empty-btn');
+  const resultsCounter = document.getElementById('results-counter');
+  const noResultsMsg = document.getElementById('no-results-msg');
+
+  const releaseItems = Array.from(document.querySelectorAll<HTMLLIElement>('.release-item'));
+  const marketPanels = Array.from(document.querySelectorAll<HTMLDetailsElement>('[data-market-panel]'));
+  const yearSections = Array.from(document.querySelectorAll<HTMLElement>('[data-year-section]'));
+
+  if (!searchInput || !yearSelect || !formatSelect || !resultsCounter) return;
+
+  let selectedMarket = 'all';
+
+  function applyFilters(): void {
+    const rawQuery = searchInput?.value || '';
+    const normalizedQuery = normalizar(rawQuery);
+    const selectedYear = yearSelect?.value || 'all';
+    const selectedFormat = formatSelect?.value || 'all';
+
+    let visibleCount = 0;
+
+    releaseItems.forEach((item) => {
+      const itemMarket = item.getAttribute('data-market') || '';
+      const itemYear = item.getAttribute('data-year') || '';
+      const itemFormat = item.getAttribute('data-format') || '';
+      const rawTitle = item.getAttribute('data-title') || '';
+      const rawTracks = item.getAttribute('data-tracks') || '';
+
+      const matchesMarket = selectedMarket === 'all' || itemMarket === selectedMarket;
+      const matchesYear = selectedYear === 'all' || itemYear === selectedYear;
+      const matchesFormat = selectedFormat === 'all' || itemFormat === selectedFormat;
+
+      let matchesSearch = true;
+      if (normalizedQuery !== '') {
+        const normalizedTitle = normalizar(rawTitle);
+        const normalizedTracks = normalizar(rawTracks);
+        matchesSearch = normalizedTitle.includes(normalizedQuery) || normalizedTracks.includes(normalizedQuery);
+      }
+
+      const isMatch = matchesMarket && matchesYear && matchesFormat && matchesSearch;
+
+      if (isMatch) {
+        item.style.display = '';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    yearSections.forEach((sec) => {
+      const childItems = sec.querySelectorAll<HTMLLIElement>('.release-item');
+      const hasVisibleChild = Array.from(childItems).some((el) => el.style.display !== 'none');
+      sec.style.display = hasVisibleChild ? '' : 'none';
+    });
+
+    marketPanels.forEach((panel) => {
+      const marketKey = panel.getAttribute('data-market-panel');
+      const childItems = panel.querySelectorAll<HTMLLIElement>('.release-item');
+      const visibleInMarket = Array.from(childItems).filter((el) => el.style.display !== 'none').length;
+
+      const countEl = panel.querySelector(`[data-market-count-${marketKey}]`);
+      if (countEl) {
+        countEl.textContent = `${visibleInMarket} ${visibleInMarket === 1 ? 'registro' : 'registros'}`;
+      }
+
+      if (normalizedQuery !== '' || selectedYear !== 'all' || selectedFormat !== 'all') {
+        if (visibleInMarket > 0) {
+          panel.open = true;
+        }
+      }
+
+      panel.style.display = visibleInMarket > 0 ? '' : 'none';
+    });
+
+    if (resultsCounter) {
+      if (visibleCount === 0) {
+        resultsCounter.textContent = 'No se encontraron lanzamientos';
+        if (noResultsMsg) noResultsMsg.style.display = 'block';
+      } else if (visibleCount === 1) {
+        resultsCounter.textContent = 'Mostrando 1 lanzamiento';
+        if (noResultsMsg) noResultsMsg.style.display = 'none';
+      } else {
+        resultsCounter.textContent = `Mostrando ${visibleCount} lanzamientos`;
+        if (noResultsMsg) noResultsMsg.style.display = 'none';
+      }
+    }
+  }
+
+  function resetFilters(): void {
+    if (searchInput) searchInput.value = '';
+    if (yearSelect) yearSelect.value = 'all';
+    if (formatSelect) formatSelect.value = 'all';
+    selectedMarket = 'all';
+
+    marketChips.forEach((btn) => {
+      const isAll = btn.getAttribute('data-filter-market') === 'all';
+      btn.classList.toggle('active', isAll);
+      btn.setAttribute('aria-checked', isAll ? 'true' : 'false');
+    });
+
+    applyFilters();
+    searchInput?.focus();
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+  yearSelect.addEventListener('change', applyFilters);
+  formatSelect.addEventListener('change', applyFilters);
+
+  marketChips.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      marketChips.forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-checked', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-checked', 'true');
+      selectedMarket = btn.getAttribute('data-filter-market') || 'all';
+      applyFilters();
+    });
+  });
+
+  const quickEraButtons = document.querySelectorAll<HTMLButtonElement>('[data-search-preset]');
+  quickEraButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const preset = btn.getAttribute('data-search-preset') || '';
+      if (searchInput) {
+        searchInput.value = preset;
+        applyFilters();
+        searchInput.focus();
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (
+      e.key === '/' &&
+      document.activeElement !== searchInput &&
+      !(document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement)
+    ) {
+      e.preventDefault();
+      searchInput?.focus();
+      searchInput?.select();
+    }
+  });
+
+  clearBtn?.addEventListener('click', resetFilters);
+  resetEmptyBtn?.addEventListener('click', resetFilters);
+
+  function handleHashJump(hash: string): void {
+    if (!hash || !hash.startsWith('#release-')) return;
+
+    const targetId = hash.slice(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (!targetElement) return;
+
+    if (targetElement.style.display === 'none') {
+      resetFilters();
+    }
+
+    const parentMarket = targetElement.closest('details.release-market') as HTMLDetailsElement | null;
+    if (parentMarket) {
+      parentMarket.open = true;
+    }
+
+    const releaseDetails = targetElement.querySelector('details.release-details') as HTMLDetailsElement | null;
+    if (releaseDetails) {
+      releaseDetails.open = true;
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    targetElement.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'center',
+    });
+
+    targetElement.classList.add('target-highlight');
+    setTimeout(() => {
+      targetElement.classList.remove('target-highlight');
+    }, 2500);
+
+    const summary = targetElement.querySelector('summary');
+    summary?.focus({ preventScroll: true });
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement)?.closest('a');
+    if (!target) return;
+    const href = target.getAttribute('href');
+    if (href && href.startsWith('#release-')) {
+      e.preventDefault();
+      window.history.pushState(null, '', href);
+      handleHashJump(href);
+    }
+  });
+
+  if (window.location.hash && window.location.hash.startsWith('#release-')) {
+    setTimeout(() => {
+      handleHashJump(window.location.hash);
+    }, 120);
+  }
+}

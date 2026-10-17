@@ -1,0 +1,62 @@
+---
+import type { CharacterItem } from '../types';
+import { resolveAsset } from '../utils/streaming';
+
+interface Props {
+  character: CharacterItem;
+  galleryType?: 'lovely' | 'tdoongz';
+}
+
+const { character } = Astro.props;
+const avatarSrc = resolveAsset(character.avatar || null);
+const isLovely = character.type === 'lovely';
+const ariaLabel = isLovely
+  ? `Mascota oficial ${character.name}, Lovely de ${character.member}`
+  : `Personaje oficial ${character.name} de ${character.member}`;
+---
+
+<figure class="character-tile" style={`--char-color: ${character.colorHex};`}>
+  <div class="mascot-photo-frame" role="img" aria-label={ariaLabel}>
+    <span class="mascot-halo" aria-hidden="true"></span>
+    {avatarSrc && (
+      <img
+        src={avatarSrc}
+        alt={`${ariaLabel}`}
+        loading="lazy"
+        decoding="async"
+        width="400"
+        height="320"
+        class="mascot-actual-img"
+        onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='grid';"
+      />
+    )}
+    <div
+      class={`image-placeholder mascot-photo ${isLovely ? 'lovely-slot' : 'tdoongz-slot'}`}
+      style={avatarSrc ? 'display: none;' : ''}
+      data-image-slot={character.id}
+    >
+      <span class="placeholder-copy">
+        <b aria-hidden="true">
+          {isLovely ? (
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          ) : (
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+          )}
+        </b>
+        <small>{character.member}</small>
+      </span>
+    </div>
+    <span class="mascot-symbol-pill" aria-hidden="true">
+      {isLovely ? (
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      ) : (
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+      )}
+    </span>
+  </div>
+  <figcaption>
+    <span class="mascot-name">{character.name}</span>
+    <small class="mascot-member-tag">de {character.member}</small>
+    <span class="mascot-tagline">{character.tagline}</span>
+  </figcaption>
+</figure>

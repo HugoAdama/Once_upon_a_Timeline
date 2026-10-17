@@ -1,0 +1,45 @@
+---
+import type { Market } from '../types';
+import type { YearGroup } from '../utils/releases';
+import ReleaseItem from './ReleaseItem.astro';
+
+interface Props {
+  marketKey: Market;
+  kicker: string;
+  title: string;
+  description: string;
+  groups: YearGroup[];
+  totalReleases: number;
+  defaultOpen?: boolean;
+}
+
+const { marketKey, kicker, title, description, groups, totalReleases, defaultOpen = false } = Astro.props;
+---
+
+<details class="release-market scroll-reveal" open={defaultOpen} data-market-panel={marketKey}>
+  <summary>
+    <span class="market-heading">
+      <span class="market-kicker">{kicker}</span>
+      <strong>{title}</strong>
+      <small>{description}</small>
+    </span>
+    <span class="market-count" {...{ [`data-market-count-${marketKey}`]: true }}>
+      {totalReleases} registros
+    </span>
+  </summary>
+  <div class="release-years">
+    {groups.map((group) => (
+      <section class="release-year" data-year-section={group.year}>
+        <h3>
+          {group.year}
+          <small>{group.releases.length} {group.releases.length === 1 ? 'lanzamiento' : 'lanzamientos'}</small>
+        </h3>
+        <ul class="release-list">
+          {group.releases.map((release) => (
+            <ReleaseItem release={release} />
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</details>

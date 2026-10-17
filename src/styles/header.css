@@ -1,0 +1,197 @@
+/* ========================================================
+   CABECERA Y NAVEGACIÓN (SITE HEADER & NAV)
+   ======================================================== */
+.site-header {
+  position: sticky;
+  z-index: 99;
+  top: 0;
+  border-bottom: 1px solid rgba(232, 62, 134, 0.12);
+  background: rgba(255, 249, 245, 0.86);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-seal {
+  display: grid;
+  width: 40px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--magenta), #d62d75);
+  color: white;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  box-shadow: 0 6px 16px rgba(232, 62, 134, 0.38);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.brand:hover .brand-seal {
+  transform: rotate(15deg) scale(1.08);
+  box-shadow: 0 8px 22px rgba(232, 62, 134, 0.52);
+}
+
+.brand-copy {
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.brand-copy small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.54rem;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.8vw, 34px);
+}
+
+.nav-links a {
+  position: relative;
+  padding: 8px 4px;
+  color: #4b3d4a;
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2.5px;
+  background: var(--gradient-twice);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ad336c;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Sound wave badge decorativo */
+.sound-wave-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.2);
+}
+
+.wave-bar {
+  width: 3px;
+  height: 12px;
+  background: var(--magenta);
+  border-radius: 2px;
+  animation: wavePulse 1.4s ease-in-out infinite alternate;
+}
+
+.wave-bar:nth-child(2) {
+  height: 16px;
+  animation-delay: 0.2s;
+  background: var(--apricot);
+}
+
+.wave-bar:nth-child(3) {
+  height: 9px;
+  animation-delay: 0.4s;
+  background: var(--magenta);
+}
+
+.wave-bar:nth-child(4) {
+  height: 14px;
+  animation-delay: 0.6s;
+  background: var(--apricot);
+}
+
+@keyframes wavePulse {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1.1); }
+}
+
+.sound-badge-text {
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  color: #a32d64;
+  margin-left: 4px;
+}
+
+.header-chip {
+  padding: 6px 13px;
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  border-radius: 999px;
+  color: #6a5a69;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.menu-bar {
+  width: 100%;
+  height: 2px;
+  background: #3e2e3e;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}

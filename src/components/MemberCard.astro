@@ -12,6 +12,7 @@ const photoSrc = resolveAsset(member.photo || null);
 
 <details class="member-card scroll-reveal" style={`--member: ${member.colorHex};`} id={member.id}>
   <summary aria-label={`Ver perfil y detalles de ${member.name}`}>
+    <!-- Marco fotográfico de estilo Photocard de colección -->
     <figure class="member-photo-frame" role="img" aria-label={`Retrato oficial de ${member.name}`}>
       {photoSrc && (
         <img
@@ -37,38 +38,53 @@ const photoSrc = resolveAsset(member.photo || null);
           <small>Retrato de {member.name}</small>
         </span>
       </div>
+      <!-- Brillo holográfico de colección -->
+      <span class="photocard-shimmer" aria-hidden="true"></span>
     </figure>
 
     <div class="member-head">
       <div>
-        <span class="member-number">{member.number} / MEMBER</span>
-        <h3>{member.name}</h3>
+        <div class="member-id-row">
+          <span class="member-number">{member.number} · MEMBER</span>
+          <span class="member-hangul-sub">{member.hangul}</span>
+        </div>
+        <h3 class="member-title">{member.name}</h3>
         <span class="member-color-tag">
-          <i aria-hidden="true"></i>
-          <span>Color: {member.colorName}</span>
+          <i aria-hidden="true" style={`background-color: ${member.colorHex};`}></i>
+          <span>{member.colorName}</span>
         </span>
       </div>
       <span class="member-expand-hint" aria-hidden="true">Ficha</span>
     </div>
 
+    <!-- Pareja de personajes Lovely & Tdoongz -->
     <div class="char-pair">
-      <div class="char-chip">
-        <span class="char-symbol" aria-hidden="true">{member.lovely.symbol}</span>
-        <span>
+      <div class="char-chip lovely-chip" title={`Lovely: ${member.lovely.name}`}>
+        <span class="char-symbol" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </span>
+        <div class="char-info">
           <small>LOVELY</small>
           <strong>{member.lovely.name}</strong>
-        </span>
+        </div>
       </div>
-      <div class="char-chip">
-        <span class="char-symbol" aria-hidden="true">{member.tdoongz.symbol}</span>
-        <span>
+      <div class="char-chip tdoongz-chip" title={`TDOONGZ: ${member.tdoongz.name}`}>
+        <span class="char-symbol" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+          </svg>
+        </span>
+        <div class="char-info">
           <small>TDOONGZ</small>
           <strong>{member.tdoongz.name}</strong>
-        </span>
+        </div>
       </div>
     </div>
   </summary>
 
+  <!-- Panel desplegable con ficha biográfica y atributos -->
   <div class="member-details-drawer">
     <div class="member-meta-grid">
       <div class="member-meta-item">
@@ -76,11 +92,11 @@ const photoSrc = resolveAsset(member.photo || null);
         <strong>{member.fullName} ({member.hangul})</strong>
       </div>
       <div class="member-meta-item">
-        <small>Fecha de nacimiento</small>
+        <small>Nacimiento</small>
         <strong>{member.birthdate}</strong>
       </div>
-      <div class="member-meta-item" style="grid-column: 1 / -1;">
-        <small>Posición y rol</small>
+      <div class="member-meta-item full-width">
+        <small>Posición y rol en TWICE</small>
         <strong>{member.role}</strong>
       </div>
     </div>
@@ -88,11 +104,23 @@ const photoSrc = resolveAsset(member.photo || null);
     <p class="member-bio">{member.bio}</p>
 
     <div class="character-bio-cards">
-      <div class="char-bio-item">
-        <b>Lovely ({member.lovely.name}):</b> {member.lovely.description}
+      <div class="char-bio-item lovely-bio">
+        <span class="char-bio-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>LOVELY</span>
+        </span>
+        <p><strong>{member.lovely.name}:</strong> {member.lovely.description}</p>
       </div>
-      <div class="char-bio-item">
-        <b>TDOONGZ ({member.tdoongz.name}):</b> {member.tdoongz.description}
+      <div class="char-bio-item tdoongz-bio">
+        <span class="char-bio-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+          </svg>
+          <span>TDOONGZ</span>
+        </span>
+        <p><strong>{member.tdoongz.name}:</strong> {member.tdoongz.description}</p>
       </div>
     </div>
   </div>

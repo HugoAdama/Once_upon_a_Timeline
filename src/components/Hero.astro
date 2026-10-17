@@ -4,28 +4,101 @@
 <section class="hero wrap" id="inicio">
   <div class="hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">Un archivo para ONCE</span>
-      <h1>Once Upon<br /><em>a Timeline.</em></h1>
-      <p>Una historia de música, color y personajes. Recorre las integrantes de TWICE, sus eras y las dos colecciones que acompañan su universo.</p>
-      <div class="hero-actions">
-        <a class="button" href="#integrantes">Explorar integrantes <span aria-hidden="true">↘</span></a>
-        <a class="button light" href="#discografia">Ir a la discografía</a>
+      <div class="hero-badge-row">
+        <span class="eyebrow">Un archivo para ONCE</span>
+        <span class="hero-sparkle-pill" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+          </svg>
+          <span>2015 — 2025</span>
+        </span>
       </div>
+
+      <h1>Once Upon<br /><em>a Timeline.</em></h1>
+
+      <p class="hero-description">
+        Una historia de música, color y personajes. Recorre las 9 integrantes de TWICE, sus eras discográficas en Corea, Japón y el mundo, y las dos colecciones oficiales que acompañan su universo: Lovelys y TDOONGZ.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button hero-btn-primary" href="#integrantes">
+          <span>Explorar integrantes</span>
+          <span class="btn-arrow" aria-hidden="true">↘</span>
+        </a>
+        <a class="button light hero-btn-secondary" href="#discografia">
+          <span>Ir a la discografía</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Métricas rápidas / Stats Strip -->
+      <div class="hero-stats-strip" aria-label="Cifras clave del archivo de TWICE">
+        <div class="stat-item">
+          <strong>9</strong>
+          <small>Integrantes</small>
+        </div>
+        <span class="stat-divider" aria-hidden="true"></span>
+        <div class="stat-item">
+          <strong>10+</strong>
+          <small>Años de música</small>
+        </div>
+        <span class="stat-divider" aria-hidden="true"></span>
+        <div class="stat-item">
+          <strong>100+</strong>
+          <small>Lanzamientos</small>
+        </div>
+        <span class="stat-divider" aria-hidden="true"></span>
+        <div class="stat-item">
+          <strong>18</strong>
+          <small>Personajes</small>
+        </div>
+      </div>
+
       <div class="official-colors" aria-label="Colores oficiales del grupo: Apricot y Neon Magenta">
         <span class="swatch-pair" aria-hidden="true"><i></i><i></i></span>
         <span>Apricot + Neon Magenta · colores oficiales de TWICE</span>
       </div>
     </div>
-    <div class="hero-art" role="img" aria-label="Ilustración abstracta de un disco de vinilo de TWICE con órbitas giratorias">
-      <span class="art-label">A fan-made archive</span>
-      <span class="art-orbit" aria-hidden="true"></span>
-      <span class="art-orbit two" aria-hidden="true"></span>
-      <span class="art-disc" aria-hidden="true"></span>
-      <div class="art-caption">
-        <span>Nine members · two character worlds</span>
-        <strong>Music, memories &amp; lovely things</strong>
+
+    <!-- Arte visual interactivo del Hero: Disco de vinilo y órbitas cósmicas -->
+    <div class="hero-art-container" role="img" aria-label="Ilustración artística interactiva de disco de vinilo de TWICE con órbitas giratorias">
+      <div class="hero-art">
+        <span class="art-label">TWICE FAN ARCHIVE</span>
+        <span class="art-orbit" aria-hidden="true"></span>
+        <span class="art-orbit two" aria-hidden="true"></span>
+        <span class="art-glow-ring" aria-hidden="true"></span>
+
+        <!-- Disco de vinilo estilizado con surcos brillantes -->
+        <div class="art-disc" aria-hidden="true">
+          <div class="disc-grooves"></div>
+          <div class="disc-center">
+            <span class="disc-logo">TWICE</span>
+            <small class="disc-sub">ONCE</small>
+          </div>
+        </div>
+
+        <div class="art-floating-pill top-right">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>9 LOVELYS</span>
+        </div>
+        <div class="art-floating-pill bottom-left">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+          </svg>
+          <span>TDOONGZ</span>
+        </div>
+
+        <div class="art-caption">
+          <span>Nine members · two character worlds</span>
+          <strong>Music, memories &amp; lovely things</strong>
+        </div>
+
+        <span class="art-number">SINCE 2015 · VOL. 01</span>
       </div>
-      <span class="art-number">SINCE 2015 · VOL. 01</span>
     </div>
   </div>
 </section>

@@ -1,0 +1,266 @@
+/* ========================================================
+   PERSONAJES Y MASCOTAS (LOVELYS & TDOONGZ)
+   ======================================================== */
+.characters-section {
+  background: linear-gradient(180deg, transparent, rgba(244, 162, 126, 0.1), rgba(232, 62, 134, 0.06), transparent);
+}
+
+.character-intros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.character-intro {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 14px 36px rgba(66, 37, 57, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.character-intro.tdoongz {
+  border-color: rgba(140, 115, 168, 0.28);
+}
+
+.character-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.collection-label {
+  color: #9f3168;
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.character-intro.tdoongz .collection-label {
+  color: #72588f;
+}
+
+.collection-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.lovelys-badge {
+  background: rgba(232, 62, 134, 0.1);
+  color: var(--magenta);
+  border: 1px solid rgba(232, 62, 134, 0.25);
+}
+
+.tdoongz-badge {
+  background: rgba(140, 115, 168, 0.12);
+  color: var(--lilac);
+  border: 1px solid rgba(140, 115, 168, 0.25);
+}
+
+.character-intro h3 {
+  margin: 10px 0 8px;
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  font-weight: 400;
+  color: #241622;
+}
+
+.character-intro p {
+  max-width: 480px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.character-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.character-tile {
+  --char-color: #e83e86;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid #ebdfe3;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(78, 38, 62, 0.04);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.character-tile:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 14px 30px rgba(78, 38, 62, 0.12),
+    0 0 0 2px color-mix(in srgb, var(--char-color) 45%, transparent);
+  border-color: var(--char-color);
+}
+
+.mascot-photo-frame {
+  position: relative;
+  aspect-ratio: 1.15 / 1;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(145deg, #fffcfb, #fdf3f6);
+  border-radius: 13px 13px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tdoongz-gallery .mascot-photo-frame {
+  background: linear-gradient(145deg, #fdfcfd, #f4eff9);
+}
+
+.mascot-halo {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--char-color) 30%, transparent), transparent 70%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.character-tile:hover .mascot-halo {
+  transform: scale(1.4);
+  opacity: 1;
+}
+
+.mascot-actual-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.lovelys-gallery .mascot-actual-img {
+  object-fit: contain;
+  padding: 8px;
+}
+
+.tdoongz-gallery .mascot-actual-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.character-tile:hover .mascot-actual-img {
+  transform: scale(1.08);
+}
+
+.mascot-photo {
+  aspect-ratio: 1.25 / 1;
+  border-radius: 4px 4px 0 0;
+}
+
+.mascot-photo::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(117, 85, 112, 0.12), transparent 70%);
+}
+
+.mascot-photo.lovely-slot { background: linear-gradient(140deg, #fff5e9, #f8dbe7); }
+.mascot-photo.tdoongz-slot { background: linear-gradient(140deg, #f2ecfa, #e3e0f5); }
+
+.mascot-symbol-pill {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  color: var(--char-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.character-tile figcaption {
+  padding: 10px 8px;
+  text-align: center;
+  background: #ffffff;
+  border-top: 1px solid #f2e9ed;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mascot-name {
+  font-size: 0.74rem;
+  font-weight: 850;
+  color: #312130;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mascot-member-tag {
+  font-size: 0.58rem;
+  font-weight: 750;
+  color: #8c7d8a;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.mascot-tagline {
+  font-size: 0.6rem;
+  color: #a42c64;
+  font-weight: 700;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.panel-footer-action {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.panel-action-btn {
+  width: 100%;
+}
+
+.characters-footer-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(110, 75, 96, 0.12);
+  color: #6d5f6c;
+  font-size: 0.76rem;
+}
+
+.note-icon-svg {
+  flex-shrink: 0;
+  color: var(--magenta);
+}

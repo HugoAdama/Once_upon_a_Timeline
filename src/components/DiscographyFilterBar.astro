@@ -1,0 +1,131 @@
+---
+import { FORMAT_OPTIONS } from '../utils/releases';
+
+interface Props {
+  totalCount: number;
+  koreaCount: number;
+  japanCount: number;
+  globalCount: number;
+  allYears: number[];
+}
+
+const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.props;
+---
+
+<div class="filter-bar scroll-reveal" role="search" aria-label="Explorador y buscador de discografía">
+  <div class="filter-search-row">
+    <div class="search-input-wrap">
+      <span class="search-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+      <input
+        type="search"
+        id="search-input"
+        class="search-input"
+        placeholder="Busca un álbum o canción… (ej. Kura Kura, Feel Special, TT, Strategy)"
+        aria-label="Busca un álbum o canción"
+        autocomplete="off"
+      />
+      <span class="search-kbd-hint" aria-hidden="true">/</span>
+    </div>
+    <button id="clear-filters-btn" class="clear-btn" type="button" aria-label="Limpiar todos los filtros y búsqueda">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+      </svg>
+      <span>Limpiar filtros</span>
+    </button>
+  </div>
+
+  <!-- Accesos directos a Eras Populares -->
+  <div class="quick-eras-bar" aria-label="Filtros rápidos de eras populares">
+    <span class="quick-eras-label">Eras destacadas:</span>
+    <div class="quick-eras-chips">
+      <button type="button" class="quick-era-btn" data-search-preset="STRATEGY">Strategy (2024)</button>
+      <button type="button" class="quick-era-btn" data-search-preset="With YOU-th">With YOU-th (2024)</button>
+      <button type="button" class="quick-era-btn" data-search-preset="READY TO BE">Ready to Be (2023)</button>
+      <button type="button" class="quick-era-btn" data-search-preset="BETWEEN 1&2">BETWEEN 1&2 (2022)</button>
+      <button type="button" class="quick-era-btn" data-search-preset="Formula of Love">Formula of Love (2021)</button>
+      <button type="button" class="quick-era-btn" data-search-preset="Feel Special">Feel Special (2019)</button>
+      <button type="button" class="quick-era-btn" data-search-preset="Fancy">Fancy You (2019)</button>
+    </div>
+  </div>
+
+  <div class="filter-controls-row">
+    <!-- Filtros de mercado con iconos SVG -->
+    <div class="filter-group">
+      <span class="filter-label" id="label-market">Mercado:</span>
+      <div class="filter-chips" role="radiogroup" aria-labelledby="label-market">
+        <button type="button" class="chip-btn active" data-filter-market="all" role="radio" aria-checked="true">
+          <span>Todos</span>
+        </button>
+
+        <button type="button" class="chip-btn" data-filter-market="korea" role="radio" aria-checked="false">
+          <svg class="market-svg-icon" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+            <rect width="16" height="12" rx="2" fill="#ffffff" stroke="#e0d5db" stroke-width="0.75"/>
+            <circle cx="8" cy="6" r="3" fill="#cd2e3a"/>
+            <path d="M5 6a3 3 0 0 0 6 0c0 1.657-1.343 3-3 3A3 3 0 0 1 5 6z" fill="#0047a0"/>
+          </svg>
+          <span>Corea</span>
+          <span class="chip-count">({koreaCount})</span>
+        </button>
+
+        <button type="button" class="chip-btn" data-filter-market="japan" role="radio" aria-checked="false">
+          <svg class="market-svg-icon" width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+            <rect width="16" height="12" rx="2" fill="#ffffff" stroke="#e0d5db" stroke-width="0.75"/>
+            <circle cx="8" cy="6" r="3" fill="#bc002d"/>
+          </svg>
+          <span>Japón</span>
+          <span class="chip-count">({japanCount})</span>
+        </button>
+
+        <button type="button" class="chip-btn" data-filter-market="global" role="radio" aria-checked="false">
+          <svg class="market-svg-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span>Global</span>
+          <span class="chip-count">({globalCount})</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filtro de año -->
+    <div class="filter-group">
+      <label for="filter-year" class="filter-label">Año:</label>
+      <select id="filter-year" class="filter-select" aria-label="Filtrar por año de lanzamiento">
+        <option value="all">Todos los años</option>
+        {allYears.map((yr) => (
+          <option value={yr}>{yr}</option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Filtro de formato -->
+    <div class="filter-group">
+      <label for="filter-format" class="filter-label">Formato:</label>
+      <select id="filter-format" class="filter-select" aria-label="Filtrar por formato de lanzamiento">
+        {FORMAT_OPTIONS.map((opt) => (
+          <option value={opt.value}>{opt.label}</option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  <div class="filter-status-row">
+    <span id="results-counter" class="results-counter" aria-live="polite">
+      Mostrando {totalCount} lanzamientos
+    </span>
+    <span class="filter-tip">Tip: presiona <kbd>/</kbd> para buscar en cualquier momento.</span>
+  </div>
+</div>
+
+<!-- MENSAJE DE COINCIDENCIAS NO ENCONTRADAS -->
+<div id="no-results-msg" class="no-results-msg" role="status" aria-live="polite">
+  <h4>No se encontraron coincidencias</h4>
+  <p>No hay lanzamientos ni canciones que coincidan con los filtros y término de búsqueda actuales.</p>
+  <button class="button small" id="reset-empty-btn" type="button">Restablecer filtros</button>
+</div>

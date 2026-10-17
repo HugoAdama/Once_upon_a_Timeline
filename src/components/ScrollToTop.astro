@@ -1,0 +1,42 @@
+---
+---
+
+<button
+  id="back-to-top"
+  class="back-to-top-fab"
+  type="button"
+  aria-label="Volver al inicio de la página"
+  title="Volver arriba"
+>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
+<script>
+  function initScrollToTop(): void {
+    const bttBtn = document.getElementById('back-to-top');
+    if (!bttBtn) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 480) {
+        bttBtn.classList.add('visible');
+      } else {
+        bttBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    bttBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollToTop);
+  } else {
+    initScrollToTop();
+  }
+</script>
