@@ -16,13 +16,19 @@ El proyecto está diseñado bajo dos pilares clave:
 
 ```text
 Once_upon_a_Timeline/
+├── .agents/
+│   └── skills/              # Skills de diseño UX/UI y modern web design
 ├── public/
 │   ├── assets/
 │   │   ├── characters/      # Ilustraciones oficiales de Lovelys y TDOONGZ (.webp)
 │   │   ├── covers/          # Portadas oficiales cuadradas de álbumes y sencillos (.webp)
-│   │   └── members/         # Retratos oficiales por era (current, between, classic)
+│   │   ├── members/         # Retratos oficiales por era (current, between, classic)
+│   │   └── twice-logo.svg   # Emblema vectorial oficial de TWICE
 │   ├── favicon.ico
-│   └── favicon.svg
+│   └── favicon.svg          # Favicon oficial vectorial de TWICE
+├── scripts/
+│   ├── scrapers/            # Utilidades de descarga, scraping y normalización de assets
+│   └── README.md            # Guía técnica de scripts auxiliares
 ├── src/
 │   ├── components/          # Componentes Astro de presentación
 │   │   ├── CharacterTile.astro          # Ficha atómica individual para personajes

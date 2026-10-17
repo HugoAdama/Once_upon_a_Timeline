@@ -133,15 +133,28 @@
 }
 
 .footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: #635362;
   font-size: 0.78rem;
   font-weight: 650;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
+.footer-nav a svg {
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
 .footer-nav a:hover {
   color: var(--magenta);
   transform: translateX(3px);
+}
+
+.footer-nav a:hover svg {
+  opacity: 1;
+  transform: translate(1px, -1px);
 }
 
 .footer-bottom-row {

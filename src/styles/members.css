@@ -137,17 +137,194 @@
 
 .member-card > summary::-webkit-details-marker { display: none; }
 
-.member-photo-frame {
+/* Contenedor 3D de Photocard coleccionable */
+.photocard-3d-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 4.9;
   min-height: 290px;
   margin: 0 0 16px;
-  overflow: hidden;
+  perspective: 1000px;
+}
+
+.photocard-front,
+.photocard-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
   border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.photocard-front {
+  transform: rotateY(0deg);
+  z-index: 2;
+  overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--member) 35%, rgba(100, 70, 90, 0.14));
   background: linear-gradient(150deg, color-mix(in srgb, var(--member) 14%, #fff9f6), #f5ecf0);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.photocard-back {
+  transform: rotateY(-180deg);
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--member) 25%, #241423), transparent 70%),
+    linear-gradient(145deg, #241624, #140b15);
+  border: 1.5px solid color-mix(in srgb, var(--member) 60%, rgba(255, 255, 255, 0.35));
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.photocard-3d-wrap.is-flipped .photocard-front {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.photocard-3d-wrap.is-flipped .photocard-back {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+/* Botón flotante para girar la Photocard */
+.photocard-flip-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(232, 62, 134, 0.28);
+  color: #3e283b;
+  font-size: 0.62rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.photocard-flip-btn:hover {
+  transform: scale(1.06);
+  background: #ffffff;
+  color: var(--magenta);
+  border-color: var(--magenta);
+}
+
+.photocard-back .return-btn {
+  position: static;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.photocard-back .return-btn:hover {
+  background: #ffffff;
+  color: #1a0f19;
+}
+
+/* Estilo interior del reverso coleccionable */
+.photocard-back-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  border: 1px dashed color-mix(in srgb, var(--member) 45%, rgba(255, 255, 255, 0.25));
+  border-radius: 10px;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.photocard-back-tag {
+  font-size: 0.54rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  color: color-mix(in srgb, var(--member) 85%, #ffffff);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.photocard-back-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block: 6px;
+}
+
+.back-number {
+  font-family: var(--display);
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff, color-mix(in srgb, var(--member) 85%, #ffffff));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-hangul {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2px;
+}
+
+.photocard-back-signature {
+  text-align: center;
+}
+
+.signature-name {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.signature-role {
+  display: block;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 2px;
+}
+
+.photocard-back-quote {
+  margin: 0;
+  text-align: center;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--member) 55%, #ffffff);
+  font-style: italic;
+}
+
+.photocard-back-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.collector-code {
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .member-actual-photo {

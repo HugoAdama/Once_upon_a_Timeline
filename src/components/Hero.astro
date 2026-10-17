@@ -1,4 +1,6 @@
 ---
+import { resolveAsset } from '../utils/streaming';
+const logoSrc = resolveAsset('/assets/twice-logo.svg');
 ---
 
 <section class="hero wrap" id="inicio">
@@ -23,7 +25,9 @@
       <div class="hero-actions">
         <a class="button hero-btn-primary" href="#integrantes">
           <span>Explorar integrantes</span>
-          <span class="btn-arrow" aria-hidden="true">↘</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 7l10 10M17 7v10H7"/>
+          </svg>
         </a>
         <a class="button light hero-btn-secondary" href="#discografia">
           <span>Ir a la discografía</span>
@@ -69,13 +73,15 @@
         <span class="art-orbit" aria-hidden="true"></span>
         <span class="art-orbit two" aria-hidden="true"></span>
         <span class="art-glow-ring" aria-hidden="true"></span>
+        <span class="art-tonearm" aria-hidden="true"><i class="tonearm-head"></i></span>
 
         <!-- Disco de vinilo estilizado con surcos brillantes -->
         <div class="art-disc" aria-hidden="true">
           <div class="disc-grooves"></div>
           <div class="disc-center">
-            <span class="disc-logo">TWICE</span>
-            <small class="disc-sub">ONCE</small>
+            <span class="disc-spindle"></span>
+            <img src={logoSrc} alt="" class="disc-official-logo" width="46" height="50" />
+            <span class="disc-ring"></span>
           </div>
         </div>
 
@@ -93,8 +99,8 @@
         </div>
 
         <div class="art-caption">
-          <span>Nine members · two character worlds</span>
-          <strong>Music, memories &amp; lovely things</strong>
+          <span class="caption-eyebrow">Nine members · two character worlds</span>
+          <strong class="caption-title">Music, memories &amp; lovely things</strong>
         </div>
 
         <span class="art-number">SINCE 2015 · VOL. 01</span>

@@ -47,4 +47,17 @@ export function initMemberEraFilter(): void {
       });
     });
   });
+
+  // Soporte para giro 3D de Photocard coleccionable
+  const flipWrappers = document.querySelectorAll<HTMLElement>('[data-photocard-wrap]');
+  flipWrappers.forEach((wrap) => {
+    const flipBtns = wrap.querySelectorAll<HTMLButtonElement>('[data-photocard-flip], [data-photocard-flip-back]');
+    flipBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        wrap.classList.toggle('is-flipped');
+      });
+    });
+  });
 }

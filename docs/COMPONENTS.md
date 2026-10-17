@@ -29,7 +29,8 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `ScrollToTop.astro`
 - **Ruta**: `src/components/ScrollToTop.astro`
-- **Propósito**: Botón flotante FAB (Floating Action Button) que aparece al desplazarse más de 480px y permite volver suavemente a la parte superior de la página.
+- **Propósito**: Botón flotante FAB (Floating Action Button) que aparece al desplazarse más de 420px y permite volver suavemente a la parte superior de la página.
+- **Scripts asociados**: Delega el desplazamiento suave en [`src/scripts/navigation.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/navigation.ts).
 
 ---
 

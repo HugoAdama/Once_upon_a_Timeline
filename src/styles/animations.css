@@ -71,43 +71,6 @@
 }
 
 @media (max-width: 840px) {
-  .header-chip { display: none; }
-  .sound-wave-badge { display: none; }
-  .mobile-menu-toggle { display: flex; }
-
-  /* Menú desplegable móvil */
-  .nav-links {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 249, 245, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding: 30px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-    z-index: 98;
-  }
-
-  .nav-links.nav-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .nav-links a {
-    font-size: 1.15rem;
-    font-weight: 800;
-  }
-
   .hero-grid { grid-template-columns: 1fr; }
   .hero-art-container { order: -1; }
   .hero-art { min-height: 400px; }

@@ -2,10 +2,12 @@ import { normalizar } from '../utils/text';
 
 /**
  * Inicializa la lógica interactiva del Explorador de Discografía:
- * - Filtrado instantáneo por texto (título y tracks)
+ * - Filtrado instantáneo por texto (título y canciones)
  * - Filtros combinados por mercado, año y formato
+ * - Sincronización bidireccional con URL (Deep Linking & Shareable URLs)
+ * - Búsqueda optimizada con debounce (120ms) y requestAnimationFrame
  * - Atajo de teclado '/'
- * - Salto con animación y resalte desde la cronología
+ * - Salto con animación, apertura y resalte desde la cronología
  */
 export function initDiscographyExplorer(): void {
   const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
@@ -24,6 +26,78 @@ export function initDiscographyExplorer(): void {
   if (!searchInput || !yearSelect || !formatSelect || !resultsCounter) return;
 
   let selectedMarket = 'all';
+  let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+  let rafId: number | null = null;
+
+  /**
+   * Sincroniza el estado actual de los filtros con la URL sin recargar la página
+   */
+  function syncUrlParams(): void {
+    const params = new URLSearchParams(window.location.search);
+    const query = searchInput?.value.trim() || '';
+    const year = yearSelect?.value || 'all';
+    const format = formatSelect?.value || 'all';
+
+    if (query) params.set('q', query);
+    else params.delete('q');
+
+    if (selectedMarket !== 'all') params.set('market', selectedMarket);
+    else params.delete('market');
+
+    if (year !== 'all') params.set('year', year);
+    else params.delete('year');
+
+    if (format !== 'all') params.set('format', format);
+    else params.delete('format');
+
+    const newQueryString = params.toString();
+    const newUrl =
+      window.location.pathname +
+      (newQueryString ? `?${newQueryString}` : '') +
+      window.location.hash;
+
+    window.history.replaceState(null, '', newUrl);
+  }
+
+  /**
+   * Lee los parámetros de la URL al cargar la página
+   */
+  function restoreFiltersFromUrl(): boolean {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    const market = params.get('market');
+    const year = params.get('year');
+    const format = params.get('format');
+
+    let hasParam = false;
+
+    if (q && searchInput) {
+      searchInput.value = q;
+      hasParam = true;
+    }
+
+    if (year && yearSelect) {
+      yearSelect.value = year;
+      hasParam = true;
+    }
+
+    if (format && formatSelect) {
+      formatSelect.value = format;
+      hasParam = true;
+    }
+
+    if (market) {
+      selectedMarket = market;
+      hasParam = true;
+      marketChips.forEach((btn) => {
+        const isMatch = btn.getAttribute('data-filter-market') === market;
+        btn.classList.toggle('active', isMatch);
+        btn.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+      });
+    }
+
+    return hasParam;
+  }
 
   function applyFilters(): void {
     const rawQuery = searchInput?.value || '';
@@ -77,7 +151,7 @@ export function initDiscographyExplorer(): void {
         countEl.textContent = `${visibleInMarket} ${visibleInMarket === 1 ? 'registro' : 'registros'}`;
       }
 
-      if (normalizedQuery !== '' || selectedYear !== 'all' || selectedFormat !== 'all') {
+      if (normalizedQuery !== '' || selectedYear !== 'all' || selectedFormat !== 'all' || selectedMarket !== 'all') {
         if (visibleInMarket > 0) {
           panel.open = true;
         }
@@ -98,6 +172,18 @@ export function initDiscographyExplorer(): void {
         if (noResultsMsg) noResultsMsg.style.display = 'none';
       }
     }
+
+    syncUrlParams();
+  }
+
+  function scheduleFilterApply(delay = 0): void {
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        applyFilters();
+      });
+    }, delay);
   }
 
   function resetFilters(): void {
@@ -116,9 +202,10 @@ export function initDiscographyExplorer(): void {
     searchInput?.focus();
   }
 
-  searchInput.addEventListener('input', applyFilters);
-  yearSelect.addEventListener('change', applyFilters);
-  formatSelect.addEventListener('change', applyFilters);
+  // Búsqueda con debounce para fluidez en dispositivos móviles
+  searchInput.addEventListener('input', () => scheduleFilterApply(120));
+  yearSelect.addEventListener('change', () => scheduleFilterApply(0));
+  formatSelect.addEventListener('change', () => scheduleFilterApply(0));
 
   marketChips.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -129,7 +216,7 @@ export function initDiscographyExplorer(): void {
       btn.classList.add('active');
       btn.setAttribute('aria-checked', 'true');
       selectedMarket = btn.getAttribute('data-filter-market') || 'all';
-      applyFilters();
+      scheduleFilterApply(0);
     });
   });
 
@@ -139,7 +226,7 @@ export function initDiscographyExplorer(): void {
       const preset = btn.getAttribute('data-search-preset') || '';
       if (searchInput) {
         searchInput.value = preset;
-        applyFilters();
+        scheduleFilterApply(0);
         searchInput.focus();
       }
     });
@@ -208,6 +295,12 @@ export function initDiscographyExplorer(): void {
       handleHashJump(href);
     }
   });
+
+  // Restaurar estado desde la URL al inicio
+  const hadParams = restoreFiltersFromUrl();
+  if (hadParams) {
+    applyFilters();
+  }
 
   if (window.location.hash && window.location.hash.startsWith('#release-')) {
     setTimeout(() => {
