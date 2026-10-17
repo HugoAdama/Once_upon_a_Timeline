@@ -87,4 +87,5 @@ export interface TimelineMilestone {
   releaseId: string;
   date: string;
   highlightTrack?: string;
+  category?: 'origins' | 'golden' | 'expansion' | 'anniversary';
 }

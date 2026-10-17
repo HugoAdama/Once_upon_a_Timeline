@@ -538,6 +538,24 @@ export function initCandyJukebox(): void {
     }
   });
 
+  // Escuchar peticiones de reproducción desde la discografía
+  window.addEventListener('candy-jukebox:play', (e: Event) => {
+    const customEvent = e as CustomEvent<{ title: string }>;
+    if (!customEvent.detail?.title) return;
+    const query = customEvent.detail.title.toLowerCase().trim();
+    const foundIdx = PLAYLIST.findIndex((t) =>
+      t.title.toLowerCase() === query ||
+      query.includes(t.title.toLowerCase()) ||
+      t.title.toLowerCase().includes(query)
+    );
+    if (foundIdx !== -1) {
+      selectTrack(foundIdx);
+      container.classList.add('expanded');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      startPlayback();
+    }
+  });
+
   // Inicializar estado UI
   updateUIState();
 }

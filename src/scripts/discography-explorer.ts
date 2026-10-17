@@ -296,6 +296,58 @@ export function initDiscographyExplorer(): void {
     }
   });
 
+  // Handler para el botón Expandir / Colapsar todos los lanzamientos
+  const toggleAllBtn = document.getElementById('toggle-all-releases-btn') as HTMLButtonElement | null;
+  const toggleAllText = document.getElementById('toggle-all-text');
+  const toggleExpandIcon = toggleAllBtn?.querySelector<SVGElement>('.toggle-expand-icon');
+  const toggleCollapseIcon = toggleAllBtn?.querySelector<SVGElement>('.toggle-collapse-icon');
+  let allExpanded = false;
+
+  if (toggleAllBtn) {
+    toggleAllBtn.addEventListener('click', () => {
+      allExpanded = !allExpanded;
+      toggleAllBtn.setAttribute('aria-expanded', String(allExpanded));
+
+      if (allExpanded) {
+        marketPanels.forEach((panel) => {
+          panel.open = true;
+        });
+      }
+
+      const allDetails = document.querySelectorAll<HTMLDetailsElement>('.release-details');
+      allDetails.forEach((details) => {
+        const parentItem = details.closest<HTMLElement>('.release-item');
+        if (!parentItem || parentItem.style.display === 'none') return;
+        details.open = allExpanded;
+      });
+
+      if (toggleAllText) {
+        toggleAllText.textContent = allExpanded ? 'Colapsar todo' : 'Expandir todo';
+      }
+      if (toggleExpandIcon && toggleCollapseIcon) {
+        toggleExpandIcon.style.display = allExpanded ? 'none' : 'block';
+        toggleCollapseIcon.style.display = allExpanded ? 'block' : 'none';
+      }
+    });
+  }
+
+  // Handler para reproducir canciones en Candy Jukebox desde la tracklist
+  document.addEventListener('click', (e) => {
+    const jukeboxBtn = (e.target as HTMLElement)?.closest<HTMLButtonElement>('.play-jukebox-btn');
+    if (jukeboxBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const title = jukeboxBtn.dataset.jukeboxTitle;
+      if (title) {
+        window.dispatchEvent(
+          new CustomEvent('candy-jukebox:play', {
+            detail: { title },
+          })
+        );
+      }
+    }
+  });
+
   // Restaurar estado desde la URL al inicio
   const hadParams = restoreFiltersFromUrl();
   if (hadParams) {

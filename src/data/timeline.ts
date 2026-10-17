@@ -9,6 +9,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-the-story-begins-2015-10-20',
     date: '2015-10-20',
     highlightTrack: 'Like OOH-AHH',
+    category: 'origins',
   },
   {
     year: '2016',
@@ -18,6 +19,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-twicecoaster-lane-1-2016-10-24',
     date: '2016-10-24',
     highlightTrack: 'TT',
+    category: 'origins',
   },
   {
     year: '2017',
@@ -27,6 +29,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-twicetagram-2017-10-30',
     date: '2017-10-30',
     highlightTrack: 'LIKEY',
+    category: 'golden',
   },
   {
     year: '2018',
@@ -36,6 +39,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-what-is-love-2018-04-09',
     date: '2018-04-09',
     highlightTrack: 'What is Love?',
+    category: 'golden',
   },
   {
     year: '2019',
@@ -45,6 +49,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-fancy-you-2019-04-22',
     date: '2019-04-22',
     highlightTrack: 'FANCY',
+    category: 'golden',
   },
   {
     year: '2020',
@@ -54,6 +59,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-eyes-wide-open-2020-10-26',
     date: '2020-10-26',
     highlightTrack: "I CAN'T STOP ME",
+    category: 'expansion',
   },
   {
     year: '2021',
@@ -63,6 +69,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-formula-of-love-o-t-3-2021-11-12',
     date: '2021-11-12',
     highlightTrack: 'SCIENTIST',
+    category: 'expansion',
   },
   {
     year: '2022',
@@ -72,6 +79,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-between-1-2-2022-08-26',
     date: '2022-08-26',
     highlightTrack: 'Talk that Talk',
+    category: 'expansion',
   },
   {
     year: '2023',
@@ -81,6 +89,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-ready-to-be-2023-03-10',
     date: '2023-03-10',
     highlightTrack: 'SET ME FREE',
+    category: 'expansion',
   },
   {
     year: '2024',
@@ -90,6 +99,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-strategy-2024-12-06',
     date: '2024-12-06',
     highlightTrack: 'Strategy',
+    category: 'anniversary',
   },
   {
     year: '2025',
@@ -99,6 +109,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-ten-the-story-goes-on-2025-10-10',
     date: '2025-10-10',
     highlightTrack: 'ME + YOU',
+    category: 'anniversary',
   },
   {
     year: '2026',
@@ -108,5 +119,6 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     releaseId: 'release-best-2015-2025-2026-08-26',
     date: '2026-08-26',
     highlightTrack: 'Like OOH-AHH',
+    category: 'anniversary',
   },
 ];

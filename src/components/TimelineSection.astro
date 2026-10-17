@@ -17,13 +17,92 @@ const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
     </p>
   </div>
 
+  <!-- Barra de Filtros Temáticos por Eras Históricas (Iconos vectoriales SVG, sin emojis) -->
+  <div class="timeline-filter-bar scroll-reveal" role="toolbar" aria-label="Filtrar momentos de la cronología">
+    <div class="timeline-chips-wrap">
+      <button
+        type="button"
+        class="timeline-chip-btn active"
+        data-timeline-filter="all"
+        aria-pressed="true"
+        aria-label="Mostrar todos los momentos"
+      >
+        <svg class="timeline-chip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>Todos</span>
+      </button>
+
+      <button
+        type="button"
+        class="timeline-chip-btn"
+        data-timeline-filter="origins"
+        aria-pressed="false"
+        aria-label="Filtrar por Debut y Orígenes (2015-2016)"
+      >
+        <svg class="timeline-chip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+        <span>Debut &amp; Orígenes (2015—2016)</span>
+      </button>
+
+      <button
+        type="button"
+        class="timeline-chip-btn"
+        data-timeline-filter="golden"
+        aria-pressed="false"
+        aria-label="Filtrar por Era Dorada y Éxitos (2017-2019)"
+      >
+        <svg class="timeline-chip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8" r="7"/>
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+        </svg>
+        <span>Era Dorada &amp; Éxitos (2017—2019)</span>
+      </button>
+
+      <button
+        type="button"
+        class="timeline-chip-btn"
+        data-timeline-filter="expansion"
+        aria-pressed="false"
+        aria-label="Filtrar por Giras y Madurez (2020-2023)"
+      >
+        <svg class="timeline-chip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span>Giras &amp; Madurez (2020—2023)</span>
+      </button>
+
+      <button
+        type="button"
+        class="timeline-chip-btn"
+        data-timeline-filter="anniversary"
+        aria-pressed="false"
+        aria-label="Filtrar por 10.° Aniversario (2024-2026)"
+      >
+        <svg class="timeline-chip-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="12 2 15 8.5 22 9.5 17 14.5 18.5 21.5 12 18 5.5 21.5 7 14.5 2 9.5 9 8.5 12 2"/>
+        </svg>
+        <span>10.° Aniversario (2024—2026)</span>
+      </button>
+    </div>
+    <span id="timeline-results-count" class="timeline-results-count" aria-live="polite">
+      Mostrando {TIMELINE_MILESTONES.length} de {TIMELINE_MILESTONES.length} momentos
+    </span>
+  </div>
+
   <div class="timeline" role="feed" aria-label="Cronología de lanzamientos históricos de TWICE">
     {TIMELINE_MILESTONES.map((item, index) => {
       const stepNum = String(index + 1).padStart(2, '0');
       const release = releaseMap.get(item.releaseId);
       const coverSrc = release ? resolveAsset(release.cover) : null;
       return (
-        <article class="timeline-item scroll-reveal">
+        <article class="timeline-item scroll-reveal" data-timeline-category={item.category || 'all'}>
           <div class="timeline-item-header">
             <div class="timeline-meta-wrap">
               <span class="timeline-step-badge" aria-hidden="true">{stepNum}</span>
@@ -61,3 +140,13 @@ const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
     })}
   </div>
 </section>
+
+<script>
+  import { initTimelineFilter } from '../scripts/timeline-filter';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTimelineFilter);
+  } else {
+    initTimelineFilter();
+  }
+</script>

@@ -18,6 +18,7 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hugoadama.github.io/Once_upon_a_Timeline/');
 const faviconSrc = resolveAsset('/favicon.svg');
+const ogImageURL = new URL(resolveAsset('/assets/og-banner.png'), Astro.site || 'https://hugoadama.github.io/Once_upon_a_Timeline/').href;
 
 const schemaData = {
   '@context': 'https://schema.org',
@@ -71,16 +72,31 @@ const schemaData = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- Preconnect para Google Fonts (Optimización FCP / LCP) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Outfit:wght@400;500;600;700;800&display=swap"
+    />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Once Upon a Timeline — TWICE Fan Archive" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="Once Upon a Timeline — TWICE Fan Archive" />
 
     <link rel="icon" type="image/svg+xml" href={faviconSrc} />
     <title>{title}</title>

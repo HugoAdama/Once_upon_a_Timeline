@@ -1,6 +1,85 @@
 /* ========================================================
    CRONOLOGÍA INTERACTIVA (TIMELINE)
    ======================================================== */
+/* Barra de filtros temáticos de la cronología */
+.timeline-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  box-shadow: 0 8px 24px rgba(66, 37, 57, 0.05);
+}
+
+.timeline-chips-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: rgba(110, 75, 96, 0.06);
+  border: 1px solid rgba(110, 75, 96, 0.12);
+  color: #554754;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.timeline-chip-icon {
+  flex-shrink: 0;
+  color: #ad336c;
+  transition: color 0.2s ease;
+}
+
+.timeline-chip-btn:hover {
+  background: rgba(232, 62, 134, 0.1);
+  border-color: rgba(232, 62, 134, 0.35);
+  color: var(--magenta);
+}
+
+.timeline-chip-btn.active {
+  background: var(--gradient-twice);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.35);
+}
+
+.timeline-chip-btn.active .timeline-chip-icon {
+  color: #ffffff;
+}
+
+.timeline-results-count {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #8c7a8b;
+  letter-spacing: 0.02em;
+}
+
+.timeline-item-visible {
+  animation: timelineFadeIn 0.3s ease-out;
+}
+
+@keyframes timelineFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .timeline {
   position: relative;
   display: grid;
@@ -208,4 +287,35 @@
   background: var(--gradient-twice);
   color: #ffffff;
   border-color: transparent;
+}
+
+[data-theme="dark"] .timeline-filter-bar {
+  background: rgba(26, 14, 27, 0.88);
+  border-color: rgba(232, 62, 134, 0.28);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .timeline-chip-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+}
+
+[data-theme="dark"] .timeline-chip-icon {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .timeline-chip-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(232, 62, 134, 0.4);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .timeline-chip-btn.active {
+  background: var(--gradient-twice);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .timeline-results-count {
+  color: rgba(255, 255, 255, 0.6);
 }
