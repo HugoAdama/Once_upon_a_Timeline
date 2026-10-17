@@ -172,12 +172,13 @@
 }
 
 .photocard-front {
-  transform: rotateY(0deg);
+  transform: perspective(900px) rotateX(var(--card-rot-x, 0deg)) rotateY(var(--card-rot-y, 0deg));
   z-index: 2;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--member) 35%, rgba(100, 70, 90, 0.14));
   background: linear-gradient(150deg, color-mix(in srgb, var(--member) 14%, #fff9f6), #f5ecf0);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+  transition: transform 0.16s ease-out, box-shadow 0.25s ease;
 }
 
 .photocard-back {
@@ -507,8 +508,103 @@
 }
 
 .member-card.is-active-bias {
-  border-color: color-mix(in srgb, var(--member) 60%, rgba(255, 255, 255, 0.2));
-  box-shadow: 0 16px 36px -8px color-mix(in srgb, var(--member) 30%, rgba(0, 0, 0, 0.15));
+  border-color: var(--member);
+  box-shadow: 0 18px 46px -6px color-mix(in srgb, var(--member) 45%, rgba(0, 0, 0, 0.16)), 0 0 0 2px var(--member);
+}
+
+.member-card.bias-burst-active {
+  animation: biasCardCelebration 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes biasCardCelebration {
+  0% {
+    transform: scale(0.97);
+    box-shadow: 0 0 0 0 var(--member);
+  }
+  30% {
+    transform: translateY(-8px) scale(1.025);
+    box-shadow: 0 0 0 12px color-mix(in srgb, var(--member) 50%, transparent), 0 22px 50px color-mix(in srgb, var(--member) 60%, transparent);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 18px 46px -6px color-mix(in srgb, var(--member) 45%, rgba(0, 0, 0, 0.16)), 0 0 0 2px var(--member);
+  }
+}
+
+[data-theme="dark"] .member-card.is-active-bias {
+  border-color: var(--member);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--member) 40%, transparent), 0 0 0 2px var(--member);
+}
+
+/* Toast flotante de confirmación */
+.bias-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(90px) scale(0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: rgba(26, 12, 28, 0.94);
+  color: #ffffff;
+  border-radius: 999px;
+  border: 1px solid var(--candybong-active-color, #e83e86);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 24px var(--candybong-glow, rgba(232, 62, 134, 0.35));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.bias-toast.is-active {
+  transform: translateX(-50%) translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.bias-toast-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid #ffffff;
+  transition: background-color 0.4s ease;
+}
+
+.bias-toast-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.bias-toast-content strong {
+  font-size: 0.86rem;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.bias-toast-content small {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.bias-toast-star {
+  color: var(--candybong-active-color, #f4a27e);
+  font-size: 1.1rem;
+  line-height: 1;
+  animation: starSpin 3s linear infinite;
+}
+
+@keyframes starSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
 }
 
 [data-theme="dark"] .member-bias-btn {

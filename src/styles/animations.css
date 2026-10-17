@@ -16,13 +16,33 @@
   animation: nodePulse 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
+/* Animaciones fluidas de apertura en acordeones */
+details[open] > .member-details-drawer,
+details[open] > .track-list-panel {
+  animation: smoothDrawerOpen 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes smoothDrawerOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .button:active,
 .era-chip:active,
 .timeline-jump-btn:active,
 .chip-btn:active,
 .clear-btn:active,
-.quick-era-btn:active {
-  transform: scale(0.96) !important;
+.quick-era-btn:active,
+.member-bias-btn:active,
+.release-fav-btn:active,
+.view-switch-btn:active {
+  transform: scale(0.95) !important;
 }
 
 /* ========================================================

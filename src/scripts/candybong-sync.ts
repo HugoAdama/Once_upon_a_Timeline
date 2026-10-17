@@ -1,7 +1,7 @@
 /**
  * Candybong Lightstick Sync — Sincronización oficial de colores de TWICE en concierto
  * Soporta rotación automática en concierto (cada 30s) o bloqueo interactivo por "Bias Seleccionada".
- * Persiste la elección del usuario en localStorage.
+ * Persiste la elección del usuario en localStorage y dispara celebraciones visuales fluidas.
  */
 
 export interface CandybongMember {
@@ -30,24 +30,90 @@ let syncTimer: number | null = null;
 let countdownTimer: number | null = null;
 let secondsRemaining = 30;
 let activeBiasId: string | null = null;
+let toastTimeout: number | null = null;
+
+export function normalizeMemberId(id: string): string {
+  return id.replace(/^member-/, '').toLowerCase().trim();
+}
 
 export function getActiveBias(): string | null {
   return activeBiasId;
+}
+
+function showBiasToast(member: CandybongMember, isDeselect = false): void {
+  let toast = document.getElementById('bias-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'bias-toast';
+    toast.className = 'bias-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toast);
+  }
+
+  if (toastTimeout) {
+    clearTimeout(toastTimeout);
+  }
+
+  if (isDeselect) {
+    toast.innerHTML = `
+      <span class="bias-toast-dot" style="background-color: var(--magenta); box-shadow: 0 0 12px rgba(232, 62, 134, 0.5);"></span>
+      <div class="bias-toast-content">
+        <strong>Modo Concierto Reanudado</strong>
+        <small>El Candybong rota automáticamente entre las 9 integrantes</small>
+      </div>
+    `;
+  } else {
+    toast.innerHTML = `
+      <span class="bias-toast-dot" style="background-color: ${member.hex}; box-shadow: 0 0 14px ${member.glow};"></span>
+      <div class="bias-toast-content">
+        <strong>${member.name} es tu Bias</strong>
+        <small>Candybong sincronizado a su color oficial (${member.colorName})</small>
+      </div>
+      <span class="bias-toast-star" aria-hidden="true">★</span>
+    `;
+  }
+
+  // Activar animación fluida
+  toast.classList.remove('is-active');
+  void toast.offsetWidth; // Force reflow
+  toast.classList.add('is-active');
+
+  toastTimeout = window.setTimeout(() => {
+    toast?.classList.remove('is-active');
+  }, 3400);
+}
+
+function triggerBiasCelebration(memberId: string): void {
+  const norm = normalizeMemberId(memberId);
+  const card = document.getElementById(`member-${norm}`) || document.querySelector<HTMLElement>(`[data-member-id*="${norm}"]`);
+  if (card) {
+    card.classList.remove('bias-burst-active');
+    void card.offsetWidth;
+    card.classList.add('bias-burst-active');
+    setTimeout(() => {
+      card.classList.remove('bias-burst-active');
+    }, 1800);
+  }
 }
 
 function updateBiasUI(): void {
   const allCards = document.querySelectorAll<HTMLElement>('.member-card');
   const allBiasBtns = document.querySelectorAll<HTMLButtonElement>('[data-set-bias]');
 
+  const currentBiasNorm = activeBiasId ? normalizeMemberId(activeBiasId) : null;
+
   allCards.forEach((card) => {
     const cardId = card.dataset.memberId || card.id;
-    const isSelected = activeBiasId === cardId;
+    const cardNorm = normalizeMemberId(cardId);
+    const isSelected = Boolean(currentBiasNorm && currentBiasNorm === cardNorm);
     card.classList.toggle('is-active-bias', isSelected);
   });
 
   allBiasBtns.forEach((btn) => {
-    const btnMemberId = btn.dataset.setBias;
-    const isSelected = activeBiasId === btnMemberId;
+    const btnMemberId = btn.dataset.setBias || '';
+    const btnNorm = normalizeMemberId(btnMemberId);
+    const isSelected = Boolean(currentBiasNorm && currentBiasNorm === btnNorm);
     btn.classList.toggle('active', isSelected);
     btn.setAttribute('aria-pressed', String(isSelected));
     const label = btn.querySelector('.bias-btn-label');
@@ -88,7 +154,7 @@ export function applyCandybongColor(index: number, isBias = false): void {
 
   if (badge) {
     badge.title = isBias
-      ? `Bias activa: ${member.name} (${member.colorName}) · Clic para desbloquear y rotar`
+      ? `Bias activa: ${member.name} (${member.colorName}) · Clic para desbloquear y reanudar rotación`
       : `Color actual: ${member.name} · ${member.colorName} (Cambio cada 30s · Clic para avanzar)`;
   }
 
@@ -119,8 +185,8 @@ function tickCountdown(): void {
 
 export function startCandybongRotation(): void {
   if (activeBiasId) {
-    // Si hay una bias activa guardada, no rotamos automáticamente
-    const biasIndex = CANDYBONG_MEMBERS.findIndex((m) => m.id === activeBiasId);
+    const norm = normalizeMemberId(activeBiasId);
+    const biasIndex = CANDYBONG_MEMBERS.findIndex((m) => m.id === norm);
     if (biasIndex !== -1) {
       applyCandybongColor(biasIndex, true);
     }
@@ -151,19 +217,22 @@ export function stopCandybongRotation(): void {
 }
 
 export function setBias(memberId: string): void {
-  const index = CANDYBONG_MEMBERS.findIndex((m) => m.id === memberId);
+  const norm = normalizeMemberId(memberId);
+  const index = CANDYBONG_MEMBERS.findIndex((m) => m.id === norm);
   if (index === -1) return;
 
   stopCandybongRotation();
-  activeBiasId = memberId;
+  activeBiasId = norm;
   try {
-    localStorage.setItem(BIAS_STORAGE_KEY, memberId);
+    localStorage.setItem(BIAS_STORAGE_KEY, norm);
   } catch (_) {
     // LocalStorage fallback
   }
 
   applyCandybongColor(index, true);
   updateBiasUI();
+  triggerBiasCelebration(norm);
+  showBiasToast(CANDYBONG_MEMBERS[index], false);
 }
 
 export function clearBias(): void {
@@ -176,17 +245,21 @@ export function clearBias(): void {
 
   updateBiasUI();
   startCandybongRotation();
+  showBiasToast(CANDYBONG_MEMBERS[currentIndex], true);
 }
 
 export function initCandybongSync(): void {
   // 1. Cargar preferencia guardada
   try {
     const savedBias = localStorage.getItem(BIAS_STORAGE_KEY);
-    if (savedBias && CANDYBONG_MEMBERS.some((m) => m.id === savedBias)) {
-      activeBiasId = savedBias;
+    if (savedBias) {
+      const normSaved = normalizeMemberId(savedBias);
+      if (CANDYBONG_MEMBERS.some((m) => m.id === normSaved)) {
+        activeBiasId = normSaved;
+      }
     }
   } catch (_) {
-    // Ignorar si cookies/storage restringidos
+    // Ignorar si storage restringido
   }
 
   // 2. Interacción con el Badge del Header
@@ -195,7 +268,6 @@ export function initCandybongSync(): void {
     syncBadge.addEventListener('click', (e) => {
       e.stopPropagation();
       if (activeBiasId) {
-        // Si estaba fijado a una bias, hacer clic lo desbloquea para volver al modo aleatorio de concierto
         clearBias();
       } else {
         applyCandybongColor(currentIndex + 1, false);
@@ -204,24 +276,33 @@ export function initCandybongSync(): void {
     });
   }
 
-  // 3. Interacción con los botones de "Mi Bias" en las tarjetas de miembros
-  document.addEventListener('click', (e) => {
+  // 3. Interacción robusta con botones "Mi Bias"
+  // Prevenir que el summary del <details> se active
+  const handleBiasClick = (e: Event) => {
     const target = e.target as HTMLElement | null;
     const biasBtn = target?.closest<HTMLButtonElement>('[data-set-bias]');
     if (biasBtn) {
       e.preventDefault();
       e.stopPropagation();
-      const memberId = biasBtn.dataset.setBias;
-      if (!memberId) return;
+      const rawId = biasBtn.dataset.setBias;
+      if (!rawId) return;
 
-      if (activeBiasId === memberId) {
-        // Alternar: si ya era bias, desmarcarla
+      const norm = normalizeMemberId(rawId);
+      if (activeBiasId === norm) {
         clearBias();
       } else {
-        setBias(memberId);
+        setBias(norm);
       }
     }
-  });
+  };
+
+  document.addEventListener('click', handleBiasClick, true);
+  document.addEventListener('pointerdown', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (target?.closest('[data-set-bias]')) {
+      e.stopPropagation();
+    }
+  }, true);
 
   // 4. Iniciar rotación o fijar color de bias
   startCandybongRotation();
