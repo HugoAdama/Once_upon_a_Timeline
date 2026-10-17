@@ -245,9 +245,65 @@
   letter-spacing: 0.12em;
 }
 
+/* Badge de sincronización dinámica Candybong (Lightstick en concierto) */
+.candybong-sync-badge {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--candybong-active-color, rgba(232, 62, 134, 0.35));
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .candybong-sync-badge {
+  display: inline-flex;
+}
+
+.candybong-sync-badge:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 16px var(--candybong-glow, rgba(232, 62, 134, 0.35));
+}
+
+.candybong-color-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--candybong-active-color, var(--magenta));
+  box-shadow: 0 0 10px var(--candybong-active-color, var(--magenta));
+  flex-shrink: 0;
+  transition: background-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.candybong-member-name {
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.candybong-sync-icon {
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  transition: transform 0.4s ease;
+}
+
+.candybong-sync-badge:hover .candybong-sync-icon {
+  transform: rotate(180deg);
+  color: var(--candybong-active-color, var(--magenta));
+}
+
 [data-theme="dark"] .site-header {
-  border-bottom-color: rgba(232, 62, 134, 0.22);
+  border-bottom-color: var(--candybong-active-color, rgba(232, 62, 134, 0.25));
   background: rgba(16, 8, 19, 0.88);
+  transition: border-bottom-color 1s ease;
 }
 
 [data-theme="dark"] .site-header.scrolled {

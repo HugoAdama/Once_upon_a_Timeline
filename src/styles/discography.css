@@ -812,6 +812,37 @@
   border-color: rgba(255, 255, 255, 0.06);
 }
 
+[data-theme="dark"] .track-list-panel {
+  background: #150b17;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .track-list-label {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .streaming-hint {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .track-item {
+  background: #1c0f20;
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="dark"] .track-item:hover {
+  background: #27142b;
+  border-color: rgba(232, 62, 134, 0.35);
+}
+
+[data-theme="dark"] .track-num {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .track-title {
+  color: var(--ink);
+}
+
 [data-theme="dark"] .stream-btn {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.1);
@@ -821,6 +852,30 @@
 [data-theme="dark"] .stream-btn:hover {
   background: rgba(255, 255, 255, 0.14);
   color: var(--ink);
+}
+
+[data-theme="dark"] .spotify-btn {
+  background: rgba(30, 215, 96, 0.1);
+  border-color: rgba(30, 215, 96, 0.25);
+  color: #1ed760;
+}
+
+[data-theme="dark"] .spotify-btn:hover {
+  background: #1ed760;
+  color: #000000;
+  border-color: #1ed760;
+}
+
+[data-theme="dark"] .yt-btn {
+  background: rgba(255, 60, 60, 0.1);
+  border-color: rgba(255, 60, 60, 0.25);
+  color: #ff6b6b;
+}
+
+[data-theme="dark"] .yt-btn:hover {
+  background: #ff3333;
+  color: #ffffff;
+  border-color: #ff3333;
 }
 
 [data-theme="dark"] .catalog-note {

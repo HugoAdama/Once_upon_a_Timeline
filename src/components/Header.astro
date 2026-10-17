@@ -58,6 +58,24 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg');
         <span class="theme-toggle-text">CANDYBONG MODE</span>
       </button>
 
+      <!-- Indicador dinámico de sincronización Candybong por integrante (30s) -->
+      <button
+        class="candybong-sync-badge"
+        id="candybong-sync-badge"
+        type="button"
+        aria-label="Sincronización Candybong por integrante. Clic para cambiar color"
+        title="Candybong Sync: Nayeon (Sky Blue) · Clic para avanzar"
+      >
+        <span class="candybong-color-dot" id="candybong-color-dot" aria-hidden="true"></span>
+        <span class="candybong-member-name" id="candybong-member-name">Nayeon</span>
+        <span class="candybong-sync-icon" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
+        </span>
+      </button>
+
       <span class="header-chip">Fan site · no oficial</span>
       <button
         class="mobile-menu-toggle"
@@ -78,10 +96,12 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg');
 <script>
   import { initNavigation } from '../scripts/navigation';
   import { initThemeToggle } from '../scripts/theme-toggle';
+  import { initCandybongSync } from '../scripts/candybong-sync';
 
   function initHeader(): void {
     initNavigation();
     initThemeToggle();
+    initCandybongSync();
   }
 
   if (document.readyState === 'loading') {

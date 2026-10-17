@@ -167,6 +167,42 @@
   color: var(--apricot);
 }
 
+.jukebox-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jukebox-mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.1);
+  border: 1px solid rgba(232, 62, 134, 0.28);
+  color: var(--magenta);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.jukebox-mode-pill:hover {
+  background: var(--magenta);
+  color: #ffffff;
+  border-color: var(--magenta);
+}
+
+.mode-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1ed760;
+  box-shadow: 0 0 6px #1ed760;
+}
+
 .jukebox-close-btn {
   background: none;
   border: none;
@@ -374,4 +410,18 @@
   .jukebox-card {
     width: 290px;
   }
+}
+
+/* Candybong Concert Glow en Modo Oscuro */
+[data-theme="dark"] .jukebox-toggle-btn {
+  background: rgba(22, 11, 25, 0.9);
+  border-color: var(--candybong-active-color, rgba(232, 62, 134, 0.35));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 18px var(--candybong-glow, rgba(232, 62, 134, 0.25));
+  transition: border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+[data-theme="dark"] .jukebox-card {
+  background: rgba(24, 12, 27, 0.94);
+  border-color: var(--candybong-active-color, rgba(232, 62, 134, 0.35));
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 24px var(--candybong-glow, rgba(232, 62, 134, 0.18));
 }

@@ -25,12 +25,13 @@ body {
 
 [data-theme="dark"] body {
   background:
-    radial-gradient(ellipse at 88% 5%, rgba(232, 62, 134, 0.22), transparent 38rem),
+    radial-gradient(ellipse at 88% 5%, var(--candybong-glow, rgba(232, 62, 134, 0.22)), transparent 38rem),
     radial-gradient(ellipse at 8% 30%, rgba(244, 162, 126, 0.16), transparent 36rem),
     radial-gradient(circle at 80% 65%, rgba(140, 115, 168, 0.18), transparent 34rem),
-    radial-gradient(circle at 15% 90%, rgba(232, 62, 134, 0.15), transparent 32rem),
+    radial-gradient(circle at 15% 90%, var(--candybong-glow, rgba(232, 62, 134, 0.15)), transparent 32rem),
     #0c060e;
   background-attachment: fixed;
+  transition: background 1.5s ease;
 }
 
 body.menu-locked {

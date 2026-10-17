@@ -41,12 +41,18 @@
         </svg>
         <span>Candy Jukebox</span>
       </div>
-      <button id="jukebox-close" class="jukebox-close-btn" type="button" aria-label="Cerrar reproductor">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
+      <div class="jukebox-header-actions">
+        <button id="jukebox-mode-btn" class="jukebox-mode-pill" type="button" title="Alternar entre Audio Real y Chime Sintetizador">
+          <span class="mode-pulse-dot" aria-hidden="true"></span>
+          <span id="jukebox-mode-label">Canción Real</span>
+        </button>
+        <button id="jukebox-close" class="jukebox-close-btn" type="button" aria-label="Cerrar reproductor">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <div class="jukebox-track-body">
@@ -70,13 +76,17 @@
     </div>
 
     <!-- Playlist Pills -->
-    <div class="jukebox-playlist" role="tablist" aria-label="Lista de canciones">
+    <div class="jukebox-playlist" role="tablist" aria-label="Lista de canciones oficiales">
       <button class="jukebox-track-pill active" type="button" data-track-index="0">Feel Special</button>
       <button class="jukebox-track-pill" type="button" data-track-index="1">What is Love?</button>
       <button class="jukebox-track-pill" type="button" data-track-index="2">FANCY</button>
       <button class="jukebox-track-pill" type="button" data-track-index="3">The Feels</button>
       <button class="jukebox-track-pill" type="button" data-track-index="4">ONE SPARK</button>
+      <button class="jukebox-track-pill" type="button" data-track-index="5">I CAN'T STOP ME</button>
     </div>
+
+    <!-- Elemento de audio nativo para pistas oficiales reales -->
+    <audio id="jukebox-audio-element" preload="none" style="display:none;"></audio>
 
     <!-- Controls -->
     <div class="jukebox-controls">
