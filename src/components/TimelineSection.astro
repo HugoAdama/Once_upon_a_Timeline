@@ -1,5 +1,9 @@
 ---
 import { TIMELINE_MILESTONES } from '../data/timeline';
+import { RELEASES } from '../data/releases';
+import { resolveAsset } from '../utils/streaming';
+
+const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
 ---
 
 <section class="section wrap" id="cronologia">
@@ -16,14 +20,29 @@ import { TIMELINE_MILESTONES } from '../data/timeline';
   <div class="timeline" role="feed" aria-label="Cronología de lanzamientos históricos de TWICE">
     {TIMELINE_MILESTONES.map((item, index) => {
       const stepNum = String(index + 1).padStart(2, '0');
+      const release = releaseMap.get(item.releaseId);
+      const coverSrc = release ? resolveAsset(release.cover) : null;
       return (
         <article class="timeline-item scroll-reveal">
           <div class="timeline-item-header">
-            <span class="timeline-step-badge" aria-hidden="true">{stepNum}</span>
-            <div class="timeline-date-info">
-              <time datetime={item.year} class="timeline-year">{item.year}</time>
-              <span class="timeline-badge-pill">{item.badge}</span>
+            <div class="timeline-meta-wrap">
+              <span class="timeline-step-badge" aria-hidden="true">{stepNum}</span>
+              <div class="timeline-date-info">
+                <time datetime={item.year} class="timeline-year">{item.year}</time>
+                <span class="timeline-badge-pill">{item.badge}</span>
+              </div>
             </div>
+            {coverSrc && (
+              <img
+                src={coverSrc}
+                alt={`Portada oficial de ${item.title}`}
+                class="timeline-cover-thumb"
+                width="44"
+                height="44"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
           </div>
 
           <h3 class="timeline-title">{item.title}</h3>

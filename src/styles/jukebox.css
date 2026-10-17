@@ -245,8 +245,17 @@
   overflow: hidden;
 }
 
-.jukebox-art-cover.spinning svg {
-  animation: spinRecord 5s linear infinite;
+.jukebox-art-cover.spinning svg,
+.jukebox-art-cover.spinning .jukebox-art-img {
+  animation: spinRecord 6s linear infinite;
+}
+
+.jukebox-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
 .jukebox-track-details {

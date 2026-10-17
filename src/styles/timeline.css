@@ -56,8 +56,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 12px;
+}
+
+.timeline-meta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.timeline-cover-thumb {
+  width: 44px;
+  height: 44px;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(66, 37, 57, 0.12);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.timeline-item:hover .timeline-cover-thumb {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 6px 16px rgba(232, 62, 134, 0.28);
 }
 
 .timeline-step-badge {

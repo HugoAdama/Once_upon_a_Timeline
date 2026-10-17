@@ -86,8 +86,10 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
           const trackNum = String(idx + 1).padStart(2, '0');
           return (
             <li class="track-item">
-              <span class="track-num">{trackNum}</span>
-              <span class="track-title">{track.title}</span>
+              <div class="track-info">
+                <span class="track-num" aria-label={`Pista ${idx + 1}`}>{trackNum}</span>
+                <span class="track-title">{track.title}</span>
+              </div>
               <div class="track-links">
                 <a
                   href={links.spotify}
@@ -95,7 +97,7 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
                   rel="noopener noreferrer"
                   class="stream-btn spotify-btn"
                   aria-label={`Escuchar ${track.title} en Spotify`}
-                  title="Abrir en Spotify"
+                  title={`Escuchar "${track.title}" en Spotify`}
                 >
                   <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.498 17.306c-.216.353-.674.464-1.027.248-2.812-1.718-6.353-2.106-10.523-1.154-.403.092-.806-.16-.898-.562-.092-.403.16-.806.562-.898 4.566-1.043 8.484-.596 11.638 1.339.353.216.464.674.248 1.027zm1.468-3.262c-.272.443-.852.583-1.295.311-3.218-1.977-8.125-2.55-11.93-1.395-.499.151-1.03-.133-1.181-.632-.151-.499.133-1.03.632-1.181 4.352-1.32 9.773-.679 13.463 1.589.443.272.583.852.311 1.295zm.126-3.41c-3.859-2.292-10.228-2.503-13.896-1.389-.591.179-1.218-.163-1.397-.754-.179-.591.163-1.218.754-1.397 4.218-1.281 11.253-1.033 15.696 1.603.532.316.708 1.008.392 1.54-.316.532-1.008.708-1.54.392z"/>
@@ -108,7 +110,7 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
                   rel="noopener noreferrer"
                   class="stream-btn yt-btn"
                   aria-label={`Escuchar ${track.title} en YouTube Music`}
-                  title="Abrir en YouTube Music"
+                  title={`Escuchar "${track.title}" en YouTube Music`}
                 >
                   <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
                     <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-2-10.5v7l6-3.5-6-3.5z"/>
