@@ -95,6 +95,7 @@ export function initCandyJukebox(): void {
   const progressFill = document.getElementById('jukebox-progress-fill');
   const currentTimeEl = document.getElementById('jukebox-current-time');
   const durationEl = document.getElementById('jukebox-duration');
+  const trackCounter = document.getElementById('jukebox-track-counter');
 
   // Elemento de audio nativo
   let audioEl = document.getElementById('jukebox-audio-element') as HTMLAudioElement | null;
@@ -230,6 +231,10 @@ export function initCandyJukebox(): void {
         playIcon.style.display = 'block';
         pauseIcon.style.display = 'none';
       }
+    }
+
+    if (trackCounter) {
+      trackCounter.textContent = `${currentTrackIdx + 1} / ${PLAYLIST.length}`;
     }
 
     trackPills.forEach((pill, idx) => {

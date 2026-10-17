@@ -36,16 +36,15 @@
   <div id="jukebox-card" class="jukebox-card" role="region" aria-label="Controles de audio Candy Jukebox">
     <div class="jukebox-header">
       <div class="jukebox-header-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        <svg class="jukebox-music-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
         </svg>
         <span>Candy Jukebox</span>
       </div>
       <div class="jukebox-header-actions">
-        <span class="jukebox-live-indicator" title="Audio oficial original">
-          <span class="mode-pulse-dot" aria-hidden="true"></span>
-          <span>Oficial</span>
-        </span>
+        <span id="jukebox-track-counter" class="jukebox-track-counter" aria-label="Número de pista actual">1 / 6</span>
         <button id="jukebox-close" class="jukebox-close-btn" type="button" aria-label="Cerrar reproductor">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -101,15 +100,36 @@
       </div>
     </div>
 
-    <!-- Playlist Pills -->
+    <!-- Playlist Track Selector (2-Column Grid) -->
     <div class="jukebox-playlist-wrap">
+      <div class="jukebox-playlist-header">
+        <span class="jukebox-playlist-title">Canciones disponibles</span>
+      </div>
       <div class="jukebox-playlist" role="tablist" aria-label="Lista de canciones oficiales">
-        <button class="jukebox-track-pill active" type="button" data-track-index="0">Feel Special</button>
-        <button class="jukebox-track-pill" type="button" data-track-index="1">What is Love?</button>
-        <button class="jukebox-track-pill" type="button" data-track-index="2">FANCY</button>
-        <button class="jukebox-track-pill" type="button" data-track-index="3">The Feels</button>
-        <button class="jukebox-track-pill" type="button" data-track-index="4">ONE SPARK</button>
-        <button class="jukebox-track-pill" type="button" data-track-index="5">I CAN'T STOP ME</button>
+        <button class="jukebox-track-pill active" type="button" data-track-index="0">
+          <span class="pill-num">01</span>
+          <span class="pill-name">Feel Special</span>
+        </button>
+        <button class="jukebox-track-pill" type="button" data-track-index="1">
+          <span class="pill-num">02</span>
+          <span class="pill-name">What is Love?</span>
+        </button>
+        <button class="jukebox-track-pill" type="button" data-track-index="2">
+          <span class="pill-num">03</span>
+          <span class="pill-name">FANCY</span>
+        </button>
+        <button class="jukebox-track-pill" type="button" data-track-index="3">
+          <span class="pill-num">04</span>
+          <span class="pill-name">The Feels</span>
+        </button>
+        <button class="jukebox-track-pill" type="button" data-track-index="4">
+          <span class="pill-num">05</span>
+          <span class="pill-name">ONE SPARK</span>
+        </button>
+        <button class="jukebox-track-pill" type="button" data-track-index="5">
+          <span class="pill-num">06</span>
+          <span class="pill-name">I CAN'T STOP ME</span>
+        </button>
       </div>
     </div>
 
