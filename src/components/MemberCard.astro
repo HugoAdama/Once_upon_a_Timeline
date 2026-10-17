@@ -86,37 +86,39 @@ const photoSrc = resolveAsset(member.photo || null);
     </div>
 
     <div class="member-head">
-      <div>
+      <div class="member-top-row">
         <div class="member-id-row">
           <span class="member-number">{member.number} · MEMBER</span>
           <span class="member-hangul-sub">{member.hangul}</span>
         </div>
-        <h3 class="member-title">{member.name}</h3>
-        <div class="member-color-row">
-          <span class="member-color-tag">
-            <i aria-hidden="true" style={`background-color: ${member.colorHex};`}></i>
-            <span>{member.colorName}</span>
-          </span>
-          {member.instagram && (
-            <a
-              href={member.instagram.url}
-              target="_blank"
-              rel="noreferrer noopener"
-              class="member-ig-badge"
-              aria-label={`Instagram oficial de ${member.name}: ${member.instagram.handle}`}
-              title={`Abrir perfil oficial de Instagram de ${member.name}`}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
-              <span>{member.instagram.handle}</span>
-            </a>
-          )}
-        </div>
+        <span class="member-expand-hint" aria-hidden="true">Ficha</span>
       </div>
-      <span class="member-expand-hint" aria-hidden="true">Ficha</span>
+
+      <h3 class="member-title">{member.name}</h3>
+
+      <div class="member-color-row">
+        <span class="member-color-tag">
+          <i aria-hidden="true" style={`background-color: ${member.colorHex};`}></i>
+          <span>{member.colorName}</span>
+        </span>
+        {member.instagram && (
+          <a
+            href={member.instagram.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            class="member-ig-badge"
+            aria-label={`Instagram oficial de ${member.name}: ${member.instagram.handle}`}
+            title={`Abrir perfil oficial de Instagram de ${member.name}`}
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            <span>{member.instagram.handle}</span>
+          </a>
+        )}
+      </div>
     </div>
 
     <!-- Pareja de personajes Lovely & Tdoongz -->

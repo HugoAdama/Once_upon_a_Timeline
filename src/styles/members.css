@@ -91,7 +91,8 @@
 .member-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 24px;
+  align-items: stretch;
 }
 
 .member-card {
@@ -102,6 +103,9 @@
   background: #ffffff;
   border: 1px solid rgba(226, 213, 220, 0.85);
   box-shadow: 0 12px 34px rgba(66, 37, 57, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s ease, border-color 0.32s ease;
 }
 
@@ -131,8 +135,12 @@
 .member-card > summary {
   list-style: none;
   cursor: pointer;
-  padding: 20px;
+  padding: 18px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box;
 }
 
 .member-card > summary::-webkit-details-marker { display: none; }
@@ -141,9 +149,8 @@
 .photocard-3d-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 4.9;
-  min-height: 290px;
-  margin: 0 0 16px;
+  aspect-ratio: 4 / 4.75;
+  margin: 0 0 14px;
   perspective: 1000px;
 }
 
@@ -387,65 +394,79 @@
 
 .member-head {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.member-top-row {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
 }
 
 .member-id-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .member-number {
   color: color-mix(in srgb, var(--member) 80%, #3e283b);
   font-size: 0.62rem;
   font-weight: 850;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
+  flex-shrink: 0;
 }
 
 .member-hangul-sub {
   color: #928391;
   font-size: 0.7rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .member-title {
-  margin: 3px 0 2px;
+  margin: 1px 0 0;
   font-family: var(--serif);
-  font-size: 1.95rem;
+  font-size: 1.85rem;
   font-weight: 400;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: #231622;
+  line-height: 1.1;
 }
 
 .member-color-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 6px;
+  gap: 6px;
+  margin-top: 5px;
 }
 
 .member-color-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 12px;
+  gap: 6px;
+  padding: 3px 10px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--member) 12%, #ffffff);
   border: 1px solid color-mix(in srgb, var(--member) 40%, rgba(100, 70, 90, 0.15));
   color: #4b3d4a;
-  font-size: 0.68rem;
+  font-size: 0.67rem;
   font-weight: 750;
+  white-space: nowrap;
 }
 
 .member-ig-badge {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 4px 10px;
+  padding: 3px 10px;
   border-radius: 999px;
   background: rgba(225, 48, 108, 0.08);
   border: 1px solid rgba(225, 48, 108, 0.25);
@@ -453,6 +474,7 @@
   font-size: 0.65rem;
   font-weight: 800;
   text-decoration: none;
+  white-space: nowrap;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
@@ -479,34 +501,35 @@
 }
 
 .member-color-tag i {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   display: inline-block;
   flex-shrink: 0;
   border: 2px solid #ffffff;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--member) 80%, black), 0 1px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--member) 80%, black), 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .member-expand-hint {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 14px;
+  gap: 4px;
+  padding: 3px 9px;
   border-radius: 999px;
   background: rgba(232, 62, 134, 0.08);
   border: 1px solid rgba(232, 62, 134, 0.22);
   color: #b62c69;
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  flex-shrink: 0;
   transition: all 0.22s ease;
 }
 
 .member-expand-hint::after {
   content: "＋";
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   line-height: 1;
 }
 
@@ -529,17 +552,18 @@
 .char-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
 }
 
 .char-chip {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 9px 12px;
-  border: 1px solid #ebdbe2;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid rgba(232, 62, 134, 0.15);
   border-radius: 10px;
   background: #faf7f8;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
