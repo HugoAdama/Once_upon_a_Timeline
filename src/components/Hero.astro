@@ -7,16 +7,22 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg');
   <div class="hero-grid">
     <div class="hero-copy">
       <div class="hero-badge-row">
-        <span class="eyebrow">Un archivo para ONCE</span>
+        <span class="hero-eyebrow">
+          <span class="eyebrow-pulse" aria-hidden="true"></span>
+          Un archivo para ONCE
+        </span>
         <span class="hero-sparkle-pill" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
           </svg>
-          <span>2015 — 2025</span>
+          <span>2015 — 2025 · 10 Años</span>
         </span>
       </div>
 
-      <h1>Once Upon<br /><em>a Timeline.</em></h1>
+      <h1 class="hero-title">
+        Once Upon<br />
+        <span class="hero-title-italic">a Timeline.</span>
+      </h1>
 
       <p class="hero-description">
         Una historia de música, color y personajes. Recorre las 9 integrantes de TWICE, sus eras discográficas en Corea, Japón y el mundo, y las dos colecciones oficiales que acompañan su universo: Lovelys y TDOONGZ.
@@ -37,73 +43,120 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg');
         </a>
       </div>
 
-      <!-- Métricas rápidas / Stats Strip -->
-      <div class="hero-stats-strip" aria-label="Cifras clave del archivo de TWICE">
-        <div class="stat-item">
-          <strong>9</strong>
-          <small>Integrantes</small>
-        </div>
-        <span class="stat-divider" aria-hidden="true"></span>
-        <div class="stat-item">
-          <strong>10+</strong>
-          <small>Años de música</small>
-        </div>
-        <span class="stat-divider" aria-hidden="true"></span>
-        <div class="stat-item">
-          <strong>100+</strong>
-          <small>Lanzamientos</small>
-        </div>
-        <span class="stat-divider" aria-hidden="true"></span>
-        <div class="stat-item">
-          <strong>18</strong>
-          <small>Personajes</small>
-        </div>
-      </div>
-
-      <div class="official-colors" aria-label="Colores oficiales del grupo: Apricot y Neon Magenta">
-        <span class="swatch-pair" aria-hidden="true"><i></i><i></i></span>
-        <span>Apricot + Neon Magenta · colores oficiales de TWICE</span>
-      </div>
-    </div>
-
-    <!-- Arte visual interactivo del Hero: Disco de vinilo y órbitas cósmicas -->
-    <div class="hero-art-container" role="img" aria-label="Ilustración artística interactiva de disco de vinilo de TWICE con órbitas giratorias">
-      <div class="hero-art">
-        <span class="art-label">TWICE FAN ARCHIVE</span>
-        <span class="art-orbit" aria-hidden="true"></span>
-        <span class="art-orbit two" aria-hidden="true"></span>
-        <span class="art-glow-ring" aria-hidden="true"></span>
-        <span class="art-tonearm" aria-hidden="true"><i class="tonearm-head"></i></span>
-
-        <!-- Disco de vinilo estilizado con surcos brillantes -->
-        <div class="art-disc" aria-hidden="true">
-          <div class="disc-grooves"></div>
-          <div class="disc-center">
-            <span class="disc-spindle"></span>
-            <img src={logoSrc} alt="" class="disc-official-logo" width="46" height="50" />
-            <span class="disc-ring"></span>
+      <!-- Métricas y Colores Oficiales Unificados con excelente distribución -->
+      <div class="hero-stats-panel" aria-label="Cifras clave del archivo de TWICE y colores oficiales">
+        <div class="hero-stats-grid">
+          <div class="stat-item">
+            <strong class="stat-number">9</strong>
+            <small class="stat-label">Integrantes</small>
+          </div>
+          <span class="stat-divider" aria-hidden="true"></span>
+          <div class="stat-item">
+            <strong class="stat-number">10+</strong>
+            <small class="stat-label">Años de música</small>
+          </div>
+          <span class="stat-divider" aria-hidden="true"></span>
+          <div class="stat-item">
+            <strong class="stat-number">100+</strong>
+            <small class="stat-label">Lanzamientos</small>
+          </div>
+          <span class="stat-divider" aria-hidden="true"></span>
+          <div class="stat-item">
+            <strong class="stat-number">18</strong>
+            <small class="stat-label">Personajes</small>
           </div>
         </div>
 
-        <div class="art-floating-pill top-right">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-          <span>9 LOVELYS</span>
+        <div class="hero-palette-bar">
+          <div class="swatch-group" aria-hidden="true">
+            <span class="color-dot apricot-dot" title="Apricot (#f4a27e)"></span>
+            <span class="color-dot magenta-dot" title="Neon Magenta (#e83e86)"></span>
+          </div>
+          <span class="palette-text">
+            <b>Apricot &amp; Neon Magenta</b>
+            <small>Colores oficiales de TWICE</small>
+          </span>
         </div>
-        <div class="art-floating-pill bottom-left">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
-          </svg>
-          <span>TDOONGZ</span>
+      </div>
+    </div>
+
+    <!-- Arte visual interactivo del Hero: Tocadiscos coleccionable con 9 órbitas de color -->
+    <div class="hero-art-container" role="img" aria-label="Tocadiscos de vinilo de TWICE rodeado por las 9 constelaciones de color oficiales y personajes">
+      <div class="hero-art-card">
+        <!-- Encabezado de la vitrina musical -->
+        <div class="art-card-header">
+          <div class="art-live-badge">
+            <span class="live-wave-bar"></span>
+            <span class="live-wave-bar"></span>
+            <span class="live-wave-bar"></span>
+            <span>TWICE ARCHIVE</span>
+          </div>
+          <div class="art-anniversary-tag">
+            <span>✦ 10.º ANIVERSARIO</span>
+          </div>
         </div>
 
-        <div class="art-caption">
-          <span class="caption-eyebrow">Nine members · two character worlds</span>
-          <strong class="caption-title">Music, memories &amp; lovely things</strong>
+        <!-- Escena del vinilo con reflejos de luz y 9 constelaciones de integrantes -->
+        <div class="art-vinyl-stage">
+          <div class="art-ambient-glow" aria-hidden="true"></div>
+
+          <!-- Anillos de rotación cósmica -->
+          <div class="art-orbit-ring ring-1" aria-hidden="true"></div>
+          <div class="art-orbit-ring ring-2" aria-hidden="true"></div>
+
+          <!-- Constelación orbital con los 9 colores representativos -->
+          <div class="art-constellation-orbit" aria-hidden="true">
+            <span class="constellation-dot" style="--c: #5bc2e7; --angle: 0deg;" title="Nayeon · Sky Blue"></span>
+            <span class="constellation-dot" style="--c: #a9d535; --angle: 40deg;" title="Jeongyeon · Lime Green"></span>
+            <span class="constellation-dot" style="--c: #ff6ea7; --angle: 80deg;" title="Momo · Pink"></span>
+            <span class="constellation-dot" style="--c: #9e7bb5; --angle: 120deg;" title="Sana · Purple"></span>
+            <span class="constellation-dot" style="--c: #f4a27e; --angle: 160deg;" title="Jihyo · Apricot"></span>
+            <span class="constellation-dot" style="--c: #75c9be; --angle: 200deg;" title="Mina · Mint"></span>
+            <span class="constellation-dot" style="--c: #ffffff; --angle: 240deg;" title="Dahyun · White"></span>
+            <span class="constellation-dot" style="--c: #e02438; --angle: 280deg;" title="Chaeyoung · Red"></span>
+            <span class="constellation-dot" style="--c: #005bac; --angle: 320deg;" title="Tzuyu · Navy Blue"></span>
+          </div>
+
+          <!-- Disco de vinilo coleccionable giratorio -->
+          <div class="art-vinyl-disc" aria-hidden="true">
+            <div class="vinyl-light-sheen"></div>
+            <div class="vinyl-groove-rings"></div>
+            <div class="vinyl-center-label">
+              <span class="spindle-hole"></span>
+              <img src={logoSrc} alt="" class="vinyl-logo-img" width="52" height="56" />
+              <div class="vinyl-label-rim"></div>
+            </div>
+          </div>
+
+          <!-- Chips flotantes de personajes -->
+          <div class="art-float-chip chip-left" title="9 personajes oficiales Lovely">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span>9 LOVELYS</span>
+          </div>
+
+          <div class="art-float-chip chip-right" title="9 personajes oficiales TDOONGZ">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+            </svg>
+            <span>TDOONGZ</span>
+          </div>
         </div>
 
-        <span class="art-number">SINCE 2015 · VOL. 01</span>
+        <!-- Pie de la vitrina con ecualizador animado -->
+        <div class="art-card-footer">
+          <div class="footer-copy">
+            <span class="footer-kicker">Nine Members · Two Character Worlds</span>
+            <strong class="footer-title">Music, memories &amp; lovely things</strong>
+          </div>
+          <div class="footer-sound-badge">
+            <div class="equalizer-bars" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <small>EDICIÓN ESPECIAL</small>
+          </div>
+        </div>
       </div>
     </div>
   </div>

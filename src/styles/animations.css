@@ -73,7 +73,7 @@
 @media (max-width: 840px) {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-art-container { order: -1; }
-  .hero-art { min-height: 400px; }
+  .hero-art, .hero-art-card { min-height: 400px; }
   .character-intros { grid-template-columns: 1fr; }
   .release-years { grid-template-columns: 1fr; }
   .track-list { grid-template-columns: 1fr; }
@@ -85,10 +85,10 @@
   .section-heading { flex-direction: column; align-items: flex-start; gap: 12px; }
   .hero { padding-block: 40px; }
   .hero h1 { font-size: clamp(3.2rem, 15vw, 4.8rem); }
-  .hero-stats-strip { flex-wrap: wrap; gap: 12px 18px; width: 100%; justify-content: space-between; }
-  .hero-art { min-height: 330px; }
-  .art-disc { width: 180px; }
-  .disc-center { width: 68px; height: 68px; }
+  .hero-stats-strip, .hero-stats-panel { width: 100%; }
+  .hero-art, .hero-art-card { min-height: 330px; }
+  .art-disc, .art-vinyl-disc { width: 190px; }
+  .disc-center, .vinyl-center-label { width: 68px; height: 68px; }
   .member-grid { grid-template-columns: 1fr; }
   .character-gallery { grid-template-columns: repeat(3, 1fr); gap: 8px; }
 
@@ -127,7 +127,7 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
   .scroll-reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .ticker-track, .art-disc, .art-orbit, .hero-art, .timeline-item::before, .wave-bar {
+  .ticker-track, .art-disc, .art-vinyl-disc, .art-orbit, .art-orbit-ring, .art-constellation-orbit, .hero-art, .hero-art-card, .timeline-item::before, .wave-bar, .live-wave-bar, .equalizer-bars i, .art-ambient-glow {
     animation: none !important;
   }
   .photocard-shimmer { display: none !important; }
