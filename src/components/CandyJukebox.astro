@@ -30,6 +30,22 @@
       <span></span>
       <span></span>
     </span>
+    <span
+      id="jukebox-mini-play-btn"
+      class="jukebox-mini-play-btn"
+      role="button"
+      tabindex="0"
+      aria-label="Reproducir o pausar clip de audio"
+      title="Reproducir / Pausar clip"
+    >
+      <svg id="mini-play-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      <svg id="mini-pause-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display: none;">
+        <rect x="6" y="4" width="4" height="16"/>
+        <rect x="14" y="4" width="4" height="16"/>
+      </svg>
+    </span>
   </button>
 
   <!-- Expanded Card Player -->
@@ -45,6 +61,12 @@
       </div>
       <div class="jukebox-header-actions">
         <span id="jukebox-track-counter" class="jukebox-track-counter" aria-label="Número de pista actual">1 / 6</span>
+        <button id="jukebox-minimize" class="jukebox-action-btn" type="button" aria-label="Minimizar a barra compacta" title="Minimizar a barra compacta">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="4 14 10 14 10 20"/>
+            <polyline points="20 10 14 10 14 4"/>
+          </svg>
+        </button>
         <button id="jukebox-close" class="jukebox-close-btn" type="button" aria-label="Cerrar reproductor">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"/>

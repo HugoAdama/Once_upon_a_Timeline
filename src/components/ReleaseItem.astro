@@ -71,7 +71,20 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
         </div>
       </div>
 
-      <span class="release-chevron" aria-hidden="true"></span>
+      <div class="release-actions-cell">
+        <button
+          type="button"
+          class="release-fav-btn"
+          data-fav-release={release.id}
+          aria-label={`Guardar ${release.title} en favoritos`}
+          title={`Guardar "${release.title}" en Favoritos`}
+        >
+          <svg class="fav-icon-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+        </button>
+        <span class="release-chevron" aria-hidden="true"></span>
+      </div>
     </summary>
 
     <div class="track-list-panel">
@@ -84,11 +97,20 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
         {release.tracks.map((track, idx) => {
           const links = getStreamingLinks(track.title, release.title);
           const trackNum = String(idx + 1).padStart(2, '0');
+          const isLeadSingle = idx === 0 && release.format !== 'compilation' && release.format !== 'remix';
           return (
-            <li class="track-item">
+            <li class={`track-item ${isLeadSingle ? 'is-lead-track' : ''}`}>
               <div class="track-info">
                 <span class="track-num" aria-label={`Pista ${idx + 1}`}>{trackNum}</span>
                 <span class="track-title">{track.title}</span>
+                {isLeadSingle && (
+                  <span class="title-track-pill" title="Canción principal / Lead Single de la era">
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    <span>TITLE</span>
+                  </span>
+                )}
               </div>
               <div class="track-links">
                 <a

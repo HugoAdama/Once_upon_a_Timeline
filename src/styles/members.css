@@ -471,6 +471,65 @@
   white-space: nowrap;
 }
 
+.member-bias-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--member) 8%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--member) 30%, rgba(100, 70, 90, 0.18));
+  color: #554452;
+  font-size: 0.65rem;
+  font-weight: 750;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.member-bias-btn:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--member) 25%, #ffffff);
+  border-color: var(--member);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--member) 30%, transparent);
+}
+
+.member-bias-btn.active {
+  background: var(--member);
+  color: #1a0f18;
+  border-color: var(--member);
+  font-weight: 850;
+  box-shadow: 0 0 0 2px #ffffff, 0 4px 14px color-mix(in srgb, var(--member) 50%, transparent);
+}
+
+.member-bias-btn.active .bias-star-icon {
+  fill: currentColor;
+}
+
+.member-card.is-active-bias {
+  border-color: color-mix(in srgb, var(--member) 60%, rgba(255, 255, 255, 0.2));
+  box-shadow: 0 16px 36px -8px color-mix(in srgb, var(--member) 30%, rgba(0, 0, 0, 0.15));
+}
+
+[data-theme="dark"] .member-bias-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: color-mix(in srgb, var(--member) 35%, rgba(255, 255, 255, 0.1));
+  color: #ded1d9;
+}
+
+[data-theme="dark"] .member-bias-btn:hover {
+  background: color-mix(in srgb, var(--member) 25%, rgba(255, 255, 255, 0.08));
+  color: #ffffff;
+  border-color: var(--member);
+}
+
+[data-theme="dark"] .member-bias-btn.active {
+  background: var(--member);
+  color: #0b070f;
+  border-color: var(--member);
+  box-shadow: 0 0 0 2px #18101e, 0 0 16px color-mix(in srgb, var(--member) 70%, transparent);
+}
+
 .member-ig-badge {
   display: inline-flex;
   align-items: center;

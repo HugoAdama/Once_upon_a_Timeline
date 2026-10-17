@@ -115,6 +115,40 @@
   100% { height: 14px; }
 }
 
+/* Quick Mini Play/Pause button inside launcher pill */
+.jukebox-mini-play-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(232, 62, 134, 0.12);
+  color: var(--magenta);
+  border: 1px solid rgba(232, 62, 134, 0.28);
+  margin-left: 2px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jukebox-mini-play-btn:hover {
+  background: var(--magenta);
+  color: #ffffff;
+  border-color: var(--magenta);
+  transform: scale(1.12);
+  box-shadow: 0 2px 8px rgba(232, 62, 134, 0.35);
+}
+
+.candy-jukebox-container.is-playing .jukebox-toggle-btn {
+  border-color: var(--candybong-active-color, rgba(232, 62, 134, 0.5));
+  box-shadow: 0 6px 24px var(--candybong-glow, rgba(232, 62, 134, 0.28));
+}
+
+.candy-jukebox-container.is-playing .jukebox-mini-play-btn {
+  background: var(--candybong-active-color, var(--magenta));
+  color: #ffffff;
+  border-color: var(--candybong-active-color, var(--magenta));
+}
+
 /* ========================================================
    POPUP CARD (EXPANDED)
    ======================================================== */
@@ -189,6 +223,7 @@
   letter-spacing: 0.04em;
 }
 
+.jukebox-action-btn,
 .jukebox-close-btn {
   background: none;
   border: none;
@@ -198,16 +233,20 @@
   display: grid;
   place-items: center;
   border-radius: 6px;
-  transition: color 0.15s ease, background 0.15s ease;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
 
+.jukebox-action-btn:hover,
 .jukebox-close-btn:hover {
-  color: var(--text);
-  background: rgba(0, 0, 0, 0.06);
+  color: var(--magenta);
+  background: rgba(232, 62, 134, 0.1);
+  transform: scale(1.1);
 }
 
+[data-theme="dark"] .jukebox-action-btn:hover,
 [data-theme="dark"] .jukebox-close-btn:hover {
   background: rgba(255, 255, 255, 0.1);
+  color: #ff9bc7;
 }
 
 /* Track info */

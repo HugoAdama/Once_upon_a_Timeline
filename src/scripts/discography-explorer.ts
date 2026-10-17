@@ -1,9 +1,14 @@
 import { normalizar } from '../utils/text';
 
+const FAV_STORAGE_KEY = 'once-favorite-releases';
+const VIEW_STORAGE_KEY = 'once-releases-view-mode';
+
 /**
  * Inicializa la lógica interactiva del Explorador de Discografía:
  * - Filtrado instantáneo por texto (título y canciones)
  * - Filtros combinados por mercado, año y formato
+ * - Filtro de favoritos personalizados ("Mis Favoritos" con localStorage)
+ * - Conmutador de vista Cuadrícula de Portadas vs Lista Compacta
  * - Sincronización bidireccional con URL (Deep Linking & Shareable URLs)
  * - Búsqueda optimizada con debounce (120ms) y requestAnimationFrame
  * - Atajo de teclado '/'
@@ -14,10 +19,15 @@ export function initDiscographyExplorer(): void {
   const yearSelect = document.getElementById('filter-year') as HTMLSelectElement | null;
   const formatSelect = document.getElementById('filter-format') as HTMLSelectElement | null;
   const marketChips = document.querySelectorAll<HTMLButtonElement>('[data-filter-market]');
+  const filterFavBtn = document.getElementById('filter-fav-btn') as HTMLButtonElement | null;
+  const favsCounter = document.getElementById('favs-counter');
   const clearBtn = document.getElementById('clear-filters-btn');
   const resetEmptyBtn = document.getElementById('reset-empty-btn');
   const resultsCounter = document.getElementById('results-counter');
   const noResultsMsg = document.getElementById('no-results-msg');
+  const viewGridBtn = document.getElementById('view-grid-btn') as HTMLButtonElement | null;
+  const viewCompactBtn = document.getElementById('view-compact-btn') as HTMLButtonElement | null;
+  const discographySection = document.getElementById('discografia');
 
   const releaseItems = Array.from(document.querySelectorAll<HTMLLIElement>('.release-item'));
   const marketPanels = Array.from(document.querySelectorAll<HTMLDetailsElement>('[data-market-panel]'));
@@ -26,12 +36,89 @@ export function initDiscographyExplorer(): void {
   if (!searchInput || !yearSelect || !formatSelect || !resultsCounter) return;
 
   let selectedMarket = 'all';
+  let filterOnlyFavs = false;
+  let favoritesSet = new Set<string>();
   let debounceTimer: ReturnType<typeof setTimeout> | null = null;
   let rafId: number | null = null;
 
-  /**
-   * Sincroniza el estado actual de los filtros con la URL sin recargar la página
-   */
+  // 1. Cargar Favoritos guardados
+  try {
+    const rawFavs = localStorage.getItem(FAV_STORAGE_KEY);
+    if (rawFavs) {
+      const parsed = JSON.parse(rawFavs);
+      if (Array.isArray(parsed)) {
+        favoritesSet = new Set(parsed);
+      }
+    }
+  } catch (_) {
+    favoritesSet = new Set();
+  }
+
+  function updateFavoritesUI(): void {
+    if (favsCounter) {
+      favsCounter.textContent = `(${favoritesSet.size})`;
+    }
+
+    releaseItems.forEach((item) => {
+      const isFav = favoritesSet.has(item.id);
+      const favBtn = item.querySelector<HTMLButtonElement>('[data-fav-release]');
+      if (favBtn) {
+        favBtn.classList.toggle('active', isFav);
+        favBtn.setAttribute('aria-pressed', String(isFav));
+      }
+    });
+
+    if (filterFavBtn) {
+      filterFavBtn.classList.toggle('active', filterOnlyFavs);
+      filterFavBtn.setAttribute('aria-pressed', String(filterOnlyFavs));
+    }
+  }
+
+  function toggleFavorite(releaseId: string): void {
+    if (favoritesSet.has(releaseId)) {
+      favoritesSet.delete(releaseId);
+    } else {
+      favoritesSet.add(releaseId);
+    }
+
+    try {
+      localStorage.setItem(FAV_STORAGE_KEY, JSON.stringify(Array.from(favoritesSet)));
+    } catch (_) {
+      // Fallback
+    }
+
+    updateFavoritesUI();
+    if (filterOnlyFavs) {
+      applyFilters();
+    }
+  }
+
+  // 2. Conmutador de Vista (Cuadrícula vs Lista Compacta)
+  function applyViewMode(mode: 'grid' | 'compact'): void {
+    const isCompact = mode === 'compact';
+    discographySection?.classList.toggle('view-compact-mode', isCompact);
+
+    if (viewGridBtn && viewCompactBtn) {
+      viewGridBtn.classList.toggle('active', !isCompact);
+      viewGridBtn.setAttribute('aria-pressed', String(!isCompact));
+      viewCompactBtn.classList.toggle('active', isCompact);
+      viewCompactBtn.setAttribute('aria-pressed', String(isCompact));
+    }
+
+    try {
+      localStorage.setItem(VIEW_STORAGE_KEY, mode);
+    } catch (_) {
+      // Fallback
+    }
+  }
+
+  const savedViewMode = (localStorage.getItem(VIEW_STORAGE_KEY) as 'grid' | 'compact') || 'grid';
+  applyViewMode(savedViewMode);
+
+  viewGridBtn?.addEventListener('click', () => applyViewMode('grid'));
+  viewCompactBtn?.addEventListener('click', () => applyViewMode('compact'));
+
+  // 3. Sincronización con URL
   function syncUrlParams(): void {
     const params = new URLSearchParams(window.location.search);
     const query = searchInput?.value.trim() || '';
@@ -50,6 +137,9 @@ export function initDiscographyExplorer(): void {
     if (format !== 'all') params.set('format', format);
     else params.delete('format');
 
+    if (filterOnlyFavs) params.set('favs', '1');
+    else params.delete('favs');
+
     const newQueryString = params.toString();
     const newUrl =
       window.location.pathname +
@@ -59,15 +149,13 @@ export function initDiscographyExplorer(): void {
     window.history.replaceState(null, '', newUrl);
   }
 
-  /**
-   * Lee los parámetros de la URL al cargar la página
-   */
   function restoreFiltersFromUrl(): boolean {
     const params = new URLSearchParams(window.location.search);
     const q = params.get('q');
     const market = params.get('market');
     const year = params.get('year');
     const format = params.get('format');
+    const favs = params.get('favs');
 
     let hasParam = false;
 
@@ -83,6 +171,11 @@ export function initDiscographyExplorer(): void {
 
     if (format && formatSelect) {
       formatSelect.value = format;
+      hasParam = true;
+    }
+
+    if (favs === '1') {
+      filterOnlyFavs = true;
       hasParam = true;
     }
 
@@ -117,6 +210,7 @@ export function initDiscographyExplorer(): void {
       const matchesMarket = selectedMarket === 'all' || itemMarket === selectedMarket;
       const matchesYear = selectedYear === 'all' || itemYear === selectedYear;
       const matchesFormat = selectedFormat === 'all' || itemFormat === selectedFormat;
+      const matchesFav = !filterOnlyFavs || favoritesSet.has(item.id);
 
       let matchesSearch = true;
       if (normalizedQuery !== '') {
@@ -125,7 +219,7 @@ export function initDiscographyExplorer(): void {
         matchesSearch = normalizedTitle.includes(normalizedQuery) || normalizedTracks.includes(normalizedQuery);
       }
 
-      const isMatch = matchesMarket && matchesYear && matchesFormat && matchesSearch;
+      const isMatch = matchesMarket && matchesYear && matchesFormat && matchesFav && matchesSearch;
 
       if (isMatch) {
         item.style.display = '';
@@ -151,7 +245,7 @@ export function initDiscographyExplorer(): void {
         countEl.textContent = `${visibleInMarket} ${visibleInMarket === 1 ? 'registro' : 'registros'}`;
       }
 
-      if (normalizedQuery !== '' || selectedYear !== 'all' || selectedFormat !== 'all' || selectedMarket !== 'all') {
+      if (normalizedQuery !== '' || selectedYear !== 'all' || selectedFormat !== 'all' || selectedMarket !== 'all' || filterOnlyFavs) {
         if (visibleInMarket > 0) {
           panel.open = true;
         }
@@ -191,6 +285,7 @@ export function initDiscographyExplorer(): void {
     if (yearSelect) yearSelect.value = 'all';
     if (formatSelect) formatSelect.value = 'all';
     selectedMarket = 'all';
+    filterOnlyFavs = false;
 
     marketChips.forEach((btn) => {
       const isAll = btn.getAttribute('data-filter-market') === 'all';
@@ -198,11 +293,37 @@ export function initDiscographyExplorer(): void {
       btn.setAttribute('aria-checked', isAll ? 'true' : 'false');
     });
 
+    if (filterFavBtn) {
+      filterFavBtn.classList.remove('active');
+      filterFavBtn.setAttribute('aria-pressed', 'false');
+    }
+
     applyFilters();
     searchInput?.focus();
   }
 
-  // Búsqueda con debounce para fluidez en dispositivos móviles
+  // Interacción botón Favoritos en la barra de filtros
+  filterFavBtn?.addEventListener('click', () => {
+    filterOnlyFavs = !filterOnlyFavs;
+    updateFavoritesUI();
+    scheduleFilterApply(0);
+  });
+
+  // Delegación de clic para guardar/remover de favoritos en cada release
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    const favBtn = target?.closest<HTMLButtonElement>('[data-fav-release]');
+    if (favBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const releaseId = favBtn.dataset.favRelease;
+      if (releaseId) {
+        toggleFavorite(releaseId);
+      }
+    }
+  });
+
+  // Búsqueda y selects
   searchInput.addEventListener('input', () => scheduleFilterApply(120));
   yearSelect.addEventListener('change', () => scheduleFilterApply(0));
   formatSelect.addEventListener('change', () => scheduleFilterApply(0));
@@ -330,6 +451,9 @@ export function initDiscographyExplorer(): void {
       }
     });
   }
+
+  // Inicializar estado de Favoritos en la UI
+  updateFavoritesUI();
 
   // Restaurar estado desde la URL al inicio
   const hadParams = restoreFiltersFromUrl();

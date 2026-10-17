@@ -233,6 +233,16 @@ export function initCandyJukebox(): void {
       }
     }
 
+    const miniPlaySvg = document.getElementById('mini-play-svg');
+    const miniPauseSvg = document.getElementById('mini-pause-svg');
+    if (miniPlaySvg && miniPauseSvg) {
+      miniPlaySvg.style.display = isPlaying ? 'none' : 'block';
+      miniPauseSvg.style.display = isPlaying ? 'block' : 'none';
+    }
+    if (container) {
+      container.classList.toggle('is-playing', isPlaying);
+    }
+
     if (trackCounter) {
       trackCounter.textContent = `${currentTrackIdx + 1} / ${PLAYLIST.length}`;
     }
@@ -401,6 +411,39 @@ export function initCandyJukebox(): void {
       e.stopPropagation();
       container.classList.remove('expanded');
       toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  const minimizeBtn = document.getElementById('jukebox-minimize');
+  if (minimizeBtn) {
+    minimizeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      container.classList.remove('expanded');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  const miniPlayBtn = document.getElementById('jukebox-mini-play-btn');
+  if (miniPlayBtn) {
+    miniPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isPlaying) {
+        stopPlayback();
+      } else {
+        startPlayback();
+      }
+    });
+
+    miniPlayBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        if (isPlaying) {
+          stopPlayback();
+        } else {
+          startPlayback();
+        }
+      }
     });
   }
 

@@ -10,7 +10,7 @@ const { member } = Astro.props;
 const photoSrc = resolveAsset(member.photo || null);
 ---
 
-<details class="member-card scroll-reveal" style={`--member: ${member.colorHex};`} id={member.id}>
+<details class="member-card scroll-reveal" style={`--member: ${member.colorHex};`} id={member.id} data-member-id={member.id}>
   <summary aria-label={`Ver perfil y detalles de ${member.name}`}>
     <!-- Marco fotográfico de estilo Photocard de colección con giro 3D interactivo -->
     <div class="photocard-3d-wrap" data-photocard-wrap>
@@ -101,6 +101,18 @@ const photoSrc = resolveAsset(member.photo || null);
           <i aria-hidden="true" style={`background-color: ${member.colorHex};`}></i>
           <span>{member.colorName}</span>
         </span>
+        <button
+          type="button"
+          class="member-bias-btn"
+          data-set-bias={member.id}
+          aria-label={`Elegir a ${member.name} como Bias y tematizar el sitio con su color`}
+          title={`Elegir a ${member.name} como tu Bias`}
+        >
+          <svg class="bias-star-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span class="bias-btn-label">Mi Bias</span>
+        </button>
         {member.instagram && (
           <a
             href={member.instagram.url}

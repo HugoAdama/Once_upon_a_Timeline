@@ -195,6 +195,17 @@
   display: inline-flex;
 }
 
+.candybong-sync-badge.is-bias-locked {
+  display: inline-flex;
+  border-color: var(--candybong-active-color, var(--magenta));
+  background: color-mix(in srgb, var(--candybong-active-color, var(--magenta)) 12%, rgba(255, 255, 255, 0.9));
+  box-shadow: 0 2px 14px var(--candybong-glow, rgba(232, 62, 134, 0.35));
+}
+
+[data-theme="dark"] .candybong-sync-badge.is-bias-locked {
+  background: color-mix(in srgb, var(--candybong-active-color) 20%, rgba(20, 10, 24, 0.85));
+}
+
 .candybong-sync-badge:hover {
   transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.12);
