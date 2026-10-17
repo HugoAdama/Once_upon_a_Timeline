@@ -464,46 +464,88 @@
 
 .release-copy strong.release-name {
   display: block;
-  color: #2b1c2b;
-  font-size: 0.88rem;
+  color: #1f1220;
+  font-size: 0.98rem;
   font-weight: 850;
-  line-height: 1.3;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  transition: color 0.2s ease;
+}
+
+.release-item:hover strong.release-name {
+  color: var(--magenta);
 }
 
 .release-meta-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 4px;
+  margin-top: 5px;
   flex-wrap: wrap;
 }
 
 .release-type-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
   font-size: 0.62rem;
   font-weight: 800;
+  letter-spacing: 0.02em;
   background: rgba(110, 75, 96, 0.08);
+  border: 1px solid rgba(110, 75, 96, 0.16);
   color: #5c4c5b;
 }
 
 .release-type-badge.format-album {
   background: rgba(232, 62, 134, 0.12);
+  border-color: rgba(232, 62, 134, 0.28);
   color: #b62c69;
 }
 
 .release-type-badge.format-mini-album {
-  background: rgba(244, 162, 126, 0.2);
+  background: rgba(244, 162, 126, 0.18);
+  border-color: rgba(244, 162, 126, 0.35);
   color: #a64f26;
+}
+
+.release-type-badge.format-special {
+  background: rgba(218, 165, 32, 0.14);
+  border-color: rgba(218, 165, 32, 0.32);
+  color: #9c6c06;
+}
+
+.release-type-badge.format-single,
+.release-type-badge.format-digital-single {
+  background: rgba(140, 115, 168, 0.14);
+  border-color: rgba(140, 115, 168, 0.28);
+  color: #6a4f8c;
+}
+
+.release-type-badge.format-repackage {
+  background: rgba(230, 80, 150, 0.14);
+  border-color: rgba(230, 80, 150, 0.28);
+  color: #a02568;
+}
+
+.release-type-badge.format-compilation {
+  background: rgba(80, 140, 210, 0.14);
+  border-color: rgba(80, 140, 210, 0.28);
+  color: #1e5a96;
+}
+
+.release-type-badge.format-remix {
+  background: rgba(40, 180, 160, 0.14);
+  border-color: rgba(40, 180, 160, 0.28);
+  color: #157e70;
 }
 
 .release-tracks-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   color: #8c7d8b;
-  font-size: 0.64rem;
+  font-size: 0.65rem;
   font-weight: 750;
 }
 
@@ -807,27 +849,112 @@
 }
 
 [data-theme="dark"] .release-item {
-  background: #1e1121;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
 }
 
 [data-theme="dark"] .release-item:hover {
-  border-color: rgba(232, 62, 134, 0.45);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(232, 62, 134, 0.5);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55), 0 0 18px rgba(232, 62, 134, 0.22);
 }
 
 [data-theme="dark"] .release-details[open] > summary {
-  background: #241427;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.09);
 }
 
+[data-theme="dark"] .release-cover-frame {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: #190e1c;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .release-item:hover .release-cover-frame {
+  border-color: rgba(232, 62, 134, 0.6);
+  box-shadow: 0 6px 20px rgba(232, 62, 134, 0.4);
+}
+
+[data-theme="dark"] .release-date-col time {
+  color: #ff7ebb;
+}
+
+[data-theme="dark"] .release-year-pill {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="dark"] .release-copy strong.release-name,
+[data-theme="dark"] .release-name,
 [data-theme="dark"] .release-title {
-  color: var(--ink);
+  color: #ffffff !important;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .release-item:hover strong.release-name {
+  color: #ff9bc7 !important;
 }
 
 [data-theme="dark"] .release-type-badge {
-  background: rgba(232, 62, 134, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--muted);
+}
+
+[data-theme="dark"] .release-type-badge.format-album {
+  background: rgba(232, 62, 134, 0.22);
+  border-color: rgba(232, 62, 134, 0.45);
+  color: #ff8ec2;
+}
+
+[data-theme="dark"] .release-type-badge.format-mini-album {
+  background: rgba(244, 162, 126, 0.22);
+  border-color: rgba(244, 162, 126, 0.45);
+  color: #ffb899;
+}
+
+[data-theme="dark"] .release-type-badge.format-special {
+  background: rgba(245, 197, 66, 0.2);
+  border-color: rgba(245, 197, 66, 0.45);
+  color: #ffd666;
+}
+
+[data-theme="dark"] .release-type-badge.format-single,
+[data-theme="dark"] .release-type-badge.format-digital-single {
+  background: rgba(175, 145, 210, 0.2);
+  border-color: rgba(175, 145, 210, 0.4);
+  color: #d6bdf5;
+}
+
+[data-theme="dark"] .release-type-badge.format-repackage {
+  background: rgba(230, 80, 150, 0.22);
+  border-color: rgba(230, 80, 150, 0.45);
+  color: #ffa2d0;
+}
+
+[data-theme="dark"] .release-type-badge.format-compilation {
+  background: rgba(100, 170, 240, 0.2);
+  border-color: rgba(100, 170, 240, 0.4);
+  color: #9cd0ff;
+}
+
+[data-theme="dark"] .release-type-badge.format-remix {
+  background: rgba(50, 200, 180, 0.2);
+  border-color: rgba(50, 200, 180, 0.4);
+  color: #79ebd8;
+}
+
+[data-theme="dark"] .release-tracks-badge {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+[data-theme="dark"] .release-tracks-badge svg {
   color: #ff9bc7;
+}
+
+[data-theme="dark"] .release-chevron {
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 [data-theme="dark"] .song-list-body {
