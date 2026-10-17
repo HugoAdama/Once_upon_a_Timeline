@@ -121,23 +121,37 @@ const photoSrc = resolveAsset(member.photo || null);
 
     <!-- Pareja de personajes Lovely & Tdoongz -->
     <div class="char-pair">
-      <div class="char-chip lovely-chip" title={`Lovely: ${member.lovely.name}`}>
-        <span class="char-symbol" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </span>
+      <div class="char-chip lovely-chip" title={`Lovely de ${member.name}: ${member.lovely.name}`}>
+        {member.lovely.avatar ? (
+          <img
+            src={resolveAsset(member.lovely.avatar)}
+            alt=""
+            class="char-chip-avatar"
+            width="28"
+            height="28"
+            loading="lazy"
+          />
+        ) : (
+          <span class="char-symbol" aria-hidden="true">♡</span>
+        )}
         <div class="char-info">
           <small>LOVELY</small>
           <strong>{member.lovely.name}</strong>
         </div>
       </div>
-      <div class="char-chip tdoongz-chip" title={`TDOONGZ: ${member.tdoongz.name}`}>
-        <span class="char-symbol" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
-          </svg>
-        </span>
+      <div class="char-chip tdoongz-chip" title={`TDOONGZ de ${member.name}: ${member.tdoongz.name}`}>
+        {member.tdoongz.avatar ? (
+          <img
+            src={resolveAsset(member.tdoongz.avatar)}
+            alt=""
+            class="char-chip-avatar"
+            width="28"
+            height="28"
+            loading="lazy"
+          />
+        ) : (
+          <span class="char-symbol" aria-hidden="true">✦</span>
+        )}
         <div class="char-info">
           <small>TDOONGZ</small>
           <strong>{member.tdoongz.name}</strong>
