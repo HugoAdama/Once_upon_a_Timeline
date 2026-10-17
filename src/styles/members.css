@@ -1,6 +1,9 @@
 /* ========================================================
    INTEGRANTES Y PHOTOCARDS DE COLECCIÓN
    ======================================================== */
+#integrantes.section {
+  padding-top: clamp(40px, 5vw, 64px);
+}
 .members-era-toolbar {
   display: flex;
   flex-wrap: wrap;

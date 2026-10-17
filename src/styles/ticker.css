@@ -1,14 +1,16 @@
 /* ========================================================
-   MARQUESINA CONTINUA (TICKER MARQUEE)
+   MARQUESINA CONTINUA (TICKER MARQUEE EDITORIAL)
    ======================================================== */
 .ticker {
   overflow: hidden;
-  border-block: 1px solid rgba(232, 62, 134, 0.14);
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border-block: 1px solid rgba(232, 62, 134, 0.16);
+  background: rgba(255, 249, 245, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  position: relative;
+  z-index: 5;
 }
 
 .ticker-inner {
@@ -19,15 +21,10 @@
 .ticker-track {
   display: flex;
   align-items: center;
-  gap: 36px;
-  padding: 14px 20px;
-  color: #5f4b59;
-  font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  gap: 16px;
+  padding: 12px 14px;
   white-space: nowrap;
-  animation: marqueeScroll 28s linear infinite;
+  animation: marqueeScroll 34s linear infinite;
   will-change: transform;
 }
 
@@ -35,40 +32,72 @@
   animation-play-state: paused;
 }
 
-.ticker-highlight {
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(232, 62, 134, 0.12), rgba(244, 162, 126, 0.18));
-  color: #ad2b66;
-  border: 1px solid rgba(232, 62, 134, 0.2);
-}
-
-.ticker-item {
+.ticker-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 6px 15px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.05);
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  color: var(--text);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
 }
 
-.ticker-svg {
-  display: inline-block;
-  flex-shrink: 0;
+.ticker-pill:hover {
+  background: rgba(232, 62, 134, 0.12);
+  border-color: var(--magenta);
+  transform: translateY(-1px);
+}
+
+.ticker-pill.highlight {
+  background: linear-gradient(135deg, rgba(232, 62, 134, 0.14), rgba(244, 162, 126, 0.18));
+  border-color: rgba(232, 62, 134, 0.38);
   color: var(--magenta);
+  box-shadow: 0 2px 10px rgba(232, 62, 134, 0.12);
+}
+
+.ticker-sep {
+  display: inline-grid;
+  place-items: center;
+  color: var(--apricot);
+  opacity: 0.85;
+  padding-inline: 4px;
 }
 
 /* ========================================================
    MODO OSCURO (MARQUEE TICKER)
    ======================================================== */
 [data-theme="dark"] .ticker {
-  background: rgba(22, 11, 24, 0.8);
+  background: rgba(20, 10, 22, 0.88);
   border-color: rgba(232, 62, 134, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-[data-theme="dark"] .ticker-track {
-  color: var(--muted);
+[data-theme="dark"] .ticker-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #eedce9;
 }
 
-[data-theme="dark"] .ticker-highlight {
-  background: linear-gradient(135deg, rgba(232, 62, 134, 0.25), rgba(244, 162, 126, 0.25));
-  color: #ff9cc7;
+[data-theme="dark"] .ticker-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--candybong-active-color, var(--magenta));
+  color: #ffffff;
+  box-shadow: 0 0 12px var(--candybong-glow, rgba(232, 62, 134, 0.25));
+}
+
+[data-theme="dark"] .ticker-pill.highlight {
+  background: linear-gradient(135deg, rgba(232, 62, 134, 0.24), rgba(244, 162, 126, 0.2));
   border-color: rgba(232, 62, 134, 0.45);
+  color: #ff9ec7;
+  box-shadow: 0 0 14px rgba(232, 62, 134, 0.2);
+}
+
+[data-theme="dark"] .ticker-sep {
+  color: var(--candybong-active-color, var(--apricot));
 }
