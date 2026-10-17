@@ -658,3 +658,171 @@
 .catalog-sources a:hover {
   text-decoration: underline;
 }
+
+/* Selector moderno :has() para iluminar lanzamientos desplegados */
+.release-item:has(.release-details[open]) {
+  border-color: rgba(232, 62, 134, 0.45);
+  box-shadow: 0 10px 30px rgba(232, 62, 134, 0.14);
+}
+
+/* ========================================================
+   MODO OSCURO (DISCOGRAFÍA Y EXPLORADOR)
+   ======================================================== */
+[data-theme="dark"] .discography {
+  background: rgba(16, 8, 19, 0.75);
+  border-color: rgba(232, 62, 134, 0.2);
+}
+
+[data-theme="dark"] .filter-bar {
+  background: rgba(24, 13, 26, 0.92);
+  border-color: rgba(232, 62, 134, 0.25);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .search-input {
+  background: #170d19;
+  border-color: rgba(232, 62, 134, 0.28);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .search-input:focus {
+  border-color: var(--magenta);
+  box-shadow: 0 0 0 3px rgba(232, 62, 134, 0.35);
+}
+
+[data-theme="dark"] .search-kbd-hint {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--muted);
+}
+
+[data-theme="dark"] .quick-era-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(232, 62, 134, 0.22);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .quick-era-btn:hover {
+  background: var(--magenta);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .filter-controls-row {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .filter-label {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .filter-select {
+  background: #170d19;
+  border-color: rgba(232, 62, 134, 0.28);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .chip-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+}
+
+[data-theme="dark"] .chip-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(232, 62, 134, 0.4);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .chip-btn.active {
+  background: var(--gradient-twice);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .filter-status-row {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .release-market {
+  background: #190e1b;
+  border-color: rgba(232, 62, 134, 0.2);
+}
+
+[data-theme="dark"] .release-market > summary::after {
+  background: #241326;
+  border-color: rgba(232, 62, 134, 0.35);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .market-heading strong {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .market-count {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .release-year {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .release-year h3 {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .release-item {
+  background: #1e1121;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .release-item:hover {
+  border-color: rgba(232, 62, 134, 0.45);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .release-details[open] > summary {
+  background: #241427;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .release-title {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .release-type-badge {
+  background: rgba(232, 62, 134, 0.18);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .song-list-body {
+  background: #180d19;
+}
+
+[data-theme="dark"] .song-item {
+  border-color: rgba(255, 255, 255, 0.05);
+  color: var(--ink-soft);
+}
+
+[data-theme="dark"] .song-item:hover {
+  background: rgba(232, 62, 134, 0.12);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .streaming-links-row {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .stream-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+}
+
+[data-theme="dark"] .stream-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .catalog-note {
+  color: var(--muted);
+}

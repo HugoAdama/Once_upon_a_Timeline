@@ -687,3 +687,97 @@
 .palette-note strong {
   color: var(--ink);
 }
+
+/* Enfoque accesible moderno con :has() */
+.member-card:has(:focus-visible) {
+  border-color: var(--magenta);
+  box-shadow: 0 0 0 3px rgba(232, 62, 134, 0.35);
+}
+
+/* ========================================================
+   MODO OSCURO (INTEGRANTES Y PHOTOCARDS)
+   ======================================================== */
+[data-theme="dark"] .members-era-toolbar {
+  background: rgba(26, 14, 27, 0.88);
+  border-color: rgba(232, 62, 134, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .era-toolbar-label {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .era-chip-group {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .era-chip {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .era-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .member-card {
+  background: #190e1b;
+  border-color: rgba(232, 62, 134, 0.22);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .member-card:hover {
+  border-color: rgba(232, 62, 134, 0.45);
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.7),
+    0 0 24px color-mix(in srgb, var(--member) 35%, transparent);
+}
+
+[data-theme="dark"] .member-card[open] {
+  background: #1e1121;
+}
+
+[data-theme="dark"] .member-info h3 {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .member-info-sub {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .member-meta-grid {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .meta-cell {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .meta-label {
+  color: var(--muted-light);
+}
+
+[data-theme="dark"] .meta-val {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .member-bio {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .member-expand-hint {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .char-bio-item {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .char-bio-item.tdoongz-bio {
+  background: rgba(140, 115, 168, 0.08);
+}

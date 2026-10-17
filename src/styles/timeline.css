@@ -138,3 +138,51 @@
 .timeline-jump-btn:hover .jump-arrow {
   transform: translate(2px, 2px);
 }
+
+/* ========================================================
+   MODO OSCURO (CRONOLOGÍA INTERACTIVA)
+   ======================================================== */
+[data-theme="dark"] .timeline-item {
+  background: #190e1b;
+  border-color: rgba(232, 62, 134, 0.22);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="dark"] .timeline-item:hover {
+  border-color: rgba(232, 62, 134, 0.45);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(232, 62, 134, 0.25);
+}
+
+[data-theme="dark"] .timeline-item::before {
+  border-color: #190e1b;
+  box-shadow: 0 0 0 2px var(--magenta), 0 0 16px rgba(232, 62, 134, 0.65);
+}
+
+[data-theme="dark"] .timeline-title {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .timeline-desc {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .timeline-year {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .timeline-badge-pill {
+  background: rgba(232, 62, 134, 0.2);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .timeline-jump-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(232, 62, 134, 0.25);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .timeline-jump-btn:hover {
+  background: var(--gradient-twice);
+  color: #ffffff;
+  border-color: transparent;
+}
