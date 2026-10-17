@@ -15,6 +15,49 @@ import CharacterTile from './CharacterTile.astro';
       </p>
     </div>
 
+    <!-- Selector interactivo de colección / universo -->
+    <div class="characters-filter-bar scroll-reveal" role="tablist" aria-label="Filtrar por colección de personajes">
+      <span class="char-filter-label">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+          <polyline points="2 17 12 22 22 17"/>
+          <polyline points="2 12 12 17 22 12"/>
+        </svg>
+        <span>Colección:</span>
+      </span>
+      <div class="char-filter-group">
+        <button
+          type="button"
+          class="char-universe-tab active"
+          data-universe="all"
+          role="tab"
+          aria-selected="true"
+        >
+          <span>Ambas colecciones (18)</span>
+        </button>
+        <button
+          type="button"
+          class="char-universe-tab"
+          data-universe="lovelys"
+          role="tab"
+          aria-selected="false"
+        >
+          <span class="universe-tab-dot lovelys"></span>
+          <span>TWICE LOVELYS (9)</span>
+        </button>
+        <button
+          type="button"
+          class="char-universe-tab"
+          data-universe="tdoongz"
+          role="tab"
+          aria-selected="false"
+        >
+          <span class="universe-tab-dot tdoongz"></span>
+          <span>TDOONGZ Dream Attic (9)</span>
+        </button>
+      </div>
+    </div>
+
     <div class="character-intros">
       <!-- ARTÍCULO 1: TWICE LOVELYS -->
       <article class="character-intro lovelys-panel scroll-reveal">
@@ -89,3 +132,13 @@ import CharacterTile from './CharacterTile.astro';
     </div>
   </div>
 </section>
+
+<script>
+  import { initCharactersFilter } from '../scripts/characters-filter';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCharactersFilter);
+  } else {
+    initCharactersFilter();
+  }
+</script>

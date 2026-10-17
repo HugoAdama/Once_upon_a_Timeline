@@ -213,24 +213,30 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 11px;
+  padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(232, 62, 134, 0.28);
   color: #3e283b;
-  font-size: 0.62rem;
-  font-weight: 800;
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .photocard-flip-btn:hover {
-  transform: scale(1.06);
+  transform: scale(1.08);
   background: #ffffff;
   color: var(--magenta);
+  border-color: var(--magenta);
+  box-shadow: 0 6px 18px rgba(232, 62, 134, 0.35);
+}
+
+.member-card:hover .photocard-flip-btn {
   border-color: var(--magenta);
 }
 

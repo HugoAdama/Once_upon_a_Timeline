@@ -107,6 +107,12 @@ summary:focus-visible {
   scroll-margin-top: 86px;
 }
 
+#discografia,
+#cronologia {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1100px;
+}
+
 .section-heading {
   display: flex;
   align-items: flex-end;

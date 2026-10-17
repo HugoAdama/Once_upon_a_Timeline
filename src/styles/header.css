@@ -247,6 +247,12 @@
   color: #dfd1dc;
 }
 
+[data-theme="dark"] .nav-links a:hover,
+[data-theme="dark"] .nav-links a.active {
+  color: var(--candybong-active-color, #ff7ebb);
+  text-shadow: 0 0 12px var(--candybong-glow, rgba(232, 62, 134, 0.4));
+}
+
 [data-theme="dark"] .brand-seal {
   background: #241326;
   border-color: rgba(232, 62, 134, 0.45);
