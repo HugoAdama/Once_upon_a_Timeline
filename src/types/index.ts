@@ -62,6 +62,10 @@ export interface Member {
   bio: string;
   photo?: string;
   eras?: MemberEraPhotos;
+  instagram?: {
+    handle: string;
+    url: string;
+  };
 }
 
 export interface CharacterItem {

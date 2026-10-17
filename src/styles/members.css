@@ -420,11 +420,18 @@
   color: #231622;
 }
 
+.member-color-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
 .member-color-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 6px;
   padding: 4px 12px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--member) 12%, #ffffff);
@@ -432,6 +439,43 @@
   color: #4b3d4a;
   font-size: 0.68rem;
   font-weight: 750;
+}
+
+.member-ig-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(225, 48, 108, 0.08);
+  border: 1px solid rgba(225, 48, 108, 0.25);
+  color: #c13584;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.member-ig-badge:hover {
+  transform: translateY(-2px);
+  background: #c13584;
+  color: #ffffff;
+  border-color: #c13584;
+  box-shadow: 0 4px 12px rgba(193, 53, 132, 0.3);
+}
+
+.meta-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #c13584;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.meta-social-link:hover {
+  color: #833ab4;
+  transform: translateX(2px);
 }
 
 .member-color-tag i {

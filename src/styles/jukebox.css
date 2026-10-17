@@ -1,0 +1,377 @@
+/* ========================================================
+   CANDY JUKEBOX — ONCE Mini Audio Player
+   ======================================================== */
+
+.candy-jukebox-container {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 95;
+  font-family: inherit;
+}
+
+/* Floating launcher button when collapsed */
+.jukebox-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line-subtle);
+  border-radius: 999px;
+  padding: 8px 16px 8px 10px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.jukebox-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(232, 62, 134, 0.4);
+  box-shadow: 0 14px 34px rgba(232, 62, 134, 0.22);
+}
+
+.jukebox-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gradient-twice);
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(232, 62, 134, 0.35);
+}
+
+.jukebox-icon-badge.playing svg {
+  animation: spinRecord 4s linear infinite;
+}
+
+@keyframes spinRecord {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.jukebox-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.jukebox-label-tag {
+  font-size: 0.62rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--magenta);
+}
+
+.jukebox-label-status {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text);
+  max-width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Equalizer mini preview in launcher */
+.jukebox-mini-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 14px;
+  padding-left: 4px;
+}
+
+.jukebox-mini-eq span {
+  width: 3px;
+  height: 4px;
+  background: var(--magenta);
+  border-radius: 999px;
+  transition: height 0.15s ease;
+}
+
+.jukebox-icon-badge.playing + .jukebox-label + .jukebox-mini-eq span:nth-child(1) {
+  animation: eqJump 0.8s ease-in-out infinite alternate;
+}
+.jukebox-icon-badge.playing + .jukebox-label + .jukebox-mini-eq span:nth-child(2) {
+  animation: eqJump 0.8s 0.2s ease-in-out infinite alternate;
+}
+.jukebox-icon-badge.playing + .jukebox-label + .jukebox-mini-eq span:nth-child(3) {
+  animation: eqJump 0.8s 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes eqJump {
+  0% { height: 3px; }
+  100% { height: 14px; }
+}
+
+/* ========================================================
+   POPUP CARD (EXPANDED)
+   ======================================================== */
+.jukebox-card {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 0;
+  width: 320px;
+  background: var(--surface);
+  border: 1px solid var(--line-subtle);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transform: translateY(12px) scale(0.96);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.candy-jukebox-container.expanded .jukebox-card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.jukebox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line-subtle);
+  padding-bottom: 10px;
+}
+
+.jukebox-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--magenta);
+}
+
+.jukebox-header-title svg {
+  color: var(--apricot);
+}
+
+.jukebox-close-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.jukebox-close-btn:hover {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Track info & visualizer */
+.jukebox-track-body {
+  margin-bottom: 14px;
+}
+
+.jukebox-track-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.jukebox-art-cover {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--gradient-twice);
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.35);
+  overflow: hidden;
+}
+
+.jukebox-art-cover.spinning svg {
+  animation: spinRecord 5s linear infinite;
+}
+
+.jukebox-track-details {
+  overflow: hidden;
+}
+
+.jukebox-track-name {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jukebox-track-era {
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--magenta);
+  margin: 0;
+}
+
+/* Canvas Visualizer */
+.jukebox-visualizer-wrap {
+  width: 100%;
+  height: 42px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .jukebox-visualizer-wrap {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+#jukebox-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Track selector playlist buttons */
+.jukebox-playlist {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  scrollbar-width: thin;
+}
+
+.jukebox-track-pill {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 750;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--muted);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .jukebox-track-pill {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.jukebox-track-pill:hover {
+  color: var(--text);
+  border-color: rgba(232, 62, 134, 0.3);
+}
+
+.jukebox-track-pill.active {
+  background: rgba(232, 62, 134, 0.12);
+  color: var(--magenta);
+  border-color: rgba(232, 62, 134, 0.4);
+  font-weight: 850;
+}
+
+/* Player controls */
+.jukebox-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.jukebox-playback-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jukebox-ctrl-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.jukebox-ctrl-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--magenta);
+}
+
+[data-theme="dark"] .jukebox-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.jukebox-play-pause-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--gradient-twice);
+  color: #ffffff;
+  border: none;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.jukebox-play-pause-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(232, 62, 134, 0.55);
+}
+
+/* Volume Control */
+.jukebox-volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.jukebox-volume-slider {
+  width: 64px;
+  height: 4px;
+  accent-color: var(--magenta);
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .candy-jukebox-container {
+    bottom: 20px;
+    left: 16px;
+  }
+  .jukebox-card {
+    width: 290px;
+  }
+}

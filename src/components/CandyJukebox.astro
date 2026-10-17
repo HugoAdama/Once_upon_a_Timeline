@@ -1,0 +1,137 @@
+---
+/**
+ * Candy Jukebox — ONCE Interactive Mini Player
+ * Mini reproductor de sintetizador web con visualizador de espectro para TWICE
+ */
+---
+
+<div id="candy-jukebox" class="candy-jukebox-container" aria-label="Reproductor Candy Jukebox">
+  <!-- Launcher Button -->
+  <button
+    id="jukebox-toggle"
+    class="jukebox-toggle-btn"
+    type="button"
+    aria-expanded="false"
+    aria-controls="jukebox-card"
+    title="Abrir Candy Jukebox"
+  >
+    <span id="jukebox-icon-badge" class="jukebox-icon-badge">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </span>
+    <span class="jukebox-label">
+      <span class="jukebox-label-tag">ONCE Radio</span>
+      <span id="jukebox-status" class="jukebox-label-status">Candy Jukebox</span>
+    </span>
+    <span class="jukebox-mini-eq" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  <!-- Expanded Card Player -->
+  <div id="jukebox-card" class="jukebox-card" role="region" aria-label="Controles de audio Candy Jukebox">
+    <div class="jukebox-header">
+      <div class="jukebox-header-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+        </svg>
+        <span>Candy Jukebox</span>
+      </div>
+      <button id="jukebox-close" class="jukebox-close-btn" type="button" aria-label="Cerrar reproductor">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="jukebox-track-body">
+      <div class="jukebox-track-meta">
+        <div id="jukebox-art-cover" class="jukebox-art-cover" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <div class="jukebox-track-details">
+          <h4 id="jukebox-track-name" class="jukebox-track-name">Feel Special</h4>
+          <p id="jukebox-track-era" class="jukebox-track-era">Feel Special (2019)</p>
+        </div>
+      </div>
+
+      <!-- Canvas Visualizer -->
+      <div class="jukebox-visualizer-wrap">
+        <canvas id="jukebox-canvas" width="280" height="42" aria-label="Visualizador espectral de audio"></canvas>
+      </div>
+    </div>
+
+    <!-- Playlist Pills -->
+    <div class="jukebox-playlist" role="tablist" aria-label="Lista de canciones">
+      <button class="jukebox-track-pill active" type="button" data-track-index="0">Feel Special</button>
+      <button class="jukebox-track-pill" type="button" data-track-index="1">What is Love?</button>
+      <button class="jukebox-track-pill" type="button" data-track-index="2">FANCY</button>
+      <button class="jukebox-track-pill" type="button" data-track-index="3">The Feels</button>
+      <button class="jukebox-track-pill" type="button" data-track-index="4">ONE SPARK</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="jukebox-controls">
+      <div class="jukebox-playback-btns">
+        <button id="jukebox-prev" class="jukebox-ctrl-btn" type="button" aria-label="Pista anterior" title="Pista anterior">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="19 20 9 12 19 4 19 20"/>
+            <line x1="5" y1="19" x2="5" y2="5"/>
+          </svg>
+        </button>
+
+        <button id="jukebox-play-pause" class="jukebox-play-pause-btn" type="button" aria-label="Reproducir o pausar" title="Reproducir / Pausar">
+          <svg id="jukebox-play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          <svg id="jukebox-pause-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none;" aria-hidden="true">
+            <rect x="6" y="4" width="4" height="16"/>
+            <rect x="14" y="4" width="4" height="16"/>
+          </svg>
+        </button>
+
+        <button id="jukebox-next" class="jukebox-ctrl-btn" type="button" aria-label="Siguiente pista" title="Siguiente pista">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="5 4 15 12 5 20 5 4"/>
+            <line x1="19" y1="5" x2="19" y2="19"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="jukebox-volume-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+        <input
+          id="jukebox-volume"
+          class="jukebox-volume-slider"
+          type="range"
+          min="0"
+          max="1"
+          step="0.05"
+          value="0.4"
+          aria-label="Volumen del sintetizador"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initCandyJukebox } from '../scripts/candy-jukebox';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCandyJukebox);
+  } else {
+    initCandyJukebox();
+  }
+</script>

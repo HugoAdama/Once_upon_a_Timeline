@@ -60,4 +60,12 @@ export function initMemberEraFilter(): void {
       });
     });
   });
+
+  // Prevenir que el clic en el badge de Instagram expanda o colapse la tarjeta <details>
+  const igBadges = document.querySelectorAll<HTMLAnchorElement>('.member-ig-badge');
+  igBadges.forEach((badge) => {
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
 }

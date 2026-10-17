@@ -3,6 +3,10 @@ import type { Member } from '../types';
 export const MEMBERS: Member[] = [
   {
     id: 'member-nayeon',
+    instagram: {
+      handle: '@nayeonyny',
+      url: 'https://www.instagram.com/nayeonyny/',
+    },
     number: '01',
     name: 'Nayeon',
     fullName: 'Im Na-yeon',
@@ -33,6 +37,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-jeongyeon',
+    instagram: {
+      handle: '@jy_piece',
+      url: 'https://www.instagram.com/jy_piece/',
+    },
     number: '02',
     name: 'Jeongyeon',
     fullName: 'Yoo Jeong-yeon',
@@ -63,6 +71,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-momo',
+    instagram: {
+      handle: '@momo',
+      url: 'https://www.instagram.com/momo/',
+    },
     number: '03',
     name: 'Momo',
     fullName: 'Hirai Momo',
@@ -93,6 +105,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-sana',
+    instagram: {
+      handle: '@m.by__sana',
+      url: 'https://www.instagram.com/m.by__sana/',
+    },
     number: '04',
     name: 'Sana',
     fullName: 'Minatozaki Sana',
@@ -123,6 +139,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-jihyo',
+    instagram: {
+      handle: '@_zyozyo',
+      url: 'https://www.instagram.com/_zyozyo/',
+    },
     number: '05',
     name: 'Jihyo',
     fullName: 'Park Ji-hyo',
@@ -153,6 +173,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-mina',
+    instagram: {
+      handle: '@mina_sr_my',
+      url: 'https://www.instagram.com/mina_sr_my/',
+    },
     number: '06',
     name: 'Mina',
     fullName: 'Myoi Mina',
@@ -183,6 +207,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-dahyun',
+    instagram: {
+      handle: '@dahhyunnee',
+      url: 'https://www.instagram.com/dahhyunnee/',
+    },
     number: '07',
     name: 'Dahyun',
     fullName: 'Kim Da-hyun',
@@ -213,6 +241,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-chaeyoung',
+    instagram: {
+      handle: '@chaeyo.0',
+      url: 'https://www.instagram.com/chaeyo.0/',
+    },
     number: '08',
     name: 'Chaeyoung',
     fullName: 'Son Chae-young',
@@ -243,6 +275,10 @@ export const MEMBERS: Member[] = [
   },
   {
     id: 'member-tzuyu',
+    instagram: {
+      handle: '@thinkaboutzu',
+      url: 'https://www.instagram.com/thinkaboutzu/',
+    },
     number: '09',
     name: 'Tzuyu',
     fullName: 'Chou Tzu-yu',

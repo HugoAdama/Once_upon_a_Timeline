@@ -37,3 +37,27 @@
   --gradient-twice-soft: linear-gradient(135deg, rgba(232, 62, 134, 0.08), rgba(244, 162, 126, 0.12));
   --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.65));
 }
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #100813;
+  --paper-deep: #080309;
+  --paper-glass: rgba(22, 12, 25, 0.88);
+  --ink: #fdf5f9;
+  --ink-soft: #ebdbe6;
+  --muted: #bfa9b8;
+  --muted-light: #7c6877;
+  --line: #2e1c2b;
+  --line-strong: rgba(232, 62, 134, 0.35);
+  --white: #1a0e1b;
+
+  /* Sombras y resplandores Candybong en modo oscuro */
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.65);
+  --shadow-lg: 0 24px 56px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 32px rgba(232, 62, 134, 0.55);
+  --shadow-apricot: 0 8px 24px rgba(244, 162, 126, 0.4);
+
+  --gradient-twice-soft: linear-gradient(135deg, rgba(232, 62, 134, 0.2), rgba(244, 162, 126, 0.18));
+  --gradient-glass: linear-gradient(135deg, rgba(34, 19, 36, 0.9), rgba(20, 11, 22, 0.94));
+}
