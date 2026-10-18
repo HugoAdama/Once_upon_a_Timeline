@@ -2,11 +2,58 @@ import type { WorldTour } from '../types';
 
 export const WORLD_TOURS: WorldTour[] = [
   {
+    id: 'tour-this-is-for',
+    name: '6TH WORLD TOUR: THIS IS FOR',
+    years: '2025 — 2026',
+    tagline: 'La cumbre del décimo aniversario: una producción monumental que celebra una década de hermandad, himnos generacionales y estadios globales.',
+    image: '/assets/tours/this-is-for-1.webp',
+    logo: '/assets/tours/logos/this-is-for-logo.webp',
+    gallery: [
+      {
+        url: '/assets/tours/this-is-for-1.webp',
+        caption: 'Apertura de la Gira del 10.º Aniversario',
+        location: 'Los Ángeles · Crypto.com Arena / SoFi',
+      },
+      {
+        url: '/assets/tours/this-is-for-2.webp',
+        caption: 'Presentación de Strategy & Nuevas Coreografías',
+        location: 'Vancouver · Rogers Arena',
+      },
+      {
+        url: '/assets/tours/this-is-for-3.webp',
+        caption: 'Celebración Continental con ONCE',
+        location: 'This Is For World Tour',
+      },
+    ],
+    totalShows: 38,
+    attendance: '+950.000 proyectados',
+    keyVenues: [
+      { name: 'Crypto.com Arena / SoFi', city: 'Los Ángeles', country: 'Estados Unidos', highlight: 'Inicio masivo de la gira de aniversario en Norteamérica' },
+      { name: 'Rogers Arena', city: 'Vancouver', country: 'Canadá', highlight: 'Debut apoteósico en territorio canadiense con entradas agotadas' },
+      { name: 'Tokyo Dome', city: 'Tokio', country: 'Japón', highlight: 'Celebración de una década ante 150.000 asistentes' },
+      { name: 'The O2 Arena', city: 'Londres', country: 'Reino Unido', highlight: 'Regreso estelar a Europa en el recinto más icónico de Londres' },
+      { name: 'KSPO Dome', city: 'Seúl', country: 'Corea del Sur', highlight: 'Concierto especial de apertura con escenografía inmersiva' },
+    ],
+    setlistHighlights: [
+      'Strategy',
+      'ONE SPARK',
+      'I GOT YOU',
+      'SET ME FREE',
+      'Talk that Talk',
+      'Feel Special',
+      'FANCY',
+      'The Feels',
+      'Unidades y Solos de Aniversario (MISAMO, Jihyo, Nayeon, Tzuyu)',
+      'Ruleta de bises legendarios (Cheer Up, TT, Like OOH-AHH)',
+    ],
+  },
+  {
     id: 'tour-ready-to-be',
     name: '5TH WORLD TOUR: READY TO BE',
     years: '2023 — 2024',
     tagline: 'La gira histórica de estadios mundiales que rompió todos los récords de asistencia en Asia, América y Europa.',
     image: '/assets/tours/ready-to-be-1.webp',
+    logo: '/assets/tours/logos/ready-to-be-logo.webp',
     gallery: [
       {
         url: '/assets/tours/ready-to-be-1.webp',
@@ -20,8 +67,8 @@ export const WORLD_TOURS: WorldTour[] = [
       },
       {
         url: '/assets/tours/ready-to-be-3.webp',
-        caption: 'Hito Histórico ante 70.000 Fans',
-        location: 'Nissan Stadium · Kanagawa',
+        caption: 'Coreografía de Apertura en Vivo',
+        location: 'KSPO Dome · Seúl Kickoff',
       },
     ],
     totalShows: 51,
@@ -51,6 +98,7 @@ export const WORLD_TOURS: WorldTour[] = [
     years: '2021 — 2022',
     tagline: 'El reencuentro pospandemia que consolidó a TWICE como el grupo femenino con mayor recaudación en arenas estadounidenses.',
     image: '/assets/tours/world-tour-iii-1.webp',
+    logo: '/assets/tours/logos/world-tour-iii-logo.webp',
     gallery: [
       {
         url: '/assets/tours/world-tour-iii-1.webp',
@@ -64,8 +112,8 @@ export const WORLD_TOURS: WorldTour[] = [
       },
       {
         url: '/assets/tours/world-tour-iii-3.webp',
-        caption: 'Noche de Estadios al Aire Libre',
-        location: 'Banc of California Stadium',
+        caption: 'Actuación Central en Texas',
+        location: 'Dickies Arena · Fort Worth',
       },
     ],
     totalShows: 14,
@@ -94,6 +142,7 @@ export const WORLD_TOURS: WorldTour[] = [
     years: '2019 — 2020',
     tagline: 'La consagración estética: 9 luces prismáticas que representaban la madurez, elegancia y universalidad de TWICE.',
     image: '/assets/tours/twicelights-1.webp',
+    logo: '/assets/tours/logos/twicelights-logo.webp',
     gallery: [
       {
         url: '/assets/tours/twicelights-1.webp',
@@ -136,6 +185,7 @@ export const WORLD_TOURS: WorldTour[] = [
     years: '2017 — 2018',
     tagline: 'El inicio de la leyenda en vivo: el parque temático musical donde se forjó el vínculo indestructible con ONCE.',
     image: '/assets/tours/twiceland-1.webp',
+    logo: '/assets/tours/logos/twiceland-logo.webp',
     gallery: [
       {
         url: '/assets/tours/twiceland-1.webp',
@@ -145,7 +195,7 @@ export const WORLD_TOURS: WorldTour[] = [
       {
         url: '/assets/tours/twiceland-2.webp',
         caption: 'Celebración y Conexión Emotiva con Fans',
-        location: 'Twiceland: The Opening',
+        location: 'Twiceland: The Opening Encore',
       },
       {
         url: '/assets/tours/twiceland-3.webp',

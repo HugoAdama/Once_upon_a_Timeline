@@ -105,7 +105,19 @@ const venuesCount = tour.keyVenues.length;
       <!-- Columna Derecha: Identidad, Cifras Clave y Setlist -->
       <div class="tour-meta-column">
         <div class="tour-title-wrap">
-          <span class="tour-kicker">Gira Mundial Oficial</span>
+          <div class="tour-kicker-bar">
+            <span class="tour-kicker">Gira Mundial Oficial</span>
+            {tour.logo && (
+              <div class="tour-logo-badge">
+                <img
+                  src={resolveAsset(tour.logo)}
+                  alt={`Logo oficial de ${tour.name}`}
+                  class="tour-logo-img"
+                  loading="lazy"
+                />
+              </div>
+            )}
+          </div>
           <h3 class="tour-name">{tour.name}</h3>
           <p class="tour-tagline">{tour.tagline}</p>
         </div>

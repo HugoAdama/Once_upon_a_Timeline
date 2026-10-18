@@ -116,6 +116,7 @@ export interface WorldTour {
   years: string;          // ej: "2023 — 2024"
   tagline: string;
   image: string;          // Cover principal
+  logo: string;           // Logo o emblema oficial de la gira (ej: "/assets/tours/logos/this-is-for-logo.webp")
   gallery: TourPhoto[];   // Galería de 3 fotografías con rotación automática cada 30s
   totalShows: number;     // ej: 51
   attendance: string;     // ej: "+1.500.000 asistentes"

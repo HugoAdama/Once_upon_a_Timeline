@@ -106,7 +106,7 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `TourOdysseySection.astro` & `TourCard.astro`
 - **Ruta**: `src/components/TourOdysseySection.astro` y `src/components/TourCard.astro`
-- **Propósito**: Vitrina interactiva de las 4 giras mundiales de TWICE. Presenta un layout Bento de doble columna que equilibra una galería interactiva con rotación automática de fotografías cada 30 segundos (con barra de progreso continua, badges de recinto y controles manuales) junto a columnas de métricas de conciertos, asistencia total, setlist integrado y una grilla equilibrada de recintos y estadios históricos sin tarjetas aisladas.
+- **Propósito**: Vitrina interactiva de las 5 giras mundiales de TWICE (incluyendo la cumbre del 10.º aniversario *6TH THIS IS FOR*). Presenta un layout Bento de doble columna que equilibra una galería interactiva con rotación automática de fotografías reales de concierto cada 30 segundos (sin imágenes duplicadas, con barra de progreso continua, insignias de recinto y controles manuales) junto al logo oficial de cada gira, columnas de métricas de conciertos, asistencia total, setlist integrado y una grilla equilibrada de recintos y estadios históricos sin tarjetas aisladas.
 - **Scripts asociados**: [`src/scripts/tour-map.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/tour-map.ts).
 
 ### `HallOfFameSection.astro`

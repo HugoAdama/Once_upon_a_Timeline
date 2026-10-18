@@ -26,7 +26,7 @@
 - **Cinema MV Vault (Videografía & Galería Conceptual)**:
   - Catálogo cronológico de videos musicales oficiales categorizado por Corea, Japón, lanzamientos globales y solistas/subunidades, con reproductor modal accesible.
 - **World Tour Odyssey & Hall of Fame**:
-  - Giras mundiales masivas en distribución Bento de doble columna, vitrina fotográfica interactiva de conciertos con rotación automática cada 30 segundos, estadios icónicos (SoFi, MetLife, Nissan Stadium) en grillas balanceadas y vitrina de trofeos Daesang y certificaciones globales.
+  - Vitrina de las 5 giras mundiales masivas (desde *TWICELAND* hasta la gira de 10.º aniversario *THIS IS FOR*) en distribución Bento de doble columna, logotipos oficiales de cada gira, vitrina fotográfica interactiva de conciertos reales con rotación automática cada 30 segundos, estadios icónicos (SoFi, MetLife, Nissan Stadium) en grillas balanceadas y vitrina de trofeos Daesang y certificaciones globales.
 - **Accesibilidad y Rendimiento**:
   - Contraste validado bajo pautas WCAG 2.1 AA en temas claro y oscuro.
   - Cumplimiento estricto de `prefers-reduced-motion`.

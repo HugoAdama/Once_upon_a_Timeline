@@ -128,6 +128,7 @@ export interface WorldTour {
   years: string;
   tagline: string;
   image: string;
+  logo: string;
   gallery: TourPhoto[];
   totalShows: number;
   attendance: string;

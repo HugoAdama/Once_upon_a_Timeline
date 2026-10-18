@@ -10,8 +10,8 @@
 /* Selector de Gira en Glass Bento */
 .tour-selector-nav {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
   margin-bottom: 28px;
 }
 
@@ -307,13 +307,43 @@
   gap: 18px;
 }
 
+.tour-kicker-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
 .tour-kicker {
   font-size: 0.7rem;
   font-weight: 850;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--magenta);
-  margin-bottom: 4px;
+  display: block;
+}
+
+.tour-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 3px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  box-shadow: 0 4px 12px rgba(66, 37, 57, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.tour-logo-img {
+  max-height: 28px;
+  max-width: 130px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -636,9 +666,20 @@
   color: #ff9bc7;
 }
 
+[data-theme="dark"] .tour-logo-badge {
+  background: rgba(35, 17, 38, 0.85);
+  border-color: rgba(232, 62, 134, 0.38);
+}
+
 /* ========================================================
    RESPONSIVE DESIGN
    ======================================================== */
+@media (max-width: 1100px) {
+  .tour-selector-nav {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 1040px) {
   .tour-overview-bento {
     grid-template-columns: 1fr;
@@ -650,7 +691,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .tour-selector-nav {
     grid-template-columns: repeat(2, 1fr);
   }
