@@ -1,0 +1,61 @@
+---
+import type { MusicVideo } from '../types';
+
+interface Props {
+  mv: MusicVideo;
+}
+
+const { mv } = Astro.props;
+const thumbUrl = `https://img.youtube.com/vi/${mv.youtubeId}/hqdefault.jpg`;
+---
+
+<article class="mv-card" data-category={mv.category}>
+  <div class="mv-poster-wrap">
+    <img
+      src={thumbUrl}
+      alt={`Miniatura oficial de ${mv.title}`}
+      class="mv-poster-img"
+      loading="lazy"
+      decoding="async"
+      width="480"
+      height="270"
+    />
+    <span class="mv-category-badge">{mv.categoryLabel}</span>
+    <span class="mv-views-pill">{mv.viewsEstimate}</span>
+
+    <div
+      class="mv-play-overlay"
+      data-play-mv
+      data-youtube-id={mv.youtubeId}
+      data-title={mv.title}
+      role="button"
+      tabindex="0"
+      aria-label={`Reproducir video musical de ${mv.title}`}
+    >
+      <div class="mv-play-btn" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="mv-card-body">
+    <div class="mv-meta-row">
+      <span class="mv-era-tag">{mv.era}</span>
+      <span class="mv-year-tag">{mv.year}</span>
+    </div>
+
+    <h3 class="mv-title">{mv.title}</h3>
+    <p class="mv-description">{mv.description}</p>
+
+    <div class="mv-palette-row">
+      <div class="mv-palette-dots" title="Paleta visual del video">
+        {mv.palette.map((color) => (
+          <span class="mv-dot" style={`background-color: ${color};`} title={color} />
+        ))}
+      </div>
+      <span class="mv-director-info">Dir. {mv.director}</span>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,68 @@
+---
+import type { WorldTour } from '../types';
+
+interface Props {
+  tour: WorldTour;
+  isFirst?: boolean;
+}
+
+const { tour, isFirst = false } = Astro.props;
+---
+
+<div class="tour-content-panel" id={`panel-${tour.id}`} style={isFirst ? '' : 'display: none;'}>
+  <div class="tour-main-card">
+    <div class="tour-header-block">
+      <div class="tour-title-wrap">
+        <h3 class="tour-name">{tour.name}</h3>
+        <p class="tour-tagline">{tour.tagline}</p>
+      </div>
+
+      <div class="tour-stats-group">
+        <div class="tour-stat-box">
+          <span class="tour-stat-num">{tour.totalShows}</span>
+          <span class="tour-stat-label">Conciertos</span>
+        </div>
+        <div class="tour-stat-box">
+          <span class="tour-stat-num">{tour.attendance}</span>
+          <span class="tour-stat-label">Asistencia Total</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sedes y Estadios Emblemáticos -->
+    <h4 class="tour-venues-title">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span>Estadios y Sedes Históricas</span>
+    </h4>
+
+    <div class="tour-venues-grid">
+      {tour.keyVenues.map((venue) => (
+        <div class="venue-card">
+          <div class="venue-location">
+            <span>{venue.city}, {venue.country}</span>
+          </div>
+          <div class="venue-name">{venue.name}</div>
+          <p class="venue-highlight">{venue.highlight}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Setlist Emblemático Desplegable -->
+    <details class="tour-setlist-drawer">
+      <summary class="setlist-toggle-summary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        <span>Ver Setlist Emblemático de la Gira ({tour.setlistHighlights.length} canciones)</span>
+      </summary>
+      <div class="setlist-chips-wrap">
+        {tour.setlistHighlights.map((song) => (
+          <span class="setlist-song-chip">{song}</span>
+        ))}
+      </div>
+    </details>
+  </div>
+</div>

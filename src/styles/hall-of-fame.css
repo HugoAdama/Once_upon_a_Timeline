@@ -1,0 +1,145 @@
+/* ========================================================
+   HALL OF FAME & RÉCORDS — SALÓN DE TROFEOS & LOGROS
+   ======================================================== */
+.hall-of-fame-section {
+  padding-block: clamp(56px, 7vw, 96px);
+  position: relative;
+}
+
+.hof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.hof-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  box-shadow: 0 10px 30px rgba(66, 37, 57, 0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hof-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 62, 134, 0.45);
+  box-shadow: 0 18px 42px rgba(66, 37, 57, 0.12), 0 0 24px rgba(244, 162, 126, 0.2);
+}
+
+.hof-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.hof-icon-seal {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--gradient-twice);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.35);
+  flex-shrink: 0;
+}
+
+.hof-year-pill {
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.08);
+  color: var(--magenta);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+}
+
+.hof-category-tag {
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.hof-metric-display {
+  font-family: var(--display);
+  font-size: 1.65rem;
+  font-weight: 850;
+  line-height: 1.1;
+  background: linear-gradient(120deg, var(--magenta), #e85938);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.hof-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.hof-description {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--muted);
+  flex-grow: 1;
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] .hof-card {
+  background: rgba(24, 12, 26, 0.9);
+  border-color: rgba(232, 62, 134, 0.25);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .hof-card:hover {
+  border-color: rgba(232, 62, 134, 0.5);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.8), 0 0 28px rgba(232, 62, 134, 0.25);
+}
+
+[data-theme="dark"] .hof-year-pill {
+  background: rgba(232, 62, 134, 0.18);
+  border-color: rgba(232, 62, 134, 0.35);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .hof-category-tag {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+[data-theme="dark"] .hof-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .hof-description {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .hof-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .hof-grid {
+    grid-template-columns: 1fr;
+  }
+}

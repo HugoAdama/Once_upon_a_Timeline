@@ -36,43 +36,72 @@ Once_upon_a_Timeline/
 │   │   ├── ClosingSection.astro         # Banner de cierre con gradiente y llamadas a la acción
 │   │   ├── DiscographyFilterBar.astro   # UI del buscador, accesos a eras y filtros
 │   │   ├── DiscographySection.astro     # Orquestador conciso de la discografía (~60 líneas)
+│   │   ├── FanZoneSection.astro         # Sección comunitaria ONCE (Quiz & Customizer)
+│   │   ├── FashionCard.astro            # Tarjeta de concepto y estilismo escénico
+│   │   ├── FashionSection.astro         # Orquestador de Stage Wardrobe Archive
 │   │   ├── Footer.astro                 # Pie de página estructurado y créditos
+│   │   ├── HallOfFameSection.astro      # Vitrina de récords y salón de trofeos
 │   │   ├── Header.astro                 # Barra superior fija y navegación móvil
 │   │   ├── Hero.astro                   # Portada interactiva, estadísticas y vinilo
 │   │   ├── MarketPanel.astro            # Acordeón de mercado (Corea, Japón, Global)
 │   │   ├── MemberCard.astro             # Photocard coleccionable de integrante
 │   │   ├── MembersSection.astro         # Orquestador de la cuadrícula de miembros
+│   │   ├── MvCard.astro                 # Tarjeta de video musical con paleta cromática
+│   │   ├── MvVaultSection.astro         # Galería cinematográfica de MVs y modal
+│   │   ├── PhotocardStudio.astro        # Estudio interactivo de diseño de photocards
+│   │   ├── QuizCard.astro               # Cuestionario interactivo de afinidad
 │   │   ├── ReleaseItem.astro            # Ficha de álbum estilo streaming con tracklist
 │   │   ├── ScrollToTop.astro            # Botón flotante FAB para volver arriba
 │   │   ├── Ticker.astro                 # Marquesina continua infinita
-│   │   └── TimelineSection.astro        # Cronología interactiva con hitos y saltos
+│   │   ├── TimelineSection.astro        # Cronología interactiva con hitos y saltos
+│   │   ├── TourCard.astro               # Ficha de gira con estadios y setlist
+│   │   └── TourOdysseySection.astro     # Navegación y vitrina de giras mundiales
 │   ├── data/                # Fuentes de verdad estáticas fuertemente tipadas
 │   │   ├── characters.ts    # Datos de Lovelys y TDOONGZ
+│   │   ├── fan-zone.ts      # Preguntas y opciones del test de afinidad
+│   │   ├── fashion-archive.ts # Conceptos de vestuario y siluetas escénicas
+│   │   ├── hall-of-fame.ts  # Récords históricos, Daesangs y ventas
 │   │   ├── members.ts       # Datos de las 9 integrantes (bios, colores, eras)
+│   │   ├── music-videos.ts  # Videografía oficial completa con directores y paletas
 │   │   ├── releases.ts      # Catálogo exhaustivo de lanzamientos (Corea, Japón, Global)
-│   │   └── timeline.ts      # Hitos históricos y conexiones a lanzamientos
+│   │   ├── timeline.ts      # Hitos históricos y conexiones a lanzamientos
+│   │   └── world-tours.ts   # Giras mundiales, estadios y setlists
 │   ├── layouts/
 │   │   └── Layout.astro     # Esqueleto HTML5, metadatos SEO y Open Graph
 │   ├── pages/
 │   │   └── index.astro      # Página principal estática
 │   ├── scripts/             # Lógica cliente TypeScript desacoplada
+│   │   ├── candy-jukebox.ts         # Mini reproductor de audio y visualizador canvas
+│   │   ├── candybong-sync.ts        # Sincronización cromática de lightstick
+│   │   ├── characters-filter.ts     # Filtro por universo de personajes
 │   │   ├── discography-explorer.ts  # Búsqueda reactiva, filtros, atajo '/' y hash jump
-│   │   ├── member-era-filter.ts     # Conmutador de fotografías de integrantes por era
+│   │   ├── fan-zone.ts              # Motor del quiz y exportación Canvas a PNG
+│   │   ├── member-era-filter.ts     # Rotación 30s con giro 3D e inclinación al cursor
+│   │   ├── mv-vault.ts              # Filtro de videografía y reproductor modal
 │   │   ├── navigation.ts            # Menú móvil desplegable y scroll-spy activo
-│   │   └── scroll-reveal.ts         # Fallback progresivo con IntersectionObserver
+│   │   ├── scroll-reveal.ts         # Animaciones al entrar en viewport
+│   │   ├── theme-toggle.ts          # Conmutador de modo claro / modo concierto
+│   │   ├── timeline-filter.ts       # Filtro por era cronológica
+│   │   └── tour-map.ts              # Selector interactivo de giras mundiales
 │   ├── styles/              # Sistema de estilos modular (CSS Vanilla)
 │   │   ├── animations.css   # Keyframes, animaciones scroll-driven y media queries
 │   │   ├── base.css         # Reseteo CSS, tipografía base y utilidades .wrap, .button
 │   │   ├── characters.css   # Estilos para personajes y mascotas
 │   │   ├── closing-footer.css # Estilos de cierre, pie de página y botón flotante
 │   │   ├── discography.css  # Estilos para el explorador y tarjetas de streaming
+│   │   ├── fan-zone.css     # Estilos para quiz y estudio de photocard
+│   │   ├── fashion.css      # Estilos para archivo de moda y vestuarios
 │   │   ├── global.css       # Manifiesto maestro que importa los módulos en cascada
+│   │   ├── hall-of-fame.css # Estilos para salón de trofeos y récords
 │   │   ├── header.css       # Cabecera, barra de navegación y drawer móvil
 │   │   ├── hero.css         # Portada, disco de vinilo y órbitas
+│   │   ├── jukebox.css      # Mini reproductor de audio flotante
 │   │   ├── members.css      # Photocards, efecto shimmer y cajón biográfico
+│   │   ├── mv-vault.css     # Estilos para videografía y modal cinemático
 │   │   ├── ticker.css       # Marquesina continua con máscaras de gradiente
 │   │   ├── timeline.css     # Línea de tiempo y nodos de pulso radar
-│   │   └── tokens.css       # Tokens de diseño: colores oficiales, fuentes, sombras
+│   │   ├── tokens.css       # Tokens de diseño: colores oficiales, fuentes, sombras
+│   │   └── tours.css        # Estilos para giras mundiales y estadios
 │   ├── types/
 │   │   └── index.ts         # Definiciones TypeScript de modelos del dominio
 │   └── utils/               # Funciones auxiliares puras

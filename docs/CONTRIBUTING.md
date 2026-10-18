@@ -1,6 +1,6 @@
 # Guía de Contribución y Desarrollo — Once Upon a Timeline
 
-Esta guía explica cómo ejecutar el proyecto localmente, las convenciones de código y los pasos para añadir nuevos lanzamientos o integrantes al archivo.
+Esta guía explica cómo ejecutar el proyecto localmente, las convenciones de código y los pasos para añadir nuevos lanzamientos, videos musicales, giras, récords o conceptos estéticos al archivo.
 
 ---
 
@@ -44,8 +44,9 @@ npm run preview
 
 ---
 
-## 3. ¿Cómo Añadir un Nuevo Lanzamiento Musical?
+## 3. ¿Cómo Añadir Contenido al Archivo?
 
+### Añadir un Nuevo Lanzamiento Musical
 1. Abre [`src/data/releases.ts`](file:///e:/Once_upon_a_Timeline/src/data/releases.ts).
 2. Añade un nuevo objeto al array `RELEASES` siguiendo la interfaz `Release`:
    ```typescript
@@ -62,40 +63,48 @@ npm run preview
      tracks: [
        { title: 'Canción Principal' },
        { title: 'Track 02' },
-       { title: 'Track 03' },
      ],
      officialSource: 'https://twice.jype.com/discography',
    }
    ```
-3. Coloca la carátula cuadrada en `public/assets/covers/nuevo-album.webp`.
-4. El nuevo lanzamiento se indexará automáticamente en el buscador reactivo, en los filtros por año y en los contadores del mercado correspondiente sin necesidad de modificar ningún componente HTML.
+3. Coloca la carátula cuadrada en `public/assets/covers/nuevo-album.webp`. Se indexará automáticamente en el buscador reactivo y filtros.
 
----
-
-## 4. ¿Cómo Conectar un Nuevo Hito en la Cronología?
-
-1. Abre [`src/data/timeline.ts`](file:///e:/Once_upon_a_Timeline/src/data/timeline.ts).
-2. Añade una entrada vinculada al `id` del lanzamiento:
+### Añadir un Nuevo Video Musical (MV Vault)
+1. Abre [`src/data/music-videos.ts`](file:///e:/Once_upon_a_Timeline/src/data/music-videos.ts).
+2. Inserta el objeto con el ID oficial de YouTube, paleta cromática y director:
    ```typescript
    {
-     year: '2025',
-     badge: '10th Anniversary',
-     title: 'Décimo Aniversario de TWICE',
-     description: 'Celebración de una década de música, giras globales y récords.',
-     releaseId: 'release-nombre-album-2025-05-15',
-     date: '2025-10-20',
+     id: 'mv-nuevo-single',
+     title: 'Nombre del Sencillo',
+     era: 'Era Name',
+     year: 2025,
+     category: 'group-kr', // 'group-kr' | 'group-jp' | 'group-en' | 'solo-sub'
+     categoryLabel: 'Corea · Title Track',
+     youtubeId: 'ID_DE_YOUTUBE',
+     director: 'Estudio Director',
+     palette: ['#hex1', '#hex2', '#hex3', '#hex4'],
+     description: 'Descripción del concepto estético y visual.',
+     viewsEstimate: '+10M views',
    }
    ```
-3. El botón "Ver canciones y eras" del hito navegará y resaltará automáticamente el álbum correspondiente en la discografía.
+
+### Añadir una Nueva Gira Mundial (Tour Odyssey)
+1. Abre [`src/data/world-tours.ts`](file:///e:/Once_upon_a_Timeline/src/data/world-tours.ts).
+2. Configura los estadios clave y canciones del setlist siguiendo la interfaz `WorldTour`.
+
+### Añadir un Nuevo Récord o Trofeo (Hall of Fame)
+1. Abre [`src/data/hall-of-fame.ts`](file:///e:/Once_upon_a_Timeline/src/data/hall-of-fame.ts).
+2. Agrega la métrica verificada bajo su categoría correspondiente (`music-show`, `daesang`, `stadium`, `global-record`).
 
 ---
 
-## 5. Convenciones de Código y Estilo
+## 4. Convenciones de Código y Estilo
 
 - **Componentes Astro**: Mantener la lógica de presentación limpia. Si un componente supera las 150 líneas, evaluar si puede extraerse un subcomponente hijo en `src/components/`.
-- **Scripts del Cliente**: Escribir TypeScript estricto en `src/scripts/` en lugar de bloques `<script>` monolíticos en las páginas.
+- **Scripts del Cliente**: Escribir TypeScript estricto en `src/scripts/` con funciones exportadas `initX()` en lugar de bloques `<script>` monolíticos en las páginas.
 - **Estilos CSS**:
   - Utilizar variables semánticas de [`src/styles/tokens.css`](file:///e:/Once_upon_a_Timeline/src/styles/tokens.css).
   - Colocar los estilos en el módulo temático correspondiente en `src/styles/`.
-  - Evitar el uso de selectores con `!important` a menos que sea en consultas de `prefers-reduced-motion`.
-- **Accesibilidad**: Asegurarse de que cada elemento interactivo cuente con etiquetas `aria-label`, contraste legible y foco visual visible.
+  - Asegurar alto contraste en modo claro y oscuro (`[data-theme="dark"]`).
+  - Respetar siempre `prefers-reduced-motion` para suspender giros 3D y animaciones en usuarios sensibles.
+- **Regla Estricta de Emojis**: CERO emojis en la interfaz y en el código de producción. Utilizar siempre iconos vectoriales SVG limpios.

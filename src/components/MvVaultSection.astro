@@ -1,0 +1,93 @@
+---
+import { MUSIC_VIDEOS } from '../data/music-videos';
+import MvCard from './MvCard.astro';
+---
+
+<section class="section wrap mv-vault-section" id="videografia">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="23 7 16 12 23 17 23 7"/>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+        </svg>
+        <span>05 · Videografía &amp; Concept Cinema</span>
+      </span>
+      <h2>Cinema MV Vault.</h2>
+    </div>
+    <p>
+      Una década de videoclips legendarios: desde los clásicos que revolucionaron el pop surcoreano hasta producciones globales en estadios, conceptos japoneses y proyectos solistas.
+    </p>
+  </div>
+
+  <!-- Barra de Filtros de Videografía -->
+  <div class="mv-filter-toolbar scroll-reveal" role="toolbar" aria-label="Filtrar videos musicales por territorio o formato">
+    <span class="mv-filter-label">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+        <polyline points="2 17 12 22 22 17"/>
+        <polyline points="2 12 12 17 22 12"/>
+      </svg>
+      <span>Catálogo:</span>
+    </span>
+
+    <div class="mv-filter-group" role="tablist">
+      <button type="button" class="mv-filter-tab active" data-mv-filter="all" role="tab" aria-selected="true">
+        Todos ({MUSIC_VIDEOS.length})
+      </button>
+      <button type="button" class="mv-filter-tab" data-mv-filter="group-kr" role="tab" aria-selected="false">
+        Corea
+      </button>
+      <button type="button" class="mv-filter-tab" data-mv-filter="group-jp" role="tab" aria-selected="false">
+        Japón
+      </button>
+      <button type="button" class="mv-filter-tab" data-mv-filter="group-en" role="tab" aria-selected="false">
+        Global
+      </button>
+      <button type="button" class="mv-filter-tab" data-mv-filter="solo-sub" role="tab" aria-selected="false">
+        Solos &amp; Subunidades
+      </button>
+    </div>
+  </div>
+
+  <!-- Grilla de Videos Musicales -->
+  <div class="mv-grid">
+    {MUSIC_VIDEOS.map((mv) => (
+      <MvCard mv={mv} />
+    ))}
+  </div>
+
+  <!-- Modal Cinematográfico Flotante -->
+  <div class="mv-modal" id="mv-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mv-modal-dialog">
+      <div class="mv-modal-header">
+        <h4 class="mv-modal-title" id="mv-modal-title">Reproductor</h4>
+        <button type="button" class="mv-modal-close" id="mv-modal-close" aria-label="Cerrar video">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="mv-video-frame-wrap">
+        <iframe
+          id="mv-modal-iframe"
+          src=""
+          title="TWICE Official Music Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initMvVault } from '../scripts/mv-vault';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMvVault);
+  } else {
+    initMvVault();
+  }
+</script>

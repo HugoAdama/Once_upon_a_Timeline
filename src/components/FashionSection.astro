@@ -1,0 +1,27 @@
+---
+import { FASHION_CONCEPTS } from '../data/fashion-archive';
+import FashionCard from './FashionCard.astro';
+---
+
+<section class="section wrap fashion-section" id="vestuario">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+        </svg>
+        <span>09 · Estética &amp; Alta Costura Escénica</span>
+      </span>
+      <h2>Stage Wardrobe Archive.</h2>
+    </div>
+    <p>
+      La evolución de estilo de TWICE a través de sus eras más influyentes: desde los uniformes universitarios de Cheer Up hasta la opulencia dorada de Feel Special y la alta costura vanguardista de Strategy.
+    </p>
+  </div>
+
+  <div class="fashion-grid">
+    {FASHION_CONCEPTS.map((concept) => (
+      <FashionCard concept={concept} />
+    ))}
+  </div>
+</section>

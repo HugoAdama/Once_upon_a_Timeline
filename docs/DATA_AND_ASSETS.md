@@ -1,6 +1,6 @@
 # Gestión de Datos y Assets — Once Upon a Timeline
 
-Este documento detalla las estructuras de datos, interfaces TypeScript, convención de nombres y el manejo de assets estáticos (imágenes, carátulas y personajes) en el proyecto.
+Este documento detalla las estructuras de datos, interfaces TypeScript, convención de nombres y el manejo de assets estáticos en el proyecto.
 
 ---
 
@@ -19,7 +19,7 @@ export interface Member {
   birthdate: string;      // ej: "22 de septiembre de 1995"
   role: string;           // ej: "Vocalista principal, bailarina y centro"
   colorName: string;      // ej: "Celeste / Sky Blue"
-  colorHex: string;       // ej: "#91cdee"
+  colorHex: string;       // ej: "#5bc2e7"
   lovely: {
     name: string;
     description: string;
@@ -50,7 +50,7 @@ export interface CharacterItem {
   member: string;         // ej: "Nayeon"
   type: 'lovely' | 'tdoongz';
   tagline: string;        // ej: "Alegre y brillante"
-  symbol: string;         // Identificador gráfico distintivo para Lovelys y TDOONGZ
+  symbol: string;         // Identificador gráfico distintivo
   colorHex: string;       // Color representativo de la integrante
   avatar?: string;        // Ruta al asset (.webp)
 }
@@ -85,15 +85,67 @@ export interface Release {
 }
 ```
 
-### `TimelineMilestone`
+### `MusicVideo` (Cinema MV Vault)
 ```typescript
-export interface TimelineMilestone {
-  year: string;           // ej: "2024"
-  badge: string;          // ej: "Mini Álbum 14"
-  title: string;          // ej: "With YOU-th & DIVE & STRATEGY"
+export interface MusicVideo {
+  id: string;             // ej: "mv-strategy"
+  title: string;          // ej: "Strategy (feat. Megan Thee Stallion)"
+  era: string;            // ej: "Strategy"
+  year: number;           // ej: 2024
+  category: 'group-kr' | 'group-jp' | 'group-en' | 'solo-sub';
+  categoryLabel: string;  // ej: "Corea · Lead Single"
+  youtubeId: string;      // Identificador oficial de YouTube
+  director: string;       // ej: "Naive Creative Production"
+  palette: string[];      // Colores visuales representativos del MV
   description: string;
-  releaseId: string;      // ID de conexión al ReleaseItem en la discografía
-  date: string;
+  viewsEstimate: string;  // ej: "+65M views"
+}
+```
+
+### `WorldTour` (World Tour Odyssey)
+```typescript
+export interface WorldTour {
+  id: string;             // ej: "tour-ready-to-be"
+  name: string;           // ej: "5TH WORLD TOUR: READY TO BE"
+  years: string;          // ej: "2023 — 2024"
+  tagline: string;
+  totalShows: number;     // ej: 51
+  attendance: string;     // ej: "+1.500.000 asistentes"
+  keyVenues: {
+    name: string;
+    city: string;
+    country: string;
+    highlight: string;
+  }[];
+  setlistHighlights: string[];
+}
+```
+
+### `HallOfFameItem` (Hall of Fame)
+```typescript
+export interface HallOfFameItem {
+  id: string;
+  category: 'music-show' | 'daesang' | 'global-record' | 'stadium';
+  categoryLabel: string;
+  title: string;
+  metric: string;         // ej: "121 Victorias", "3 Años Consecutivos"
+  description: string;
+  year: string;
+}
+```
+
+### `FashionConcept` (Stage Wardrobe Archive)
+```typescript
+export interface FashionConcept {
+  id: string;
+  title: string;          // ej: "High-Fashion Pop & Street Avant-Garde"
+  era: string;            // ej: "Strategy"
+  year: string;           // ej: "2024"
+  style: string;
+  description: string;
+  colorPalette: string[];
+  keyPieces: string[];
+  conceptMood: string;
 }
 ```
 
@@ -127,8 +179,6 @@ export function resolveAsset(path?: string | null): string | null {
   return `${base}${cleanPath}`;
 }
 ```
-
-Esta función garantiza que una ruta como `/assets/members/nayeon.webp` se resuelva automáticamente como `/Once_upon_a_Timeline/assets/members/nayeon.webp` en producción, o `/assets/members/nayeon.webp` en desarrollo local.
 
 ---
 

@@ -1,0 +1,198 @@
+/* ========================================================
+   STAGE WARDROBE — VESTUARIO & ESTÉTICA CONCEPTUAL
+   ======================================================== */
+.fashion-section {
+  padding-block: clamp(56px, 7vw, 96px);
+  position: relative;
+}
+
+.fashion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.fashion-card {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  box-shadow: 0 12px 34px rgba(66, 37, 57, 0.06);
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.fashion-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(232, 62, 134, 0.45);
+  box-shadow: 0 20px 48px rgba(66, 37, 57, 0.12), 0 0 26px rgba(232, 62, 134, 0.18);
+}
+
+.fashion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.fashion-era-badge {
+  font-size: 0.72rem;
+  font-weight: 850;
+  color: var(--magenta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fashion-year-pill {
+  font-size: 0.68rem;
+  font-weight: 850;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  color: var(--muted);
+}
+
+.fashion-title {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+
+.fashion-style-tag {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--magenta);
+  margin-bottom: 14px;
+}
+
+.fashion-description {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 18px;
+  flex-grow: 1;
+}
+
+/* Paleta cromática del concepto */
+.fashion-palette-block {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(232, 62, 134, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fashion-palette-label {
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.fashion-swatches {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fashion-swatch-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Piezas clave del vestuario */
+.fashion-pieces-box {
+  margin-bottom: 18px;
+}
+
+.fashion-pieces-title {
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fashion-pieces-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.fashion-pieces-list li {
+  margin-bottom: 4px;
+}
+
+.fashion-mood-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--magenta);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  align-self: flex-start;
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] .fashion-card {
+  background: rgba(24, 12, 26, 0.9);
+  border-color: rgba(232, 62, 134, 0.25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .fashion-card:hover {
+  border-color: rgba(232, 62, 134, 0.5);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.8), 0 0 28px rgba(232, 62, 134, 0.22);
+}
+
+[data-theme="dark"] .fashion-title,
+[data-theme="dark"] .fashion-pieces-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .fashion-description,
+[data-theme="dark"] .fashion-pieces-list {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+[data-theme="dark"] .fashion-palette-block {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .fashion-mood-badge {
+  background: rgba(232, 62, 134, 0.18);
+  border-color: rgba(232, 62, 134, 0.35);
+  color: #ff9bc7;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .fashion-grid {
+    grid-template-columns: 1fr;
+  }
+}

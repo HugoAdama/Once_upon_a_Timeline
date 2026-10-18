@@ -1,0 +1,76 @@
+---
+import { MEMBERS } from '../data/members';
+---
+
+<div class="customizer-card scroll-reveal">
+  <div class="customizer-header">
+    <h3 class="customizer-title">Photocard Studio</h3>
+    <p class="customizer-subtitle">Diseña y descarga tu photocard oficial de colección personalizada en formato PNG de alta fidelidad.</p>
+  </div>
+
+  <div class="customizer-workspace">
+    <!-- Vista previa interactiva de la tarjeta -->
+    <div class="photocard-canvas-wrap" id="photocard-canvas-preview">
+      <span class="canvas-sheen" aria-hidden="true"></span>
+      <span class="canvas-top-tag">ONCE ARCHIVE · 10TH</span>
+
+      <div class="canvas-member-seal">
+        <span class="canvas-member-name" id="canvas-member-preview">Nayeon</span>
+        <span class="canvas-fan-name" id="canvas-fan-preview">ONCE Oficial</span>
+      </div>
+
+      <div class="canvas-footer">
+        <span>COLLECTOR EDITION</span>
+        <span>2015 — 2025</span>
+      </div>
+    </div>
+
+    <!-- Controles de personalización -->
+    <div class="customizer-controls">
+      <div class="control-field">
+        <label for="custom-fan-name" class="control-label">Tu Nombre o Alias de Fan:</label>
+        <input
+          type="text"
+          id="custom-fan-name"
+          class="control-input"
+          placeholder="Escribe tu nombre..."
+          maxlength="20"
+          value="ONCE Oficial"
+        />
+      </div>
+
+      <div class="control-field">
+        <label for="custom-member-select" class="control-label">Tu Bias / Integrante:</label>
+        <select id="custom-member-select" class="control-select">
+          {MEMBERS.map((m) => (
+            <option value={m.name}>{m.name} ({m.role})</option>
+          ))}
+        </select>
+      </div>
+
+      <div class="control-field">
+        <span class="control-label">Color del Marco Holográfico:</span>
+        <div class="color-picker-row">
+          <button type="button" class="palette-btn active" data-frame-color="#e83e86" style="--c: #e83e86;" title="Neon Magenta" aria-label="Neon Magenta"></button>
+          <button type="button" class="palette-btn" data-frame-color="#f4a27e" style="--c: #f4a27e;" title="Apricot" aria-label="Apricot"></button>
+          <button type="button" class="palette-btn" data-frame-color="#5bc2e7" style="--c: #5bc2e7;" title="Sky Blue" aria-label="Sky Blue"></button>
+          <button type="button" class="palette-btn" data-frame-color="#a9d535" style="--c: #a9d535;" title="Lime Green" aria-label="Lime Green"></button>
+          <button type="button" class="palette-btn" data-frame-color="#ff6ea7" style="--c: #ff6ea7;" title="Pink" aria-label="Pink"></button>
+          <button type="button" class="palette-btn" data-frame-color="#9e7bb5" style="--c: #9e7bb5;" title="Purple" aria-label="Purple"></button>
+          <button type="button" class="palette-btn" data-frame-color="#75c9be" style="--c: #75c9be;" title="Mint" aria-label="Mint"></button>
+          <button type="button" class="palette-btn" data-frame-color="#e02438" style="--c: #e02438;" title="Red" aria-label="Red"></button>
+          <button type="button" class="palette-btn" data-frame-color="#005bac" style="--c: #005bac;" title="Navy Blue" aria-label="Navy Blue"></button>
+        </div>
+      </div>
+
+      <button type="button" class="download-photocard-btn" id="download-photocard-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span>Descargar Photocard (PNG)</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -89,3 +89,74 @@ export interface TimelineMilestone {
   highlightTrack?: string;
   category?: 'origins' | 'golden' | 'expansion' | 'anniversary';
 }
+
+/* ========================================================
+   NUEVAS SECCIONES: MV VAULT, TOURS, HALL OF FAME, FAN ZONE & FASHION
+   ======================================================== */
+export type MvCategory = 'group-kr' | 'group-jp' | 'group-en' | 'solo-sub';
+
+export interface MusicVideo {
+  id: string;
+  title: string;
+  era: string;
+  year: number;
+  category: MvCategory;
+  categoryLabel: string;
+  youtubeId: string;
+  director: string;
+  palette: string[];
+  description: string;
+  viewsEstimate: string;
+}
+
+export interface TourVenue {
+  name: string;
+  city: string;
+  country: string;
+  highlight: string;
+}
+
+export interface WorldTour {
+  id: string;
+  name: string;
+  years: string;
+  tagline: string;
+  totalShows: number;
+  attendance: string;
+  keyVenues: TourVenue[];
+  setlistHighlights: string[];
+}
+
+export interface HallOfFameItem {
+  id: string;
+  category: 'music-show' | 'daesang' | 'global-record' | 'stadium';
+  categoryLabel: string;
+  title: string;
+  metric: string;
+  description: string;
+  year: string;
+}
+
+export interface QuizOption {
+  text: string;
+  trait: string;
+  memberId: string;
+}
+
+export interface QuizQuestion {
+  id: number;
+  prompt: string;
+  options: QuizOption[];
+}
+
+export interface FashionConcept {
+  id: string;
+  title: string;
+  era: string;
+  year: string;
+  style: string;
+  description: string;
+  colorPalette: string[];
+  keyPieces: string[];
+  conceptMood: string;
+}

@@ -1,0 +1,55 @@
+---
+import { WORLD_TOURS } from '../data/world-tours';
+import TourCard from './TourCard.astro';
+---
+
+<section class="section wrap tours-section" id="giras">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span>06 · Giras Mundiales &amp; Estadios</span>
+      </span>
+      <h2>World Tour Odyssey.</h2>
+    </div>
+    <p>
+      El viaje en vivo que conquistó los recintos más imponentes del planeta: desde los teatros íntimos de Seúl hasta llenar estadios de 70.000 personas en Estados Unidos y Japón.
+    </p>
+  </div>
+
+  <!-- Navegación de Giras en Glass Bento -->
+  <div class="tour-selector-nav scroll-reveal" role="tablist" aria-label="Seleccionar gira mundial">
+    {WORLD_TOURS.map((tour, index) => (
+      <button
+        type="button"
+        class={`tour-nav-btn ${index === 0 ? 'active' : ''}`}
+        data-tour-id={tour.id}
+        role="tab"
+        aria-selected={index === 0 ? 'true' : 'false'}
+      >
+        <span class="tour-nav-years">{tour.years}</span>
+        <strong class="tour-nav-title">{tour.name.replace('WORLD TOUR: ', '')}</strong>
+      </button>
+    ))}
+  </div>
+
+  <!-- Paneles de Gira -->
+  <div class="tours-display-container">
+    {WORLD_TOURS.map((tour, index) => (
+      <TourCard tour={tour} isFirst={index === 0} />
+    ))}
+  </div>
+</section>
+
+<script>
+  import { initTourOdyssey } from '../scripts/tour-map';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTourOdyssey);
+  } else {
+    initTourOdyssey();
+  }
+</script>
