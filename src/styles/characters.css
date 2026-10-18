@@ -26,7 +26,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #4b3648;
+  color: #231222;
   font-size: 0.76rem;
   font-weight: 850;
   letter-spacing: 0.06em;
@@ -435,7 +435,12 @@
 }
 
 [data-theme="dark"] .char-filter-label {
-  color: var(--ink);
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .char-filter-label svg {
+  color: var(--magenta);
+  filter: drop-shadow(0 0 6px rgba(232, 62, 134, 0.45));
 }
 
 [data-theme="dark"] .char-filter-group {
@@ -444,11 +449,12 @@
 }
 
 [data-theme="dark"] .char-universe-tab {
-  color: rgba(255, 255, 255, 0.78);
+  color: #ffffff;
+  font-weight: 750;
 }
 
 [data-theme="dark"] .char-universe-tab:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.16);
   color: #ffffff;
 }
 

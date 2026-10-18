@@ -1,6 +1,6 @@
 /**
  * Inicializa el filtro de eras fotográficas de las integrantes de TWICE
- * y las animaciones interactivas de inclinación 3D (Photocard Tilt & Hologram)
+ * con rotación automática cada 30 segundos y animaciones interactivas 3D.
  */
 export function initMemberEraFilter(): void {
   const eraButtons = document.querySelectorAll<HTMLButtonElement>('[data-member-era-filter]');
@@ -12,41 +12,74 @@ export function initMemberEraFilter(): void {
     classic: 'Debut (2015-2018)',
   };
 
-  eraButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const era = btn.getAttribute('data-member-era-filter') || 'current';
+  const ERAS = ['current', 'between', 'classic'];
+  let currentEraIndex = 0;
+  let autoRotateTimer: number | null = null;
+  const ROTATION_INTERVAL_MS = 30000; // 30 segundos
 
+  function applyEra(era: string, triggerUser = false): void {
+    const targetBtn = document.querySelector<HTMLButtonElement>(`[data-member-era-filter="${era}"]`);
+    if (targetBtn) {
       eraButtons.forEach((b) => {
         b.classList.remove('active');
         b.setAttribute('aria-checked', 'false');
       });
-      btn.classList.add('active');
-      btn.setAttribute('aria-checked', 'true');
+      targetBtn.classList.add('active');
+      targetBtn.setAttribute('aria-checked', 'true');
+    }
 
-      memberCards.forEach((card) => {
-        const img = card.querySelector<HTMLImageElement>('.member-actual-photo');
-        const badge = card.querySelector<HTMLElement>('[data-member-era-badge]');
+    const eraIndex = ERAS.indexOf(era);
+    if (eraIndex !== -1) {
+      currentEraIndex = eraIndex;
+    }
 
-        if (img) {
-          const newSrc = img.getAttribute(`data-photo-${era}`);
-          if (newSrc && newSrc !== img.src) {
-            img.style.opacity = '0.3';
-            img.style.transform = 'scale(0.97)';
+    memberCards.forEach((card) => {
+      const img = card.querySelector<HTMLImageElement>('.member-actual-photo');
+      const badge = card.querySelector<HTMLElement>('[data-member-era-badge]');
 
-            setTimeout(() => {
-              img.src = newSrc;
-              img.style.opacity = '1';
-              img.style.transform = 'scale(1)';
-            }, 180);
-          }
+      if (img) {
+        const newSrc = img.getAttribute(`data-photo-${era}`);
+        if (newSrc && newSrc !== img.src) {
+          img.style.opacity = '0.25';
+          img.style.transform = 'scale(0.96)';
+
+          setTimeout(() => {
+            img.src = newSrc;
+            img.style.opacity = '1';
+            img.style.transform = 'scale(1)';
+          }, 200);
         }
+      }
 
-        if (badge) {
-          badge.textContent = ERA_LABELS[era] || 'Era Actual';
-        }
-      });
+      if (badge) {
+        badge.textContent = ERA_LABELS[era] || 'Era Actual';
+      }
+    });
+
+    if (triggerUser) {
+      startAutoRotate();
+    }
+  }
+
+  function startAutoRotate(): void {
+    if (autoRotateTimer) clearInterval(autoRotateTimer);
+    autoRotateTimer = window.setInterval(() => {
+      currentEraIndex = (currentEraIndex + 1) % ERAS.length;
+      applyEra(ERAS[currentEraIndex], false);
+    }, ROTATION_INTERVAL_MS);
+  }
+
+  eraButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const era = btn.getAttribute('data-member-era-filter') || 'current';
+      applyEra(era, true);
     });
   });
+
+  // Iniciar rotación automática cada 30 segundos
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    startAutoRotate();
+  }
 
   // Soporte para giro 3D de Photocard coleccionable e inclinación holográfica realista
   const flipWrappers = document.querySelectorAll<HTMLElement>('[data-photocard-wrap]');

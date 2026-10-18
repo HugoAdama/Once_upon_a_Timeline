@@ -24,11 +24,36 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #4b3648;
+  color: #231222;
   font-size: 0.76rem;
   font-weight: 850;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.era-auto-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.1);
+  border: 1px solid rgba(232, 62, 134, 0.28);
+  color: var(--magenta);
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+
+.auto-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--magenta);
+  box-shadow: 0 0 6px var(--magenta);
+  animation: pulseDot 2s ease-in-out infinite;
 }
 
 .era-chip-group {
@@ -910,15 +935,24 @@
    MODO OSCURO (INTEGRANTES Y PHOTOCARDS)
    ======================================================== */
 [data-theme="dark"] .members-era-toolbar {
-  background: rgba(26, 14, 27, 0.88);
-  border-color: rgba(232, 62, 134, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme="dark"] .members-era-toolbar {
-  background: rgba(24, 12, 26, 0.88);
+  background: rgba(24, 12, 26, 0.92);
   border-color: rgba(232, 62, 134, 0.32);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="dark"] .era-toolbar-label {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .era-toolbar-label svg {
+  color: var(--magenta);
+  filter: drop-shadow(0 0 6px rgba(232, 62, 134, 0.45));
+}
+
+[data-theme="dark"] .era-auto-badge {
+  background: rgba(232, 62, 134, 0.2);
+  border-color: rgba(232, 62, 134, 0.45);
+  color: #ff9bc7;
 }
 
 [data-theme="dark"] .era-chip-group {
@@ -927,11 +961,12 @@
 }
 
 [data-theme="dark"] .era-chip {
-  color: rgba(255, 255, 255, 0.78);
+  color: #ffffff;
+  font-weight: 750;
 }
 
 [data-theme="dark"] .era-chip:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.16);
   color: #ffffff;
 }
 

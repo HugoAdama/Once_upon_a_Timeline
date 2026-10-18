@@ -241,6 +241,10 @@ summary:focus-visible {
   color: var(--apricot);
 }
 
+[data-theme="dark"] .section-heading p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* Rendimiento de renderizado en secciones extensas */
 .characters-section,
 .discography,
