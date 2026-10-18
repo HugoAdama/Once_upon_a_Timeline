@@ -1,5 +1,6 @@
 /* ========================================================
    ARCHIVE HUB — PORTALES PRINCIPALES DE NAVEGACIÓN
+   Distribución equilibrada en 4 columnas con vitrina visual
    ======================================================== */
 .archive-hub-section {
   padding-block: clamp(64px, 8vw, 108px);
@@ -9,19 +10,19 @@
 
 .archive-hub-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
   margin-top: 36px;
+  align-items: stretch;
 }
 
 .archive-hub-card {
   position: relative;
-  border-radius: 26px;
+  border-radius: 24px;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid rgba(232, 62, 134, 0.18);
-  padding: 30px 26px 26px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,6 +30,24 @@
   box-shadow: 0 12px 34px rgba(66, 37, 57, 0.06);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   overflow: hidden;
+  height: 100%;
+}
+
+/* Animación de entrada escalonada */
+.archive-hub-card {
+  animation: hubCardSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--hub-idx, 0) * 0.08s + 0.1s);
+}
+
+@keyframes hubCardSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .archive-hub-card::before {
@@ -37,73 +56,125 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: var(--gradient-twice);
-  opacity: 0.6;
-  transition: opacity 0.3s ease, height 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 4;
 }
 
 .archive-hub-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.015);
   border-color: rgba(232, 62, 134, 0.5);
   box-shadow: 0 20px 48px rgba(66, 37, 57, 0.12), 0 0 28px rgba(232, 62, 134, 0.18);
 }
 
 .archive-hub-card:hover::before {
   opacity: 1;
-  height: 6px;
 }
 
-.archive-hub-card-header {
-  margin-bottom: 14px;
+/* Vitrina de Medios Visuales del Capítulo */
+.archive-hub-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9.6;
+  overflow: hidden;
+  background: #18081c;
+}
+
+.archive-hub-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archive-hub-card:hover .archive-hub-img {
+  transform: scale(1.08);
+}
+
+.archive-hub-media-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 6, 20, 0.3) 0%,
+    rgba(18, 6, 20, 0.15) 40%,
+    rgba(18, 6, 20, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.archive-hub-media-header {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 2;
 }
 
 .archive-hub-pill {
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--magenta);
-  background: rgba(232, 62, 134, 0.1);
-  border: 1px solid rgba(232, 62, 134, 0.25);
+  color: #ffffff;
+  background: rgba(232, 62, 134, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 4px 10px;
   border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .archive-hub-icon-box {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  background: rgba(232, 62, 134, 0.08);
-  border: 1px solid rgba(232, 62, 134, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   display: grid;
   place-items: center;
-  color: var(--magenta);
-  transition: transform 0.3s ease, background 0.3s ease;
+  color: #ffffff;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
 }
 
 .archive-hub-card:hover .archive-hub-icon-box {
-  transform: scale(1.1) rotate(4deg);
-  background: rgba(232, 62, 134, 0.18);
+  transform: scale(1.1) rotate(5deg);
+  background: var(--gradient-twice);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Cuerpo Informativo del Portal */
+.archive-hub-body {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .archive-hub-card-title {
   font-family: var(--serif);
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 400;
   color: var(--ink);
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   line-height: 1.25;
 }
 
 .archive-hub-card-desc {
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.84rem;
+  line-height: 1.55;
   color: var(--muted);
-  margin: 0 0 22px;
+  margin: 0 0 18px;
   flex: 1;
 }
 
@@ -115,7 +186,7 @@
   font-weight: 850;
   color: var(--magenta);
   letter-spacing: 0.04em;
-  transition: gap 0.25s ease;
+  transition: gap 0.25s ease, color 0.25s ease;
 }
 
 .archive-hub-card:hover .archive-hub-card-action {
@@ -125,14 +196,15 @@
 
 /* Modo Oscuro */
 [data-theme="dark"] .archive-hub-card {
-  background: rgba(22, 10, 24, 0.85);
-  border-color: rgba(232, 62, 134, 0.22);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  background: rgba(24, 11, 26, 0.88);
+  border-color: rgba(232, 62, 134, 0.25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
 }
 
 [data-theme="dark"] .archive-hub-card:hover {
-  border-color: rgba(232, 62, 134, 0.5);
-  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.75), 0 0 30px rgba(232, 62, 134, 0.2);
+  background: rgba(32, 14, 35, 0.95);
+  border-color: rgba(232, 62, 134, 0.55);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.8), 0 0 30px rgba(232, 62, 134, 0.25);
 }
 
 [data-theme="dark"] .archive-hub-card-title {
@@ -141,4 +213,29 @@
 
 [data-theme="dark"] .archive-hub-card-desc {
   color: rgba(255, 255, 255, 0.72);
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN (SIN TARJETAS HUÉRFANAS)
+   ======================================================== */
+@media (max-width: 1120px) {
+  .archive-hub-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .archive-hub-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-hub-card,
+  .archive-hub-img {
+    animation: none !important;
+    transition: none !important;
+  }
 }
