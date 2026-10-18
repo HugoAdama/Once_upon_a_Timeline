@@ -206,16 +206,24 @@
 
 /* Footer moderno y accesible */
 .site-footer {
-  padding: 54px 0 46px;
+  padding: clamp(56px, 7vw, 76px) 0 clamp(92px, 11vw, 120px);
   border-top: 1px solid var(--line);
   background: rgba(255, 249, 245, 0.95);
+  position: relative;
 }
 
 .footer-top-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 40px;
+  grid-template-columns: 1.45fr 1fr 1fr 1fr;
+  gap: clamp(24px, 3.5vw, 44px);
+  margin-bottom: 44px;
+  align-items: start;
+}
+
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .footer-brand {
@@ -226,7 +234,31 @@
   color: var(--muted);
   font-size: 0.82rem;
   line-height: 1.6;
-  max-width: 420px;
+  max-width: 380px;
+  margin: 0 0 14px;
+}
+
+.footer-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+}
+
+.footer-status-pill .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gradient-twice);
+  box-shadow: 0 0 8px rgba(232, 62, 134, 0.6);
 }
 
 .footer-heading {
@@ -271,34 +303,56 @@
 
 .footer-bottom-row {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  gap: 24px;
+  text-align: center;
+  gap: 16px;
   border-top: 1px solid var(--line);
-  padding-top: 24px;
+  padding-top: 30px;
+  max-width: 820px;
+  margin-inline: auto;
 }
 
 .disclaimer {
-  max-width: 640px;
+  max-width: 720px;
   margin: 0;
   color: #796c78;
   font-size: 0.72rem;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .badge-once {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 6px 14px;
+  gap: 6px;
+  padding: 6px 16px;
   border-radius: 999px;
   background: rgba(232, 62, 134, 0.1);
   color: #ad336c;
   font-size: 0.65rem;
   font-weight: 850;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   border: 1px solid rgba(232, 62, 134, 0.22);
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(232, 62, 134, 0.08);
+}
+
+@media (max-width: 1060px) {
+  .footer-top-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 30px;
+  }
+}
+
+@media (max-width: 580px) {
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer-bottom-row {
+    padding-top: 24px;
+    gap: 14px;
+  }
 }
 
 /* ========================================================
@@ -379,3 +433,10 @@
   color: #ff9bc7;
   border-color: rgba(232, 62, 134, 0.35);
 }
+
+[data-theme="dark"] .footer-status-pill {
+  background: rgba(232, 62, 134, 0.15);
+  border-color: rgba(232, 62, 134, 0.32);
+  color: #ff9bc7;
+}
+
