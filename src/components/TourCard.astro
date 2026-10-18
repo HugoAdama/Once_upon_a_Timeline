@@ -17,7 +17,7 @@ const initialSlide = slidesData[0];
 const venuesCount = tour.keyVenues.length;
 ---
 
-<div class="tour-content-panel" id={`panel-${tour.id}`} style={isFirst ? '' : 'display: none;'}>
+<div class={`tour-content-panel ${isFirst ? 'tour-panel-active' : ''}`} id={`panel-${tour.id}`} style={isFirst ? '' : 'display: none;'}>
   <div class="tour-main-card">
     <!-- Bento Superior: Galería de Concierto Interactiva (30s) + Metadatos de la Gira -->
     <div class="tour-overview-bento">
@@ -41,7 +41,10 @@ const venuesCount = tour.keyVenues.length;
           <div class="tour-hero-badge-strip">
             <span class="tour-hero-years">{tour.years}</span>
             <div class="tour-auto-pill">
-              <span class="tour-pulse-ring" aria-hidden="true"></span>
+              <div class="tour-pulse-beacon-wrap" aria-hidden="true">
+                <span class="tour-pulse-core"></span>
+                <span class="tour-pulse-wave"></span>
+              </div>
               <span class="tour-auto-label">CAMBIO CADA 30S</span>
             </div>
           </div>
@@ -183,8 +186,8 @@ const venuesCount = tour.keyVenues.length;
       </div>
 
       <div class={`tour-venues-grid venues-count-${venuesCount}`}>
-        {tour.keyVenues.map((venue) => (
-          <div class="venue-card">
+        {tour.keyVenues.map((venue, vIdx) => (
+          <div class="venue-card" style={`--venue-idx: ${vIdx};`}>
             <div class="venue-location">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"/>

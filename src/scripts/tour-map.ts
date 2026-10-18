@@ -198,7 +198,15 @@ export function initTourOdyssey(): void {
 
       tourPanels.forEach((panel) => {
         const isMatch = panel.id === `panel-${tourId}`;
-        panel.style.display = isMatch ? 'block' : 'none';
+        if (isMatch) {
+          panel.style.display = 'block';
+          panel.classList.remove('tour-panel-active');
+          void panel.offsetWidth; // Reflow for animation restart
+          panel.classList.add('tour-panel-active');
+        } else {
+          panel.style.display = 'none';
+          panel.classList.remove('tour-panel-active');
+        }
       });
 
       // Pausar controladores de paneles ocultos y arrancar el activo
