@@ -1,5 +1,6 @@
 ---
 import type { WorldTour } from '../types';
+import { resolveAsset } from '../utils/streaming';
 
 interface Props {
   tour: WorldTour;
@@ -7,10 +8,26 @@ interface Props {
 }
 
 const { tour, isFirst = false } = Astro.props;
+const tourImageUrl = resolveAsset(tour.image);
 ---
 
 <div class="tour-content-panel" id={`panel-${tour.id}`} style={isFirst ? '' : 'display: none;'}>
   <div class="tour-main-card">
+    <!-- Showcase visual del concierto y escenario en estadios -->
+    <div class="tour-visual-hero">
+      <img
+        src={tourImageUrl}
+        alt={`Concierto en vivo de ${tour.name}`}
+        class="tour-hero-img"
+        loading="lazy"
+      />
+      <div class="tour-hero-scrim" aria-hidden="true"></div>
+      <div class="tour-hero-badge-strip">
+        <span class="tour-hero-years">{tour.years}</span>
+        <span class="tour-hero-tag">CONCIERTO OFICIAL · ESTADIOS</span>
+      </div>
+    </div>
+
     <div class="tour-header-block">
       <div class="tour-title-wrap">
         <h3 class="tour-name">{tour.name}</h3>

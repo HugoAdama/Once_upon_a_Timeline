@@ -1,5 +1,6 @@
 ---
 import { HALL_OF_FAME } from '../data/hall-of-fame';
+import { resolveAsset } from '../utils/streaming';
 ---
 
 <section class="section wrap hall-of-fame-section" id="records">
@@ -22,24 +23,36 @@ import { HALL_OF_FAME } from '../data/hall-of-fame';
   <div class="hof-grid">
     {HALL_OF_FAME.map((item) => (
       <article class="hof-card scroll-reveal">
-        <div class="hof-top-bar">
-          <div class="hof-icon-seal" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
-              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
-              <path d="M4 22h16"/>
-              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
-              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
-              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
-            </svg>
+        <!-- Showcase visual de la presentación del hito -->
+        <div class="hof-visual-header">
+          <img
+            src={resolveAsset(item.image)}
+            alt={`Hito histórico de ${item.title}`}
+            class="hof-visual-img"
+            loading="lazy"
+          />
+          <div class="hof-visual-overlay" aria-hidden="true"></div>
+          <div class="hof-visual-top">
+            <div class="hof-icon-seal" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                <path d="M4 22h16"/>
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+              </svg>
+            </div>
+            <span class="hof-year-pill">{item.year}</span>
           </div>
-          <span class="hof-year-pill">{item.year}</span>
         </div>
 
-        <span class="hof-category-tag">{item.categoryLabel}</span>
-        <div class="hof-metric-display">{item.metric}</div>
-        <h3 class="hof-title">{item.title}</h3>
-        <p class="hof-description">{item.description}</p>
+        <div class="hof-card-body">
+          <span class="hof-category-tag">{item.categoryLabel}</span>
+          <div class="hof-metric-display">{item.metric}</div>
+          <h3 class="hof-title">{item.title}</h3>
+          <p class="hof-description">{item.description}</p>
+        </div>
       </article>
     ))}
   </div>

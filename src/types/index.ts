@@ -121,6 +121,7 @@ export interface WorldTour {
   name: string;
   years: string;
   tagline: string;
+  image: string;
   totalShows: number;
   attendance: string;
   keyVenues: TourVenue[];
@@ -133,6 +134,7 @@ export interface HallOfFameItem {
   categoryLabel: string;
   title: string;
   metric: string;
+  image: string;
   description: string;
   year: string;
 }

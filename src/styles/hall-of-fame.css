@@ -15,7 +15,7 @@
 .hof-card {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 0;
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
@@ -33,17 +33,56 @@
   box-shadow: 0 18px 42px rgba(66, 37, 57, 0.12), 0 0 24px rgba(244, 162, 126, 0.2);
 }
 
-.hof-top-bar {
+.hof-visual-header {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #180a1c;
+}
+
+.hof-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hof-card:hover .hof-visual-img {
+  transform: scale(1.06);
+}
+
+.hof-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 6, 22, 0.2) 0%, rgba(20, 6, 22, 0.85) 100%);
+  pointer-events: none;
+}
+
+.hof-visual-top {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  right: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  z-index: 2;
+}
+
+.hof-card-body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .hof-icon-seal {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: var(--gradient-twice);
   color: #ffffff;
   display: grid;

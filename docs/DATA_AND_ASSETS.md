@@ -109,6 +109,7 @@ export interface WorldTour {
   name: string;           // ej: "5TH WORLD TOUR: READY TO BE"
   years: string;          // ej: "2023 — 2024"
   tagline: string;
+  image: string;          // ej: "/assets/tours/ready-to-be.webp"
   totalShows: number;     // ej: 51
   attendance: string;     // ej: "+1.500.000 asistentes"
   keyVenues: {
@@ -129,6 +130,7 @@ export interface HallOfFameItem {
   categoryLabel: string;
   title: string;
   metric: string;         // ej: "121 Victorias", "3 Años Consecutivos"
+  image: string;          // ej: "/assets/records/music-show-wins.webp"
   description: string;
   year: string;
 }
@@ -165,6 +167,10 @@ Los recursos multimedia se organizan de forma estructurada en formato `.webp` pa
   - Retratos de las integrantes organizados por era: `{nombre}.webp`, `{nombre}-current.webp`, `{nombre}-between.webp`, `{nombre}-classic.webp`.
 - **`public/assets/fashion/`**:
   - Fotografías de alta fidelidad y vestuario escénico conceptual: `strategy.webp`, `talk-that-talk.webp`, `i-cant-stop-me.webp`, `feel-special.webp`, `cheer-up.webp`.
+- **`public/assets/tours/`**:
+  - Fotografía en vivo de conciertos y estadios mundiales: `ready-to-be.webp`, `world-tour-iii.webp`, `twicelights.webp`, `twiceland.webp`.
+- **`public/assets/records/`**:
+  - Vitrina de presentación visual para hitos y trofeos del Hall of Fame: `music-show-wins.webp`, `daesang-triple.webp`, `sofi-stadium.webp`, `nissan-stadium.webp`, `album-sales.webp`, `billboard-women.webp`, `billboard-200.webp`, `youtube-records.webp`.
 
 ---
 

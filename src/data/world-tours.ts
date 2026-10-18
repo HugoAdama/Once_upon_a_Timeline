@@ -6,6 +6,7 @@ export const WORLD_TOURS: WorldTour[] = [
     name: '5TH WORLD TOUR: READY TO BE',
     years: '2023 — 2024',
     tagline: 'La gira histórica de estadios mundiales que rompió todos los récords de asistencia en Asia, América y Europa.',
+    image: '/assets/tours/ready-to-be.webp',
     totalShows: 51,
     attendance: '+1.500.000 asistentes',
     keyVenues: [
@@ -32,6 +33,7 @@ export const WORLD_TOURS: WorldTour[] = [
     name: '4TH WORLD TOUR: III',
     years: '2021 — 2022',
     tagline: 'El reencuentro pospandemia que consolidó a TWICE como el grupo femenino con mayor recaudación en arenas estadounidenses.',
+    image: '/assets/tours/world-tour-iii.webp',
     totalShows: 14,
     attendance: '+350.000 asistentes',
     keyVenues: [
@@ -57,6 +59,7 @@ export const WORLD_TOURS: WorldTour[] = [
     name: 'WORLD TOUR 2019: TWICELIGHTS',
     years: '2019 — 2020',
     tagline: 'La consagración estética: 9 luces prismáticas que representaban la madurez, elegancia y universalidad de TWICE.',
+    image: '/assets/tours/twicelights.webp',
     totalShows: 25,
     attendance: '+300.000 asistentes',
     keyVenues: [
@@ -81,6 +84,7 @@ export const WORLD_TOURS: WorldTour[] = [
     name: '1ST & 2ND TOUR: TWICELAND',
     years: '2017 — 2018',
     tagline: 'El inicio de la leyenda en vivo: el parque temático musical donde se forjó el vínculo indestructible con ONCE.',
+    image: '/assets/tours/twiceland.webp',
     totalShows: 18,
     attendance: '+180.000 asistentes',
     keyVenues: [
