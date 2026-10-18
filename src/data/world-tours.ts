@@ -6,7 +6,24 @@ export const WORLD_TOURS: WorldTour[] = [
     name: '5TH WORLD TOUR: READY TO BE',
     years: '2023 — 2024',
     tagline: 'La gira histórica de estadios mundiales que rompió todos los récords de asistencia en Asia, América y Europa.',
-    image: '/assets/tours/ready-to-be.webp',
+    image: '/assets/tours/ready-to-be-1.webp',
+    gallery: [
+      {
+        url: '/assets/tours/ready-to-be-1.webp',
+        caption: 'Escenario Central en Estadios Mundiales',
+        location: 'SoFi Stadium / MetLife Stadium',
+      },
+      {
+        url: '/assets/tours/ready-to-be-2.webp',
+        caption: 'Océano Candybong & Actuación en Vivo',
+        location: 'Jakarta International Stadium',
+      },
+      {
+        url: '/assets/tours/ready-to-be-3.webp',
+        caption: 'Hito Histórico ante 70.000 Fans',
+        location: 'Nissan Stadium · Kanagawa',
+      },
+    ],
     totalShows: 51,
     attendance: '+1.500.000 asistentes',
     keyVenues: [
@@ -33,7 +50,24 @@ export const WORLD_TOURS: WorldTour[] = [
     name: '4TH WORLD TOUR: III',
     years: '2021 — 2022',
     tagline: 'El reencuentro pospandemia que consolidó a TWICE como el grupo femenino con mayor recaudación en arenas estadounidenses.',
-    image: '/assets/tours/world-tour-iii.webp',
+    image: '/assets/tours/world-tour-iii-1.webp',
+    gallery: [
+      {
+        url: '/assets/tours/world-tour-iii-1.webp',
+        caption: 'Reencuentro Mundial en Escenario',
+        location: 'KSPO Dome · Seúl',
+      },
+      {
+        url: '/assets/tours/world-tour-iii-2.webp',
+        caption: 'Lleno Absoluto en Arena de California',
+        location: 'The Forum · Inglewood, EE.UU.',
+      },
+      {
+        url: '/assets/tours/world-tour-iii-3.webp',
+        caption: 'Noche de Estadios al Aire Libre',
+        location: 'Banc of California Stadium',
+      },
+    ],
     totalShows: 14,
     attendance: '+350.000 asistentes',
     keyVenues: [
@@ -59,7 +93,24 @@ export const WORLD_TOURS: WorldTour[] = [
     name: 'WORLD TOUR 2019: TWICELIGHTS',
     years: '2019 — 2020',
     tagline: 'La consagración estética: 9 luces prismáticas que representaban la madurez, elegancia y universalidad de TWICE.',
-    image: '/assets/tours/twicelights.webp',
+    image: '/assets/tours/twicelights-1.webp',
+    gallery: [
+      {
+        url: '/assets/tours/twicelights-1.webp',
+        caption: 'Concepto Prismático de 9 Luces',
+        location: 'Tokyo Dome · Japón',
+      },
+      {
+        url: '/assets/tours/twicelights-2.webp',
+        caption: 'Escenario Central y Coreografía',
+        location: 'Mall of Asia Arena · Manila',
+      },
+      {
+        url: '/assets/tours/twicelights-3.webp',
+        caption: 'Océano de Luces con ONCE',
+        location: 'Twicelights World Tour',
+      },
+    ],
     totalShows: 25,
     attendance: '+300.000 asistentes',
     keyVenues: [
@@ -84,7 +135,24 @@ export const WORLD_TOURS: WorldTour[] = [
     name: '1ST & 2ND TOUR: TWICELAND',
     years: '2017 — 2018',
     tagline: 'El inicio de la leyenda en vivo: el parque temático musical donde se forjó el vínculo indestructible con ONCE.',
-    image: '/assets/tours/twiceland.webp',
+    image: '/assets/tours/twiceland-1.webp',
+    gallery: [
+      {
+        url: '/assets/tours/twiceland-1.webp',
+        caption: 'El Inicio del Parque Temático Musical',
+        location: 'SK Olympic Handball Gymnasium',
+      },
+      {
+        url: '/assets/tours/twiceland-2.webp',
+        caption: 'Celebración y Conexión Emotiva con Fans',
+        location: 'Twiceland: The Opening',
+      },
+      {
+        url: '/assets/tours/twiceland-3.webp',
+        caption: 'Etapa Japonesa y Debut en Grandes Recintos',
+        location: 'Saitama Super Arena',
+      },
+    ],
     totalShows: 18,
     attendance: '+180.000 asistentes',
     keyVenues: [

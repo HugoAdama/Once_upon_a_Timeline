@@ -18,7 +18,7 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://hugoadama.github.io/Once_upon_a_Timeline/');
 const faviconSrc = resolveAsset('/favicon.svg');
-const ogImageURL = new URL(resolveAsset('/assets/og-banner.png'), Astro.site || 'https://hugoadama.github.io/Once_upon_a_Timeline/').href;
+const ogImageURL = new URL(resolveAsset('/assets/og-banner.png') || '/assets/og-banner.png', Astro.site || 'https://hugoadama.github.io/Once_upon_a_Timeline/').href;
 
 const schemaData = {
   '@context': 'https://schema.org',

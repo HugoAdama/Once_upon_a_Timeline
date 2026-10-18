@@ -116,12 +116,19 @@ export interface TourVenue {
   highlight: string;
 }
 
+export interface TourPhoto {
+  url: string;
+  caption: string;
+  location: string;
+}
+
 export interface WorldTour {
   id: string;
   name: string;
   years: string;
   tagline: string;
   image: string;
+  gallery: TourPhoto[];
   totalShows: number;
   attendance: string;
   keyVenues: TourVenue[];

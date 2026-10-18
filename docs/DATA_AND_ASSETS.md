@@ -104,12 +104,19 @@ export interface MusicVideo {
 
 ### `WorldTour` (World Tour Odyssey)
 ```typescript
+export interface TourPhoto {
+  url: string;            // ej: "/assets/tours/ready-to-be-1.webp"
+  caption: string;        // ej: "Escenario Central en Estadios"
+  location: string;       // ej: "SoFi Stadium / MetLife Stadium"
+}
+
 export interface WorldTour {
   id: string;             // ej: "tour-ready-to-be"
   name: string;           // ej: "5TH WORLD TOUR: READY TO BE"
   years: string;          // ej: "2023 — 2024"
   tagline: string;
-  image: string;          // ej: "/assets/tours/ready-to-be.webp"
+  image: string;          // Cover principal
+  gallery: TourPhoto[];   // Galería de 3 fotografías con rotación automática cada 30s
   totalShows: number;     // ej: 51
   attendance: string;     // ej: "+1.500.000 asistentes"
   keyVenues: {

@@ -8,78 +8,184 @@ interface Props {
 }
 
 const { tour, isFirst = false } = Astro.props;
-const tourImageUrl = resolveAsset(tour.image);
+const slidesData = tour.gallery.map((item) => ({
+  url: resolveAsset(item.url),
+  caption: item.caption,
+  location: item.location,
+}));
+const initialSlide = slidesData[0];
+const venuesCount = tour.keyVenues.length;
 ---
 
 <div class="tour-content-panel" id={`panel-${tour.id}`} style={isFirst ? '' : 'display: none;'}>
   <div class="tour-main-card">
-    <!-- Showcase visual del concierto y escenario en estadios -->
-    <div class="tour-visual-hero">
-      <img
-        src={tourImageUrl}
-        alt={`Concierto en vivo de ${tour.name}`}
-        class="tour-hero-img"
-        loading="lazy"
-      />
-      <div class="tour-hero-scrim" aria-hidden="true"></div>
-      <div class="tour-hero-badge-strip">
-        <span class="tour-hero-years">{tour.years}</span>
-        <span class="tour-hero-tag">CONCIERTO OFICIAL · ESTADIOS</span>
-      </div>
-    </div>
+    <!-- Bento Superior: Galería de Concierto Interactiva (30s) + Metadatos de la Gira -->
+    <div class="tour-overview-bento">
+      <!-- Showcase Visual con Rotación Automática cada 30 Segundos -->
+      <div
+        class="tour-gallery-viewport"
+        data-tour-gallery
+        data-tour-id={tour.id}
+        data-slides={JSON.stringify(slidesData)}
+      >
+        <div class="tour-image-frame">
+          <img
+            src={initialSlide.url}
+            alt={initialSlide.caption}
+            class="tour-hero-img"
+            loading="lazy"
+          />
+          <div class="tour-hero-scrim" aria-hidden="true"></div>
 
-    <div class="tour-header-block">
-      <div class="tour-title-wrap">
-        <h3 class="tour-name">{tour.name}</h3>
-        <p class="tour-tagline">{tour.tagline}</p>
-      </div>
-
-      <div class="tour-stats-group">
-        <div class="tour-stat-box">
-          <span class="tour-stat-num">{tour.totalShows}</span>
-          <span class="tour-stat-label">Conciertos</span>
-        </div>
-        <div class="tour-stat-box">
-          <span class="tour-stat-num">{tour.attendance}</span>
-          <span class="tour-stat-label">Asistencia Total</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sedes y Estadios Emblemáticos -->
-    <h4 class="tour-venues-title">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
-        <circle cx="12" cy="10" r="3"/>
-      </svg>
-      <span>Estadios y Sedes Históricas</span>
-    </h4>
-
-    <div class="tour-venues-grid">
-      {tour.keyVenues.map((venue) => (
-        <div class="venue-card">
-          <div class="venue-location">
-            <span>{venue.city}, {venue.country}</span>
+          <!-- Insignias Superiores -->
+          <div class="tour-hero-badge-strip">
+            <span class="tour-hero-years">{tour.years}</span>
+            <div class="tour-auto-pill">
+              <span class="tour-pulse-ring" aria-hidden="true"></span>
+              <span class="tour-auto-label">CAMBIO CADA 30S</span>
+            </div>
           </div>
-          <div class="venue-name">{venue.name}</div>
-          <p class="venue-highlight">{venue.highlight}</p>
+
+          <!-- Controles de Flechas Diapositiva -->
+          <button
+            type="button"
+            class="tour-slide-arrow prev"
+            aria-label="Foto anterior"
+            data-slide-prev
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="tour-slide-arrow next"
+            aria-label="Siguiente foto"
+            data-slide-next
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+
+          <!-- Pie de Foto y Ubicación Dinámica -->
+          <div class="tour-hero-caption-card">
+            <div class="tour-caption-location">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span class="tour-location-text">{initialSlide.location}</span>
+            </div>
+            <div class="tour-caption-text">{initialSlide.caption}</div>
+          </div>
+
+          <!-- Barra de Progreso de 30 Segundos -->
+          <div class="tour-timer-track" aria-hidden="true">
+            <div class="tour-timer-fill"></div>
+          </div>
         </div>
-      ))}
+
+        <!-- Indicadores de Puntos Inferiores -->
+        <div class="tour-slide-dots" role="tablist" aria-label="Selector de fotografías de concierto">
+          {slidesData.map((_, i) => (
+            <button
+              type="button"
+              class={`tour-slide-dot ${i === 0 ? 'active' : ''}`}
+              data-dot-index={i}
+              role="tab"
+              aria-label={`Ver fotografía ${i + 1} de ${slidesData.length}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+            >
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Identidad, Cifras Clave y Setlist -->
+      <div class="tour-meta-column">
+        <div class="tour-title-wrap">
+          <span class="tour-kicker">Gira Mundial Oficial</span>
+          <h3 class="tour-name">{tour.name}</h3>
+          <p class="tour-tagline">{tour.tagline}</p>
+        </div>
+
+        <!-- Métricas Bento -->
+        <div class="tour-stats-bento">
+          <div class="tour-stat-tile">
+            <div class="tour-stat-icon-wrap" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+              </svg>
+            </div>
+            <div class="tour-stat-body">
+              <span class="tour-stat-num">{tour.totalShows}</span>
+              <span class="tour-stat-label">Conciertos en Vivo</span>
+            </div>
+          </div>
+
+          <div class="tour-stat-tile highlight">
+            <div class="tour-stat-icon-wrap" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="tour-stat-body">
+              <span class="tour-stat-num">{tour.attendance}</span>
+              <span class="tour-stat-label">Asistencia Acumulada</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Setlist Highlights Integrado -->
+        <div class="tour-setlist-card">
+          <div class="tour-setlist-head">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span class="tour-setlist-title">Setlist de la Gira ({tour.setlistHighlights.length} canciones)</span>
+          </div>
+          <div class="tour-setlist-pills">
+            {tour.setlistHighlights.map((song) => (
+              <span class="tour-setlist-pill">{song}</span>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Setlist Emblemático Desplegable -->
-    <details class="tour-setlist-drawer">
-      <summary class="setlist-toggle-summary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>
-        </svg>
-        <span>Ver Setlist Emblemático de la Gira ({tour.setlistHighlights.length} canciones)</span>
-      </summary>
-      <div class="setlist-chips-wrap">
-        {tour.setlistHighlights.map((song) => (
-          <span class="setlist-song-chip">{song}</span>
+    <!-- Sección Inferior: Estadios y Sedes Históricas con Distribución Equilibrada -->
+    <div class="tour-venues-section">
+      <div class="tour-venues-header-row">
+        <h4 class="tour-venues-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Estadios y Sedes Históricas</span>
+        </h4>
+        <span class="tour-venues-count-badge">{venuesCount} Recintos Emblemáticos</span>
+      </div>
+
+      <div class={`tour-venues-grid venues-count-${venuesCount}`}>
+        {tour.keyVenues.map((venue) => (
+          <div class="venue-card">
+            <div class="venue-location">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                <path d="M2 12h20"/>
+              </svg>
+              <span>{venue.city}, {venue.country}</span>
+            </div>
+            <div class="venue-name">{venue.name}</div>
+            <p class="venue-highlight">{venue.highlight}</p>
+          </div>
         ))}
       </div>
-    </details>
+    </div>
   </div>
 </div>
