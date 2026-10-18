@@ -8,26 +8,57 @@ interface Props {
 
 const { concept } = Astro.props;
 const imageUrl = resolveAsset(concept.image);
+const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery : [{ url: concept.image, label: 'Look Principal' }];
 ---
 
-<article class="fashion-card scroll-reveal">
+<article class="fashion-card scroll-reveal" data-fashion-card>
   <div class="fashion-card-media">
     <img
       src={imageUrl}
       alt={`Vestuario conceptual ${concept.title}`}
       class="fashion-card-image"
       loading="lazy"
+      data-main-img
     />
     <div class="fashion-media-overlay" aria-hidden="true"></div>
     <div class="fashion-media-header">
       <span class="fashion-era-badge">{concept.era}</span>
       <span class="fashion-year-pill">{concept.year}</span>
     </div>
+
+    <!-- Selector Interactivo de Ángulos / Galería Lookbook -->
+    {gallery.length > 1 && (
+      <div class="fashion-gallery-bar" role="tablist" aria-label={`Galería de estilos ${concept.era}`}>
+        {gallery.map((look, idx) => (
+          <button
+            type="button"
+            class={`fashion-gallery-pill ${idx === 0 ? 'active' : ''}`}
+            data-src={resolveAsset(look.url)}
+            data-caption={look.label}
+            aria-selected={idx === 0 ? 'true' : 'false'}
+            role="tab"
+          >
+            <span>{idx === 0 ? 'Look Principal' : 'Detalle Escénico'}</span>
+          </button>
+        ))}
+      </div>
+    )}
   </div>
 
   <div class="fashion-card-body">
     <h3 class="fashion-title">{concept.title}</h3>
     <div class="fashion-style-tag">{concept.style}</div>
+
+    <!-- Indicador de detalle de estilo activo -->
+    <div class="fashion-lookbook-indicator" data-caption-target>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <span class="fashion-indicator-text">{gallery[0]?.label || 'Look Principal'}</span>
+    </div>
+
     <p class="fashion-description">{concept.description}</p>
 
     <div class="fashion-palette-block">

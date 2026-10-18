@@ -159,6 +159,11 @@ export interface QuizQuestion {
   options: QuizOption[];
 }
 
+export interface FashionLook {
+  url: string;
+  label: string;
+}
+
 export interface FashionConcept {
   id: string;
   title: string;
@@ -167,6 +172,7 @@ export interface FashionConcept {
   style: string;
   description: string;
   image: string;
+  gallery?: FashionLook[];
   colorPalette: string[];
   keyPieces: string[];
   conceptMood: string;

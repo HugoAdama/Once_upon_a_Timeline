@@ -9,3 +9,11 @@ import FashionSection from '../components/FashionSection.astro';
 >
   <FashionSection />
 </Layout>
+
+<script>
+  import { initFashionGalleries } from '../scripts/fashion-gallery';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initFashionGalleries();
+  });
+</script>
