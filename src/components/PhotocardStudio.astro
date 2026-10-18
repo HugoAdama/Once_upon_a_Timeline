@@ -1,18 +1,36 @@
 ---
 import { MEMBERS } from '../data/members';
+import { resolveAsset } from '../utils/streaming';
+const initialPhoto = resolveAsset(MEMBERS[0].photo);
 ---
 
-<div class="customizer-card scroll-reveal">
+<div class="customizer-card scroll-reveal" id="photocard-studio-card">
   <div class="customizer-header">
-    <h3 class="customizer-title">Photocard Studio</h3>
+    <div class="customizer-title-row">
+      <h3 class="customizer-title">Photocard Studio</h3>
+      <span class="studio-sync-pill" id="studio-sync-pill" style="display: none;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span id="studio-sync-pill-text">Afinidad Sincronizada</span>
+      </span>
+    </div>
     <p class="customizer-subtitle">Diseña y descarga tu photocard oficial de colección personalizada en formato PNG de alta fidelidad.</p>
   </div>
 
   <div class="customizer-workspace">
-    <!-- Vista previa interactiva de la tarjeta -->
+    <!-- Vista previa interactiva de la tarjeta con imagen real -->
     <div class="photocard-canvas-wrap" id="photocard-canvas-preview">
+      <img
+        src={initialPhoto}
+        id="canvas-member-photo"
+        class="canvas-member-photo"
+        alt="Photocard de integrante"
+      />
+      <div class="canvas-photo-vignette" aria-hidden="true"></div>
       <span class="canvas-sheen" aria-hidden="true"></span>
       <span class="canvas-top-tag">ONCE ARCHIVE · 10TH</span>
+      <span class="canvas-match-tag" id="canvas-match-tag" style="display: none;">MATCH OFICIAL · TEST DE IDENTIDAD</span>
 
       <div class="canvas-member-seal">
         <span class="canvas-member-name" id="canvas-member-preview">Nayeon</span>
@@ -43,7 +61,14 @@ import { MEMBERS } from '../data/members';
         <label for="custom-member-select" class="control-label">Tu Bias / Integrante:</label>
         <select id="custom-member-select" class="control-select">
           {MEMBERS.map((m) => (
-            <option value={m.name}>{m.name} ({m.role})</option>
+            <option
+              value={m.name}
+              data-photo={resolveAsset(m.photo)}
+              data-color={m.colorHex}
+              data-id={m.name.toLowerCase()}
+            >
+              {m.name} ({m.role})
+            </option>
           ))}
         </select>
       </div>
@@ -54,10 +79,10 @@ import { MEMBERS } from '../data/members';
           <button type="button" class="palette-btn active" data-frame-color="#e83e86" style="--c: #e83e86;" title="Neon Magenta" aria-label="Neon Magenta"></button>
           <button type="button" class="palette-btn" data-frame-color="#f4a27e" style="--c: #f4a27e;" title="Apricot" aria-label="Apricot"></button>
           <button type="button" class="palette-btn" data-frame-color="#5bc2e7" style="--c: #5bc2e7;" title="Sky Blue" aria-label="Sky Blue"></button>
-          <button type="button" class="palette-btn" data-frame-color="#a9d535" style="--c: #a9d535;" title="Lime Green" aria-label="Lime Green"></button>
+          <button type="button" class="palette-btn" data-frame-color="#bdd36c" style="--c: #bdd36c;" title="Lime Green" aria-label="Lime Green"></button>
           <button type="button" class="palette-btn" data-frame-color="#ff6ea7" style="--c: #ff6ea7;" title="Pink" aria-label="Pink"></button>
-          <button type="button" class="palette-btn" data-frame-color="#9e7bb5" style="--c: #9e7bb5;" title="Purple" aria-label="Purple"></button>
-          <button type="button" class="palette-btn" data-frame-color="#75c9be" style="--c: #75c9be;" title="Mint" aria-label="Mint"></button>
+          <button type="button" class="palette-btn" data-frame-color="#b9a0df" style="--c: #b9a0df;" title="Purple" aria-label="Purple"></button>
+          <button type="button" class="palette-btn" data-frame-color="#91d1c1" style="--c: #91d1c1;" title="Mint" aria-label="Mint"></button>
           <button type="button" class="palette-btn" data-frame-color="#e02438" style="--c: #e02438;" title="Red" aria-label="Red"></button>
           <button type="button" class="palette-btn" data-frame-color="#005bac" style="--c: #005bac;" title="Navy Blue" aria-label="Navy Blue"></button>
         </div>

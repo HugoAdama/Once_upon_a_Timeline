@@ -143,6 +143,7 @@ export interface FashionConcept {
   year: string;           // ej: "2024"
   style: string;
   description: string;
+  image: string;          // ej: "/assets/fashion/strategy.webp"
   colorPalette: string[];
   keyPieces: string[];
   conceptMood: string;
@@ -162,6 +163,8 @@ Los recursos multimedia se organizan de forma estructurada en formato `.webp` pa
   - Portadas oficiales cuadradas de toda la discografía en Corea, Japón y Global.
 - **`public/assets/members/`**:
   - Retratos de las integrantes organizados por era: `{nombre}.webp`, `{nombre}-current.webp`, `{nombre}-between.webp`, `{nombre}-classic.webp`.
+- **`public/assets/fashion/`**:
+  - Fotografías de alta fidelidad y vestuario escénico conceptual: `strategy.webp`, `talk-that-talk.webp`, `i-cant-stop-me.webp`, `feel-special.webp`, `cheer-up.webp`.
 
 ---
 

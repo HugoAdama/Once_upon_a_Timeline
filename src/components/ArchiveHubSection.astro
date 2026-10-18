@@ -1,0 +1,116 @@
+---
+const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+---
+
+<section class="section archive-hub-section" id="portales" aria-labelledby="hub-heading">
+  <div class="wrap">
+    <div class="section-head scroll-reveal">
+      <span class="section-kicker">03 · PORTALES DEL ARCHIVO</span>
+      <h2 id="hub-heading">Capítulos del Archivo de TWICE</h2>
+      <p class="section-desc">
+        Navega de forma ágil y enfocada por los diferentes universos del legado de TWICE: música completa, hitos globales en estadios, comunidad interactiva y evolución de moda.
+      </p>
+    </div>
+
+    <div class="archive-hub-grid">
+      <!-- Portal 1: Música & Videografía -->
+      <a href={`${base}/musica`} class="archive-hub-card scroll-reveal">
+        <div class="archive-hub-card-header">
+          <span class="archive-hub-pill">250+ Canciones · 14 MVs</span>
+          <div class="archive-hub-icon-box" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18V5l12-2v13"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="archive-hub-card-title">Música, Eras &amp; MVs</h3>
+        <p class="archive-hub-card-desc">
+          Explora la discografía coreana, japonesa y global, busca pistas por álbum y disfruta de los videoclips conceptuales en el Cinema Vault.
+        </p>
+        <span class="archive-hub-card-action">
+          <span>Abrir Música</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Portal 2: Giras Mundiales & Récords -->
+      <a href={`${base}/giras`} class="archive-hub-card scroll-reveal">
+        <div class="archive-hub-card-header">
+          <span class="archive-hub-pill">4 Giras · 8 Hitos Históricos</span>
+          <div class="archive-hub-icon-box" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="archive-hub-card-title">Giras &amp; Hall of Fame</h3>
+        <p class="archive-hub-card-desc">
+          El periplo por recintos masivos como SoFi Stadium y Nissan Stadium, setlists de conciertos y los hitos que marcaron la historia del K-Pop.
+        </p>
+        <span class="archive-hub-card-action">
+          <span>Abrir Giras &amp; Récords</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Portal 3: ONCE Fan Zone -->
+      <a href={`${base}/fan-zone`} class="archive-hub-card scroll-reveal">
+        <div class="archive-hub-card-header">
+          <span class="archive-hub-pill">Test de Afinidad · Photocard</span>
+          <div class="archive-hub-icon-box" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="archive-hub-card-title">ONCE Fan Zone</h3>
+        <p class="archive-hub-card-desc">
+          Descubre qué integrante de TWICE comparte tu esencia a través del test interactivo y genera tu photocard virtual de coleccionista.
+        </p>
+        <span class="archive-hub-card-action">
+          <span>Abrir Fan Zone</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Portal 4: Stage Wardrobe Archive -->
+      <a href={`${base}/moda`} class="archive-hub-card scroll-reveal">
+        <div class="archive-hub-card-header">
+          <span class="archive-hub-pill">5 Eras · Alta Costura</span>
+          <div class="archive-hub-icon-box" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+            </svg>
+          </div>
+        </div>
+        <h3 class="archive-hub-card-title">Moda Escénica</h3>
+        <p class="archive-hub-card-desc">
+          La evolución conceptual del vestuario de TWICE: desde las chaquetas varsity de Cheer Up hasta la opulencia de Feel Special y la alta costura de Strategy.
+        </p>
+        <span class="archive-hub-card-action">
+          <span>Abrir Moda</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

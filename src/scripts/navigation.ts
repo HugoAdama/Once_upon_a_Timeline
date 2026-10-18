@@ -99,9 +99,24 @@ export function initNavigation(): void {
       }
     }
 
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+
     navLinks.forEach((link) => {
-      const href = link.getAttribute('href');
-      if (currentSectionId && href === `#${currentSectionId}`) {
+      const href = link.getAttribute('href') || '';
+      const cleanHref = href.split('#')[0].replace(/\/$/, '');
+
+      if (cleanHref && !href.startsWith('#')) {
+        const isCurrentPage =
+          cleanHref === currentPath ||
+          (cleanHref !== '' && currentPath.endsWith(cleanHref));
+        if (isCurrentPage) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      } else if (currentSectionId && href === `#${currentSectionId}`) {
         link.classList.add('active');
         link.setAttribute('aria-current', 'location');
       } else {

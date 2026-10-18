@@ -1,52 +1,65 @@
 ---
 import type { FashionConcept } from '../types';
+import { resolveAsset } from '../utils/streaming';
 
 interface Props {
   concept: FashionConcept;
 }
 
 const { concept } = Astro.props;
+const imageUrl = resolveAsset(concept.image);
 ---
 
 <article class="fashion-card scroll-reveal">
-  <div class="fashion-header">
-    <span class="fashion-era-badge">{concept.era}</span>
-    <span class="fashion-year-pill">{concept.year}</span>
-  </div>
-
-  <h3 class="fashion-title">{concept.title}</h3>
-  <div class="fashion-style-tag">{concept.style}</div>
-  <p class="fashion-description">{concept.description}</p>
-
-  <div class="fashion-palette-block">
-    <span class="fashion-palette-label">Paleta Conceptual</span>
-    <div class="fashion-swatches">
-      {concept.colorPalette.map((color) => (
-        <span class="fashion-swatch-dot" style={`background-color: ${color};`} title={color} />
-      ))}
+  <div class="fashion-card-media">
+    <img
+      src={imageUrl}
+      alt={`Vestuario conceptual ${concept.title}`}
+      class="fashion-card-image"
+      loading="lazy"
+    />
+    <div class="fashion-media-overlay" aria-hidden="true"></div>
+    <div class="fashion-media-header">
+      <span class="fashion-era-badge">{concept.era}</span>
+      <span class="fashion-year-pill">{concept.year}</span>
     </div>
   </div>
 
-  <div class="fashion-pieces-box">
-    <div class="fashion-pieces-title">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <polyline points="20 6 9 17 4 12"/>
+  <div class="fashion-card-body">
+    <h3 class="fashion-title">{concept.title}</h3>
+    <div class="fashion-style-tag">{concept.style}</div>
+    <p class="fashion-description">{concept.description}</p>
+
+    <div class="fashion-palette-block">
+      <span class="fashion-palette-label">Paleta Conceptual</span>
+      <div class="fashion-swatches">
+        {concept.colorPalette.map((color) => (
+          <span class="fashion-swatch-dot" style={`background-color: ${color};`} title={color} />
+        ))}
+      </div>
+    </div>
+
+    <div class="fashion-pieces-box">
+      <div class="fashion-pieces-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span>Prendas &amp; Siluetas Clave:</span>
+      </div>
+      <ul class="fashion-pieces-list">
+        {concept.keyPieces.map((piece) => (
+          <li>{piece}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="fashion-mood-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
       </svg>
-      <span>Prendas &amp; Siluetas Clave:</span>
+      <span>{concept.conceptMood}</span>
     </div>
-    <ul class="fashion-pieces-list">
-      {concept.keyPieces.map((piece) => (
-        <li>{piece}</li>
-      ))}
-    </ul>
-  </div>
-
-  <div class="fashion-mood-badge">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10"/>
-      <line x1="12" y1="8" x2="12" y2="12"/>
-      <line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    <span>{concept.conceptMood}</span>
   </div>
 </article>

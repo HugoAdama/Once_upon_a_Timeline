@@ -8,6 +8,7 @@ export const FASHION_CONCEPTS: FashionConcept[] = [
     year: '2024',
     style: 'Alta Costura Contemporánea & Streetwear Escénico',
     description: 'Siluetas deconstruidas con denim texturizado, cuero metálico brillante y corsetería moderna que fusionan el glamur de pasarela con la energía pop global.',
+    image: '/assets/fashion/strategy.webp',
     colorPalette: ['#e83e86', '#1a0c1e', '#silver', '#f4a27e'],
     keyPieces: [
       'Chaquetas cropped en denim con bordados cromados',
@@ -24,6 +25,7 @@ export const FASHION_CONCEPTS: FashionConcept[] = [
     year: '2022',
     style: 'Espionaje Retrofuturista & Estética 2000s',
     description: 'Homenaje a los inicios del milenio con gabardinas de vinilo, minifaldas plisadas de microfibra, cinturones utilitarios y gafas de sol envolventes que rinden culto a la era de los gadgets analógicos.',
+    image: '/assets/fashion/talk-that-talk.webp',
     colorPalette: ['#00e5ff', '#ff007f', '#100b14', '#ffffff'],
     keyPieces: [
       'Trench coats en vinilo translúcido y cuero acharolado',
@@ -40,6 +42,7 @@ export const FASHION_CONCEPTS: FashionConcept[] = [
     year: '2020',
     style: 'Power Dressing Ochentero & Alta Sastrería',
     description: 'Trajes de sastre con hombreras marcadas en amarillo mostaza y gris marengo inspirados en el Wall Street de los ochenta, contrastados con túnicas etéreas de flores rojas en la dimensión pura.',
+    image: '/assets/fashion/i-cant-stop-me.webp',
     colorPalette: ['#ffd54f', '#263238', '#b71c1c', '#eceff1'],
     keyPieces: [
       'Blazers estructurados con solapas anchas y doble botonadura',
@@ -56,6 +59,7 @@ export const FASHION_CONCEPTS: FashionConcept[] = [
     year: '2019',
     style: 'Alta Gala Barroca & Lujo Resplandeciente',
     description: 'Una de las eras estéticas más aclamadas de la historia del K-Pop: vestidos dorados de satén, pedrería de cristal bordada a mano y coronas de orfebrería fina que reflejaban el valor interior de cada integrante.',
+    image: '/assets/fashion/feel-special.webp',
     colorPalette: ['#ffd700', '#f4a27e', '#ffffff', '#210c23'],
     keyPieces: [
       'Vestidos de noche en lamé dorado con cortes asimétricos',
@@ -72,6 +76,7 @@ export const FASHION_CONCEPTS: FashionConcept[] = [
     year: '2016',
     style: 'Varsity Americana & Color-Blocking Pop',
     description: 'El look fundacional que definió a la nación: chaquetas beisboleras personalizadas con el número de cada integrante, minifaldas plisadas de tenis y zapatillas retro que marcaron el fenómeno Shy Shy Shy.',
+    image: '/assets/fashion/cheer-up.webp',
     colorPalette: ['#2979ff', '#ff1744', '#ffd600', '#ffffff'],
     keyPieces: [
       'Chaquetas universitarias letterman con iniciales individuales',

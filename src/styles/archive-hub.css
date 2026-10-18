@@ -1,0 +1,144 @@
+/* ========================================================
+   ARCHIVE HUB — PORTALES PRINCIPALES DE NAVEGACIÓN
+   ======================================================== */
+.archive-hub-section {
+  padding-block: clamp(64px, 8vw, 108px);
+  position: relative;
+  background: linear-gradient(180deg, transparent, rgba(232, 62, 134, 0.04), transparent);
+}
+
+.archive-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.archive-hub-card {
+  position: relative;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  padding: 30px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  box-shadow: 0 12px 34px rgba(66, 37, 57, 0.06);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+}
+
+.archive-hub-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-twice);
+  opacity: 0.6;
+  transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.archive-hub-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(232, 62, 134, 0.5);
+  box-shadow: 0 20px 48px rgba(66, 37, 57, 0.12), 0 0 28px rgba(232, 62, 134, 0.18);
+}
+
+.archive-hub-card:hover::before {
+  opacity: 1;
+  height: 6px;
+}
+
+.archive-hub-card-header {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.archive-hub-pill {
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  background: rgba(232, 62, 134, 0.1);
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.archive-hub-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  display: grid;
+  place-items: center;
+  color: var(--magenta);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.archive-hub-card:hover .archive-hub-icon-box {
+  transform: scale(1.1) rotate(4deg);
+  background: rgba(232, 62, 134, 0.18);
+}
+
+.archive-hub-card-title {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.archive-hub-card-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 22px;
+  flex: 1;
+}
+
+.archive-hub-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 850;
+  color: var(--magenta);
+  letter-spacing: 0.04em;
+  transition: gap 0.25s ease;
+}
+
+.archive-hub-card:hover .archive-hub-card-action {
+  gap: 12px;
+  color: #ff2d87;
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] .archive-hub-card {
+  background: rgba(22, 10, 24, 0.85);
+  border-color: rgba(232, 62, 134, 0.22);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="dark"] .archive-hub-card:hover {
+  border-color: rgba(232, 62, 134, 0.5);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.75), 0 0 30px rgba(232, 62, 134, 0.2);
+}
+
+[data-theme="dark"] .archive-hub-card-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .archive-hub-card-desc {
+  color: rgba(255, 255, 255, 0.72);
+}

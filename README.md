@@ -7,40 +7,29 @@
 
 ## Características Principales
 
+- **Arquitectura Multi-Página Enfocada (Eliminación de Scroll Masivo)**:
+  - **Inicio (`/`)**: Portada Hero, Photocards 3D de las 9 integrantes, vitrina de personajes (Lovelys y Tdoongz) y portales interactivos hacia los demás capítulos.
+  - **Música & Videografía (`/musica`)**: Catálogo discográfico completo, buscador en vivo, reproductor de canciones, cronología histórica y Cinema MV Vault.
+  - **Giras & Salón de la Fama (`/giras`)**: World Tour Odyssey (estadios y setlists) y vitrina de trofeos y récords históricos.
+  - **ONCE Fan Zone (`/fan-zone`)**: Test de Afinidad interactivo sincronizado en tiempo real con el Photocard Studio.
+  - **Moda Escénica (`/moda`)**: Galería visual de alta resolución del Stage Wardrobe Archive con paletas cromáticas y siluetas clave.
 - **Sistema de Photocards Coleccionables & Giro 3D**:
   - Retratos oficiales de las 9 integrantes con efecto reflectante holográfico (*shimmer*) e inclinación reactiva al cursor (*3D tilt*).
   - **Rotación Automática Cada 30 Segundos**: Efecto de ola en cascada donde las tarjetas giran 180° hacia el reverso holográfico y regresan al frente actualizando el retrato de la era.
   - Selector manual de eras fotográficas: alterna instantáneamente entre **Actual & Giras (2023–2025)**, **BETWEEN 1&2 (2021–2022)** y **Debut Clásico (2015–2018)**.
-  - Ficha biográfica desplegable con roles, fechas de nacimiento, firmas manuscritas, Hangul y personalidades asociadas.
-- **Cinema MV Vault (Videografía & Galería Conceptual)**:
-  - Catálogo cronológico de videos musicales oficiales categorizado por Corea, Japón, lanzamientos globales en inglés y proyectos solistas/subunidades.
-  - Ficha visual de cada video: paleta cromática dominante, director audiovisual, métricas y reproductor modal embebido.
-- **World Tour Odyssey (Giras Mundiales & Estadios)**:
-  - Recorrido interactivo por las grandes giras de TWICE (*Twiceland, TWICELIGHTS, World Tour III, READY TO BE*).
-  - Fichas de estadios históricos (SoFi Stadium, MetLife Stadium, Nissan Stadium, Foro Sol), estadísticas de asistencia masiva y cajón de setlists oficiales.
-- **Hall of Fame & Récords (Salón de Trofeos)**:
-  - Vitrina de hitos históricos: +120 victorias en programas musicales surcoreanos, triple Daesang consecutivo a Canción del Año, número 1 en el Billboard 200 estadounidense y más de 20 millones de álbumes físicos certificados.
-- **ONCE Fan Zone (Espacio Comunitario Interactivo)**:
+- **ONCE Fan Zone Sincronizada con Photocard Studio**:
   - **Test de Afinidad ONCE**: Cuestionario interactivo de 5 preguntas que evalúa tu personalidad y determina qué integrante de TWICE representa tu esencia.
-  - **Photocard Studio**: Estudio de diseño interactivo para crear tu propia photocard personalizada con tu nombre, tu bias y marco holográfico, con descarga directa en imagen PNG de alta resolución mediante Canvas API.
-- **Stage Wardrobe Archive (Moda & Estilismo Escénico)**:
-  - Análisis de los conceptos estéticos y vestuarios más memorables del grupo: desde las chaquetas universitarias de *Cheer Up* y el barroquismo dorado de *Feel Special* hasta el ciberespionaje Y2K de *Talk that Talk* y la alta costura deconstruida de *Strategy*.
-- **Candy Jukebox & Candybong Lightstick Sync**:
-  - Mini reproductor de audio flotante con visualizador acústico en tiempo real por Canvas.
-  - Sincronización cromática interactiva con los 9 colores oficiales del lightstick Candybong y modo de celebración al marcar a tu bias.
-- **Explorador Reactivo de Discografía**:
-  - Buscador en tiempo real por título de álbum o canción individual insensible a mayúsculas y acentos.
-  - Atajo de teclado rápido: presiona `/` para enfocar el buscador desde cualquier lugar.
-  - Botones de acceso rápido a eras populares (*Strategy, With YOU-th, Ready to Be, Between 1&2, Formula of Love, Feel Special, Fancy*).
-  - Filtros multidimensionales por mercado (Corea, Japón, Global), año de lanzamiento y formato (álbumes, mini álbumes, sencillos, remixes, etc.).
-- **Escaparate de Personajes Oficiales**:
-  - Doble galería dedicada a los clásicos **TWICE LOVELYS** y a los nuevos **TDOONGZ** de *Dream Attic*.
-  - Halos resplandecientes dinámicos adaptados al color representativo de cada miembro.
-- **Cronología Conectada (Timeline)**:
-  - Hitos históricos desde el debut en 2015 con nodos luminosos interactivos enlazados directamente con la discografía.
+  - **Sincronización en Vivo**: Al finalizar el test, tu resultado pre-selecciona automáticamente a la integrante ganadora en el Photocard Studio, carga su retrato oficial, aplica su color característico y activa el sello de verificación de afinidad.
+  - **Photocard Studio con Renderizado Visual**: Personaliza tu photocard con tu alias de fan, marco holográfico y descarga directa en imagen PNG de alta fidelidad generada mediante Canvas API con el retrato oficial de la integrante.
+- **Stage Wardrobe Archive (Moda & Fotografía Conceptual)**:
+  - Galería visual y análisis estético de los vestuarios de TWICE: siluetas deconstruidas de *Strategy*, ciberespionaje Y2K de *BETWEEN 1&2*, sastrería ochentera de *Eyes wide open*, opulencia dorada de *Feel Special* y chaquetas universitarias de *PAGE TWO*.
+- **Cinema MV Vault (Videografía & Galería Conceptual)**:
+  - Catálogo cronológico de videos musicales oficiales categorizado por Corea, Japón, lanzamientos globales y solistas/subunidades, con reproductor modal accesible.
+- **World Tour Odyssey & Hall of Fame**:
+  - Giras mundiales masivas, estadios icónicos (SoFi, MetLife, Nissan Stadium) y vitrina de trofeos Daesang y certificaciones globales.
 - **Accesibilidad y Rendimiento**:
   - Contraste validado bajo pautas WCAG 2.1 AA en temas claro y oscuro.
-  - Cumplimiento de `prefers-reduced-motion` para usuarios con sensibilidad al movimiento.
+  - Cumplimiento estricto de `prefers-reduced-motion`.
   - Cero emojis en la interfaz: uso exclusivo de iconos vectoriales SVG limpios.
 
 ---

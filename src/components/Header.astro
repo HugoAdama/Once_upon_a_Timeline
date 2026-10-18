@@ -1,11 +1,20 @@
 ---
 import { resolveAsset } from '../utils/streaming';
 const logoSrc = resolveAsset('/assets/twice-logo.svg');
+const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+const pathname = Astro.url.pathname.replace(/\/$/, '');
+
+const isActive = (path: string) => {
+  if (path === '') {
+    return pathname === base || pathname === '';
+  }
+  return pathname.endsWith(path);
+};
 ---
 
 <header class="site-header" id="site-header">
   <div class="wrap nav">
-    <a class="brand" href="#inicio" aria-label="Once Upon a Timeline, volver al inicio">
+    <a class="brand" href={`${base}/`} aria-label="Once Upon a Timeline, volver al inicio">
       <span class="brand-seal" aria-hidden="true">
         <img src={logoSrc} alt="" width="26" height="29" class="brand-logo-img" />
       </span>
@@ -16,15 +25,21 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg');
     </a>
 
     <nav class="nav-links" id="main-nav" aria-label="Navegación principal">
-      <a href="#integrantes" class="nav-link"><span>Integrantes</span></a>
-      <a href="#personajes" class="nav-link"><span>Personajes</span></a>
-      <a href="#discografia" class="nav-link"><span>Discografía</span></a>
-      <a href="#cronologia" class="nav-link"><span>Cronología</span></a>
-      <a href="#videografia" class="nav-link"><span>MVs</span></a>
-      <a href="#giras" class="nav-link"><span>Giras</span></a>
-      <a href="#records" class="nav-link"><span>Récords</span></a>
-      <a href="#fan-zone" class="nav-link"><span>Fan Zone</span></a>
-      <a href="#vestuario" class="nav-link"><span>Moda</span></a>
+      <a href={`${base}/`} class:list={['nav-link', { active: isActive('') }]}>
+        <span>Inicio</span>
+      </a>
+      <a href={`${base}/musica`} class:list={['nav-link', { active: isActive('/musica') }]}>
+        <span>Música &amp; MVs</span>
+      </a>
+      <a href={`${base}/giras`} class:list={['nav-link', { active: isActive('/giras') }]}>
+        <span>Giras &amp; Récords</span>
+      </a>
+      <a href={`${base}/fan-zone`} class:list={['nav-link', { active: isActive('/fan-zone') }]}>
+        <span>Fan Zone</span>
+      </a>
+      <a href={`${base}/moda`} class:list={['nav-link', { active: isActive('/moda') }]}>
+        <span>Moda</span>
+      </a>
     </nav>
 
     <div class="header-actions">

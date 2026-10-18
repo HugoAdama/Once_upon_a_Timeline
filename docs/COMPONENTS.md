@@ -8,12 +8,16 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `Header.astro`
 - **Ruta**: `src/components/Header.astro`
-- **Propósito**: Barra de navegación superior fija con efecto *glassmorphism*, logotipo oficial, indicador de sincronización cromática Candybong, botón de modo concierto, enlaces directos a las 9 secciones y menú móvil desplegable accesible.
+- **Propósito**: Barra de navegación superior fija con efecto *glassmorphism*, logotipo oficial, indicador de sincronización cromática Candybong, botón de modo concierto, 5 enlaces limpios de enrutamiento multi-página (`/`, `/musica`, `/giras`, `/fan-zone`, `/moda`) con indicador de página activa, y menú móvil desplegable accesible.
 - **Scripts asociados**: [`src/scripts/navigation.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/navigation.ts), [`src/scripts/theme-toggle.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/theme-toggle.ts) y [`src/scripts/candybong-sync.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/candybong-sync.ts).
 
 ### `Hero.astro`
 - **Ruta**: `src/components/Hero.astro`
 - **Propósito**: Portada editorial K-Pop Deluxe. Presenta encabezado *Issue No. 10*, tipografía serif de alta jerarquía, franja bento de métricas y paleta oficial en vidrio esmerilado, y vitrina de vinilo audiófilo con constelación de 9 colores y tooltips interactivos.
+
+### `ArchiveHubSection.astro`
+- **Ruta**: `src/components/ArchiveHubSection.astro`
+- **Propósito**: Centro interactivo de exploración del archivo ubicado en la portada principal. Despliega 4 portales visuales con tarjetas de vidrio esmerilado que guían directamente al usuario hacia los capítulos de Música, Giras, Fan Zone y Moda, optimizando la experiencia y evitando scrolls innecesarios.
 
 ### `Ticker.astro`
 - **Ruta**: `src/components/Ticker.astro`
@@ -30,7 +34,7 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `Footer.astro`
 - **Ruta**: `src/components/Footer.astro`
-- **Propósito**: Pie de página informativo con enlaces a las 9 secciones internas, canales oficiales de TWICE y descargo de responsabilidad fan no oficial.
+- **Propósito**: Pie de página informativo con enlaces a las 6 secciones principales del archivo, canales oficiales de TWICE y descargo de responsabilidad fan no oficial.
 
 ### `ScrollToTop.astro`
 - **Ruta**: `src/components/ScrollToTop.astro`
@@ -112,13 +116,13 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 ### `FanZoneSection.astro`, `QuizCard.astro` & `PhotocardStudio.astro`
 - **Ruta**: `src/components/FanZoneSection.astro`, `src/components/QuizCard.astro` y `src/components/PhotocardStudio.astro`
 - **Propósito**: Espacio lúdico para la comunidad ONCE:
-  - `QuizCard`: Test interactivo de 5 preguntas que evalúa afinidad con las integrantes y revela tu álter ego.
-  - `PhotocardStudio`: Diseñador interactivo en tiempo real con previsualización de marco holográfico, personalización de nombre de fan y descarga directa en imagen PNG mediante Canvas API.
+  - `QuizCard`: Test interactivo de 5 preguntas que evalúa afinidad con las integrantes, sincroniza el resultado en vivo con el Photocard Studio y ofrece un botón de salto directo.
+  - `PhotocardStudio`: Diseñador interactivo en tiempo real con previsualización del retrato oficial de la integrante, viñeta cinematográfica, selector cromático según su color oficial, personalización del nombre de fan y exportación en PNG mediante Canvas API.
 - **Scripts asociados**: [`src/scripts/fan-zone.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fan-zone.ts).
 
 ### `FashionSection.astro` & `FashionCard.astro`
 - **Ruta**: `src/components/FashionSection.astro` y `src/components/FashionCard.astro`
-- **Propósito**: Archivo estético y de vestuario escénico. Analiza siluetas, prendas clave, paletas cromáticas y conceptos de alta costura a través de las eras más influyentes del grupo.
+- **Propósito**: Archivo estético y de vestuario escénico. Presenta una galería visual de alta definición de los atuendos de cada era con zoom al hover, análisis de siluetas, prendas clave, paletas cromáticas e insignias conceptuales.
 
 ---
 

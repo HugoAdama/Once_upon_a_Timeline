@@ -31,6 +31,7 @@ Once_upon_a_Timeline/
 │   └── README.md            # Guía técnica de scripts auxiliares
 ├── src/
 │   ├── components/          # Componentes Astro de presentación
+│   │   ├── ArchiveHubSection.astro      # Portales de navegación principal hacia capítulos
 │   │   ├── CharacterTile.astro          # Ficha atómica individual para personajes
 │   │   ├── CharactersSection.astro      # Orquestador del escaparate de Lovelys y TDOONGZ
 │   │   ├── ClosingSection.astro         # Banner de cierre con gradiente y llamadas a la acción
@@ -68,23 +69,28 @@ Once_upon_a_Timeline/
 │   │   └── world-tours.ts   # Giras mundiales, estadios y setlists
 │   ├── layouts/
 │   │   └── Layout.astro     # Esqueleto HTML5, metadatos SEO y Open Graph
-│   ├── pages/
-│   │   └── index.astro      # Página principal estática
+│   ├── pages/               # Arquitectura multi-página para navegación fluida
+│   │   ├── index.astro      # Inicio: Hero, Integrantes 3D, Personajes y Portales
+│   │   ├── musica.astro     # Discografía completa, Cronología de Eras y Cinema MV Vault
+│   │   ├── giras.astro      # World Tour Odyssey y Salón de la Fama de Récords
+│   │   ├── fan-zone.astro   # Test de Afinidad conectado en vivo con Photocard Studio
+│   │   └── moda.astro       # Stage Wardrobe Archive con galería de alta resolución
 │   ├── scripts/             # Lógica cliente TypeScript desacoplada
 │   │   ├── candy-jukebox.ts         # Mini reproductor de audio y visualizador canvas
 │   │   ├── candybong-sync.ts        # Sincronización cromática de lightstick
 │   │   ├── characters-filter.ts     # Filtro por universo de personajes
 │   │   ├── discography-explorer.ts  # Búsqueda reactiva, filtros, atajo '/' y hash jump
-│   │   ├── fan-zone.ts              # Motor del quiz y exportación Canvas a PNG
+│   │   ├── fan-zone.ts              # Motor del quiz, sincronización de afinidad y exportación Canvas a PNG
 │   │   ├── member-era-filter.ts     # Rotación 30s con giro 3D e inclinación al cursor
 │   │   ├── mv-vault.ts              # Filtro de videografía y reproductor modal
-│   │   ├── navigation.ts            # Menú móvil desplegable y scroll-spy activo
+│   │   ├── navigation.ts            # Menú móvil desplegable y enrutador multi-página activo
 │   │   ├── scroll-reveal.ts         # Animaciones al entrar en viewport
 │   │   ├── theme-toggle.ts          # Conmutador de modo claro / modo concierto
 │   │   ├── timeline-filter.ts       # Filtro por era cronológica
 │   │   └── tour-map.ts              # Selector interactivo de giras mundiales
 │   ├── styles/              # Sistema de estilos modular (CSS Vanilla)
 │   │   ├── animations.css   # Keyframes, animaciones scroll-driven y media queries
+│   │   ├── archive-hub.css  # Tarjetas y portales de navegación del archivo principal
 │   │   ├── base.css         # Reseteo CSS, tipografía base y utilidades .wrap, .button
 │   │   ├── characters.css   # Estilos para personajes y mascotas
 │   │   ├── closing-footer.css # Estilos de cierre, pie de página y botón flotante

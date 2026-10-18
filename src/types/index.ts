@@ -156,6 +156,7 @@ export interface FashionConcept {
   year: string;
   style: string;
   description: string;
+  image: string;
   colorPalette: string[];
   keyPieces: string[];
   conceptMood: string;
