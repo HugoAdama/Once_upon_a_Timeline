@@ -56,9 +56,9 @@
 }
 
 .brand-copy {
-  font-size: 0.74rem;
+  font-size: 0.82rem;
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   line-height: 1.15;
   text-transform: uppercase;
   color: var(--ink);
@@ -68,9 +68,9 @@
   display: block;
   margin-top: 3px;
   color: var(--muted);
-  font-size: 0.54rem;
+  font-size: 0.64rem;
   font-weight: 750;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .nav-links {
@@ -83,7 +83,7 @@
   position: relative;
   padding: 8px 4px;
   color: #4b3d4a;
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   font-weight: 750;
   text-decoration: none;
   transition: color 0.22s ease;
@@ -223,7 +223,7 @@
 }
 
 .candybong-member-name {
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;

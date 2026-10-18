@@ -35,7 +35,7 @@
   border: 1px solid rgba(110, 75, 96, 0.12);
   color: #554754;
   font-family: var(--sans);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 750;
   cursor: pointer;
   transition: all 0.22s ease;
@@ -177,7 +177,7 @@
 
 .timeline-year {
   color: #ad336c;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   font-weight: 850;
   letter-spacing: 0.04em;
 }
@@ -187,7 +187,7 @@
   border-radius: 999px;
   background: rgba(232, 62, 134, 0.08);
   color: #ad336c;
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   font-weight: 800;
 }
 
@@ -203,8 +203,8 @@
 .timeline-desc {
   margin: 0 0 18px;
   color: var(--muted);
-  font-size: 0.85rem;
-  line-height: 1.6;
+  font-size: 0.92rem;
+  line-height: 1.65;
   flex-grow: 1;
 }
 
@@ -218,7 +218,7 @@
   border-radius: 999px;
   background: rgba(232, 62, 134, 0.06);
   color: #ad336c;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 850;
   text-decoration: none;
   cursor: pointer;

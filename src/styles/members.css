@@ -221,7 +221,7 @@
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(232, 62, 134, 0.28);
   color: #3e283b;
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.04em;
   cursor: pointer;
@@ -266,7 +266,7 @@
 }
 
 .photocard-back-tag {
-  font-size: 0.54rem;
+  font-size: 0.68rem;
   font-weight: 850;
   letter-spacing: 0.16em;
   color: color-mix(in srgb, var(--member) 85%, #ffffff);
@@ -315,16 +315,16 @@
 
 .signature-role {
   display: block;
-  font-size: 0.62rem;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.72);
   margin-top: 2px;
 }
 
 .photocard-back-quote {
   margin: 0;
   text-align: center;
-  font-size: 0.68rem;
-  line-height: 1.4;
+  font-size: 0.76rem;
+  line-height: 1.45;
   color: color-mix(in srgb, var(--member) 55%, #ffffff);
   font-style: italic;
 }
@@ -338,10 +338,10 @@
 }
 
 .collector-code {
-  font-size: 0.52rem;
+  font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .member-actual-photo {
@@ -393,7 +393,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #ffffff;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 850;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -425,7 +425,7 @@
 
 .member-number {
   color: color-mix(in srgb, var(--member) 80%, #3e283b);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.14em;
   flex-shrink: 0;
@@ -433,7 +433,7 @@
 
 .member-hangul-sub {
   color: #928391;
-  font-size: 0.7rem;
+  font-size: 0.76rem;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -462,12 +462,12 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 10px;
+  padding: 4px 11px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--member) 12%, #ffffff);
   border: 1px solid color-mix(in srgb, var(--member) 40%, rgba(100, 70, 90, 0.15));
   color: #4b3d4a;
-  font-size: 0.67rem;
+  font-size: 0.72rem;
   font-weight: 750;
   white-space: nowrap;
 }
@@ -475,13 +475,13 @@
 .member-bias-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 9px;
+  gap: 5px;
+  padding: 4px 10px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--member) 8%, #ffffff);
   border: 1px solid color-mix(in srgb, var(--member) 30%, rgba(100, 70, 90, 0.18));
   color: #554452;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 750;
   cursor: pointer;
   white-space: nowrap;
@@ -635,7 +635,7 @@
   background: rgba(225, 48, 108, 0.08);
   border: 1px solid rgba(225, 48, 108, 0.25);
   color: #c13584;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-decoration: none;
   white-space: nowrap;
@@ -683,7 +683,7 @@
   background: rgba(232, 62, 134, 0.08);
   border: 1px solid rgba(232, 62, 134, 0.22);
   color: #b62c69;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -773,7 +773,7 @@
 .char-info small {
   display: block;
   color: #8c7d8a;
-  font-size: 0.54rem;
+  font-size: 0.64rem;
   font-weight: 850;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -783,7 +783,7 @@
   display: block;
   overflow: hidden;
   margin-top: 2px;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 800;
   color: #2b1f2b;
   text-overflow: ellipsis;
@@ -821,24 +821,24 @@
 .member-meta-item small {
   display: block;
   color: #8e7c8d;
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   font-weight: 850;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
   margin-bottom: 3px;
 }
 
 .member-meta-item strong {
   color: var(--ink);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   font-weight: 750;
 }
 
 .member-bio {
   margin: 0;
   color: #4b3a4a;
-  font-size: 0.84rem;
-  line-height: 1.62;
+  font-size: 0.92rem;
+  line-height: 1.68;
 }
 
 .character-bio-cards {
@@ -851,8 +851,8 @@
   border-radius: 10px;
   background: #fff8f5;
   border: 1px solid #ecdada;
-  font-size: 0.76rem;
-  line-height: 1.55;
+  font-size: 0.84rem;
+  line-height: 1.6;
   color: #4e3f4d;
 }
 
@@ -869,7 +869,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   font-weight: 850;
   letter-spacing: 0.08em;
   color: #a42c64;
@@ -891,7 +891,7 @@
 .palette-note {
   margin: 24px 0 0;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   line-height: 1.6;
 }
 

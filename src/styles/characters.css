@@ -319,7 +319,7 @@
 }
 
 .mascot-name {
-  font-size: 0.74rem;
+  font-size: 0.82rem;
   font-weight: 850;
   color: #312130;
   text-overflow: ellipsis;
@@ -328,7 +328,7 @@
 }
 
 .mascot-member-tag {
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   font-weight: 750;
   color: #8c7d8a;
   text-transform: uppercase;
@@ -336,7 +336,7 @@
 }
 
 .mascot-tagline {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: #a42c64;
   font-weight: 700;
   margin-top: 2px;

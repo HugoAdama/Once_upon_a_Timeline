@@ -20,7 +20,7 @@
   border-radius: 999px;
   padding: 8px 16px 8px 10px;
   color: var(--text);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 750;
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
@@ -66,7 +66,7 @@
 }
 
 .jukebox-label-tag {
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -74,7 +74,7 @@
 }
 
 .jukebox-label-status {
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--text);
   max-width: 130px;
@@ -193,7 +193,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -212,7 +212,7 @@
 }
 
 .jukebox-track-counter {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: var(--magenta);
   background: rgba(232, 62, 134, 0.1);
@@ -296,7 +296,7 @@
 }
 
 .jukebox-track-name {
-  font-size: 0.98rem;
+  font-size: 1.02rem;
   font-weight: 850;
   color: var(--text);
   margin: 0;
@@ -307,14 +307,14 @@
 }
 
 .jukebox-track-era {
-  font-size: 0.73rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--magenta);
   margin: 0;
 }
 
 .jukebox-track-badge {
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 0.02em;
@@ -385,7 +385,7 @@
 .jukebox-progress-times {
   display: flex;
   justify-content: space-between;
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
@@ -407,7 +407,7 @@
 }
 
 .jukebox-playlist-title {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -424,7 +424,7 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 0.69rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 6px 10px;
   border-radius: 10px;
@@ -457,7 +457,7 @@
 }
 
 .pill-num {
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 800;
   color: var(--magenta);
   opacity: 0.9;
@@ -553,7 +553,7 @@
   }
   .jukebox-track-pill {
     padding: 5px 8px;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
   }
 }
 
