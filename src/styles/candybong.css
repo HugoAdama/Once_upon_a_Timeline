@@ -1,0 +1,415 @@
+/* ==========================================================================
+   VIRTUAL CANDYBONG Z — LIGHTSTICK STYLES & INTERACTION
+   ========================================================================== */
+
+.candybong-widget-container {
+  position: fixed;
+  bottom: 28px;
+  left: 175px; /* Junto al Jukebox Launcher */
+  z-index: 94;
+  font-family: inherit;
+}
+
+@media (max-width: 768px) {
+  .candybong-widget-container {
+    left: auto;
+    right: 28px;
+    bottom: 84px; /* Encima de ScrollToTop en móvil */
+  }
+}
+
+/* Launcher Button */
+.candybong-launcher-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--candybong-active-color, rgba(232, 62, 134, 0.4));
+  border-radius: 999px;
+  padding: 8px 15px 8px 12px;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 8px 24px var(--candybong-glow, rgba(232, 62, 134, 0.22));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.25s var(--ease-spring), box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.candybong-launcher-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px var(--candybong-glow, rgba(232, 62, 134, 0.35));
+}
+
+.launcher-icon {
+  color: var(--candybong-active-color, var(--magenta));
+  filter: drop-shadow(0 0 6px var(--candybong-active-color, var(--magenta)));
+  animation: gentleSway 3s ease-in-out infinite;
+}
+
+@keyframes gentleSway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Panel Modal */
+.candybong-panel {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 0;
+  width: 290px;
+  background: var(--surface);
+  border: 1px solid var(--candybong-active-color, rgba(232, 62, 134, 0.35));
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 30px var(--candybong-glow, rgba(232, 62, 134, 0.15));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  flex-direction: column;
+  gap: 12px;
+  animation: panelSlideUp 0.3s var(--ease-spring);
+}
+
+.candybong-panel.is-open {
+  display: flex;
+}
+
+@keyframes panelSlideUp {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--candybong-active-color, var(--magenta));
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 850;
+  color: var(--ink);
+}
+
+.panel-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  transition: color 0.2s ease;
+}
+
+.panel-close-btn:hover {
+  color: var(--ink);
+}
+
+/* Escenario del Lightstick */
+.lightstick-stage {
+  position: relative;
+  height: 180px;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.12), transparent 70%),
+    linear-gradient(180deg, rgba(20, 10, 24, 0.05), rgba(20, 10, 24, 0.15));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(232, 62, 134, 0.15);
+}
+
+.stage-aura {
+  position: absolute;
+  top: 15px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--candybong-active-color, #e83e86);
+  filter: blur(28px);
+  opacity: 0.55;
+  transition: background-color 0.5s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Modelo SVG/CSS del Lightstick */
+.candybong-model {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transform-origin: bottom center;
+  transition: transform 0.15s ease;
+  user-select: none;
+}
+
+.candybong-model:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.candybong-model:active,
+.candybong-model.cheering {
+  animation: cheerWave 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cheerWave {
+  0% { transform: scale(1) translateY(0); }
+  30% { transform: scale(1.12) translateY(-14px) rotate(-8deg); }
+  60% { transform: scale(1.08) translateY(-6px) rotate(8deg); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.cb-head {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px var(--candybong-active-color, #e83e86), inset 0 0 15px var(--candybong-glow, rgba(232, 62, 134, 0.5));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  transition: box-shadow 0.4s ease;
+}
+
+.cb-outer-ring {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  animation: ringRotate 12s linear infinite;
+}
+
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cb-center-emblem {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--candybong-active-color, #e83e86);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px var(--candybong-active-color, #e83e86);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cb-twice-mark {
+  font-size: 0.52rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.cb-handle {
+  width: 14px;
+  height: 70px;
+  background: linear-gradient(180deg, #ffffff 0%, #e2d8e0 100%);
+  border-radius: 0 0 6px 6px;
+  margin-top: -3px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cb-button {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--candybong-active-color, var(--magenta));
+}
+
+.cb-strap {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 2px;
+  background: #999;
+}
+
+/* Onda de choque (Cheer Shockwave) */
+.cheer-shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--candybong-active-color, #e83e86);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cheer-shockwave.active {
+  animation: shockwaveExpand 0.6s ease-out forwards;
+}
+
+@keyframes shockwaveExpand {
+  0% { width: 10px; height: 10px; opacity: 0.9; }
+  100% { width: 220px; height: 220px; opacity: 0; border-width: 4px; }
+}
+
+/* Modos de Luz */
+.light-modes-row {
+  display: flex;
+  gap: 6px;
+}
+
+.mode-chip {
+  flex: 1;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.mode-chip:hover,
+.mode-chip.active {
+  background: var(--candybong-active-color, var(--magenta));
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 3px 10px var(--candybong-glow, rgba(232, 62, 134, 0.3));
+}
+
+/* Selector Bias Rápido */
+.cb-bias-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cb-bias-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.cb-bias-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+}
+
+.cb-bias-btn {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px solid var(--member-c);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
+  padding: 0;
+}
+
+.cb-bias-btn:hover,
+.cb-bias-btn.active {
+  transform: scale(1.25);
+  background: var(--member-c);
+  color: #ffffff;
+  box-shadow: 0 0 10px var(--member-c);
+}
+
+/* Botón Cheer */
+.cheer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 9px;
+  border-radius: 10px;
+  background: var(--gradient-twice);
+  color: #ffffff;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 850;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(232, 62, 134, 0.35);
+  transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
+}
+
+.cheer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(232, 62, 134, 0.5);
+}
+
+.cheer-btn:active {
+  transform: scale(0.97);
+}
+
+/* Modo Beat / Audio Sync */
+.candybong-model.beat-pulse {
+  animation: pulseBeat 0.4s ease-out;
+}
+
+@keyframes pulseBeat {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.35) drop-shadow(0 0 15px var(--candybong-active-color)); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* Modo Arcoíris */
+.candybong-model.mode-rainbow .cb-head {
+  animation: rainbowHue 4s linear infinite;
+}
+
+@keyframes rainbowHue {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] .candybong-launcher-btn,
+[data-theme="dark"] .candybong-panel {
+  background: rgba(24, 12, 26, 0.94);
+  border-color: var(--candybong-active-color, rgba(232, 62, 134, 0.4));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 25px var(--candybong-glow, rgba(232, 62, 134, 0.2));
+}
+
+[data-theme="dark"] .panel-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .lightstick-stage {
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.08), transparent 70%),
+    linear-gradient(180deg, rgba(10, 4, 12, 0.4), rgba(10, 4, 12, 0.8));
+}

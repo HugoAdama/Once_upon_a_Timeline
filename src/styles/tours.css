@@ -889,11 +889,181 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tour-content-panel.tour-panel-active .tour-main-card,
-  .tour-content-panel.tour-panel-active .venue-card,
-  .tour-hero-img {
-    animation: none !important;
-    transition: none !important;
+/* ========================================================
+   RADAR DE RUTAS MUNDIALES (TOUR ROUTE MAP)
+   ======================================================== */
+.tour-map-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.tour-map-header {
+  margin-bottom: 18px;
+}
+
+.tour-map-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.tour-map-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.12);
+  color: var(--magenta);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tour-map-title {
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: var(--ink);
+  margin: 0;
+}
+
+.tour-map-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.tour-map-stage-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.world-route-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Rutas de Vuelo Animadas */
+.flight-arc {
+  stroke-dasharray: 6 6;
+  animation: flightFlow 20s linear infinite;
+}
+
+@keyframes flightFlow {
+  to {
+    stroke-dashoffset: -120;
   }
 }
+
+/* Balizas de Estadios */
+.map-beacon {
+  cursor: pointer;
+  outline: none;
+}
+
+.beacon-core {
+  fill: #ffffff;
+  stroke: var(--magenta);
+  stroke-width: 2.5;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.beacon-pulse {
+  fill: rgba(232, 62, 134, 0.35);
+  animation: beaconPulse 2.5s ease-out infinite;
+  transform-origin: center;
+}
+
+.map-beacon:hover .beacon-core,
+.map-beacon:focus .beacon-core {
+  fill: var(--magenta);
+  stroke: #ffffff;
+}
+
+.map-beacon:hover .beacon-pulse,
+.map-beacon:focus .beacon-pulse {
+  fill: rgba(244, 162, 126, 0.6);
+}
+
+@keyframes beaconPulse {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Tooltip interactivo flotante */
+.map-venue-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(24, 10, 26, 0.92);
+  border: 1px solid var(--magenta);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(232, 62, 134, 0.3);
+  backdrop-filter: blur(12px);
+  padding: 10px 14px;
+  border-radius: 12px;
+  color: #ffffff;
+  z-index: 10;
+  max-width: 260px;
+  transform: translate(-50%, -100%);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.map-venue-tooltip.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -115%);
+}
+
+.tooltip-venue-name {
+  font-size: 0.85rem;
+  font-weight: 850;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.tooltip-city {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--apricot);
+  margin-bottom: 4px;
+}
+
+.tooltip-highlight {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] .tour-map-card {
+  background: rgba(24, 12, 26, 0.85);
+  border-color: rgba(232, 62, 134, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .tour-map-title {
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flight-arc {
+    animation: none !important;
+  }
+  .beacon-pulse {
+    animation: none !important;
+  }
+}
+

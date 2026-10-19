@@ -1,6 +1,7 @@
 ---
 import { FORMAT_OPTIONS } from '../utils/releases';
 import DiscographyQuickEras from './DiscographyQuickEras.astro';
+import DiscographyKillingParts from './DiscographyKillingParts.astro';
 import DiscographyViewControls from './DiscographyViewControls.astro';
 
 interface Props {
@@ -43,6 +44,9 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
 
   <!-- Accesos directos a Eras Populares -->
   <DiscographyQuickEras />
+
+  <!-- Killing Parts & Frases Legendarias -->
+  <DiscographyKillingParts />
 
   <div class="filter-controls-row">
     <!-- Filtros de mercado con iconos SVG -->

@@ -1,0 +1,26 @@
+{
+  "name": "Once Upon a Timeline — TWICE Fan Archive",
+  "short_name": "Once Timeline",
+  "description": "Archivo interactivo de TWICE: discografía, integrantes, cronología de 10 años, mapas de giras y photocard studio.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#160918",
+  "theme_color": "#e83e86",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["entertainment", "music"],
+  "lang": "es"
+}

@@ -1,0 +1,103 @@
+---
+import { CANDYBONG_MEMBERS } from '../scripts/candybong-sync';
+---
+
+<!-- Virtual Candybong Z Widget Flotante -->
+<aside class="candybong-widget-container" id="candybong-widget" aria-label="Virtual Candybong Z Lightstick">
+  <!-- Botón lanzador flotante -->
+  <button
+    type="button"
+    class="candybong-launcher-btn"
+    id="candybong-launcher-btn"
+    title="Abrir Virtual Candybong Z"
+    aria-expanded="false"
+    aria-controls="candybong-panel"
+  >
+    <div class="launcher-glow" aria-hidden="true"></div>
+    <svg class="launcher-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="10" r="7"/>
+      <path d="M12 17v5M9 22h6"/>
+      <circle cx="12" cy="10" r="3" fill="currentColor"/>
+    </svg>
+    <span class="launcher-label">Candybong Z</span>
+  </button>
+
+  <!-- Panel interactivo del Lightstick -->
+  <div class="candybong-panel" id="candybong-panel" role="dialog" aria-modal="false" aria-label="Controlador de Candybong Z">
+    <div class="panel-header">
+      <div class="panel-title-wrap">
+        <span class="panel-badge">ONCE Official</span>
+        <h4 class="panel-title">Candybong Z Virtual</h4>
+      </div>
+      <button type="button" class="panel-close-btn" id="candybong-close-btn" aria-label="Cerrar panel Candybong">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Escaparate 3D/SVG del Lightstick -->
+    <div class="lightstick-stage" id="lightstick-stage">
+      <div class="stage-aura" id="stage-aura" aria-hidden="true"></div>
+      <div class="cheer-shockwave" id="cheer-shockwave" aria-hidden="true"></div>
+
+      <div class="candybong-model" id="candybong-model" role="button" tabindex="0" title="Haz clic para agitar y vitorear (Cheer!)">
+        <!-- Cabeza del Lightstick -->
+        <div class="cb-head">
+          <div class="cb-outer-ring"></div>
+          <div class="cb-center-emblem">
+            <span class="cb-twice-mark">TWICE</span>
+          </div>
+        </div>
+        <!-- Mango -->
+        <div class="cb-handle">
+          <div class="cb-button"></div>
+          <div class="cb-strap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modos de Luz -->
+    <div class="light-modes-row" role="radiogroup" aria-label="Modos del Candybong">
+      <button type="button" class="mode-chip active" data-light-mode="sync" role="radio" aria-checked="true">
+        <span>Concierto</span>
+      </button>
+      <button type="button" class="mode-chip" data-light-mode="party" role="radio" aria-checked="false">
+        <span>Party Beat</span>
+      </button>
+      <button type="button" class="mode-chip" data-light-mode="rainbow" role="radio" aria-checked="false">
+        <span>Arcoíris</span>
+      </button>
+    </div>
+
+    <!-- Selector de Bias Rápido -->
+    <div class="cb-bias-selector">
+      <span class="cb-bias-label">Sincronizar a tu Bias:</span>
+      <div class="cb-bias-grid">
+        {CANDYBONG_MEMBERS.map((m) => (
+          <button
+            type="button"
+            class="cb-bias-btn"
+            data-cb-member={m.id}
+            data-color={m.hex}
+            title={`${m.name} (${m.colorName})`}
+            style={`--member-c: ${m.hex};`}
+            aria-label={m.name}
+          >
+            <span class="cb-bias-dot"></span>
+            <span class="cb-bias-name">{m.name[0]}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Botón de Vitorear / Cheer! -->
+    <button type="button" class="cheer-btn" id="candybong-cheer-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <span>¡Vitorear a TWICE! (Cheer)</span>
+    </button>
+  </div>
+</aside>

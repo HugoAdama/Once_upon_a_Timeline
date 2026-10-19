@@ -535,6 +535,205 @@
   color: #ffffff;
 }
 
+/* ==========================================================================
+   POLCO DECO & HOLO FINISH STYLES
+   ========================================================================== */
+.deco-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(232, 62, 134, 0.05);
+  border: 1px dashed rgba(232, 62, 134, 0.25);
+}
+
+.deco-holo-row,
+.deco-stickers-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.deco-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.deco-pill:hover,
+.deco-pill.active {
+  background: var(--magenta);
+  color: #ffffff;
+  border-color: var(--magenta);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(232, 62, 134, 0.3);
+}
+
+.deco-sticker-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.deco-sticker-btn:hover {
+  border-color: var(--apricot);
+  background: rgba(244, 162, 126, 0.15);
+}
+
+.deco-sticker-btn.active {
+  background: linear-gradient(135deg, var(--apricot), var(--magenta));
+  color: #ffffff;
+  border-color: transparent;
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(244, 162, 126, 0.35);
+}
+
+/* Capas interactivas sobre la tarjeta */
+.canvas-holo-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.canvas-holo-overlay.holo-glitter {
+  opacity: 0.45;
+  background-image: radial-gradient(circle at 50% 50%, #ffffff 1px, transparent 1px),
+    radial-gradient(circle at 20% 20%, #ff7399 1.5px, transparent 1.5px),
+    radial-gradient(circle at 80% 80%, #5bc2e7 1.5px, transparent 1.5px);
+  background-size: 16px 16px, 24px 24px, 32px 32px;
+  animation: holoGlitterShift 8s linear infinite;
+}
+
+.canvas-holo-overlay.holo-prism {
+  opacity: 0.35;
+  background: linear-gradient(125deg, rgba(255, 0, 128, 0.35), rgba(0, 255, 255, 0.35), rgba(255, 255, 0, 0.35), rgba(255, 0, 128, 0.35));
+  background-size: 200% 200%;
+  animation: holoPrismWave 6s ease-in-out infinite;
+}
+
+@keyframes holoGlitterShift {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 16px 32px, 24px -24px, -32px 32px; }
+}
+
+@keyframes holoPrismWave {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Washi Tape Strips */
+.canvas-washi {
+  position: absolute;
+  width: 54px;
+  height: 18px;
+  background: rgba(255, 115, 153, 0.55);
+  border: 1px dashed rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+.washi-top-left {
+  top: 14px;
+  left: -8px;
+  transform: rotate(-25deg);
+}
+
+.washi-bottom-right {
+  bottom: 22px;
+  right: -8px;
+  background: rgba(244, 162, 126, 0.55);
+  transform: rotate(18deg);
+}
+
+/* Capa de stickers */
+.canvas-stickers-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.canvas-sticker {
+  position: absolute;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.25));
+}
+
+.sticker-anniversary {
+  top: 48px;
+  right: 12px;
+  animation: floatSubtle 4s ease-in-out infinite;
+}
+
+.sticker-candybong {
+  bottom: 54px;
+  left: 12px;
+  animation: pulseLightstick 2.4s ease-in-out infinite;
+}
+
+.sticker-sparkles {
+  inset: 0;
+  position: absolute;
+}
+
+.sparkle-point {
+  position: absolute;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  animation: sparkleTwinkle 2s ease-in-out infinite;
+}
+
+.sp-1 { top: 75px; left: 24px; font-size: 1.1rem; }
+.sp-2 { top: 180px; right: 28px; font-size: 0.95rem; animation-delay: 0.6s; }
+.sp-3 { bottom: 85px; right: 20px; font-size: 1rem; animation-delay: 1.2s; }
+
+@keyframes sparkleTwinkle {
+  0%, 100% { transform: scale(0.85); opacity: 0.5; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+@keyframes pulseLightstick {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 2px 6px rgba(255, 115, 153, 0.4)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 4px 14px rgba(255, 115, 153, 0.8)); }
+}
+
+/* Modo Oscuro para Deco */
+[data-theme="dark"] .deco-toolbar {
+  background: rgba(232, 62, 134, 0.08);
+  border-color: rgba(232, 62, 134, 0.35);
+}
+
+[data-theme="dark"] .deco-pill,
+[data-theme="dark"] .deco-sticker-btn {
+  background: rgba(35, 17, 38, 0.85);
+  border-color: rgba(232, 62, 134, 0.3);
+  color: #ffffff;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .fan-zone-grid {
@@ -551,3 +750,4 @@
     margin: 0 auto;
   }
 }
+

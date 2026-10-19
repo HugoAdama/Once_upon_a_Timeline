@@ -1,0 +1,123 @@
+---
+// Mapa interactivo de rutas aéreas y estadios mundiales de TWICE
+---
+
+<div class="tour-map-card scroll-reveal" id="tour-route-map">
+  <div class="tour-map-header">
+    <div class="tour-map-title-row">
+      <span class="tour-map-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/>
+        </svg>
+        <span>Radar de Conciertos Globales</span>
+      </span>
+      <h3 class="tour-map-title">Ruta Mundial de Estadios</h3>
+    </div>
+    <p class="tour-map-subtitle">Explora los recintos históricos y las trayectorias aéreas transcontinentales de las giras de TWICE.</p>
+  </div>
+
+  <div class="tour-map-stage-wrap">
+    <!-- Tooltip flotante interactivo -->
+    <div class="map-venue-tooltip" id="map-venue-tooltip" role="tooltip" aria-hidden="true">
+      <div class="tooltip-venue-name" id="tt-venue-name">SoFi Stadium</div>
+      <div class="tooltip-city" id="tt-venue-city">Los Ángeles · Estados Unidos</div>
+      <div class="tooltip-highlight" id="tt-venue-highlight">Primer grupo femenino de K-pop en agotar el SoFi Stadium</div>
+    </div>
+
+    <!-- Mapa vectorial SVG -->
+    <svg class="world-route-svg" viewBox="0 0 960 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa de rutas mundiales de TWICE">
+      <defs>
+        <radialGradient id="gridGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(232, 62, 134, 0.15)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <linearGradient id="flightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#f4a27e"/>
+          <stop offset="50%" stop-color="#e83e86"/>
+          <stop offset="100%" stop-color="#5bc2e7"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Fondo y grilla esférica -->
+      <rect width="960" height="520" rx="16" fill="rgba(18, 8, 20, 0.75)"/>
+      <circle cx="480" cy="260" r="230" fill="url(#gridGlow)"/>
+
+      <!-- Líneas de latitud / longitud sutiles -->
+      <path d="M 60 260 H 900 M 60 140 H 900 M 60 380 H 900" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="4 6"/>
+      <path d="M 240 60 V 460 M 480 60 V 460 M 720 60 V 460" stroke="rgba(255, 255, 255, 0.06)" stroke-width="1" stroke-dasharray="4 6"/>
+
+      <!-- Siluetas simplificadas de continentes vectoriales -->
+      <g class="map-continents" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1">
+        <!-- Norteamérica -->
+        <path d="M 140 100 Q 210 90 280 120 T 340 170 T 320 250 T 260 280 T 200 240 T 150 170 Z"/>
+        <!-- Sudamérica -->
+        <path d="M 270 290 Q 320 300 370 340 T 380 430 T 330 480 T 290 400 Z"/>
+        <!-- Europa -->
+        <path d="M 460 120 Q 520 110 560 140 T 540 210 T 480 220 T 450 170 Z"/>
+        <!-- Asia -->
+        <path d="M 580 110 Q 720 90 820 140 T 840 240 T 740 290 T 630 250 T 580 180 Z"/>
+        <!-- Australia -->
+        <path d="M 760 380 Q 820 370 850 410 T 810 460 T 750 430 Z"/>
+      </g>
+
+      <!-- Rutas de vuelo animadas (Flight Paths) -->
+      <g class="map-flight-paths" stroke="url(#flightGrad)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6">
+        <!-- Seúl -> Tokio -->
+        <path id="path-icn-nrt" class="flight-arc" d="M 740 210 Q 758 200 775 215"/>
+        <!-- Tokio -> Los Ángeles (Transpacífico) -->
+        <path id="path-nrt-lax" class="flight-arc" d="M 775 215 C 880 120 100 130 210 230"/>
+        <!-- Los Ángeles -> Dallas -> Atlanta -> Nueva York -->
+        <path id="path-usa-domestic" class="flight-arc" d="M 210 230 Q 235 240 260 245 T 290 240 T 315 220"/>
+        <!-- Nueva York -> Londres (Transatlántico) -->
+        <path id="path-jfk-lhr" class="flight-arc" d="M 315 220 Q 400 140 495 180"/>
+        <!-- Londres -> París -->
+        <path id="path-lhr-cdg" class="flight-arc" d="M 495 180 Q 500 190 505 195"/>
+        <!-- Los Ángeles -> Ciudad de México -> São Paulo -->
+        <path id="path-latam" class="flight-arc" d="M 210 230 Q 225 260 245 285 Q 300 350 375 410"/>
+        <!-- Seúl -> Yakarta -> Melbourne -->
+        <path id="path-oceania" class="flight-arc" d="M 740 210 Q 735 270 730 330 Q 760 400 810 440"/>
+      </g>
+
+      <!-- Balizas de estadios (Stadium Beacons) -->
+      <g class="map-beacons">
+        <g class="map-beacon" data-venue="KSPO Dome" data-city="Seúl · Corea del Sur" data-highlight="Epicentro de inicio de todas las giras mundiales">
+          <circle cx="740" cy="210" r="10" class="beacon-pulse"/>
+          <circle cx="740" cy="210" r="4.5" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="Tokyo Dome & Nissan Stadium" data-city="Tokio · Japón" data-highlight="Primer grupo femenino extranjero en llenar el mítico Nissan Stadium">
+          <circle cx="775" cy="215" r="12" class="beacon-pulse"/>
+          <circle cx="775" cy="215" r="5" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="SoFi Stadium" data-city="Los Ángeles · EE.UU." data-highlight="Primera agrupación femenina de K-pop en agotar el SoFi Stadium">
+          <circle cx="210" cy="230" r="12" class="beacon-pulse"/>
+          <circle cx="210" cy="230" r="5" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="Globe Life Field" data-city="Dallas · EE.UU." data-highlight="Concierto apoteósico ante más de 45.000 fans">
+          <circle cx="260" cy="245" r="9" class="beacon-pulse"/>
+          <circle cx="260" cy="245" r="4" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="MetLife Stadium" data-city="Nueva York · EE.UU." data-highlight="Lleno total de 50.000 asistentes en la costa este">
+          <circle cx="315" cy="220" r="12" class="beacon-pulse"/>
+          <circle cx="315" cy="220" r="5" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="Foro Sol" data-city="Ciudad de México · México" data-highlight="Doble fecha agotada con 115.000 ONCEs cantando al unísono">
+          <circle cx="245" cy="285" r="11" class="beacon-pulse"/>
+          <circle cx="245" cy="285" r="4.5" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="Allianz Parque" data-city="São Paulo · Brasil" data-highlight="Debut multitudinario en Sudamérica con entradas récord">
+          <circle cx="375" cy="410" r="11" class="beacon-pulse"/>
+          <circle cx="375" cy="410" r="4.5" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="The O2 Arena" data-city="Londres · Reino Unido" data-highlight="Conquista del recinto techado más concurrido de Europa">
+          <circle cx="495" cy="180" r="10" class="beacon-pulse"/>
+          <circle cx="495" cy="180" r="4.5" class="beacon-core"/>
+        </g>
+        <g class="map-beacon" data-venue="Marvel Stadium" data-city="Melbourne · Australia" data-highlight="Primer grupo femenino de K-pop en encabezar un estadio en Australia">
+          <circle cx="810" cy="440" r="10" class="beacon-pulse"/>
+          <circle cx="810" cy="440" r="4.5" class="beacon-core"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>

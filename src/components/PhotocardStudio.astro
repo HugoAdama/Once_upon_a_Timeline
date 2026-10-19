@@ -1,13 +1,15 @@
 ---
 import { MEMBERS } from '../data/members';
 import { resolveAsset } from '../utils/streaming';
+import PhotocardDecoBar from './PhotocardDecoBar.astro';
+
 const initialPhoto = resolveAsset(MEMBERS[0].photo);
 ---
 
 <div class="customizer-card scroll-reveal" id="photocard-studio-card">
   <div class="customizer-header">
     <div class="customizer-title-row">
-      <h3 class="customizer-title">Photocard Studio</h3>
+      <h3 class="customizer-title">Photocard Studio &amp; Polco Deco</h3>
       <span class="studio-sync-pill" id="studio-sync-pill" style="display: none;">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="20 6 9 17 4 12"/>
@@ -15,11 +17,11 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
         <span id="studio-sync-pill-text">Afinidad Sincronizada</span>
       </span>
     </div>
-    <p class="customizer-subtitle">Diseña y descarga tu photocard oficial de colección personalizada en formato PNG de alta fidelidad.</p>
+    <p class="customizer-subtitle">Diseña tu photocard oficial de colección con stickers Polco Deco, acabados holográficos y descarga en PNG de alta resolución (600x900px).</p>
   </div>
 
   <div class="customizer-workspace">
-    <!-- Vista previa interactiva de la tarjeta con imagen real -->
+    <!-- Vista previa interactiva de la tarjeta con capas Polco Deco -->
     <div class="photocard-canvas-wrap" id="photocard-canvas-preview">
       <img
         src={initialPhoto}
@@ -29,6 +31,36 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
       />
       <div class="canvas-photo-vignette" aria-hidden="true"></div>
       <span class="canvas-sheen" aria-hidden="true"></span>
+      <div class="canvas-holo-overlay" id="canvas-holo-overlay" aria-hidden="true"></div>
+
+      <!-- Washi Tape decorative accents -->
+      <div class="canvas-washi washi-top-left" id="washi-strip-top" aria-hidden="true" style="display: none;"></div>
+      <div class="canvas-washi washi-bottom-right" id="washi-strip-bottom" aria-hidden="true" style="display: none;"></div>
+
+      <!-- Polco Deco Stickers Layer -->
+      <div class="canvas-stickers-layer" id="canvas-stickers-layer" aria-hidden="true">
+        <div class="canvas-sticker sticker-anniversary" id="sticker-anniversary" style="display: none;">
+          <svg width="38" height="38" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="18" fill="rgba(245, 166, 35, 0.2)" stroke="#f5a623" stroke-width="2"/>
+            <circle cx="20" cy="20" r="14" stroke="#f5a623" stroke-width="1" stroke-dasharray="2 2"/>
+            <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">10TH</text>
+          </svg>
+        </div>
+        <div class="canvas-sticker sticker-candybong" id="sticker-candybong" style="display: none;">
+          <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="14" r="10" fill="#ff7399" opacity="0.8"/>
+            <circle cx="16" cy="14" r="6" fill="#fff"/>
+            <circle cx="16" cy="14" r="3" fill="#ff7399"/>
+            <rect x="14" y="22" width="4" height="8" rx="2" fill="#ffffff"/>
+          </svg>
+        </div>
+        <div class="canvas-sticker sticker-sparkles" id="sticker-sparkles" style="display: none;">
+          <span class="sparkle-point sp-1">✦</span>
+          <span class="sparkle-point sp-2">★</span>
+          <span class="sparkle-point sp-3">✧</span>
+        </div>
+      </div>
+
       <span class="canvas-top-tag">ONCE ARCHIVE · 10TH</span>
       <span class="canvas-match-tag" id="canvas-match-tag" style="display: none;">MATCH OFICIAL · TEST DE IDENTIDAD</span>
 
@@ -39,7 +71,7 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
 
       <div class="canvas-footer">
         <span>COLLECTOR EDITION</span>
-        <span>2015 — 2025</span>
+        <span>2015 — 2026</span>
       </div>
     </div>
 
@@ -87,6 +119,9 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
           <button type="button" class="palette-btn" data-frame-color="#005bac" style="--c: #005bac;" title="Navy Blue" aria-label="Navy Blue"></button>
         </div>
       </div>
+
+      <!-- Barra de herramientas Polco Deco -->
+      <PhotocardDecoBar />
 
       <button type="button" class="download-photocard-btn" id="download-photocard-btn">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

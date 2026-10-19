@@ -1,10 +1,12 @@
 import { resolveAsset } from '../utils/streaming';
+import { initPhotocardDeco, drawDecoOnCanvas } from './photocard-deco';
 
 /**
  * Inicializa la ONCE Fan Zone: Quiz de afinidad y Generador de Photocard personalizada
  * Con sincronización directa en vivo entre los resultados del test y el Photocard Studio.
  */
 export function initFanZone(): void {
+  initPhotocardDeco();
   // ==========================================
   // METADATOS DE INTEGRANTES
   // ==========================================
@@ -355,9 +357,12 @@ export function initFanZone(): void {
         // 10. Pie de página
         ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
         ctx.font = '14px sans-serif';
-        ctx.fillText('TWICE 10TH ANNIVERSARY ARCHIVE · 2015-2025', 300, 840);
+        ctx.fillText('TWICE 10TH ANNIVERSARY ARCHIVE · 2015-2026', 300, 840);
 
-        // 11. Descargar archivo PNG
+        // 11. Capa Polco Deco (stickers, holo glitter y washi tape)
+        drawDecoOnCanvas(ctx, activeColor);
+
+        // 12. Descargar archivo PNG
         const link = document.createElement('a');
         link.download = `photocard-${memberName.toLowerCase()}-${fanName.toLowerCase().replace(/\s+/g, '-')}.png`;
         link.href = canvas.toDataURL('image/png');

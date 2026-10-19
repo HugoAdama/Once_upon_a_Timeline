@@ -353,6 +353,30 @@ export function initDiscographyExplorer(): void {
     });
   });
 
+  const killingPartButtons = document.querySelectorAll<HTMLButtonElement>('[data-killing-query]');
+  killingPartButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const query = btn.getAttribute('data-killing-query') || '';
+      if (searchInput) {
+        searchInput.value = query;
+        scheduleFilterApply(0);
+        searchInput.focus();
+
+        setTimeout(() => {
+          const firstVisible = releaseItems.find((item) => item.style.display !== 'none');
+          if (firstVisible) {
+            const details = firstVisible.querySelector<HTMLDetailsElement>('details.release-details');
+            if (details) details.open = true;
+            firstVisible.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstVisible.classList.remove('highlight-target');
+            void firstVisible.offsetWidth;
+            firstVisible.classList.add('highlight-target');
+          }
+        }, 150);
+      }
+    });
+  });
+
   document.addEventListener('keydown', (e) => {
     if (
       e.key === '/' &&
