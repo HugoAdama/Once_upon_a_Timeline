@@ -1,14 +1,18 @@
 /**
- * Inicializa la detección y revelado de elementos con scroll-reveal.
+ * Inicializa la detección y revelado de elementos con scroll-reveal
+ * y la barra de progreso de lectura.
  * Usa CSS Scroll-Driven Animations nativas si están soportadas;
- * de lo contrario, aplica fallback progresivo mediante IntersectionObserver.
+ * de lo contrario, aplica fallbacks progresivos con IntersectionObserver y scroll pasivo.
  */
 export function initScrollReveals(): void {
   const reveals = document.querySelectorAll('.scroll-reveal');
-  if (!reveals.length) return;
+  const progressBar = document.querySelector<HTMLElement>('.scroll-progress-bar');
 
   const hasNativeTimeline = window.CSS && CSS.supports('(animation-timeline: view()) and (animation-range: entry)');
-  if (!hasNativeTimeline) {
+  const hasScrollTimeline = window.CSS && CSS.supports('animation-timeline: scroll()');
+
+  // Fallback para scroll-reveal
+  if (!hasNativeTimeline && reveals.length) {
     document.documentElement.classList.add('no-timeline-support');
     const observer = new IntersectionObserver(
       (entries) => {
@@ -25,5 +29,17 @@ export function initScrollReveals(): void {
       }
     );
     reveals.forEach((el) => observer.observe(el));
+  }
+
+  // Fallback progresivo para barra de progreso de lectura si no hay soporte nativo de animation-timeline: scroll()
+  if (!hasScrollTimeline && progressBar) {
+    const updateProgress = () => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = totalScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / totalScroll)) : 0;
+      progressBar.style.transform = `scaleX(${progress})`;
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
   }
 }
