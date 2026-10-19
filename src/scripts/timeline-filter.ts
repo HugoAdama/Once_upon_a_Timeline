@@ -1,46 +1,108 @@
 /**
- * Filtrado interactivo de hitos en la Cronología histórica de TWICE
- * y sinergia inteligente para auto-desplegar la ficha del álbum correspondiente en la discografía.
+ * Filtrado interactivo de hitos en la Cronología histórica de TWICE,
+ * riel cronológico rápido y sinergia inteligente para auto-desplegar la ficha
+ * del álbum correspondiente en la discografía.
  */
 export function initTimelineFilter(): void {
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-timeline-filter]');
-  const timelineItems = document.querySelectorAll<HTMLElement>('.timeline-item');
+  const milestoneCards = document.querySelectorAll<HTMLElement>('.timeline-card, .timeline-item');
   const counterEl = document.getElementById('timeline-results-count');
+  const scrubberNodes = document.querySelectorAll<HTMLButtonElement>('.scrubber-node-btn');
 
-  if (filterBtns.length && timelineItems.length) {
+  // Función para aplicar filtro por categoría
+  function applyCategoryFilter(category: string): void {
+    let visibleCount = 0;
+
+    // Actualizar botones de filtro
+    filterBtns.forEach((btn) => {
+      const btnCat = btn.dataset.timelineFilter || 'all';
+      const isActive = btnCat === category;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
+
+    // Actualizar visibilidad de tarjetas de hitos
+    milestoneCards.forEach((card) => {
+      const cardCategory = card.dataset.timelineCategory;
+      const matches = category === 'all' || cardCategory === category;
+
+      if (matches) {
+        card.style.display = '';
+        card.classList.add('timeline-item-visible');
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+        card.classList.remove('timeline-item-visible');
+      }
+    });
+
+    // Actualizar estado visual de los nodos en el riel cronológico
+    scrubberNodes.forEach((node) => {
+      const nodeCategory = node.dataset.timelineCategory;
+      const matches = category === 'all' || nodeCategory === category;
+
+      node.classList.toggle('scrubber-node-dimmed', !matches);
+      node.classList.toggle('scrubber-node-active-era', matches && category !== 'all');
+    });
+
+    // Actualizar contador accesible
+    if (counterEl) {
+      counterEl.textContent = `Mostrando ${visibleCount} de ${milestoneCards.length} momentos`;
+    }
+  }
+
+  // Eventos de los botones de filtro
+  if (filterBtns.length && milestoneCards.length) {
     filterBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const category = btn.dataset.timelineFilter || 'all';
-
-        filterBtns.forEach((b) => {
-          const isActive = b === btn;
-          b.classList.toggle('active', isActive);
-          b.setAttribute('aria-pressed', String(isActive));
-        });
-
-        let visibleCount = 0;
-        timelineItems.forEach((item) => {
-          const itemCategory = item.dataset.timelineCategory;
-          const matches = category === 'all' || itemCategory === category;
-
-          if (matches) {
-            item.style.display = '';
-            item.classList.add('timeline-item-visible');
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-            item.classList.remove('timeline-item-visible');
-          }
-        });
-
-        if (counterEl) {
-          counterEl.textContent = `Mostrando ${visibleCount} de ${timelineItems.length} momentos`;
-        }
+        applyCategoryFilter(category);
       });
     });
   }
 
-  // Sinergia inteligente: Auto-desplegar el álbum y hacer scroll suave al hacer clic en "Ver canciones y eras"
+  // Eventos del Riel Cronológico Rápido (Scrubber)
+  if (scrubberNodes.length) {
+    scrubberNodes.forEach((node) => {
+      node.addEventListener('click', () => {
+        const targetId = node.dataset.scrubberTarget;
+        if (!targetId) return;
+
+        const targetCard = document.getElementById(targetId);
+        if (!targetCard) return;
+
+        // Si la tarjeta está oculta por un filtro activo, restablecer filtro a 'all'
+        if (targetCard.style.display === 'none') {
+          applyCategoryFilter('all');
+        }
+
+        // Marcar nodo seleccionado en el riel
+        scrubberNodes.forEach((n) => n.classList.remove('scrubber-node-current'));
+        node.classList.add('scrubber-node-current');
+
+        // Scroll suave hacia la tarjeta con compensación por la cabecera fija
+        const headerOffset = 90;
+        const elementPosition = targetCard.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+
+        // Efecto visual de halo / spotlight momentáneo
+        targetCard.classList.remove('milestone-spotlight');
+        void targetCard.offsetWidth; // Forzar reflujo
+        targetCard.classList.add('milestone-spotlight');
+
+        setTimeout(() => {
+          targetCard.classList.remove('milestone-spotlight');
+        }, 2200);
+      });
+    });
+  }
+
+  // Sinergia inteligente: Auto-desplegar el álbum y hacer scroll suave al hacer clic en "Ver álbum y canciones"
   const jumpBtns = document.querySelectorAll<HTMLAnchorElement>('.timeline-jump-btn');
   jumpBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -54,7 +116,9 @@ export function initTimelineFilter(): void {
       e.preventDefault();
 
       // Abrir el detalle si está cerrado
-      const details = targetEl.querySelector<HTMLDetailsElement>('details') || (targetEl.tagName === 'DETAILS' ? (targetEl as HTMLDetailsElement) : null);
+      const details =
+        targetEl.querySelector<HTMLDetailsElement>('details') ||
+        (targetEl.tagName === 'DETAILS' ? (targetEl as HTMLDetailsElement) : null);
       if (details) {
         details.open = true;
       }
@@ -76,7 +140,6 @@ export function initTimelineFilter(): void {
 
       // Efecto visual de resaltado temporal
       targetEl.classList.remove('timeline-target-highlight');
-      // Forzar reflujo para reiniciar animación si ya estaba
       void targetEl.offsetWidth;
       targetEl.classList.add('timeline-target-highlight');
 

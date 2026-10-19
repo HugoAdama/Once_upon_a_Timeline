@@ -1,0 +1,49 @@
+---
+import type { TimelineMilestone } from '../types';
+
+interface Props {
+  milestones: TimelineMilestone[];
+}
+
+const { milestones } = Astro.props;
+---
+
+<div class="timeline-scrubber-container scroll-reveal" aria-label="Navegador cronológico rápido de 2015 a 2026">
+  <div class="timeline-scrubber-header">
+    <div class="scrubber-legend">
+      <span class="scrubber-pulse-indicator" aria-hidden="true"></span>
+      <span class="scrubber-legend-title">Línea temporal continua · 2015 — 2026</span>
+    </div>
+    <span class="scrubber-hint">Haz clic en cualquier año para saltar al hito</span>
+  </div>
+
+  <div class="timeline-scrubber-track-wrap" role="region" aria-label="Riel de años y momentos">
+    <div class="timeline-scrubber-rail">
+      <div class="timeline-scrubber-line" aria-hidden="true"></div>
+
+      {milestones.map((item, index) => {
+        const stepNum = String(index + 1).padStart(2, '0');
+        const category = item.category || 'all';
+        return (
+          <button
+            type="button"
+            class="scrubber-node-btn"
+            data-scrubber-target={`milestone-${item.releaseId}`}
+            data-timeline-category={category}
+            data-scrubber-year={item.year}
+            aria-label={`Ir al hito ${stepNum}: ${item.title} (${item.year})`}
+          >
+            <span class="scrubber-node-dot" aria-hidden="true">
+              <span class="scrubber-node-core"></span>
+            </span>
+            <span class="scrubber-node-year">{item.year}</span>
+            <span class="scrubber-node-tooltip" role="tooltip">
+              <span class="tooltip-step">{stepNum} · {item.badge}</span>
+              <strong class="tooltip-title">{item.title}</strong>
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  </div>
+</div>

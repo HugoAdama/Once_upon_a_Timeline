@@ -1,21 +1,31 @@
 /* ========================================================
-   CRONOLOGÍA INTERACTIVA (TIMELINE)
+   CRONOLOGÍA INTERACTIVA (TIMELINE) — REDISEÑO DELUXE
+   Sistema modular de hitos con riel cronológico, vitrina
+   audiófila con vinilo deslizable y sinergia con discografía
    ======================================================== */
-/* Barra de filtros temáticos de la cronología */
+
+.timeline-section {
+  position: relative;
+  padding-block: clamp(56px, 7vw, 96px);
+}
+
+/* ========================================================
+   1. BARRA DE FILTROS TEMÁTICOS (GLASS BENTO)
+   ======================================================== */
 .timeline-filter-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 28px;
-  padding: 12px 20px;
+  margin-bottom: 24px;
+  padding: 12px 22px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(232, 62, 134, 0.2);
-  box-shadow: 0 8px 24px rgba(66, 37, 57, 0.05);
+  box-shadow: 0 10px 30px rgba(66, 37, 57, 0.05);
 }
 
 .timeline-chips-wrap {
@@ -28,7 +38,7 @@
 .timeline-chip-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   padding: 7px 15px;
   border-radius: 999px;
   background: rgba(110, 75, 96, 0.06);
@@ -38,29 +48,53 @@
   font-size: 0.78rem;
   font-weight: 750;
   cursor: pointer;
-  transition: all 0.22s ease;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
 }
 
 .timeline-chip-icon {
   flex-shrink: 0;
   color: #ad336c;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.timeline-chip-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 850;
+  background: rgba(110, 75, 96, 0.08);
+  color: #795d70;
+  transition: all 0.2s ease;
 }
 
 .timeline-chip-btn:hover {
   background: rgba(232, 62, 134, 0.1);
   border-color: rgba(232, 62, 134, 0.35);
   color: var(--magenta);
+  transform: translateY(-1px);
+}
+
+.timeline-chip-btn:hover .timeline-chip-icon {
+  transform: scale(1.1);
 }
 
 .timeline-chip-btn.active {
   background: var(--gradient-twice);
   border-color: transparent;
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.35);
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(232, 62, 134, 0.38);
 }
 
 .timeline-chip-btn.active .timeline-chip-icon {
+  color: #ffffff;
+}
+
+.timeline-chip-btn.active .timeline-chip-count {
+  background: rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
 
@@ -71,141 +105,653 @@
   letter-spacing: 0.02em;
 }
 
-.timeline-item-visible {
-  animation: timelineFadeIn 0.3s ease-out;
+/* ========================================================
+   2. RIEL CRONOLÓGICO RÁPIDO (TIMELINE SCRUBBER)
+   ======================================================== */
+.timeline-scrubber-container {
+  margin-bottom: 34px;
+  padding: 18px 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(232, 62, 134, 0.15);
+  box-shadow: 0 8px 26px rgba(66, 37, 57, 0.04);
 }
 
-@keyframes timelineFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.timeline {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  padding-top: 36px;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  right: 18px;
-  height: 4px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--apricot), var(--magenta), #8c73a8);
-}
-
-.timeline-item {
-  position: relative;
-  padding: 30px 24px 26px;
-  background: #ffffff;
-  border: 1px solid rgba(232, 62, 134, 0.18);
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(66, 37, 57, 0.05);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.timeline-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 44px rgba(66, 37, 57, 0.12);
-  border-color: rgba(232, 62, 134, 0.42);
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  top: -24px;
-  left: 26px;
-  width: 16px;
-  height: 16px;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  background: var(--magenta);
-  box-shadow: 0 0 0 2px var(--magenta), 0 2px 8px rgba(232, 62, 134, 0.45);
-}
-
-.timeline-item-header {
+.timeline-scrubber-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 
-.timeline-meta-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.timeline-cover-thumb {
-  width: 44px;
-  height: 44px;
-  aspect-ratio: 1 / 1;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(66, 37, 57, 0.12);
-  border: 1px solid rgba(232, 62, 134, 0.22);
-  flex-shrink: 0;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.timeline-item:hover .timeline-cover-thumb {
-  transform: scale(1.08) rotate(-2deg);
-  box-shadow: 0 6px 16px rgba(232, 62, 134, 0.28);
-}
-
-.timeline-step-badge {
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: 1.15rem;
-  color: rgba(232, 62, 134, 0.25);
-}
-
-.timeline-date-info {
+.scrubber-legend {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.timeline-year {
-  color: #ad336c;
-  font-size: 0.9rem;
-  font-weight: 850;
-  letter-spacing: 0.04em;
+.scrubber-pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--magenta);
+  box-shadow: 0 0 0 0 rgba(232, 62, 134, 0.7);
+  animation: scrubberPulse 2.2s infinite;
 }
 
-.timeline-badge-pill {
+@keyframes scrubberPulse {
+  0% { box-shadow: 0 0 0 0 rgba(232, 62, 134, 0.7); }
+  70% { box-shadow: 0 0 0 7px rgba(232, 62, 134, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 62, 134, 0); }
+}
+
+.scrubber-legend-title {
+  font-size: 0.76rem;
+  font-weight: 850;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.scrubber-hint {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.timeline-scrubber-track-wrap {
+  position: relative;
+  overflow-x: auto;
+  padding-block: 10px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232, 62, 134, 0.3) transparent;
+}
+
+.timeline-scrubber-track-wrap::-webkit-scrollbar {
+  height: 4px;
+}
+
+.timeline-scrubber-track-wrap::-webkit-scrollbar-thumb {
+  background: rgba(232, 62, 134, 0.3);
+  border-radius: 999px;
+}
+
+.timeline-scrubber-rail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 760px;
+  padding: 0 16px;
+}
+
+.timeline-scrubber-line {
+  position: absolute;
+  top: 14px;
+  left: 24px;
+  right: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--apricot) 0%, var(--magenta) 45%, #9e7bb5 80%, var(--apricot) 100%);
+  border-radius: 999px;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.scrubber-node-btn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.scrubber-node-dot {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--magenta);
+  box-shadow: 0 2px 8px rgba(232, 62, 134, 0.25);
+  transition: all 0.25s ease;
+}
+
+.scrubber-node-core {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gradient-twice);
+  transition: transform 0.25s ease;
+}
+
+.scrubber-node-year {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 850;
+  color: #684a60;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.scrubber-node-btn:hover {
+  transform: translateY(-2px);
+}
+
+.scrubber-node-btn:hover .scrubber-node-dot {
+  transform: scale(1.18);
+  border-color: var(--magenta);
+  box-shadow: 0 0 16px rgba(232, 62, 134, 0.55);
+}
+
+.scrubber-node-btn:hover .scrubber-node-year {
+  color: var(--magenta);
+  font-weight: 900;
+}
+
+/* Tooltip informativo al pasar el cursor por el riel */
+.scrubber-node-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(22, 11, 25, 0.94);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.scrubber-node-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(22, 11, 25, 0.94) transparent transparent transparent;
+}
+
+.tooltip-step {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--apricot);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tooltip-title {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.scrubber-node-btn:hover .scrubber-node-tooltip,
+.scrubber-node-btn:focus-visible .scrubber-node-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.scrubber-node-dimmed {
+  opacity: 0.35;
+  filter: grayscale(0.5);
+}
+
+.scrubber-node-active-era .scrubber-node-dot {
+  border-color: var(--magenta);
+  box-shadow: 0 0 12px rgba(232, 62, 134, 0.6);
+}
+
+.scrubber-node-current .scrubber-node-dot {
+  background: var(--gradient-twice);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px var(--magenta), 0 0 18px rgba(232, 62, 134, 0.8);
+}
+
+.scrubber-node-current .scrubber-node-core {
+  background: #ffffff;
+}
+
+.scrubber-node-current .scrubber-node-year {
+  color: var(--magenta);
+  font-weight: 900;
+}
+
+/* ========================================================
+   3. CUADRÍCULA DE HITOS HISTÓRICOS (TIMELINE GRID)
+   ======================================================== */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  position: relative;
+}
+
+/* Eliminar la antigua línea superior desconectada que dejaba puntos flotando */
+.timeline::before {
+  display: none !important;
+}
+
+.timeline-item-visible {
+  animation: timelineCardFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes timelineCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========================================================
+   4. TARJETA MODULAR DE HITO HISTÓRICO (TIMELINE CARD)
+   ======================================================== */
+.timeline-card,
+.timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 22px 22px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  border-radius: 22px;
+  box-shadow: 0 12px 34px rgba(66, 37, 57, 0.05);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.32s ease,
+              border-color 0.32s ease;
+  overflow: hidden;
+}
+
+/* Eliminar el antiguo pseudoelemento de punto que flotaba en el aire */
+.timeline-card::before,
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-twice);
+  opacity: 0.65;
+  transition: opacity 0.3s ease, height 0.3s ease;
+  z-index: 3;
+  border-radius: 22px 22px 0 0;
+  box-shadow: none;
+  animation: none !important;
+}
+
+.timeline-card:hover,
+.timeline-item:hover {
+  transform: translateY(-6px);
+  border-color: rgba(232, 62, 134, 0.45);
+  box-shadow: 0 20px 48px rgba(66, 37, 57, 0.12), 0 0 24px rgba(232, 62, 134, 0.15);
+}
+
+.timeline-card:hover::before,
+.timeline-item:hover::before {
+  opacity: 1;
+  height: 4px;
+}
+
+/* Destello momentáneo al navegar desde el Scrubber */
+.timeline-card.milestone-spotlight {
+  animation: milestoneSpotlight 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes milestoneSpotlight {
+  0% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 4px var(--magenta), 0 0 35px rgba(232, 62, 134, 0.6);
+    border-color: var(--magenta);
+  }
+  30% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 6px var(--magenta), 0 0 50px rgba(232, 62, 134, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 12px 34px rgba(66, 37, 57, 0.05);
+    border-color: rgba(232, 62, 134, 0.18);
+  }
+}
+
+/* ========================================================
+   5. ENCABEZADO DEL HITO (MILESTONE NODE HEADER)
+   ======================================================== */
+.milestone-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(232, 62, 134, 0.15);
+}
+
+.milestone-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.milestone-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 3px 9px;
   border-radius: 999px;
   background: rgba(232, 62, 134, 0.08);
-  color: #ad336c;
-  font-size: 0.7rem;
+  border: 1px solid rgba(232, 62, 134, 0.22);
+}
+
+.milestone-step-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--magenta);
+  box-shadow: 0 0 6px var(--magenta);
+}
+
+.milestone-step-number {
+  font-family: var(--display);
+  font-size: 0.76rem;
+  font-weight: 850;
+  color: var(--magenta);
+}
+
+.milestone-era-tag {
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(110, 75, 96, 0.06);
+  color: #7a5f72;
+  text-transform: uppercase;
+}
+
+.milestone-timing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.milestone-year {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.milestone-date-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #8c7a8b;
+}
+
+.milestone-cal-icon {
+  color: var(--magenta);
+}
+
+/* ========================================================
+   6. VITRINA AUDIÓFILA: PORTADA & VINILO DESLIZABLE
+   ======================================================== */
+.milestone-showcase {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.milestone-sleeve-stage {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+}
+
+.milestone-ambient-aura {
+  position: absolute;
+  inset: -4px;
+  border-radius: 14px;
+  background: radial-gradient(circle, rgba(232, 62, 134, 0.35) 0%, transparent 70%);
+  filter: blur(8px);
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.timeline-card:hover .milestone-ambient-aura {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+/* Vinilo que se desliza por detrás de la portada */
+.milestone-vinyl-disc {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, #150f18 0%, #1c1420 38%, #0d080e 70%, #18111a 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.38s ease;
+  pointer-events: none;
+}
+
+.milestone-vinyl-label {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gradient-twice);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.milestone-vinyl-hole {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0d080e;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.milestone-cover-art {
+  position: relative;
+  z-index: 2;
+  width: 76px;
+  height: 76px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(66, 37, 57, 0.16);
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.milestone-cover-placeholder {
+  position: relative;
+  z-index: 2;
+  width: 76px;
+  height: 76px;
+  border-radius: 12px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  display: grid;
+  place-items: center;
+  color: var(--magenta);
+}
+
+/* Efecto de deslizamiento del vinilo al pasar el cursor */
+.timeline-card:hover .milestone-vinyl-disc {
+  transform: translateX(24px) rotate(45deg);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 14px rgba(232, 62, 134, 0.35);
+}
+
+.timeline-card:hover .milestone-cover-art {
+  transform: scale(1.03) rotate(-1.5deg);
+  box-shadow: 0 8px 22px rgba(66, 37, 57, 0.22);
+}
+
+.milestone-heading-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.milestone-meta-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.milestone-format-chip,
+.milestone-tracks-chip {
+  font-size: 0.64rem;
   font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
 }
 
-.timeline-title {
-  margin: 0 0 8px;
+.milestone-format-chip {
+  background: rgba(232, 62, 134, 0.08);
+  color: #ad336c;
+}
+
+.milestone-tracks-chip {
+  background: rgba(110, 75, 96, 0.06);
+  color: #684a60;
+}
+
+.milestone-title {
+  margin: 0;
   font-family: var(--serif);
-  font-size: 1.65rem;
-  font-weight: 400;
+  font-size: 1.45rem;
+  font-weight: 500;
   color: #271826;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
-.timeline-desc {
-  margin: 0 0 18px;
+/* ========================================================
+   7. CHIP DE HIMNO Y PISTA DESTACADA CON ECUALIZADOR
+   ======================================================== */
+.milestone-highlight-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(232, 62, 134, 0.07), rgba(244, 162, 126, 0.09));
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  margin-bottom: 12px;
+}
+
+.milestone-sound-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.milestone-sound-bars span {
+  display: block;
+  width: 2.5px;
+  background: var(--magenta);
+  border-radius: 1px;
+}
+
+.milestone-sound-bars span:nth-child(1) { height: 6px; }
+.milestone-sound-bars span:nth-child(2) { height: 11px; }
+.milestone-sound-bars span:nth-child(3) { height: 8px; }
+
+.timeline-card:hover .milestone-sound-bars span:nth-child(1) {
+  animation: eqBarPulse 0.6s ease-in-out infinite alternate;
+}
+.timeline-card:hover .milestone-sound-bars span:nth-child(2) {
+  animation: eqBarPulse 0.8s ease-in-out 0.2s infinite alternate;
+}
+.timeline-card:hover .milestone-sound-bars span:nth-child(3) {
+  animation: eqBarPulse 0.5s ease-in-out 0.1s infinite alternate;
+}
+
+@keyframes eqBarPulse {
+  0% { height: 4px; }
+  100% { height: 12px; }
+}
+
+.milestone-highlight-label {
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #8c7a8b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.milestone-highlight-name {
+  font-size: 0.78rem;
+  font-weight: 850;
+  color: var(--magenta);
+}
+
+/* ========================================================
+   8. DESCRIPCIÓN Y BOTÓN DE ACCIÓN
+   ======================================================== */
+.milestone-desc {
+  margin: 0 0 16px;
   color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-size: 0.88rem;
+  line-height: 1.6;
   flex-grow: 1;
+}
+
+.milestone-footer {
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 .timeline-jump-btn {
@@ -222,7 +768,12 @@
   font-weight: 850;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.22s ease;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.jump-arrow-icon {
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .timeline-jump-btn:hover {
@@ -230,65 +781,54 @@
   color: #ffffff;
   border-color: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(232, 62, 134, 0.38);
+  box-shadow: 0 6px 18px rgba(232, 62, 134, 0.38);
 }
 
-.jump-arrow {
-  transition: transform 0.2s ease;
-}
-
-.timeline-jump-btn:hover .jump-arrow {
-  transform: translate(2px, 2px);
+.timeline-jump-btn:hover .jump-arrow-icon {
+  transform: translate(2px, -2px);
+  color: #ffffff;
 }
 
 /* ========================================================
-   MODO OSCURO (CRONOLOGÍA INTERACTIVA)
+   9. TEMATIZACIÓN POR CATEGORÍAS DE ERAS
    ======================================================== */
-[data-theme="dark"] .timeline-item {
-  background: #190e1b;
-  border-color: rgba(232, 62, 134, 0.22);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+/* Debut & Orígenes (2015-2016): Acento Apricot */
+.timeline-card[data-timeline-category="origins"]::before {
+  background: linear-gradient(90deg, var(--apricot), #e87a5d);
+}
+.timeline-card[data-timeline-category="origins"] .milestone-step-dot {
+  background: var(--apricot);
+  box-shadow: 0 0 6px var(--apricot);
+}
+.timeline-card[data-timeline-category="origins"] .milestone-step-number {
+  color: #c96538;
 }
 
-[data-theme="dark"] .timeline-item:hover {
-  border-color: rgba(232, 62, 134, 0.45);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(232, 62, 134, 0.25);
+/* Era Dorada (2017-2019): Acento Neon Magenta */
+.timeline-card[data-timeline-category="golden"]::before {
+  background: linear-gradient(90deg, var(--magenta), #ff7bb0);
 }
 
-[data-theme="dark"] .timeline-item::before {
-  border-color: #190e1b;
-  box-shadow: 0 0 0 2px var(--magenta), 0 0 16px rgba(232, 62, 134, 0.65);
+/* Giras & Madurez (2020-2023): Acento Violeta / Púrpura */
+.timeline-card[data-timeline-category="expansion"]::before {
+  background: linear-gradient(90deg, #9e7bb5, #5bc2e7);
+}
+.timeline-card[data-timeline-category="expansion"] .milestone-step-dot {
+  background: #9e7bb5;
+  box-shadow: 0 0 6px #9e7bb5;
+}
+.timeline-card[data-timeline-category="expansion"] .milestone-step-number {
+  color: #7b5695;
 }
 
-[data-theme="dark"] .timeline-title {
-  color: var(--ink);
+/* 10.° Aniversario (2024-2026): Acento Cósmico / Holográfico */
+.timeline-card[data-timeline-category="anniversary"]::before {
+  background: linear-gradient(90deg, var(--magenta) 0%, var(--apricot) 50%, #9e7bb5 100%);
 }
 
-[data-theme="dark"] .timeline-desc {
-  color: var(--muted);
-}
-
-[data-theme="dark"] .timeline-year {
-  color: #ff9bc7;
-}
-
-[data-theme="dark"] .timeline-badge-pill {
-  background: rgba(232, 62, 134, 0.2);
-  color: #ff9bc7;
-}
-
-[data-theme="dark"] .timeline-jump-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(232, 62, 134, 0.25);
-  color: #ff9bc7;
-}
-
-[data-theme="dark"] .timeline-jump-btn:hover {
-  background: var(--gradient-twice);
-  color: #ffffff;
-  border-color: transparent;
-}
-
+/* ========================================================
+   10. MODO OSCURO (CRONOLOGÍA INTERACTIVA)
+   ======================================================== */
 [data-theme="dark"] .timeline-filter-bar {
   background: rgba(26, 14, 27, 0.88);
   border-color: rgba(232, 62, 134, 0.28);
@@ -305,6 +845,11 @@
   color: #ff9bc7;
 }
 
+[data-theme="dark"] .timeline-chip-count {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
 [data-theme="dark"] .timeline-chip-btn:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(232, 62, 134, 0.4);
@@ -313,9 +858,204 @@
 
 [data-theme="dark"] .timeline-chip-btn.active {
   background: var(--gradient-twice);
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .timeline-chip-btn.active .timeline-chip-count {
+  background: rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
 
 [data-theme="dark"] .timeline-results-count {
   color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .timeline-scrubber-container {
+  background: rgba(24, 12, 25, 0.85);
+  border-color: rgba(232, 62, 134, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .scrubber-legend-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .scrubber-node-dot {
+  background: #190e1b;
+  border-color: #e83e86;
+  box-shadow: 0 0 10px rgba(232, 62, 134, 0.35);
+}
+
+[data-theme="dark"] .scrubber-node-year {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .scrubber-node-btn:hover .scrubber-node-year {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .timeline-card,
+[data-theme="dark"] .timeline-item {
+  background: #190e1b;
+  border-color: rgba(232, 62, 134, 0.22);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="dark"] .timeline-card:hover,
+[data-theme="dark"] .timeline-item:hover {
+  border-color: rgba(232, 62, 134, 0.5);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(232, 62, 134, 0.25);
+}
+
+[data-theme="dark"] .milestone-node-header {
+  border-bottom-color: rgba(232, 62, 134, 0.2);
+}
+
+[data-theme="dark"] .milestone-step-pill {
+  background: rgba(232, 62, 134, 0.16);
+  border-color: rgba(232, 62, 134, 0.35);
+}
+
+[data-theme="dark"] .milestone-step-number {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .milestone-era-tag {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .milestone-year {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .milestone-date-chip {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="dark"] .milestone-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .milestone-format-chip {
+  background: rgba(232, 62, 134, 0.2);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .milestone-tracks-chip {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+[data-theme="dark"] .milestone-highlight-chip {
+  background: rgba(232, 62, 134, 0.12);
+  border-color: rgba(232, 62, 134, 0.28);
+}
+
+[data-theme="dark"] .milestone-highlight-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .milestone-highlight-name {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .milestone-desc {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+[data-theme="dark"] .timeline-jump-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(232, 62, 134, 0.3);
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .timeline-jump-btn:hover {
+  background: var(--gradient-twice);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* ========================================================
+   11. RESPONSIVE Y ACCESIBILIDAD
+   ======================================================== */
+@media (max-width: 1100px) {
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 720px) {
+  .timeline-filter-bar {
+    border-radius: 20px;
+    padding: 14px 16px;
+  }
+
+  .timeline-chips-wrap {
+    width: 100%;
+  }
+
+  .timeline-chip-btn {
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .timeline-results-count {
+    width: 100%;
+    text-align: center;
+  }
+
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .milestone-showcase {
+    gap: 12px;
+  }
+
+  .milestone-sleeve-stage {
+    width: 68px;
+    height: 68px;
+  }
+
+  .milestone-cover-art {
+    width: 68px;
+    height: 68px;
+  }
+
+  .milestone-vinyl-disc {
+    width: 60px;
+    height: 60px;
+  }
+
+  .milestone-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-card,
+  .timeline-item,
+  .timeline-chip-btn,
+  .scrubber-node-btn,
+  .milestone-cover-art,
+  .milestone-vinyl-disc {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .scrubber-pulse-indicator {
+    animation: none !important;
+  }
+
+  .timeline-card:hover .milestone-vinyl-disc {
+    transform: none !important;
+  }
+
+  .timeline-card:hover .milestone-sound-bars span {
+    animation: none !important;
+  }
 }

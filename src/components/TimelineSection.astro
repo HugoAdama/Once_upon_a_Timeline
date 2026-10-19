@@ -1,12 +1,22 @@
 ---
 import { TIMELINE_MILESTONES } from '../data/timeline';
 import { RELEASES } from '../data/releases';
-import { resolveAsset } from '../utils/streaming';
+import TimelineMilestoneCard from './TimelineMilestoneCard.astro';
+import TimelineScrubber from './TimelineScrubber.astro';
 
 const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
+
+// Conteo dinámico de hitos por categoría
+const counts = {
+  all: TIMELINE_MILESTONES.length,
+  origins: TIMELINE_MILESTONES.filter((m) => m.category === 'origins').length,
+  golden: TIMELINE_MILESTONES.filter((m) => m.category === 'golden').length,
+  expansion: TIMELINE_MILESTONES.filter((m) => m.category === 'expansion').length,
+  anniversary: TIMELINE_MILESTONES.filter((m) => m.category === 'anniversary').length,
+};
 ---
 
-<section class="section wrap" id="cronologia">
+<section class="section wrap timeline-section" id="cronologia">
   <div class="section-heading scroll-reveal">
     <div>
       <span class="eyebrow">04 · Cronología interactiva</span>
@@ -34,6 +44,7 @@ const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
           <line x1="3" y1="10" x2="21" y2="10"/>
         </svg>
         <span>Todos</span>
+        <span class="timeline-chip-count">{counts.all}</span>
       </button>
 
       <button
@@ -47,6 +58,7 @@ const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
           <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
         </svg>
         <span>Debut &amp; Orígenes (2015—2016)</span>
+        <span class="timeline-chip-count">{counts.origins}</span>
       </button>
 
       <button
@@ -61,6 +73,7 @@ const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
           <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
         </svg>
         <span>Era Dorada &amp; Éxitos (2017—2019)</span>
+        <span class="timeline-chip-count">{counts.golden}</span>
       </button>
 
       <button
@@ -76,6 +89,7 @@ const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
         <span>Giras &amp; Madurez (2020—2023)</span>
+        <span class="timeline-chip-count">{counts.expansion}</span>
       </button>
 
       <button
@@ -89,53 +103,29 @@ const releaseMap = new Map(RELEASES.map((r) => [r.id, r]));
           <polygon points="12 2 15 8.5 22 9.5 17 14.5 18.5 21.5 12 18 5.5 21.5 7 14.5 2 9.5 9 8.5 12 2"/>
         </svg>
         <span>10.° Aniversario (2024—2026)</span>
+        <span class="timeline-chip-count">{counts.anniversary}</span>
       </button>
     </div>
+
     <span id="timeline-results-count" class="timeline-results-count" aria-live="polite">
-      Mostrando {TIMELINE_MILESTONES.length} de {TIMELINE_MILESTONES.length} momentos
+      Mostrando {counts.all} de {counts.all} momentos
     </span>
   </div>
 
+  <!-- Riel Cronológico Interactivo de Navegación Rápida -->
+  <TimelineScrubber milestones={TIMELINE_MILESTONES} />
+
+  <!-- Cuadrícula Modular de Hitos Históricos -->
   <div class="timeline" role="feed" aria-label="Cronología de lanzamientos históricos de TWICE">
     {TIMELINE_MILESTONES.map((item, index) => {
       const stepNum = String(index + 1).padStart(2, '0');
       const release = releaseMap.get(item.releaseId);
-      const coverSrc = release ? resolveAsset(release.cover) : null;
       return (
-        <article class="timeline-item scroll-reveal" data-timeline-category={item.category || 'all'}>
-          <div class="timeline-item-header">
-            <div class="timeline-meta-wrap">
-              <span class="timeline-step-badge" aria-hidden="true">{stepNum}</span>
-              <div class="timeline-date-info">
-                <time datetime={item.year} class="timeline-year">{item.year}</time>
-                <span class="timeline-badge-pill">{item.badge}</span>
-              </div>
-            </div>
-            {coverSrc && (
-              <img
-                src={coverSrc}
-                alt={`Portada oficial de ${item.title}`}
-                class="timeline-cover-thumb"
-                width="44"
-                height="44"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
-          </div>
-
-          <h3 class="timeline-title">{item.title}</h3>
-          <p class="timeline-desc">{item.description}</p>
-
-          <a
-            class="timeline-jump-btn"
-            href={`#${item.releaseId}`}
-            aria-label={`Ver lanzamiento ${item.title} (${item.year}) y desplegar canciones`}
-          >
-            <span>Ver canciones y eras</span>
-            <span class="jump-arrow" aria-hidden="true">↘</span>
-          </a>
-        </article>
+        <TimelineMilestoneCard
+          milestone={item}
+          stepNum={stepNum}
+          release={release}
+        />
       );
     })}
   </div>

@@ -1,0 +1,134 @@
+---
+import type { TimelineMilestone, Release } from '../types';
+import { resolveAsset } from '../utils/streaming';
+
+interface Props {
+  milestone: TimelineMilestone;
+  stepNum: string;
+  release?: Release;
+}
+
+const { milestone, stepNum, release } = Astro.props;
+
+const coverSrc = release?.cover ? resolveAsset(release.cover) : null;
+const trackCount = release?.tracks?.length ?? 0;
+const formatLabel = release?.formatLabel ?? 'Lanzamiento oficial';
+
+// Formato de fecha editorial amigable (ej: "20 Oct, 2015")
+function formatMilestoneDate(dateStr: string): string {
+  if (!dateStr) return '';
+  const [y, m, d] = dateStr.split('-');
+  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+  const monthIdx = parseInt(m, 10) - 1;
+  return `${parseInt(d, 10)} ${months[monthIdx] || ''}, ${y}`;
+}
+
+const formattedDate = formatMilestoneDate(milestone.date);
+const category = milestone.category || 'all';
+---
+
+<article
+  class="timeline-card scroll-reveal"
+  id={`milestone-${milestone.releaseId}`}
+  data-timeline-category={category}
+  data-timeline-year={milestone.year}
+>
+  <!-- Barra de Encabezado del Hito con Nodo de Tiempo -->
+  <div class="milestone-node-header">
+    <div class="milestone-badge-group">
+      <span class="milestone-step-pill" aria-label={`Hito número ${stepNum}`}>
+        <span class="milestone-step-dot" aria-hidden="true"></span>
+        <span class="milestone-step-number">{stepNum}</span>
+      </span>
+      <span class="milestone-era-tag">{milestone.badge}</span>
+    </div>
+
+    <div class="milestone-timing">
+      <time datetime={milestone.year} class="milestone-year">{milestone.year}</time>
+      {formattedDate && (
+        <span class="milestone-date-chip">
+          <svg class="milestone-cal-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <span>{formattedDate}</span>
+        </span>
+      )}
+    </div>
+  </div>
+
+  <!-- Vitrina Audiófila: Portada de Álbum con Despliegue de Vinilo y Metadatos -->
+  <div class="milestone-showcase">
+    <div class="milestone-sleeve-stage" aria-hidden="true">
+      <div class="milestone-ambient-aura"></div>
+      
+      <!-- Vinilo que se desliza sutilmente en hover -->
+      <div class="milestone-vinyl-disc">
+        <div class="milestone-vinyl-label">
+          <span class="milestone-vinyl-hole"></span>
+        </div>
+      </div>
+
+      <!-- Carátula oficial del lanzamiento -->
+      {coverSrc ? (
+        <img
+          src={coverSrc}
+          alt={`Portada oficial del álbum ${milestone.title}`}
+          class="milestone-cover-art"
+          width="76"
+          height="76"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div class="milestone-cover-placeholder">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+      )}
+    </div>
+
+    <div class="milestone-heading-col">
+      <div class="milestone-meta-pills">
+        <span class="milestone-format-chip">{formatLabel}</span>
+        {trackCount > 0 && (
+          <span class="milestone-tracks-chip">{trackCount} temas</span>
+        )}
+      </div>
+      <h3 class="milestone-title">{milestone.title}</h3>
+    </div>
+  </div>
+
+  <!-- Himno o Pista Destacada de la Era -->
+  {milestone.highlightTrack && (
+    <div class="milestone-highlight-chip" title={`Canción representativa: ${milestone.highlightTrack}`}>
+      <div class="milestone-sound-bars" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <span class="milestone-highlight-label">Himno de la era:</span>
+      <strong class="milestone-highlight-name">{milestone.highlightTrack}</strong>
+    </div>
+  )}
+
+  <!-- Reseña Histórica del Hito -->
+  <p class="milestone-desc">{milestone.description}</p>
+
+  <!-- Botón de Sinergia Directa con la Discografía -->
+  <div class="milestone-footer">
+    <a
+      class="timeline-jump-btn"
+      href={`#${milestone.releaseId}`}
+      aria-label={`Ver lanzamiento ${milestone.title} (${milestone.year}) y desplegar canciones en la discografía`}
+    >
+      <span>Ver álbum y canciones</span>
+      <svg class="jump-arrow-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="7" y1="17" x2="17" y2="7"/>
+        <polyline points="7 7 17 7 17 17"/>
+      </svg>
+    </a>
+  </div>
+</article>
