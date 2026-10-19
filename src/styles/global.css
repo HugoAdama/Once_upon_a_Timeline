@@ -6,20 +6,18 @@
  * 2. base.css          -> Reseteo, configuración tipográfica global, utilidades .wrap, .section, .button.
  * 3. header.css        -> Cabecera fija, navegación, ecualizador decorativo y cajón para móviles.
  * 4. hero.css          -> Portada, métricas destacadas (stats strip) y arte del disco de vinilo interactivo.
- * 5. ticker.css        -> Marquesina infinita con máscaras de gradiente e insignias temáticas.
- * 6. members.css       -> Sistema de Photocards coleccionables, selector de eras y cajón biográfico.
- * 7. characters.css    -> Galerías de personajes (Lovelys y TDOONGZ), halos de color y tarjetas temáticas.
- * 8. discography.css   -> Barra de búsqueda, accesos a eras, paneles de mercados y tarjetas de streaming.
- * 9. timeline.css      -> Cronología histórica interactiva con nodos de pulso radar.
- * 10. closing-footer.css -> Sección de cierre con gradiente cósmico, pie de página y botón flotante FAB.
- * 11. animations.css   -> Animaciones scroll-driven, keyframes, responsive design y accesibilidad.
+ * 5. members.css       -> Sistema de Photocards coleccionables, selector de eras y cajón biográfico.
+ * 6. characters.css    -> Galerías de personajes (Lovelys y TDOONGZ), halos de color y tarjetas temáticas.
+ * 7. discography.css   -> Barra de búsqueda, accesos a eras, paneles de mercados y tarjetas de streaming.
+ * 8. timeline.css      -> Cronología histórica interactiva con nodos de pulso radar.
+ * 9. closing-footer.css -> Sección de cierre con gradiente cósmico, pie de página y botón flotante FAB.
+ * 10. animations.css   -> Animaciones scroll-driven, keyframes, responsive design y accesibilidad.
  */
 
 @import './tokens.css';
 @import './base.css';
 @import './header.css';
 @import './hero.css';
-@import './ticker.css';
 @import './members.css';
 @import './characters.css';
 @import './discography.css';

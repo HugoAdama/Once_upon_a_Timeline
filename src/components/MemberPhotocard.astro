@@ -1,0 +1,83 @@
+---
+import type { Member } from '../types';
+import { resolveAsset } from '../utils/streaming';
+
+interface Props {
+  member: Member;
+  photoSrc: string | null;
+}
+
+const { member, photoSrc } = Astro.props;
+---
+
+<div class="photocard-3d-wrap" data-photocard-wrap>
+  <figure class="member-photo-frame photocard-front" role="img" aria-label={`Retrato oficial de ${member.name}`}>
+    {photoSrc && (
+      <img
+        src={photoSrc}
+        alt={`Retrato oficial de ${member.name}`}
+        loading="lazy"
+        decoding="async"
+        width="540"
+        height="660"
+        class="member-actual-photo"
+        data-photo-current={resolveAsset(member.eras?.current || member.photo)}
+        data-photo-between={resolveAsset(member.eras?.between || member.photo)}
+        data-photo-classic={resolveAsset(member.eras?.classic || member.photo)}
+        onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='grid';"
+      />
+    )}
+    <span class="member-era-indicator" data-member-era-badge aria-label="Era de la fotografía">
+      Era Actual
+    </span>
+    <button
+      type="button"
+      class="photocard-flip-btn"
+      data-photocard-flip
+      aria-label={`Girar photocard de ${member.name}`}
+      title="Ver reverso coleccionable"
+    >
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+      </svg>
+      <span>Girar</span>
+    </button>
+    <div class="image-placeholder member-photo" style={photoSrc ? 'display: none;' : ''}>
+      <span class="placeholder-copy">
+        <b aria-hidden="true">＋</b>
+        <small>Retrato de {member.name}</small>
+      </span>
+    </div>
+    <!-- Brillo holográfico de colección -->
+    <span class="photocard-shimmer" aria-hidden="true"></span>
+  </figure>
+
+  <!-- Reverso coleccionable de la Photocard -->
+  <div class="photocard-back" aria-hidden="true">
+    <div class="photocard-back-inner">
+      <span class="photocard-back-tag">TWICE 10TH ANNIVERSARY</span>
+      <div class="photocard-back-seal">
+        <span class="back-number">{member.number}</span>
+        <span class="back-hangul">{member.hangul}</span>
+      </div>
+      <div class="photocard-back-signature">
+        <strong class="signature-name">{member.name}</strong>
+        <small class="signature-role">{member.role}</small>
+      </div>
+      <p class="photocard-back-quote">
+        "{member.lovely.name} &amp; {member.tdoongz.name} con ONCE para siempre"
+      </p>
+      <div class="photocard-back-footer">
+        <span class="collector-code">COLLECTOR CARD · NO. {member.number}</span>
+        <button
+          type="button"
+          class="photocard-flip-btn return-btn"
+          data-photocard-flip-back
+          aria-label="Volver al frente"
+        >
+          <span>Volver</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

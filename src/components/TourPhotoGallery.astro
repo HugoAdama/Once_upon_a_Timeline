@@ -1,0 +1,99 @@
+---
+interface SlideItem {
+  url: string;
+  caption: string;
+  location: string;
+}
+
+interface Props {
+  tourId: string;
+  years: string;
+  slidesData: SlideItem[];
+}
+
+const { tourId, years, slidesData } = Astro.props;
+const initialSlide = slidesData[0] || { url: '', caption: '', location: '' };
+---
+
+<div
+  class="tour-gallery-viewport"
+  data-tour-gallery
+  data-tour-id={tourId}
+  data-slides={JSON.stringify(slidesData)}
+>
+  <div class="tour-image-frame">
+    <img
+      src={initialSlide.url}
+      alt={initialSlide.caption}
+      class="tour-hero-img"
+      loading="lazy"
+    />
+    <div class="tour-hero-scrim" aria-hidden="true"></div>
+
+    <!-- Insignias Superiores -->
+    <div class="tour-hero-badge-strip">
+      <span class="tour-hero-years">{years}</span>
+      <div class="tour-auto-pill">
+        <div class="tour-pulse-beacon-wrap" aria-hidden="true">
+          <span class="tour-pulse-core"></span>
+          <span class="tour-pulse-wave"></span>
+        </div>
+        <span class="tour-auto-label">CAMBIO CADA 30S</span>
+      </div>
+    </div>
+
+    <!-- Controles de Flechas Diapositiva -->
+    <button
+      type="button"
+      class="tour-slide-arrow prev"
+      aria-label="Foto anterior"
+      data-slide-prev
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="tour-slide-arrow next"
+      aria-label="Siguiente foto"
+      data-slide-next
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+
+    <!-- Pie de Foto y Ubicación Dinámica -->
+    <div class="tour-hero-caption-card">
+      <div class="tour-caption-location">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span class="tour-location-text">{initialSlide.location}</span>
+      </div>
+      <div class="tour-caption-text">{initialSlide.caption}</div>
+    </div>
+
+    <!-- Barra de Progreso de 30 Segundos -->
+    <div class="tour-timer-track" aria-hidden="true">
+      <div class="tour-timer-fill"></div>
+    </div>
+  </div>
+
+  <!-- Indicadores de Puntos Inferiores -->
+  <div class="tour-slide-dots" role="tablist" aria-label="Selector de fotografías de concierto">
+    {slidesData.map((_, i) => (
+      <button
+        type="button"
+        class={`tour-slide-dot ${i === 0 ? 'active' : ''}`}
+        data-dot-index={i}
+        role="tab"
+        aria-label={`Ver fotografía ${i + 1} de ${slidesData.length}`}
+        aria-selected={i === 0 ? 'true' : 'false'}
+      >
+      </button>
+    ))}
+  </div>
+</div>

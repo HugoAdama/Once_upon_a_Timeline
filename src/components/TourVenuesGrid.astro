@@ -1,0 +1,40 @@
+---
+import type { TourVenue } from '../types';
+
+interface Props {
+  venues: TourVenue[];
+}
+
+const { venues } = Astro.props;
+const venuesCount = venues.length;
+---
+
+<div class="tour-venues-section">
+  <div class="tour-venues-header-row">
+    <h4 class="tour-venues-title">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span>Estadios y Sedes Históricas</span>
+    </h4>
+    <span class="tour-venues-count-badge">{venuesCount} Recintos Emblemáticos</span>
+  </div>
+
+  <div class={`tour-venues-grid venues-count-${venuesCount}`}>
+    {venues.map((venue, vIdx) => (
+      <div class="venue-card" style={`--venue-idx: ${vIdx};`}>
+        <div class="venue-location">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+            <path d="M2 12h20"/>
+          </svg>
+          <span>{venue.city}, {venue.country}</span>
+        </div>
+        <div class="venue-name">{venue.name}</div>
+        <p class="venue-highlight">{venue.highlight}</p>
+      </div>
+    ))}
+  </div>
+</div>

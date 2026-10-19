@@ -1,0 +1,100 @@
+---
+interface Props {
+  logoSrc: string;
+}
+
+const { logoSrc } = Astro.props;
+---
+
+<div class="hero-showcase" role="img" aria-label="Vitrina de coleccionista con disco de vinilo y constelación de las 9 integrantes de TWICE">
+  <div class="showcase-glass-card">
+    <!-- Barra Superior de la Vitrina -->
+    <div class="showcase-header">
+      <div class="showcase-live-pill">
+        <div class="sound-bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="live-text">ARCHIVE NO. 10</span>
+      </div>
+      <span class="showcase-region-pill">KOREA · JAPAN · GLOBAL</span>
+    </div>
+
+    <!-- Escenario Central del Vinilo con Órbita Cósmica -->
+    <div class="showcase-stage">
+      <div class="stage-ambient-aura" aria-hidden="true"></div>
+
+      <!-- Anillos concéntricos sutiles -->
+      <div class="stage-orbit-ring inner" aria-hidden="true"></div>
+      <div class="stage-orbit-ring outer" aria-hidden="true"></div>
+
+      <!-- Constelación orbital con los 9 colores y tooltips interactivos -->
+      <div class="stage-constellation" aria-hidden="true">
+        <div class="constellation-node" style="--c: #5bc2e7; --angle: 0deg;" data-member="Nayeon · Sky Blue">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #a9d535; --angle: 40deg;" data-member="Jeongyeon · Lime Green">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #ff6ea7; --angle: 80deg;" data-member="Momo · Pink">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #9e7bb5; --angle: 120deg;" data-member="Sana · Purple">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #f4a27e; --angle: 160deg;" data-member="Jihyo · Apricot">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #75c9be; --angle: 200deg;" data-member="Mina · Mint">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #ffffff; --angle: 240deg;" data-member="Dahyun · White">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #e02438; --angle: 280deg;" data-member="Chaeyoung · Red">
+          <span class="node-dot"></span>
+        </div>
+        <div class="constellation-node" style="--c: #005bac; --angle: 320deg;" data-member="Tzuyu · Navy Blue">
+          <span class="node-dot"></span>
+        </div>
+      </div>
+
+      <!-- Vinilo Deluxe Coleccionista -->
+      <div class="deluxe-vinyl" aria-hidden="true">
+        <div class="vinyl-sheen-filter"></div>
+        <div class="vinyl-groove-layers"></div>
+        <div class="vinyl-core-label">
+          <span class="vinyl-hole"></span>
+          <img src={logoSrc} alt="" class="vinyl-logo-asset" width="56" height="60" />
+          <div class="vinyl-label-stamp">33 ⅓ RPM · TWICE</div>
+        </div>
+      </div>
+
+      <!-- Insignias flotantes de universo de personajes -->
+      <div class="stage-tag-badge tag-left" title="9 Lovelys Guardianes">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span>9 LOVELYS</span>
+      </div>
+
+      <div class="stage-tag-badge tag-right" title="Universo TDOONGZ">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+        </svg>
+        <span>TDOONGZ</span>
+      </div>
+    </div>
+
+    <!-- Pie de la Vitrina: Caption Editorial -->
+    <div class="showcase-footer">
+      <div class="footer-meta-block">
+        <span class="footer-subhead">THE SOUNDTRACK OF A DECADE</span>
+        <span class="footer-main-quote">9 Voices · 10 Years of History</span>
+      </div>
+      <div class="footer-edition-tag">
+        <span class="edition-line"></span>
+        <span class="edition-title">EDICIÓN COLECCIONISTA</span>
+      </div>
+    </div>
+  </div>
+</div>

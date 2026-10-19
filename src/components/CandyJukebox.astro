@@ -3,50 +3,17 @@
  * Candy Jukebox — ONCE Interactive Mini Player
  * Mini reproductor de sintetizador web con visualizador de espectro para TWICE
  */
+import { resolveAsset } from '../utils/streaming';
+import CandyJukeboxLauncher from './CandyJukeboxLauncher.astro';
+import CandyJukeboxPlaylist from './CandyJukeboxPlaylist.astro';
+import CandyJukeboxControls from './CandyJukeboxControls.astro';
+
+const initialCoverSrc = resolveAsset('/assets/covers/feel-special.webp') || '/assets/covers/feel-special.webp';
 ---
 
 <div id="candy-jukebox" class="candy-jukebox-container" aria-label="Reproductor Candy Jukebox">
   <!-- Launcher Button -->
-  <button
-    id="jukebox-toggle"
-    class="jukebox-toggle-btn"
-    type="button"
-    aria-expanded="false"
-    aria-controls="jukebox-card"
-    title="Abrir Candy Jukebox"
-  >
-    <span id="jukebox-icon-badge" class="jukebox-icon-badge">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="10"/>
-        <circle cx="12" cy="12" r="3"/>
-      </svg>
-    </span>
-    <span class="jukebox-label">
-      <span class="jukebox-label-tag">ONCE Radio</span>
-      <span id="jukebox-status" class="jukebox-label-status">Candy Jukebox</span>
-    </span>
-    <span class="jukebox-mini-eq" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </span>
-    <span
-      id="jukebox-mini-play-btn"
-      class="jukebox-mini-play-btn"
-      role="button"
-      tabindex="0"
-      aria-label="Reproducir o pausar clip de audio"
-      title="Reproducir / Pausar clip"
-    >
-      <svg id="mini-play-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <polygon points="5 3 19 12 5 21 5 3"/>
-      </svg>
-      <svg id="mini-pause-svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display: none;">
-        <rect x="6" y="4" width="4" height="16"/>
-        <rect x="14" y="4" width="4" height="16"/>
-      </svg>
-    </span>
-  </button>
+  <CandyJukeboxLauncher />
 
   <!-- Expanded Card Player -->
   <div id="jukebox-card" class="jukebox-card" role="region" aria-label="Controles de audio Candy Jukebox">
@@ -81,7 +48,7 @@
         <div id="jukebox-art-cover" class="jukebox-art-cover" aria-hidden="true">
           <img
             id="jukebox-art-img"
-            src="/Once_upon_a_Timeline/assets/covers/feel-special.webp"
+            src={initialCoverSrc}
             alt="Portada oficial del tema en reproducción"
             class="jukebox-art-img"
             width="56"
@@ -123,86 +90,13 @@
     </div>
 
     <!-- Playlist Track Selector (2-Column Grid) -->
-    <div class="jukebox-playlist-wrap">
-      <div class="jukebox-playlist-header">
-        <span class="jukebox-playlist-title">Canciones disponibles</span>
-      </div>
-      <div class="jukebox-playlist" role="tablist" aria-label="Lista de canciones oficiales">
-        <button class="jukebox-track-pill active" type="button" data-track-index="0">
-          <span class="pill-num">01</span>
-          <span class="pill-name">Feel Special</span>
-        </button>
-        <button class="jukebox-track-pill" type="button" data-track-index="1">
-          <span class="pill-num">02</span>
-          <span class="pill-name">What is Love?</span>
-        </button>
-        <button class="jukebox-track-pill" type="button" data-track-index="2">
-          <span class="pill-num">03</span>
-          <span class="pill-name">FANCY</span>
-        </button>
-        <button class="jukebox-track-pill" type="button" data-track-index="3">
-          <span class="pill-num">04</span>
-          <span class="pill-name">The Feels</span>
-        </button>
-        <button class="jukebox-track-pill" type="button" data-track-index="4">
-          <span class="pill-num">05</span>
-          <span class="pill-name">ONE SPARK</span>
-        </button>
-        <button class="jukebox-track-pill" type="button" data-track-index="5">
-          <span class="pill-num">06</span>
-          <span class="pill-name">I CAN'T STOP ME</span>
-        </button>
-      </div>
-    </div>
+    <CandyJukeboxPlaylist />
 
     <!-- Elemento de audio nativo para pistas oficiales reales -->
     <audio id="jukebox-audio-element" preload="none" style="display:none;"></audio>
 
     <!-- Controls -->
-    <div class="jukebox-controls">
-      <div class="jukebox-playback-btns">
-        <button id="jukebox-prev" class="jukebox-ctrl-btn" type="button" aria-label="Pista anterior" title="Pista anterior">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="19 20 9 12 19 4 19 20"/>
-            <line x1="5" y1="19" x2="5" y2="5"/>
-          </svg>
-        </button>
-
-        <button id="jukebox-play-pause" class="jukebox-play-pause-btn" type="button" aria-label="Reproducir o pausar" title="Reproducir / Pausar">
-          <svg id="jukebox-play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          <svg id="jukebox-pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none;" aria-hidden="true">
-            <rect x="6" y="4" width="4" height="16"/>
-            <rect x="14" y="4" width="4" height="16"/>
-          </svg>
-        </button>
-
-        <button id="jukebox-next" class="jukebox-ctrl-btn" type="button" aria-label="Siguiente pista" title="Siguiente pista">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polygon points="5 4 15 12 5 20 5 4"/>
-            <line x1="19" y1="5" x2="19" y2="19"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="jukebox-volume-wrap">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
-        </svg>
-        <input
-          id="jukebox-volume"
-          class="jukebox-volume-slider"
-          type="range"
-          min="0"
-          max="1"
-          step="0.05"
-          value="0.45"
-          aria-label="Volumen del reproductor"
-        />
-      </div>
-    </div>
+    <CandyJukeboxControls />
   </div>
 </div>
 

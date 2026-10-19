@@ -4,6 +4,8 @@
  * barra de progreso interactiva con seek y visualizador estético.
  */
 
+import { resolveAsset } from '../utils/streaming';
+
 interface Track {
   id: string;
   title: string;
@@ -19,7 +21,7 @@ const PLAYLIST: Track[] = [
     title: 'Feel Special',
     era: 'Feel Special (2019)',
     bpm: 128,
-    cover: '/Once_upon_a_Timeline/assets/covers/feel-special.webp',
+    cover: resolveAsset('/assets/covers/feel-special.webp') || '/assets/covers/feel-special.webp',
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8f/14/4d/8f144d3e-2064-debe-445f-f7d62714beaa/mzaf_1892723014686349236.plus.aac.p.m4a',
   },
   {
@@ -27,7 +29,7 @@ const PLAYLIST: Track[] = [
     title: 'What is Love?',
     era: 'What is Love? (2018)',
     bpm: 125,
-    cover: '/Once_upon_a_Timeline/assets/covers/what-is-love.webp',
+    cover: resolveAsset('/assets/covers/what-is-love.webp') || '/assets/covers/what-is-love.webp',
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/11/29/e2/1129e2b9-2d59-c3bf-9242-982aa012cb95/mzaf_2107069738025586373.plus.aac.p.m4a',
   },
   {
@@ -35,7 +37,7 @@ const PLAYLIST: Track[] = [
     title: 'FANCY',
     era: 'FANCY YOU (2019)',
     bpm: 130,
-    cover: '/Once_upon_a_Timeline/assets/covers/fancy-you.webp',
+    cover: resolveAsset('/assets/covers/fancy-you.webp') || '/assets/covers/fancy-you.webp',
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e4/f5/f7/e4f5f7d3-ffff-70e6-69a5-eb8e9263327d/mzaf_3167851399749861261.plus.aac.p.m4a',
   },
   {
@@ -43,7 +45,7 @@ const PLAYLIST: Track[] = [
     title: 'The Feels',
     era: 'The Feels (2021)',
     bpm: 120,
-    cover: '/Once_upon_a_Timeline/assets/covers/the-feels.webp',
+    cover: resolveAsset('/assets/covers/the-feels.webp') || '/assets/covers/the-feels.webp',
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/16/09/06/16090679-d33d-14e3-2d1f-338f459b8eec/mzaf_9506922916768796625.plus.aac.p.m4a',
   },
   {
@@ -51,7 +53,7 @@ const PLAYLIST: Track[] = [
     title: 'ONE SPARK',
     era: 'With YOU-th (2024)',
     bpm: 126,
-    cover: '/Once_upon_a_Timeline/assets/covers/with-you-th.webp',
+    cover: resolveAsset('/assets/covers/with-you-th.webp') || '/assets/covers/with-you-th.webp',
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a9/a0/50/a9a05036-f5de-f9d9-c48e-0ce3ec601474/mzaf_9312888476283040924.plus.aac.p.m4a',
   },
   {
@@ -59,7 +61,7 @@ const PLAYLIST: Track[] = [
     title: "I CAN'T STOP ME",
     era: 'Eyes wide open (2020)',
     bpm: 150,
-    cover: '/Once_upon_a_Timeline/assets/covers/eyes-wide-open.webp',
+    cover: resolveAsset('/assets/covers/eyes-wide-open.webp') || '/assets/covers/eyes-wide-open.webp',
     audioUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/70/66/62/706662b3-3825-4397-82d7-bfd445ac4410/mzaf_10084979905200977324.plus.aac.p.m4a',
   },
 ];
