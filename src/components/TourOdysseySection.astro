@@ -21,9 +21,6 @@ import TourRouteMap from './TourRouteMap.astro';
     </p>
   </div>
 
-  <!-- Radar de Rutas Mundiales y Balizas de Estadios -->
-  <TourRouteMap />
-
   <!-- Navegación de Giras en Glass Bento -->
   <div class="tour-selector-nav scroll-reveal" role="tablist" aria-label="Seleccionar gira mundial">
     {WORLD_TOURS.map((tour, index) => (
@@ -46,6 +43,9 @@ import TourRouteMap from './TourRouteMap.astro';
       <TourCard tour={tour} isFirst={index === 0} />
     ))}
   </div>
+
+  <!-- Radar de Rutas Mundiales y Balizas de Estadios -->
+  <TourRouteMap />
 </section>
 
 <script>
