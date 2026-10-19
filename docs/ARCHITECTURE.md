@@ -6,9 +6,14 @@ Este documento detalla la estructura técnica, los principios de diseño de soft
 
 ## 1. Principios de Arquitectura
 
-El proyecto está diseñado bajo dos pilares clave:
+El proyecto está diseñado bajo estrictos principios de ingeniería de software:
 1. **Separación de Responsabilidades (Separation of Concerns - SoC)**: Cada capa (datos, vistas, lógica reactiva del cliente, estilos y utilidades) está claramente desacoplada en carpetas y módulos especializados.
-2. **Componentes Atómicos y Reutilizables (Single Responsibility Principle - SRP)**: Los componentes visuales realizan una única tarea de presentación y delegan sub-secciones a componentes hijos dedicados en lugar de crear monolitos.
+2. **Componentes Atómicos y Reutilizables (Single Responsibility Principle - SRP)**:
+   - **Regla estricta de $< 150$ líneas**: Ningún componente `.astro` en `src/components/`, `src/pages/` o `src/layouts/` supera las 150 líneas de código.
+   - Los componentes complejos se descomponen en subcomponentes atómicos dedicados (e.g. `MemberPhotocard`, `MemberDrawer`, `TourPhotoGallery`, `TourVenuesGrid`, `CandyJukeboxLauncher`, etc.).
+   - Cero lógica de cliente embebida en bloques `<script>` masivos dentro de `.astro`. Toda la lógica DOM y reactiva reside en módulos TypeScript en `src/scripts/`.
+3. **Cero Emojis**: Iconografía 100% limpia mediante vectores SVG inline accesibles.
+4. **Compatibilidad con GitHub Pages**: Todas las rutas estáticas se resuelven mediante `resolveAsset()` desde `src/utils/streaming.ts`.
 
 ---
 
@@ -18,133 +23,131 @@ El proyecto está diseñado bajo dos pilares clave:
 Once_upon_a_Timeline/
 ├── .agents/
 │   └── skills/              # Skills de diseño UX/UI y modern web design
+├── docs/                    # Documentación técnica y guías del sistema
+│   ├── ARCHITECTURE.md      # Principios SoC/SRP, árbol y flujo de datos
+│   ├── COMPONENTS.md        # Catálogo y APIs de componentes Astro
+│   ├── CONTRIBUTING.md      # Guía para desarrolladores y estándares
+│   ├── DATA_AND_ASSETS.md   # Modelos TypeScript y gestión de assets
+│   └── DESIGN_SYSTEM.md     # Tokens, paleta oficial, curvas de animación y accesibilidad
 ├── public/
 │   ├── assets/
 │   │   ├── characters/      # Ilustraciones oficiales de Lovelys y TDOONGZ (.webp)
-│   │   ├── covers/          # Portadas oficiales cuadradas de álbumes y sencillos (.webp)
+│   │   ├── covers/          # Portadas oficiales cuadradas de lanzamientos (.webp)
 │   │   ├── members/         # Retratos oficiales por era (current, between, classic)
+│   │   ├── tours/           # Fotografía de conciertos y logotipos oficiales de giras
 │   │   └── twice-logo.svg   # Emblema vectorial oficial de TWICE
 │   ├── favicon.ico
-│   └── favicon.svg          # Favicon oficial vectorial de TWICE
-├── scripts/
-│   ├── scrapers/            # Utilidades de descarga, scraping y normalización de assets
-│   └── README.md            # Guía técnica de scripts auxiliares
+│   ├── favicon.svg          # Favicon oficial vectorial de TWICE
+│   ├── manifest.webmanifest # Manifiesto de Progressive Web App (PWA)
+│   └── sw.js                # Service Worker para caché y soporte offline
 ├── src/
-│   ├── components/          # Componentes Astro de presentación
-│   │   ├── ArchiveHubSection.astro      # Portales de navegación principal hacia capítulos
-│   │   ├── CharacterTile.astro          # Ficha atómica individual para personajes
-│   │   ├── CharactersSection.astro      # Orquestador del escaparate de Lovelys y TDOONGZ
-│   │   ├── ClosingSection.astro         # Banner de cierre con gradiente y llamadas a la acción
-│   │   ├── DiscographyFilterBar.astro   # UI del buscador, accesos a eras y filtros
-│   │   ├── DiscographySection.astro     # Orquestador conciso de la discografía (~60 líneas)
-│   │   ├── FanZoneSection.astro         # Sección comunitaria ONCE (Quiz & Customizer)
-│   │   ├── FashionCard.astro            # Tarjeta de concepto y estilismo escénico
-│   │   ├── FashionSection.astro         # Orquestador de Stage Wardrobe Archive
-│   │   ├── Footer.astro                 # Pie de página estructurado y créditos
-│   │   ├── HallOfFameSection.astro      # Vitrina de récords y salón de trofeos
-│   │   ├── Header.astro                 # Barra superior fija y navegación móvil
-│   │   ├── Hero.astro                   # Portada interactiva, estadísticas y vinilo
-│   │   ├── MarketPanel.astro            # Acordeón de mercado (Corea, Japón, Global)
-│   │   ├── MemberCard.astro             # Photocard coleccionable de integrante
-│   │   ├── MembersSection.astro         # Orquestador de la cuadrícula de miembros
-│   │   ├── MvCard.astro                 # Tarjeta de video musical con paleta cromática
-│   │   ├── MvVaultSection.astro         # Galería cinematográfica de MVs y modal
-│   │   ├── PhotocardStudio.astro        # Estudio interactivo de diseño de photocards
-│   │   ├── QuizCard.astro               # Cuestionario interactivo de afinidad
-│   │   ├── ReleaseItem.astro            # Ficha de álbum estilo streaming con tracklist
-│   │   ├── ScrollToTop.astro            # Botón flotante FAB para volver arriba
-│   │   ├── Ticker.astro                 # Marquesina continua infinita
-│   │   ├── TimelineSection.astro        # Cronología interactiva con hitos y saltos
-│   │   ├── TourCard.astro               # Ficha de gira con estadios y setlist
-│   │   └── TourOdysseySection.astro     # Navegación y vitrina de giras mundiales
-│   ├── data/                # Fuentes de verdad estáticas fuertemente tipadas
-│   │   ├── characters.ts    # Datos de Lovelys y TDOONGZ
-│   │   ├── fan-zone.ts      # Preguntas y opciones del test de afinidad
+│   ├── components/          # Componentes Astro de presentación (todos < 150 líneas)
+│   │   ├── ArchiveHubSection.astro        # Portales de navegación principal hacia capítulos
+│   │   ├── CandyJukebox.astro             # Orquestador del mini reproductor de audio
+│   │   ├── CandyJukeboxControls.astro     # Controles, barra de progreso y volumen
+│   │   ├── CandyJukeboxLauncher.astro     # Botón flotante FAB con badge giratorio
+│   │   ├── CandyJukeboxPlaylist.astro     # Lista de canciones con indicador en vivo
+│   │   ├── CharacterTile.astro            # Ficha atómica individual para personajes
+│   │   ├── CharactersSection.astro        # Orquestador del escaparate de Lovelys y TDOONGZ
+│   │   ├── ClosingSection.astro           # Banner de cierre con gradiente cósmico
+│   │   ├── DiscographyFilterBar.astro     # Buscador de discografía y barra de herramientas
+│   │   ├── DiscographyKillingParts.astro  # Chips de frases y Killing Parts icónicas
+│   │   ├── DiscographyQuickEras.astro     # Accesos directos a eras populares
+│   │   ├── DiscographySection.astro       # Orquestador conciso de la discografía
+│   │   ├── DiscographyViewControls.astro  # Conmutador de vistas Cuadrícula / Lista
+│   │   ├── FanZoneSection.astro           # Sección comunitaria ONCE (Quiz & Studio)
+│   │   ├── FashionCard.astro              # Tarjeta de concepto y estilismo escénico
+│   │   ├── FashionSection.astro           # Orquestador de Stage Wardrobe Archive
+│   │   ├── Footer.astro                   # Pie de página estructurado y créditos
+│   │   ├── HallOfFameSection.astro        # Vitrina de récords y salón de trofeos
+│   │   ├── Header.astro                   # Barra superior fija y navegación móvil
+│   │   ├── Hero.astro                     # Portada editorial y métricas destacadas
+│   │   ├── HeroVinylShowcase.astro        # Vitrina interactiva de vinilo con 9 auras
+│   │   ├── MarketPanel.astro              # Acordeón de mercado (Corea, Japón, Global)
+│   │   ├── MemberCard.astro               # Orquestador de photocard coleccionable
+│   │   ├── MemberDrawer.astro             # Cajón biográfico expandible
+│   │   ├── MemberPhotocard.astro          # Cara 3D con inclinación reactiva al cursor
+│   │   ├── MembersSection.astro           # Orquestador de la cuadrícula de miembros
+│   │   ├── MvCard.astro                   # Tarjeta de video musical con paleta cromática
+│   │   ├── MvVaultSection.astro           # Galería cinematográfica de MVs y modal
+│   │   ├── PhotocardDecoBar.astro         # Barra de herramientas Polco Deco y acabados holo
+│   │   ├── PhotocardStudio.astro          # Estudio interactivo de diseño de photocards
+│   │   ├── QuizCard.astro                 # Cuestionario interactivo de afinidad
+│   │   ├── ReleaseItem.astro              # Ficha de álbum estilo streaming con tracklist
+│   │   ├── ScrollToTop.astro              # Botón flotante FAB para volver arriba
+│   │   ├── TimelineMilestoneCard.astro    # Tarjeta de hito histórico con vinilo deslizante
+│   │   ├── TimelineScrubber.astro         # Riel cronológico 2015-2026 con nodos de año
+│   │   ├── TimelineSection.astro          # Orquestador de la cronología interactiva
+│   │   ├── TourCard.astro                 # Ficha Bento de gira con estadios y setlist
+│   │   ├── TourOdysseySection.astro       # Navegación y vitrina de giras mundiales
+│   │   ├── TourPhotoGallery.astro         # Galería de conciertos con rotación cada 30s
+│   │   ├── TourRouteMap.astro             # Radar de rutas mundiales y balizas de estadios
+│   │   ├── TourVenuesGrid.astro           # Cuadrícula de estadios y recintos históricos
+│   │   └── VirtualCandybong.astro         # Widget interactivo del lightstick Candybong Z
+│   ├── data/                  # Fuentes de verdad estáticas fuertemente tipadas
+│   │   ├── characters.ts      # Datos de Lovelys y TDOONGZ
+│   │   ├── fan-zone.ts        # Preguntas y opciones del test de afinidad
 │   │   ├── fashion-archive.ts # Conceptos de vestuario y siluetas escénicas
-│   │   ├── hall-of-fame.ts  # Récords históricos, Daesangs y ventas
-│   │   ├── members.ts       # Datos de las 9 integrantes (bios, colores, eras)
-│   │   ├── music-videos.ts  # Videografía oficial completa con directores y paletas
-│   │   ├── releases.ts      # Catálogo exhaustivo de lanzamientos (Corea, Japón, Global)
-│   │   ├── timeline.ts      # Hitos históricos y conexiones a lanzamientos
-│   │   └── world-tours.ts   # Giras mundiales, estadios y setlists
+│   │   ├── hall-of-fame.ts    # Récords históricos, Daesangs y ventas
+│   │   ├── killing-parts.ts   # Frases legendarias, integrantes y consultas de búsqueda
+│   │   ├── members.ts         # Datos de las 9 integrantes (bios, colores, eras)
+│   │   ├── music-videos.ts    # Videografía oficial completa con directores y paletas
+│   │   ├── releases.ts        # Catálogo exhaustivo de lanzamientos (Corea, Japón, Global)
+│   │   ├── timeline.ts        # Hitos históricos y conexiones a lanzamientos
+│   │   └── world-tours.ts     # Giras mundiales, estadios y setlists
 │   ├── layouts/
-│   │   └── Layout.astro     # Esqueleto HTML5, metadatos SEO y Open Graph
-│   ├── pages/               # Arquitectura multi-página para navegación fluida
-│   │   ├── index.astro      # Inicio: Hero, Integrantes 3D, Personajes y Portales
-│   │   ├── musica.astro     # Discografía completa, Cronología de Eras y Cinema MV Vault
-│   │   ├── giras.astro      # World Tour Odyssey y Salón de la Fama de Récords
-│   │   ├── fan-zone.astro   # Test de Afinidad conectado en vivo con Photocard Studio
-│   │   └── moda.astro       # Stage Wardrobe Archive con galería de alta resolución
-│   ├── scripts/             # Lógica cliente TypeScript desacoplada
+│   │   └── Layout.astro       # Esqueleto HTML5, metadatos SEO, PWA y barra de scroll
+│   ├── pages/                 # Arquitectura multi-página para navegación fluida
+│   │   ├── index.astro        # Inicio: Hero, Integrantes 3D, Personajes y Portales
+│   │   ├── musica.astro       # Discografía, Killing Parts, Cronología y Cinema MV Vault
+│   │   ├── giras.astro        # World Tour Odyssey, Mapa de Rutas y Salón de la Fama
+│   │   ├── fan-zone.astro     # Test de Afinidad conectado con Photocard Studio & Polco Deco
+│   │   └── moda.astro         # Stage Wardrobe Archive con galería de alta resolución
+│   ├── scripts/               # Lógica cliente TypeScript desacoplada
 │   │   ├── candy-jukebox.ts         # Mini reproductor de audio y visualizador canvas
-│   │   ├── candybong-sync.ts        # Sincronización cromática de lightstick
+│   │   ├── candybong-sync.ts        # Sincronización cromática de lightstick y bias
 │   │   ├── characters-filter.ts     # Filtro por universo de personajes
-│   │   ├── discography-explorer.ts  # Búsqueda reactiva, filtros, atajo '/' y hash jump
-│   │   ├── fan-zone.ts              # Motor del quiz, sincronización de afinidad y exportación Canvas a PNG
+│   │   ├── discography-explorer.ts  # Búsqueda reactiva, killing parts, filtros y vista
+│   │   ├── fan-zone.ts              # Motor del quiz y sincronización con el estudio
+│   │   ├── fashion-gallery.ts       # Filtros y zoom de Stage Wardrobe Archive
 │   │   ├── member-era-filter.ts     # Rotación 30s con giro 3D e inclinación al cursor
 │   │   ├── mv-vault.ts              # Filtro de videografía y reproductor modal
-│   │   ├── navigation.ts            # Menú móvil desplegable y enrutador multi-página activo
-│   │   ├── scroll-reveal.ts         # Animaciones al entrar en viewport
+│   │   ├── navigation.ts            # Menú móvil desplegable y botón volver arriba
+│   │   ├── photocard-deco.ts        # Polco Deco: stickers, acabados holo y render Canvas HD
+│   │   ├── scroll-reveal.ts         # Animaciones al entrar en viewport y barra de scroll
 │   │   ├── theme-toggle.ts          # Conmutador de modo claro / modo concierto
-│   │   ├── timeline-filter.ts       # Filtro por era cronológica
-│   │   └── tour-map.ts              # Selector interactivo de giras mundiales
-│   ├── styles/              # Sistema de estilos modular (CSS Vanilla)
-│   │   ├── animations.css   # Keyframes, animaciones scroll-driven y media queries
-│   │   ├── archive-hub.css  # Tarjetas y portales de navegación del archivo principal
-│   │   ├── base.css         # Reseteo CSS, tipografía base y utilidades .wrap, .button
-│   │   ├── characters.css   # Estilos para personajes y mascotas
-│   │   ├── closing-footer.css # Estilos de cierre, pie de página y botón flotante
-│   │   ├── discography.css  # Estilos para el explorador y tarjetas de streaming
-│   │   ├── fan-zone.css     # Estilos para quiz y estudio de photocard
-│   │   ├── fashion.css      # Estilos para archivo de moda y vestuarios
-│   │   ├── global.css       # Manifiesto maestro que importa los módulos en cascada
-│   │   ├── hall-of-fame.css # Estilos para salón de trofeos y récords
-│   │   ├── header.css       # Cabecera, barra de navegación y drawer móvil
-│   │   ├── hero.css         # Portada, disco de vinilo y órbitas
-│   │   ├── jukebox.css      # Mini reproductor de audio flotante
-│   │   ├── members.css      # Photocards, efecto shimmer y cajón biográfico
-│   │   ├── mv-vault.css     # Estilos para videografía y modal cinemático
-│   │   ├── ticker.css       # Marquesina continua con máscaras de gradiente
-│   │   ├── timeline.css     # Línea de tiempo y nodos de pulso radar
-│   │   ├── tokens.css       # Tokens de diseño: colores oficiales, fuentes, sombras
-│   │   └── tours.css        # Estilos para giras mundiales y estadios
-│   ├── types/
-│   │   └── index.ts         # Definiciones TypeScript de modelos del dominio
-│   └── utils/               # Funciones auxiliares puras
-│       ├── releases.ts      # Agrupación por año, extracción de filtros
-│       ├── streaming.ts     # Generación de URLs de Spotify y YouTube Music
-│       └── text.ts          # Normalización de acentos y búsqueda insensible
-├── docs/                    # Documentación exhaustiva del proyecto
-│   ├── ARCHITECTURE.md
-│   ├── COMPONENTS.md
-│   ├── DESIGN_SYSTEM.md
-│   ├── DATA_AND_ASSETS.md
-│   └── CONTRIBUTING.md
-├── AGENTS.md                # Reglas y directivas de desarrollo para agentes AI
-└── README.md                # Guía principal del proyecto
+│   │   ├── timeline-filter.ts       # Filtro por era cronológica y salto a discografía
+│   │   ├── tour-map.ts              # Controlador interactivo de balizas y vuelos
+│   │   ├── tour-odyssey.ts          # Controlador de galería fotográfica con rotación 30s
+│   │   └── virtual-candybong.ts     # Modos de luz, vibración y efecto Cheer de Candybong Z
+│   └── styles/                # Sistema de estilos modular (CSS Vanilla)
+│       ├── animations.css     # Curvas elásticas, View Transitions, scroll bar y keyframes
+│       ├── archive-hub.css    # Tarjetas y portales de navegación del archivo principal
+│       ├── base.css           # Reseteo CSS, tipografía base y utilidades .wrap, .button
+│       ├── candybong.css      # Modelo vectorial de Candybong Z, modos y ondas de choque
+│       ├── characters.css     # Estilos para personajes y mascotas
+│       ├── closing-footer.css # Estilos de cierre, pie de página y botón flotante
+│       ├── discography.css    # Estilos para el explorador, killing parts y streaming
+│       ├── fan-zone.css       # Estilos para quiz, estudio de photocard y Polco Deco
+│       ├── fashion.css        # Estilos para archivo de moda y vestuarios
+│       ├── global.css         # Manifiesto maestro que importa los módulos en cascada
+│       ├── hall-of-fame.css   # Vitrina de récords, trofeos y métricas
+│       ├── header.css         # Barra superior fija, navegación y badge de sincronización
+│       ├── hero.css           # Portada, tipografía editorial, métricas y vinilo
+│       ├── jukebox.css        # Mini reproductor, ecualizador y visualizador
+│       ├── members.css        # Photocards 3D, selector de eras y cajón biográfico
+│       ├── mv-vault.css       # Galería de videos musicales y modal de reproducción
+│       ├── timeline.css       # Cronología histórica interactiva con riel de años
+│       ├── tokens.css         # Variables de diseño, paleta oficial, curvas spring y auras
+│       └── tours.css          # Giras mundiales, galería 30s y radar de rutas de estadios
 ```
 
 ---
 
-## 3. Flujo de Datos
+## 3. Flujo de Navegación Multi-Página
 
-```mermaid
-graph TD
-    Data[src/data/*.ts] --> Types[src/types/index.ts]
-    Data --> AstroBuild[Astro SSG Engine]
-    Utils[src/utils/*.ts] --> AstroBuild
-    AstroBuild --> HTML[HTML Estático Optimizado]
-    Styles[src/styles/*.css] --> CSS[CSS Bundled en Cascada]
-    Scripts[src/scripts/*.ts] --> ClientJS[Vite Client Bundler]
-    HTML --> Browser[Navegador del Usuario]
-    CSS --> Browser
-    ClientJS --> Browser
-```
-
-1. **Tiempo de compilación (Build Time)**:
-   - Astro procesa los archivos `src/data/*.ts` validados contra las interfaces en `src/types/index.ts`.
-   - Las funciones de `src/utils/releases.ts` agrupan los lanzamientos por año y mercado de forma determinista.
-   - Todo el HTML se renderiza de forma estática (Zero-JS por defecto para el contenido).
-2. **Tiempo de ejecución (Runtime)**:
-   - Los scripts en `src/scripts/` se cargan de forma diferida (`<script>`) y proporcionan reactividad pura sin necesidad de frameworks pesados (React/Vue).
-   - Se mantiene un rendimiento impecable de Core Web Vitals (LCP, INP, CLS).
+1. **`/` (Inicio)**: Experiencia de presentación con el Hero editorial, las 9 integrantes con rotación 30s, vitrina de personajes LOVELYS y TDOONGZ, y los portales interactivos hacia los 4 capítulos temáticos.
+2. **`/musica` (Música)**: Discografía completa con 80+ lanzamientos, barra de Killing Parts populares, cronología interactiva 2015-2026 y Cinema MV Vault.
+3. **`/giras` (Giras)**: World Tour Odyssey con navegación de 5 giras mundiales, galería con temporizador de 30s, estadios históricos, radar cartográfico de rutas aéreas y vitrina del Salón de la Fama.
+4. **`/fan-zone` (Comunidad)**: Test de Afinidad de 5 preguntas sincronizado en vivo con el Photocard Studio & Polco Deco (stickers, holo glitter y descarga PNG de 600x900px).
+5. **`/moda` (Estilo)**: Stage Wardrobe Archive con análisis estético de 5 eras de vestuario, siluetas y paletas de color.

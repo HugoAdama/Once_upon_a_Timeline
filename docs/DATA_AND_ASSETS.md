@@ -180,6 +180,23 @@ Los recursos multimedia se organizan de forma estructurada en formato `.webp` pa
 - **`public/assets/records/`**:
   - Vitrina de presentación visual para hitos y trofeos del Hall of Fame: `music-show-wins.webp`, `daesang-triple.webp`, `sofi-stadium.webp`, `nissan-stadium.webp`, `album-sales.webp`, `billboard-women.webp`, `billboard-200.webp`, `youtube-records.webp`.
 
+### `KillingPart` (`src/data/killing-parts.ts`)
+```typescript
+export interface KillingPart {
+  id: string;          // ej: "kp-shy-shy-shy"
+  phrase: string;      // Frase emblemática, ej: "Shy Shy Shy"
+  member: string;      // Integrante asociada, ej: "Sana"
+  song: string;        // Canción, ej: "CHEER UP"
+  releaseTitle: string;// Álbum, ej: "PAGE TWO"
+  note: string;        // Hito cultural y contexto
+  searchQuery: string; // Término de búsqueda para el explorador
+}
+```
+
+### Assets de Progressive Web App (PWA)
+- **`public/manifest.webmanifest`**: Manifiesto web que declara el nombre del archivo, iconos vectoriales, colores de tema (`#160918`, `#e83e86`) y modo de despliegue `standalone`.
+- **`public/sw.js`**: Service Worker de alto rendimiento con estrategia *stale-while-revalidate* para hojas de estilo, fuentes y assets centrales, habilitando navegación offline.
+
 ---
 
 ## 3. Resolución de Rutas de Assets (`resolveAsset`)

@@ -17,17 +17,29 @@
   - Retratos oficiales de las 9 integrantes con efecto reflectante holográfico (*shimmer*) e inclinación reactiva al cursor (*3D tilt*).
   - **Rotación Automática Cada 30 Segundos**: Efecto de ola en cascada donde las tarjetas giran 180° hacia el reverso holográfico y regresan al frente actualizando el retrato de la era.
   - Selector manual de eras fotográficas: alterna instantáneamente entre **Actual & Giras (2023–2025)**, **BETWEEN 1&2 (2021–2022)** y **Debut Clásico (2015–2018)**.
-- **ONCE Fan Zone Sincronizada con Photocard Studio**:
+- **ONCE Fan Zone, Photocard Studio & Polco Deco**:
   - **Test de Afinidad ONCE**: Cuestionario interactivo de 5 preguntas que evalúa tu personalidad y determina qué integrante de TWICE representa tu esencia.
   - **Sincronización en Vivo**: Al finalizar el test, tu resultado pre-selecciona automáticamente a la integrante ganadora en el Photocard Studio, carga su retrato oficial, aplica su color característico y activa el sello de verificación de afinidad.
-  - **Photocard Studio con Renderizado Visual**: Personaliza tu photocard con tu alias de fan, marco holográfico y descarga directa en imagen PNG de alta fidelidad generada mediante Canvas API con el retrato oficial de la integrante.
+  - **Photocard Studio con Polco Deco & Renderizado HD**: Personaliza tu photocard con alias de fan, marco holográfico, stickers conmutables (*Washi Tape*, *Sello 10th Aniversario*, *Insignia Candybong*, *Destellos*), acabados *Holo Glitter* / *Prisma Arcoíris* y descarga directa en imagen PNG de alta fidelidad (600x900px) generada mediante Canvas API.
+- **Virtual Candybong Z Sincronizado**:
+  - Widget interactivo del lightstick oficial de TWICE.
+  - 3 modos de concierto: *Auto-Sync 30s* (ciclo cromático de las 9 integrantes), *Party Beat* (pulso reactivo al ritmo de la música) y *Arcoíris Cromático*.
+  - Sincronización instantánea con tu integrante favorita (Bias) y botón interactivo **¡Vitorear a TWICE! (Cheer)** con ondas de choque expansivas luminosas y respuesta háptica.
+- **World Tour Odyssey & Radar Cartográfico Mundial**:
+  - Vitrina de las 5 giras mundiales masivas en distribución Bento de doble columna, logotipos oficiales, galería fotográfica interactiva de conciertos reales con rotación automática cada 30 segundos y estadios emblemáticos (SoFi, MetLife, Nissan Stadium).
+  - **Radar de Rutas Mundiales & Telemetría en Vivo**: Mapa mundial vectorial de alta precisión con continentes estilizados, coordenadas terrestres, arcos aéreos animados (*Seúl $\leftrightarrow$ Tokio $\leftrightarrow$ Los Ángeles $\to$ Nueva York $\to$ Londres $\to$ São Paulo*) y 12 balizas de estadios con tooltips interactivos.
+- **Discografía Interactiva & Killing Parts Vault**:
+  - Explorador completo con 80+ lanzamientos, atajo de teclado `/`, filtros combinados y conmutador de vista Cuadrícula / Lista.
+  - **Buscador de Killing Parts**: Chips con frases icónicas (*"Shy Shy Shy"*, *"Risky risky wiggy wiggy"*, *"BB Cream papapa"*, *"Fancy You!"*, *"21:29"*) que abren y resaltan automáticamente la canción y su reproductor.
 - **Stage Wardrobe Archive (Moda & Fotografía Conceptual)**:
   - Galería visual y análisis estético de los vestuarios de TWICE: siluetas deconstruidas de *Strategy*, ciberespionaje Y2K de *BETWEEN 1&2*, sastrería ochentera de *Eyes wide open*, opulencia dorada de *Feel Special* y chaquetas universitarias de *PAGE TWO*.
 - **Cinema MV Vault (Videografía & Galería Conceptual)**:
   - Catálogo cronológico de videos musicales oficiales categorizado por Corea, Japón, lanzamientos globales y solistas/subunidades, con reproductor modal accesible.
-- **World Tour Odyssey & Hall of Fame**:
-  - Vitrina de las 5 giras mundiales masivas (desde *TWICELAND* hasta la gira de 10.º aniversario *THIS IS FOR*) en distribución Bento de doble columna, logotipos oficiales de cada gira, vitrina fotográfica interactiva de conciertos reales con rotación automática cada 30 segundos, estadios icónicos (SoFi, MetLife, Nissan Stadium) en grillas balanceadas y vitrina de trofeos Daesang y certificaciones globales.
-- **Accesibilidad y Rendimiento**:
+- **PWA (Progressive Web App) & Navegación Offline**:
+  - Instalable en dispositivos móviles y de escritorio gracias a `manifest.webmanifest`.
+  - Service Worker de alto rendimiento (`sw.js`) con estrategia de caché *stale-while-revalidate* para soporte offline.
+- **Accesibilidad, Arquitectura & Rendimiento**:
+  - **Regla estricta de $< 150$ líneas**: Todos los componentes `.astro` cumplen los principios de Single Responsibility Principle (SRP) y Separation of Concerns (SoC).
   - Contraste validado bajo pautas WCAG 2.1 AA en temas claro y oscuro.
   - Cumplimiento estricto de `prefers-reduced-motion`.
   - Cero emojis en la interfaz: uso exclusivo de iconos vectoriales SVG limpios.
@@ -38,9 +50,10 @@
 
 - **Framework**: [Astro 7](https://astro.build/) (Generación de sitios estáticos ultrarrápida, arquitectura basada en componentes).
 - **Lenguaje**: [TypeScript](https://www.typescriptlang.org/) (Tipado estricto en modelos de datos, APIs de streaming y controladores de cliente).
-- **Estilos**: **CSS Vanilla Modular** (17 hojas de estilo temáticas desacopladas en `src/styles/` sin sobrecarga de frameworks externos).
+- **Estilos**: **CSS Vanilla Modular** (18 hojas de estilo temáticas desacopladas en `src/styles/` sin sobrecarga de frameworks externos).
 - **Fuentes**: Google Fonts (*Newsreader* serif editorial, *Inter* sans-serif funcional, *Outfit* display).
-- **Gráficos**: Canvas API para generación de imágenes PNG y visualizadores de audio en tiempo real.
+- **Gráficos**: Canvas API para generación de imágenes PNG de 600x900px y visualizadores de audio en tiempo real.
+- **PWA**: Manifiesto web nativo y Service Worker para resiliencia offline.
 
 ---
 

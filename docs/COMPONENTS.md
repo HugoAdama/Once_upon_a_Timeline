@@ -1,6 +1,6 @@
 # Catálogo de Componentes — Once Upon a Timeline
 
-Este documento describe cada componente del proyecto, sus propiedades (`Props`), propósito funcional y dependencias.
+Este documento describe cada componente del proyecto, sus propiedades (`Props`), propósito funcional, dependencias y arquitectura modular. **Todos los componentes `.astro` cumplen la regla estricta de $< 150$ líneas de código.**
 
 ---
 
@@ -8,29 +8,34 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `Header.astro`
 - **Ruta**: `src/components/Header.astro`
-- **Propósito**: Barra de navegación superior fija con efecto *glassmorphism*, logotipo oficial, indicador de sincronización cromática Candybong, botón de modo concierto, 5 enlaces limpios de enrutamiento multi-página (`/`, `/musica`, `/giras`, `/fan-zone`, `/moda`) con indicador de página activa, y menú móvil desplegable accesible.
+- **Propósito**: Barra de navegación superior fija con efecto *glassmorphism*, logotipo oficial de TWICE, indicador de sincronización cromática Candybong con anillo de cuenta regresiva, botón de conmutación de modo concierto, 5 enlaces limpios de enrutamiento multi-página (`/`, `/musica`, `/giras`, `/fan-zone`, `/moda`) con indicador de página activa, y cajón móvil accesible.
 - **Scripts asociados**: [`src/scripts/navigation.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/navigation.ts), [`src/scripts/theme-toggle.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/theme-toggle.ts) y [`src/scripts/candybong-sync.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/candybong-sync.ts).
 
 ### `Hero.astro`
 - **Ruta**: `src/components/Hero.astro`
-- **Propósito**: Portada editorial K-Pop Deluxe. Presenta encabezado *Issue No. 10*, tipografía serif de alta jerarquía, franja bento de métricas y paleta oficial en vidrio esmerilado, y vitrina de vinilo audiófilo con constelación de 9 colores y tooltips interactivos.
+- **Propósito**: Portada editorial K-Pop Deluxe. Despliega el encabezado *Issue No. 10*, tipografía serif de alta jerarquía, franja bento de métricas en vidrio esmerilado y delega la vitrina del disco interactivo en [`HeroVinylShowcase.astro`](file:///e:/Once_upon_a_Timeline/src/components/HeroVinylShowcase.astro).
+
+### `HeroVinylShowcase.astro`
+- **Ruta**: `src/components/HeroVinylShowcase.astro`
+- **Propósito**: Vitrina de vinilo audiófilo con simulación de disco analógico interactivo, constelación de 9 auras cromáticas oficiales de las integrantes y tooltips interactivos con animaciones físicas elásticas.
 
 ### `ArchiveHubSection.astro`
 - **Ruta**: `src/components/ArchiveHubSection.astro`
-- **Propósito**: Centro interactivo de exploración del archivo ubicado en la portada principal. Despliega 4 portales visuales con tarjetas de vidrio esmerilado que guían directamente al usuario hacia los capítulos de Música, Giras, Fan Zone y Moda, optimizando la experiencia y evitando scrolls innecesarios.
-
-### `Ticker.astro`
-- **Ruta**: `src/components/Ticker.astro`
-- **Propósito**: Marquesina horizontal continua con efecto de desvanecimiento suave en los bordes (`mask-image`), insignias temáticas y pausa automática al pasar el cursor.
+- **Propósito**: Centro interactivo de exploración del archivo en la portada principal (`/`). Despliega 4 portales visuales en Bento Glassmorphic que dirigen directamente a los capítulos de Música, Giras, Fan Zone y Moda.
 
 ### `CandyJukebox.astro`
 - **Ruta**: `src/components/CandyJukebox.astro`
-- **Propósito**: Mini reproductor de audio flotante interactivo. Incluye botón colapsable con mini ecualizador, tarjeta expandida con visualizador de audio en tiempo real por Canvas, barra de progreso seekable, selector de canciones y sincronización con el modo Candybong.
+- **Propósito**: Orquestador del mini reproductor de audio flotante interactivo. Ensambla de forma modular el botón lanzador ([`CandyJukeboxLauncher.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxLauncher.astro)), la lista de reproducción ([`CandyJukeboxPlaylist.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxPlaylist.astro)) y los controles de audio ([`CandyJukeboxControls.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxControls.astro)).
 - **Scripts asociados**: [`src/scripts/candy-jukebox.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/candy-jukebox.ts).
+
+### `VirtualCandybong.astro`
+- **Ruta**: `src/components/VirtualCandybong.astro`
+- **Propósito**: Widget interactivo del lightstick oficial de TWICE (Candybong Z). Incluye modelo vectorial SVG realista (cabezal giratorio LED, aro exterior y botón central), 3 modos de concierto (*Auto-Sync 30s*, *Party Beat* pulsante y *Arcoíris cromático*), sincronización rápida con la integrante favorita (Bias) y botón interactivo **Cheer** con emisión de ondas de choque expansivas luminosas y respuesta háptica.
+- **Scripts asociados**: [`src/scripts/virtual-candybong.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/virtual-candybong.ts).
 
 ### `ClosingSection.astro`
 - **Ruta**: `src/components/ClosingSection.astro`
-- **Propósito**: Bloque de despedida y conclusión con malla de gradiente cálido, destellos flotantes y enlaces al sitio oficial de TWICE.
+- **Propósito**: Bloque de despedida y conclusión con malla de gradiente cósmico cálido, destellos flotantes y enlaces al sitio oficial de TWICE.
 
 ### `Footer.astro`
 - **Ruta**: `src/components/Footer.astro`
@@ -38,7 +43,7 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `ScrollToTop.astro`
 - **Ruta**: `src/components/ScrollToTop.astro`
-- **Propósito**: Botón flotante FAB (Floating Action Button) que aparece al desplazarse más de 420px y permite volver suavemente a la parte superior de la página.
+- **Propósito**: Botón flotante FAB ubicado en la esquina inferior derecha que aparece tras desplazarse más de 420px y permite volver suavemente al tope de la página.
 
 ---
 
@@ -51,9 +56,18 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `MemberCard.astro`
 - **Ruta**: `src/components/MemberCard.astro`
-- **Props**:
-  - `member: Member` (Datos completos de la integrante, Hangul, biografía, colores y personajes).
-- **Propósito**: Renderiza la Photocard interactiva individual (`<details>`). Soporta volteo 3D de 180°, inclinación fluida según la posición del cursor (*fluid 3D tilt*), botón para marcar a tu Bias con feedback de celebración y cajón biográfico expandible.
+- **Props**: `member: Member`
+- **Propósito**: Orquestador individual de la photocard coleccionable. Delega la cara fotográfica 3D en [`MemberPhotocard.astro`](file:///e:/Once_upon_a_Timeline/src/components/MemberPhotocard.astro) y el cajón biográfico expandible en [`MemberDrawer.astro`](file:///e:/Once_upon_a_Timeline/src/components/MemberDrawer.astro).
+
+### `MemberPhotocard.astro`
+- **Ruta**: `src/components/MemberPhotocard.astro`
+- **Props**: `member: Member`, `initialPhoto: string`
+- **Propósito**: Cara frontal y dorso de la photocard coleccionable. Gestiona la inclinación física 3D reactiva a la posición del cursor (*fluid 3D tilt*), la rotación automática en cascada cada 30 segundos, el botón de fijación de Bias con feedback de celebración y los sellos de firma.
+
+### `MemberDrawer.astro`
+- **Ruta**: `src/components/MemberDrawer.astro`
+- **Props**: `member: Member`
+- **Propósito**: Cajón biográfico expandible que despliega los datos personales de la integrante, rol en el grupo, fecha de nacimiento, Hangul, biografía y enlaces a sus personajes oficiales (Lovelys y TDOONGZ).
 
 ### `CharactersSection.astro`
 - **Ruta**: `src/components/CharactersSection.astro`
@@ -62,9 +76,7 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `CharacterTile.astro`
 - **Ruta**: `src/components/CharacterTile.astro`
-- **Props**:
-  - `character: CharacterItem`
-  - `galleryType?: 'lovely' | 'tdoongz'`
+- **Props**: `character: CharacterItem`, `galleryType?: 'lovely' | 'tdoongz'`
 - **Propósito**: Tarjeta atómica individual con halo resplandeciente en el color del personaje, animación hover de levitación elástica y detalles de personalidad.
 
 ---
@@ -73,64 +85,77 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `DiscographySection.astro`
 - **Ruta**: `src/components/DiscographySection.astro`
-- **Propósito**: Orquestador principal de la discografía. Agrupa los lanzamientos mediante utilidades de datos y renderiza la barra de filtros y los paneles de mercado.
+- **Propósito**: Orquestador principal de la discografía. Renderiza la barra de filtros de búsqueda y los paneles por mercado.
 - **Subcomponentes**: [`DiscographyFilterBar.astro`](file:///e:/Once_upon_a_Timeline/src/components/DiscographyFilterBar.astro) y [`MarketPanel.astro`](file:///e:/Once_upon_a_Timeline/src/components/MarketPanel.astro).
-- **Scripts asociados**: [`src/scripts/discography-explorer.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/discography-explorer.ts).
 
 ### `DiscographyFilterBar.astro`
 - **Ruta**: `src/components/DiscographyFilterBar.astro`
-- **Propósito**: Interfaz del buscador con soporte para teclado (`/`), accesos rápidos a eras, chips de mercado, selects de año y formato, contador y mensaje de estado vacío.
+- **Propósito**: Barra de búsqueda interactiva (con atajo `/`), selector de mercado (Corea, Japón, Global), filtro de favoritos y conmutador de vistas.
+- **Subcomponentes**: [`DiscographyQuickEras.astro`](file:///e:/Once_upon_a_Timeline/src/components/DiscographyQuickEras.astro), [`DiscographyKillingParts.astro`](file:///e:/Once_upon_a_Timeline/src/components/DiscographyKillingParts.astro) y [`DiscographyViewControls.astro`](file:///e:/Once_upon_a_Timeline/src/components/DiscographyViewControls.astro).
 
-### `MarketPanel.astro`
-- **Ruta**: `src/components/MarketPanel.astro`
-- **Propósito**: Bloque colapsable (`<details class="release-market">`) para un mercado discográfico, agrupado por años descendentes y renderizando sus respectivos `ReleaseItem`.
+### `DiscographyKillingParts.astro`
+- **Ruta**: `src/components/DiscographyKillingParts.astro`
+- **Propósito**: Barra de chips de frases y *killing parts* célebres de TWICE (*"Shy Shy Shy"*, *"Risky risky wiggy wiggy"*, *"BB Cream papapa"*, *"Fancy You!"*, *"21:29"*). Al hacer clic, filtra inmediatamente la discografía, despliega el álbum y resalta la canción con animación musical.
 
 ### `ReleaseItem.astro`
 - **Ruta**: `src/components/ReleaseItem.astro`
-- **Props**:
-  - `release: Release`
-- **Propósito**: Tarjeta individual de álbum/sencillo con portada cuadrada antidesplazamiento (CLS), insignia de formato y tracklist desplegable con botones directos para escuchar en Spotify y YouTube Music.
+- **Props**: `release: Release`
+- **Propósito**: Ficha de álbum estilo plataforma de streaming (`<details>`). Presenta portada de alta resolución, badge de mercado, botón para guardar en favoritos (*localStorage*), ecualizador animado en el track principal y enlaces directos a Spotify, Apple Music y YouTube.
 
 ### `TimelineSection.astro`
 - **Ruta**: `src/components/TimelineSection.astro`
-- **Propósito**: Cronología histórica interactiva con nodos de pulso radar que conectan los momentos más importantes desde el debut en 2015 con su álbum correspondiente en la discografía.
+- **Propósito**: Orquestador de la cronología histórica interactiva 2015-2026. Ensambla el riel temporal superior ([`TimelineScrubber.astro`](file:///e:/Once_upon_a_Timeline/src/components/TimelineScrubber.astro)) y las tarjetas de hitos ([`TimelineMilestoneCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/TimelineMilestoneCard.astro)).
+
+### `TimelineScrubber.astro`
+- **Ruta**: `src/components/TimelineScrubber.astro`
+- **Propósito**: Riel cronológico navegable con nodos de año que permite desplazarse suavemente y enfocar los hitos de cada año histórico de TWICE.
+
+### `TimelineMilestoneCard.astro`
+- **Ruta**: `src/components/TimelineMilestoneCard.astro`
+- **Props**: `milestone: TimelineMilestone`, `index: number`
+- **Propósito**: Tarjeta de hito histórico con efecto de disco de vinilo que se asoma suavemente al hacer hover, badge de era con código cromático y botón para saltar y resaltar el álbum correspondiente en la discografía.
 
 ---
 
-## 4. Nuevas Secciones Especializadas
+## 4. Componentes de Giras y Salón de la Fama
 
-### `MvVaultSection.astro` & `MvCard.astro`
-- **Ruta**: `src/components/MvVaultSection.astro` y `src/components/MvCard.astro`
-- **Propósito**: Catálogo cinematográfico de videoclips oficiales. Cuenta con barra de filtros por territorio (Corea, Japón, Global, Solos), paletas cromáticas por MV, directores y ventana modal con reproductor de video de alta resolución.
-- **Scripts asociados**: [`src/scripts/mv-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/mv-vault.ts).
+### `TourOdysseySection.astro`
+- **Ruta**: `src/components/TourOdysseySection.astro`
+- **Propósito**: Orquestador del capítulo de conciertos. Presenta las pestañas de selección de giras, el panel de la gira activa ([`TourCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/TourCard.astro)) y el mapa de radar mundial ([`TourRouteMap.astro`](file:///e:/Once_upon_a_Timeline/src/components/TourRouteMap.astro)).
+- **Scripts asociados**: [`src/scripts/tour-odyssey.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/tour-odyssey.ts) y [`src/scripts/tour-map.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/tour-map.ts).
 
-### `TourOdysseySection.astro` & `TourCard.astro`
-- **Ruta**: `src/components/TourOdysseySection.astro` y `src/components/TourCard.astro`
-- **Propósito**: Vitrina interactiva de las 5 giras mundiales de TWICE (incluyendo la cumbre del 10.º aniversario *6TH THIS IS FOR*). Presenta un layout Bento de doble columna que equilibra una galería interactiva con rotación automática de fotografías reales de concierto cada 30 segundos (sin imágenes duplicadas, con barra de progreso continua, insignias de recinto y controles manuales) junto al logo oficial de cada gira, columnas de métricas de conciertos, asistencia total, setlist integrado y una grilla equilibrada de recintos y estadios históricos sin tarjetas aisladas.
-- **Scripts asociados**: [`src/scripts/tour-map.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/tour-map.ts).
+### `TourCard.astro`
+- **Ruta**: `src/components/TourCard.astro`
+- **Props**: `tour: WorldTour`, `isFirst?: boolean`
+- **Propósito**: Tarjeta Bento principal de cada gira. Descompuesta limpiamente en la galería de fotos ([`TourPhotoGallery.astro`](file:///e:/Once_upon_a_Timeline/src/components/TourPhotoGallery.astro)), estadísticas de asistencia, píldoras de setlist y la cuadrícula de recintos ([`TourVenuesGrid.astro`](file:///e:/Once_upon_a_Timeline/src/components/TourVenuesGrid.astro)).
+
+### `TourPhotoGallery.astro`
+- **Ruta**: `src/components/TourPhotoGallery.astro`
+- **Props**: `tourId: string`, `years: string`, `slidesData: SlideItem[]`
+- **Propósito**: Vitrina fotográfica de concierto con rotación automática cada 30 segundos, barra de progreso interactiva, controles de diapositiva anterior/siguiente y pie de foto con ubicación del estadio.
+
+### `TourRouteMap.astro`
+- **Ruta**: `src/components/TourRouteMap.astro`
+- **Propósito**: Radar cartográfico vectorial SVG de alta definición que proyecta los continentes reales, grilla de radar con coordenadas terrestres, arcos aéreos transcontinentales animados (*Seúl $\leftrightarrow$ Tokio $\leftrightarrow$ Los Ángeles $\to$ Nueva York $\to$ Londres $\to$ São Paulo*) y 12 balizas de estadios históricos con tooltip flotante interactivo.
 
 ### `HallOfFameSection.astro`
 - **Ruta**: `src/components/HallOfFameSection.astro`
-- **Propósito**: Salón de trofeos y récords históricos. Tarjetas con métricas destacadas: +120 victorias en Music Shows, triples Daesangs, Billboard 200 #1 y récords mundiales en YouTube y ventas de álbumes físicos.
-
-### `FanZoneSection.astro`, `QuizCard.astro` & `PhotocardStudio.astro`
-- **Ruta**: `src/components/FanZoneSection.astro`, `src/components/QuizCard.astro` y `src/components/PhotocardStudio.astro`
-- **Propósito**: Espacio lúdico para la comunidad ONCE:
-  - `QuizCard`: Test interactivo de 5 preguntas que evalúa afinidad con las integrantes, sincroniza el resultado en vivo con el Photocard Studio y ofrece un botón de salto directo.
-  - `PhotocardStudio`: Diseñador interactivo en tiempo real con previsualización del retrato oficial de la integrante, viñeta cinematográfica, selector cromático según su color oficial, personalización del nombre de fan y exportación en PNG mediante Canvas API.
-- **Scripts asociados**: [`src/scripts/fan-zone.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fan-zone.ts).
-
-### `FashionSection.astro` & `FashionCard.astro`
-- **Ruta**: `src/components/FashionSection.astro` y `src/components/FashionCard.astro`
-- **Propósito**: Archivo estético y de vestuario escénico. Presenta una galería visual de alta definición de los atuendos de cada era con zoom al hover, análisis de siluetas, prendas clave, paletas cromáticas e insignias conceptuales.
+- **Propósito**: Salón de trofeos y vitrina de récords de TWICE: ventas globales (+20M de álbumes), victorias en programas musicales (+120 wins), trofeos Daesang y certificaciones internacionales.
 
 ---
 
-## 5. Componente de Plantilla Base
+## 5. Componentes de Fan Zone & Comunidad
 
-### `Layout.astro`
-- **Ruta**: `src/layouts/Layout.astro`
-- **Props**:
-  - `title?: string`
-  - `description?: string`
-- **Propósito**: Plantilla global HTML5. Configura metas SEO, Open Graph para redes sociales, Twitter Cards, canonical URL, favicon SVG personalizado, inyección del manifiesto CSS y montaje de `Header`, `Footer`, `CandyJukebox` y `ScrollToTop`.
+### `FanZoneSection.astro`
+- **Ruta**: `src/components/FanZoneSection.astro`
+- **Propósito**: Orquestador del espacio interactivo para ONCE. Contiene el test de afinidad ([`QuizCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/QuizCard.astro)) y el estudio de diseño ([`PhotocardStudio.astro`](file:///e:/Once_upon_a_Timeline/src/components/PhotocardStudio.astro)).
+- **Scripts asociados**: [`src/scripts/fan-zone.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fan-zone.ts).
+
+### `PhotocardStudio.astro`
+- **Ruta**: `src/components/PhotocardStudio.astro`
+- **Propósito**: Estudio de diseño de photocards oficiales personalizadas. Incluye previsualizador de tarjeta en tiempo real, selector de integrante/bias, entrada de alias de fan, selector de color de marco y barra de herramientas Polco Deco ([`PhotocardDecoBar.astro`](file:///e:/Once_upon_a_Timeline/src/components/PhotocardDecoBar.astro)), con exportación en PNG de 600x900px mediante Canvas API.
+
+### `PhotocardDecoBar.astro`
+- **Ruta**: `src/components/PhotocardDecoBar.astro`
+- **Propósito**: Barra de herramientas Polco Deco con selector de acabados holográficos (*Liso*, *Holo Glitter*, *Prisma Arcoíris*) y stickers conmutables (*Washi Tape*, *Sello 10th Aniversario*, *Insignia Candybong* y *Destellos*).
+- **Scripts asociados**: [`src/scripts/photocard-deco.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/photocard-deco.ts).
