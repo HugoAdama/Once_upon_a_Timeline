@@ -177,3 +177,46 @@ export interface FashionConcept {
   keyPieces: string[];
   conceptMood: string;
 }
+
+/* ========================================================
+   COLECCIONISMO & FAN ZONE: CANDYBONG & SANTOS GRIALES
+   ======================================================== */
+export interface CandybongModel {
+  id: string;
+  version: string;
+  name: string;
+  releaseYear: string;
+  eraName: string;
+  conceptTag: string;
+  description: string;
+  lightingSpecs: {
+    technology: string;
+    batteryType: string;
+    modes: string[];
+    connectivity: string;
+  };
+  stadiumLore: string;
+  funFact: string;
+  defaultColor: string;
+  shapeType: 'lollipop' | 'ring-z' | 'infinity-mirror';
+}
+
+export interface RarePhotocard {
+  id: string;
+  title: string;
+  member: string;
+  memberId: string;
+  era: string;
+  year: string;
+  rarity: 'mythic' | 'legendary' | 'rare';
+  rarityBadge: string;
+  category: 'broadcast' | 'tournament' | 'special-album' | 'world-tour';
+  categoryLabel: string;
+  collectorLore: string;
+  specialFinish: string;
+  estimatedRarityUnits: string;
+  marketPriceRange: string;
+  memberColor: string;
+  holographicStyle: 'rainbow' | 'glitter' | 'glass-shards' | 'gold-leaf';
+  sampleFrontPhoto: string;
+}

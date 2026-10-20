@@ -1,0 +1,1191 @@
+/* ========================================================
+   BÓVEDA DEL COLECCIONISTA & CURIOSIDADES (ONCE VAULT & RELICS)
+   ======================================================== */
+.collector-vault-section {
+  margin-top: clamp(48px, 6vw, 76px);
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  box-shadow: 0 20px 50px rgba(66, 37, 57, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .collector-vault-section {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(232, 62, 134, 0.14), transparent 60%),
+    rgba(22, 11, 26, 0.85);
+  border-color: rgba(232, 62, 134, 0.28);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Encabezado del Museo */
+.vault-header-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.vault-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  color: var(--magenta);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.vault-verified-badge {
+  font-size: 0.62rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(244, 162, 126, 0.25);
+  color: #c44f1c;
+}
+
+[data-theme="dark"] .vault-verified-badge {
+  background: rgba(244, 162, 126, 0.2);
+  color: #ffaa85;
+}
+
+.vault-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+[data-theme="dark"] .vault-heading {
+  color: #ffffff;
+}
+
+.vault-description {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 0.96rem;
+  line-height: 1.62;
+  color: var(--muted);
+}
+
+/* Pestañas Principales */
+.vault-tab-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(110, 75, 96, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.16);
+}
+
+[data-theme="dark"] .vault-tab-nav {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(232, 62, 134, 0.24);
+}
+
+.vault-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vault-tab-btn:hover {
+  color: var(--magenta);
+}
+
+.vault-tab-btn.active {
+  background: var(--gradient-twice);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(232, 62, 134, 0.38);
+}
+
+.vault-panel {
+  display: none;
+}
+
+.vault-panel.active {
+  display: block;
+  animation: fadeInPanel 0.35s ease forwards;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================================
+   SUB-SECCIÓN 1: TRILOGÍA CANDYBONG & SIMULADOR LUMÍNICO
+   ======================================================== */
+.candybong-showcase-container {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Escenario Lumínico Izquierdo */
+.candybong-stage-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  box-shadow: 0 12px 32px rgba(66, 37, 57, 0.05);
+}
+
+[data-theme="dark"] .candybong-stage-card {
+  background: rgba(28, 14, 32, 0.85);
+  border-color: rgba(232, 62, 134, 0.26);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.stage-kicker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.stage-kicker {
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  color: var(--magenta);
+  text-transform: uppercase;
+}
+
+.stage-status-badge {
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(46, 204, 113, 0.14);
+  color: #27ae60;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+/* Escenario Central Visual del Lightstick */
+.candybong-light-stage {
+  position: relative;
+  height: 270px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 40%, rgba(20, 10, 24, 0.95), #0a050c);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.candybong-glow-aura {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  top: 15px;
+  background: radial-gradient(circle, var(--candy-glow-color, #e83e86) 0%, transparent 68%);
+  filter: blur(24px);
+  opacity: 0.75;
+  transition: background 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+/* Ritmos lumínicos */
+[data-active-mode="pulse"] .candybong-glow-aura {
+  animation: auraPulseSlow 1.8s ease-in-out infinite alternate;
+}
+
+[data-active-mode="rave"] .candybong-glow-aura {
+  animation: auraRave 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes auraPulseSlow {
+  0% { transform: scale(0.85); opacity: 0.5; }
+  100% { transform: scale(1.25); opacity: 0.95; }
+}
+
+@keyframes auraRave {
+  0% { transform: scale(0.9); opacity: 0.4; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Silueta interactiva de Lightstick */
+.candybong-interactive-silhouette {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  margin-top: 10px;
+}
+
+.silhouette-head {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #150d18;
+  border: 4px solid #ffffff;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 0 25px var(--candy-glow-color, #e83e86),
+    inset 0 0 15px var(--candy-glow-color, #e83e86);
+  transition: box-shadow 0.3s ease;
+}
+
+.silhouette-infinity-tunnel {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, #080309 30%, #1e0d22 100%);
+}
+
+.tunnel-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid var(--candy-glow-color, #e83e86);
+  opacity: 0.65;
+  transition: border-color 0.3s ease;
+}
+
+.tunnel-ring.r1 { width: 70px; height: 70px; }
+.tunnel-ring.r2 { width: 50px; height: 50px; opacity: 0.45; }
+.tunnel-ring.r3 { width: 30px; height: 30px; opacity: 0.25; }
+
+.tunnel-center-sparkle {
+  color: var(--candy-glow-color, #e83e86);
+  font-size: 1.1rem;
+  filter: drop-shadow(0 0 8px var(--candy-glow-color, #e83e86));
+  animation: centerTwinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes centerTwinkle {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.25); opacity: 1; }
+}
+
+.silhouette-neck {
+  width: 14px;
+  height: 12px;
+  background: #d4d4d8;
+  border-radius: 2px;
+}
+
+.silhouette-handle {
+  width: 22px;
+  height: 84px;
+  background: linear-gradient(180deg, #ffffff, #e4e4e7);
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.silhouette-button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--candy-glow-color, #e83e86);
+  box-shadow: 0 0 6px var(--candy-glow-color, #e83e86);
+  margin-bottom: 6px;
+}
+
+.silhouette-grip-line {
+  width: 12px;
+  height: 1.5px;
+  background: rgba(0, 0, 0, 0.15);
+  margin-bottom: 4px;
+}
+
+.silhouette-brand-text {
+  font-size: 0.38rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #71717a;
+  margin-top: auto;
+  margin-bottom: 6px;
+}
+
+/* Indicador de Color Activo */
+.stage-color-readout {
+  position: absolute;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 3;
+}
+
+.readout-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e83e86;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.readout-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* Controles de Color de Integrante */
+.candybong-color-controls {
+  margin-top: 16px;
+}
+
+.controls-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.color-bubbles-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-bubble {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.color-bubble:hover {
+  transform: scale(1.22);
+  box-shadow: 0 0 12px currentColor;
+}
+
+.color-bubble.active {
+  transform: scale(1.22);
+  border-color: #ffffff;
+  outline: 2px solid var(--magenta);
+  outline-offset: 2px;
+}
+
+/* Controles de Ritmo */
+.candybong-rhythm-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.rhythm-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(110, 75, 96, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .rhythm-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.rhythm-btn:hover {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+.rhythm-btn.active {
+  background: var(--magenta);
+  border-color: var(--magenta);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.35);
+}
+
+/* Columna Derecha: Modelos de Candybong */
+.candybong-models-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.models-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.model-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+[data-theme="dark"] .model-tab-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.model-tab-btn:hover {
+  border-color: var(--magenta);
+  transform: translateY(-2px);
+}
+
+.model-tab-btn.active {
+  background: var(--surface);
+  border-color: var(--magenta);
+  box-shadow: 0 6px 20px rgba(232, 62, 134, 0.2);
+}
+
+.tab-version {
+  font-size: 0.64rem;
+  font-weight: 850;
+  color: var(--magenta);
+  letter-spacing: 0.08em;
+}
+
+.tab-year {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 850;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 2px 0;
+}
+
+[data-theme="dark"] .tab-year {
+  color: #ffffff;
+}
+
+.tab-name {
+  font-size: 0.68rem;
+  font-weight: 750;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Ficha Detallada de Cada Modelo */
+.model-detail-card {
+  display: none;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(66, 37, 57, 0.05);
+}
+
+[data-theme="dark"] .model-detail-card {
+  background: rgba(28, 14, 32, 0.85);
+  border-color: rgba(232, 62, 134, 0.26);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.model-detail-card.active {
+  display: block;
+  animation: fadeInPanel 0.3s ease forwards;
+}
+
+.card-hero-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.model-era-pill {
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(232, 62, 134, 0.1);
+  color: var(--magenta);
+}
+
+.model-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 4px 0 2px;
+}
+
+[data-theme="dark"] .model-title {
+  color: #ffffff;
+}
+
+.model-concept-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #c44f1c;
+}
+
+[data-theme="dark"] .model-concept-tag {
+  color: #ffaa85;
+}
+
+.model-year-badge {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  background: var(--gradient-twice);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.model-description {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+/* Grilla de Especificaciones Técnicas */
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.spec-cell {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(110, 75, 96, 0.06);
+  border: 1px solid rgba(110, 75, 96, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-theme="dark"] .spec-cell {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.spec-label {
+  font-size: 0.64rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.spec-val {
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: var(--text);
+}
+
+/* Lore & Curiosidades */
+.lore-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(232, 62, 134, 0.2);
+}
+
+.lore-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.lore-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.lore-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.lore-text strong {
+  display: block;
+  color: var(--text);
+  font-weight: 800;
+  margin-bottom: 1px;
+}
+
+/* ========================================================
+   SUB-SECCIÓN 2: SANTOS GRIALES DE PHOTOCARDS (3D & FOIL)
+   ======================================================== */
+.grail-photocards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.grail-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-lead {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.grail-filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.grail-chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(110, 75, 96, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .grail-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.grail-chip:hover {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+.grail-chip.active {
+  background: var(--magenta);
+  border-color: var(--magenta);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.35);
+}
+
+/* Cuadrícula de Cartas */
+.grail-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 24px;
+}
+
+/* Contenedor 3D de Photocard */
+.grail-card-wrapper {
+  position: relative;
+  perspective: 1000px;
+  height: 480px;
+}
+
+.grail-card-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 22px;
+}
+
+.grail-card-wrapper.flipped .grail-card-3d {
+  transform: rotateY(180deg) !important;
+}
+
+/* Caras de la Photocard */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(66, 37, 57, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+}
+
+[data-theme="dark"] .card-face {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* CARA FRONTAL */
+.card-front {
+  background: #ffffff;
+}
+
+[data-theme="dark"] .card-front {
+  background: #1b101e;
+}
+
+/* Capa de Brillo Holográfico / Foil Glare */
+.card-holographic-foil {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: color-dodge;
+  transition: opacity 0.3s ease;
+}
+
+.grail-card-wrapper:hover .card-holographic-foil {
+  opacity: 0.75;
+}
+
+/* Estilos de Foil */
+.card-holographic-foil.style-rainbow {
+  background: radial-gradient(
+    circle at var(--holo-x, 50%) var(--holo-y, 50%),
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 110, 167, 0.5) 20%,
+    rgba(91, 194, 231, 0.5) 40%,
+    rgba(189, 211, 108, 0.5) 60%,
+    transparent 80%
+  );
+}
+
+.card-holographic-foil.style-gold-leaf {
+  background: radial-gradient(
+    circle at var(--holo-x, 50%) var(--holo-y, 50%),
+    rgba(255, 235, 160, 0.9) 0%,
+    rgba(229, 159, 44, 0.6) 25%,
+    rgba(244, 162, 126, 0.5) 50%,
+    transparent 75%
+  );
+}
+
+.card-holographic-foil.style-glass-shards {
+  background: linear-gradient(
+    calc(var(--holo-x, 50%) * 2.5deg),
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 25%,
+    rgba(117, 201, 190, 0.5) 50%,
+    rgba(232, 62, 134, 0.5) 75%,
+    transparent 100%
+  );
+}
+
+.card-holographic-foil.style-glitter {
+  background: radial-gradient(
+    circle at var(--holo-x, 50%) var(--holo-y, 50%),
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(158, 123, 181, 0.6) 30%,
+    transparent 70%
+  );
+}
+
+.card-photo-box {
+  position: relative;
+  height: 290px;
+  overflow: hidden;
+  background: #110813;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.4s ease;
+}
+
+.grail-card-wrapper:hover .card-img {
+  transform: scale(1.04);
+}
+
+.card-badges-row {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 6;
+}
+
+.rarity-tag {
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.rarity-tag.tag-mythic {
+  background: linear-gradient(135deg, #f39c12, #e74c3c);
+  color: #ffffff;
+}
+
+.rarity-tag.tag-legendary {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+  color: #ffffff;
+}
+
+.rarity-tag.tag-rare {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #ffffff;
+}
+
+.category-tag {
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-meta {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.card-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .card-title {
+  color: #ffffff;
+}
+
+.card-year {
+  font-size: 0.72rem;
+  font-weight: 850;
+  color: var(--magenta);
+}
+
+.card-subhead {
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin: 3px 0 8px;
+}
+
+.card-value-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(232, 62, 134, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.18);
+  margin-bottom: 10px;
+}
+
+.val-label {
+  font-size: 0.64rem;
+  font-weight: 750;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.val-number {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 850;
+  color: #c44f1c;
+}
+
+[data-theme="dark"] .val-number {
+  color: #ffaa85;
+}
+
+.btn-flip-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line-subtle);
+  color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-flip-card:hover {
+  background: var(--magenta);
+  border-color: var(--magenta);
+  color: #ffffff;
+}
+
+/* CARA TRASERA */
+.card-back {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(232, 62, 134, 0.15), transparent 70%),
+    #180e1c;
+  color: #ffffff;
+  transform: rotateY(180deg);
+  padding: 20px;
+  justify-content: space-between;
+}
+
+.back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+  padding-bottom: 12px;
+}
+
+.back-edition-seal {
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--magenta);
+}
+
+.back-rarity-pill {
+  font-size: 0.6rem;
+  font-weight: 850;
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.back-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.back-lore-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lore-title {
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  color: #ffaa85;
+  letter-spacing: 0.06em;
+}
+
+.lore-desc {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.back-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.back-stat-cell {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.back-stat-cell.full-width {
+  grid-column: span 2;
+}
+
+.stat-name {
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 0.72rem;
+  font-weight: 750;
+  color: #ffffff;
+}
+
+.stat-value.highlight {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 850;
+  color: #ffd166;
+}
+
+.btn-flip-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-flip-back:hover {
+  background: var(--magenta);
+  border-color: var(--magenta);
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN (TABLETS & MÓVILES)
+   ======================================================== */
+@media (max-width: 900px) {
+  .candybong-showcase-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .collector-vault-section {
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 580px) {
+  .vault-tab-nav {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 20px;
+    padding: 6px;
+  }
+
+  .vault-tab-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .models-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grail-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grail-card-wrapper {
+    height: 490px;
+  }
+}
+
+/* ========================================================
+   PREFERS-REDUCED-MOTION
+   ======================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .candybong-glow-aura,
+  .tunnel-center-sparkle,
+  .vault-panel.active,
+  .model-detail-card.active {
+    animation: none !important;
+  }
+
+  .grail-card-3d {
+    transition: none !important;
+  }
+}

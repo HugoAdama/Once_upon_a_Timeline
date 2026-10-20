@@ -1,0 +1,108 @@
+---
+import { RARE_PHOTOCARDS } from '../data/collector-vault';
+import { resolveAsset } from '../utils/streaming';
+---
+
+<div class="grail-photocards-container" id="grail-photocards">
+  <!-- Barra de Filtros por Rareza -->
+  <div class="grail-filter-bar">
+    <span class="filter-lead">Filtrar por nivel de rareza:</span>
+    <div class="grail-filter-chips" role="group" aria-label="Filtro de rareza de photocards">
+      <button type="button" class="grail-chip active" data-rarity-filter="all">Todas (6)</button>
+      <button type="button" class="grail-chip" data-rarity-filter="mythic">Grial Mítico</button>
+      <button type="button" class="grail-chip" data-rarity-filter="legendary">Legendaria</button>
+      <button type="button" class="grail-chip" data-rarity-filter="rare">Tesoros Raros</button>
+    </div>
+  </div>
+
+  <!-- Cuadrícula 3D de Photocards Legendarias -->
+  <div class="grail-cards-grid">
+    {RARE_PHOTOCARDS.map((card) => {
+      const photoUrl = resolveAsset(card.sampleFrontPhoto);
+      return (
+        <div
+          class="grail-card-wrapper"
+          data-rarity={card.rarity}
+          data-card-id={card.id}
+          style={`--card-member-color: ${card.memberColor};`}
+        >
+          <div class="grail-card-3d">
+            <!-- Cara Frontal de la Photocard con Efecto Holográfico -->
+            <div class="card-face card-front">
+              <div class={`card-holographic-foil style-${card.holographicStyle}`} aria-hidden="true"></div>
+              <div class="card-photo-box">
+                <img
+                  src={photoUrl}
+                  alt={`${card.title} - Photocard oficial de ${card.member}`}
+                  class="card-img"
+                  loading="lazy"
+                  width="270"
+                  height="330"
+                />
+                <div class="card-badges-row">
+                  <span class={`rarity-tag tag-${card.rarity}`}>{card.rarityBadge}</span>
+                  <span class="category-tag">{card.categoryLabel}</span>
+                </div>
+              </div>
+
+              <div class="card-meta">
+                <div class="card-title-row">
+                  <h4 class="card-title">{card.title}</h4>
+                  <span class="card-year">{card.year}</span>
+                </div>
+                <p class="card-subhead">{card.era}</p>
+                <div class="card-value-preview">
+                  <span class="val-label">Valor estimado:</span>
+                  <span class="val-number">{card.marketPriceRange}</span>
+                </div>
+                <button type="button" class="btn-flip-card" aria-label={`Ver historia y detalles de ${card.title}`}>
+                  <span>Ver historia de coleccionista</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Cara Posterior: Archivo Histórico & Datos de Colección -->
+            <div class="card-face card-back">
+              <div class="back-header">
+                <span class="back-edition-seal">TWICE ARCHIVE</span>
+                <span class={`back-rarity-pill tag-${card.rarity}`}>{card.rarityBadge}</span>
+              </div>
+
+              <div class="back-body">
+                <div class="back-lore-block">
+                  <span class="lore-title">Historia de la Carta:</span>
+                  <p class="lore-desc">{card.collectorLore}</p>
+                </div>
+
+                <div class="back-stats-grid">
+                  <div class="back-stat-cell">
+                    <span class="stat-name">Acabado Físico</span>
+                    <span class="stat-value">{card.specialFinish}</span>
+                  </div>
+                  <div class="back-stat-cell">
+                    <span class="stat-name">Tirada Conocida</span>
+                    <span class="stat-value">{card.estimatedRarityUnits}</span>
+                  </div>
+                  <div class="back-stat-cell full-width">
+                    <span class="stat-name">Cotización de Mercado Actual</span>
+                    <span class="stat-value highlight">{card.marketPriceRange}</span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn-flip-back" aria-label={`Volver al frente de ${card.title}`}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38L-2.44 1.52"/>
+                </svg>
+                <span>Volver a la photocard</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>

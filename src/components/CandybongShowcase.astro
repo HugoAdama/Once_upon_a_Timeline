@@ -1,0 +1,167 @@
+---
+import { CANDYBONG_MODELS } from '../data/collector-vault';
+import { MEMBERS } from '../data/members';
+---
+
+<div class="candybong-showcase-container" id="candybong-showcase">
+  <!-- Columna Izquierda: Simulador de Luz en Concierto -->
+  <div class="candybong-stage-card">
+    <div class="stage-kicker-row">
+      <span class="stage-kicker">SIMULADOR LUMÍNICO EN VIVO</span>
+      <span class="stage-status-badge">BLUETOOTH VIRTUAL ACTIVO</span>
+    </div>
+
+    <!-- Escenario Visual del Lightstick -->
+    <div class="candybong-light-stage" id="candybong-light-stage" style="--candy-glow-color: #e83e86; --candy-secondary-color: #f4a27e;">
+      <!-- Halo de resplandor ambiental -->
+      <div class="candybong-glow-aura" aria-hidden="true"></div>
+
+      <!-- Silueta SVG Interactiva del Candybong Z / Infinity -->
+      <div class="candybong-interactive-silhouette" aria-hidden="true">
+        <!-- Aro del cabezal -->
+        <div class="silhouette-head">
+          <div class="silhouette-infinity-tunnel">
+            <span class="tunnel-ring r1"></span>
+            <span class="tunnel-ring r2"></span>
+            <span class="tunnel-ring r3"></span>
+            <span class="tunnel-center-sparkle">✦</span>
+          </div>
+          <div class="silhouette-outer-rim"></div>
+        </div>
+        <!-- Cuello y mango -->
+        <div class="silhouette-neck"></div>
+        <div class="silhouette-handle">
+          <span class="silhouette-button"></span>
+          <span class="silhouette-grip-line"></span>
+          <span class="silhouette-grip-line"></span>
+          <span class="silhouette-brand-text">TWICE</span>
+        </div>
+      </div>
+
+      <!-- Nombre del modo de color activo -->
+      <div class="stage-color-readout" id="stage-color-readout">
+        <span class="readout-dot" id="readout-dot"></span>
+        <span class="readout-label" id="readout-label">Neon Magenta · Paleta Oficial</span>
+      </div>
+    </div>
+
+    <!-- Controles de Color de Integrante -->
+    <div class="candybong-color-controls">
+      <span class="controls-label">Selecciona el color del concierto:</span>
+      <div class="color-bubbles-grid" role="group" aria-label="Colores oficiales de integrantes">
+        <button
+          type="button"
+          class="color-bubble active"
+          data-candy-color="#e83e86"
+          data-candy-color-sec="#f4a27e"
+          data-color-name="Apricot &amp; Magenta · TWICE Oficial"
+          title="TWICE Oficial · Apricot &amp; Neon Magenta"
+          style="background: linear-gradient(135deg, #e83e86, #f4a27e);"
+        >
+          <span class="bubble-inner"></span>
+        </button>
+        {MEMBERS.map((m) => (
+          <button
+            type="button"
+            class="color-bubble"
+            data-candy-color={m.colorHex}
+            data-candy-color-sec={m.colorHex}
+            data-color-name={`${m.name} · ${m.colorName}`}
+            title={`${m.name} · ${m.colorName}`}
+            style={`--bubble-c: ${m.colorHex}; background: ${m.colorHex};`}
+          >
+            <span class="bubble-inner"></span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Selector de Ritmo Lumínico -->
+    <div class="candybong-rhythm-controls">
+      <button type="button" class="rhythm-btn active" data-light-mode="steady">Luz Continua</button>
+      <button type="button" class="rhythm-btn" data-light-mode="pulse">Pulso Estadio</button>
+      <button type="button" class="rhythm-btn" data-light-mode="rave">Modo Fiesta</button>
+    </div>
+  </div>
+
+  <!-- Columna Derecha: Cronología y Fichas Técnicas de la Trilogía -->
+  <div class="candybong-models-column">
+    <div class="models-nav" role="tablist" aria-label="Modelos de Candybong">
+      {CANDYBONG_MODELS.map((model, idx) => (
+        <button
+          type="button"
+          class={`model-tab-btn ${idx === 2 ? 'active' : ''}`}
+          data-target-model={model.id}
+          role="tab"
+          aria-selected={idx === 2 ? 'true' : 'false'}
+        >
+          <span class="tab-version">{model.version}</span>
+          <span class="tab-year">{model.releaseYear}</span>
+          <span class="tab-name">{model.name}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Fichas detalladas para cada modelo -->
+    <div class="models-cards-container">
+      {CANDYBONG_MODELS.map((model, idx) => (
+        <article
+          class={`model-detail-card ${idx === 2 ? 'active' : ''}`}
+          id={`model-card-${model.id}`}
+          data-model-id={model.id}
+        >
+          <div class="card-hero-row">
+            <div>
+              <span class="model-era-pill">{model.eraName}</span>
+              <h3 class="model-title">{model.name}</h3>
+              <span class="model-concept-tag">{model.conceptTag}</span>
+            </div>
+            <div class="model-year-badge">
+              <span>{model.releaseYear}</span>
+            </div>
+          </div>
+
+          <p class="model-description">{model.description}</p>
+
+          <!-- Especificaciones Técnicas de Ingeniería -->
+          <div class="specs-grid">
+            <div class="spec-cell">
+              <span class="spec-label">Tecnología Lumínica</span>
+              <span class="spec-val">{model.lightingSpecs.technology}</span>
+            </div>
+            <div class="spec-cell">
+              <span class="spec-label">Alimentación</span>
+              <span class="spec-val">{model.lightingSpecs.batteryType}</span>
+            </div>
+            <div class="spec-cell">
+              <span class="spec-label">Conectividad</span>
+              <span class="spec-val">{model.lightingSpecs.connectivity}</span>
+            </div>
+            <div class="spec-cell">
+              <span class="spec-label">Modos de Luz</span>
+              <span class="spec-val">{model.lightingSpecs.modes.join(' · ')}</span>
+            </div>
+          </div>
+
+          <!-- Datos Curiosos & Lore de Conciertos -->
+          <div class="lore-box">
+            <div class="lore-item">
+              <span class="lore-icon" aria-hidden="true">🏟️</span>
+              <div class="lore-text">
+                <strong>Momento Histórico en Estadios:</strong>
+                <span>{model.stadiumLore}</span>
+              </div>
+            </div>
+            <div class="lore-item">
+              <span class="lore-icon" aria-hidden="true">💡</span>
+              <div class="lore-text">
+                <strong>Curiosidad de Coleccionista:</strong>
+                <span>{model.funFact}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</div>

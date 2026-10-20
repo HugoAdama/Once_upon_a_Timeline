@@ -1,6 +1,7 @@
 ---
 import QuizCard from './QuizCard.astro';
 import PhotocardStudio from './PhotocardStudio.astro';
+import CollectorVault from './CollectorVault.astro';
 ---
 
 <section class="section wrap fan-zone-section" id="fan-zone">
@@ -15,7 +16,7 @@ import PhotocardStudio from './PhotocardStudio.astro';
       <h2>ONCE Fan Zone.</h2>
     </div>
     <p>
-      El espacio interactivo para la comunidad ONCE: descubre qué integrante de TWICE coincide con tu personalidad y personaliza tu propia photocard de coleccionista.
+      El espacio interactivo para la comunidad ONCE: descubre qué integrante de TWICE coincide con tu personalidad, personaliza tu propia photocard de coleccionista y explora las reliquias más codiciadas del fandom.
     </p>
   </div>
 
@@ -23,14 +24,23 @@ import PhotocardStudio from './PhotocardStudio.astro';
     <QuizCard />
     <PhotocardStudio />
   </div>
+
+  <!-- Bóveda del Coleccionista & Curiosidades (Evolución Candybong + Santos Griales) -->
+  <CollectorVault />
 </section>
 
 <script>
   import { initFanZone } from '../scripts/fan-zone';
+  import { initCollectorVault } from '../scripts/collector-vault';
+
+  function setup() {
+    initFanZone();
+    initCollectorVault();
+  }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFanZone);
+    document.addEventListener('DOMContentLoaded', setup);
   } else {
-    initFanZone();
+    setup();
   }
 </script>

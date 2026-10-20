@@ -1,0 +1,68 @@
+---
+import CandybongShowcase from './CandybongShowcase.astro';
+import GrailPhotocardsShowcase from './GrailPhotocardsShowcase.astro';
+---
+
+<div class="collector-vault-section" id="boveda-coleccionista">
+  <div class="vault-header-wrap">
+    <div class="vault-eyebrow">
+      <span class="eyebrow-sparkle" aria-hidden="true">✦</span>
+      <span>BÓVEDA DEL COLECCIONISTA &amp; CURIOSIDADES</span>
+      <span class="vault-verified-badge">ARCHIVO OFICIAL ONCE</span>
+    </div>
+    <h3 class="vault-heading">Reliquias &amp; Curiosidades del Fandom.</h3>
+    <p class="vault-description">
+      Descubre la evolución tecnológica del icónico lightstick Candybong a lo largo de una década de giras mundiales y adéntrate en las photocards más raras, codiciadas y legendarias en la historia de TWICE.
+    </p>
+
+    <!-- Pestañas Principales del Museo -->
+    <div class="vault-tab-nav" role="tablist" aria-label="Secciones de la bóveda del coleccionista">
+      <button
+        type="button"
+        class="vault-tab-btn active"
+        data-vault-tab="candybong"
+        role="tab"
+        aria-selected="true"
+        aria-controls="vault-panel-candybong"
+        id="tab-candybong"
+      >
+        <span class="tab-icon" aria-hidden="true">🍭</span>
+        <span>Evolución Candybong (2016 — 2026)</span>
+      </button>
+
+      <button
+        type="button"
+        class="vault-tab-btn"
+        data-vault-tab="photocards"
+        role="tab"
+        aria-selected="false"
+        aria-controls="vault-panel-photocards"
+        id="tab-photocards"
+      >
+        <span class="tab-icon" aria-hidden="true">🃏</span>
+        <span>Santos Griales de Photocards</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Paneles de Contenido -->
+  <div class="vault-panels-wrap">
+    <div
+      class="vault-panel active"
+      id="vault-panel-candybong"
+      role="tabpanel"
+      aria-labelledby="tab-candybong"
+    >
+      <CandybongShowcase />
+    </div>
+
+    <div
+      class="vault-panel"
+      id="vault-panel-photocards"
+      role="tabpanel"
+      aria-labelledby="tab-photocards"
+    >
+      <GrailPhotocardsShowcase />
+    </div>
+  </div>
+</div>
