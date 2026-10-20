@@ -1,6 +1,7 @@
 ---
 import { CANDYBONG_MODELS } from '../data/collector-vault';
 import { MEMBERS } from '../data/members';
+import { resolveAsset } from '../utils/streaming';
 ---
 
 <div class="candybong-showcase-container" id="candybong-showcase">
@@ -111,11 +112,23 @@ import { MEMBERS } from '../data/members';
           data-model-id={model.id}
         >
           <div class="card-hero-row">
-            <div>
+            <div class="model-meta-info">
               <span class="model-era-pill">{model.eraName}</span>
               <h3 class="model-title">{model.name}</h3>
               <span class="model-concept-tag">{model.conceptTag}</span>
             </div>
+            {model.image && (
+              <div class="model-real-photo-wrap" title={`Fotografía oficial de ${model.name}`}>
+                <img
+                  src={resolveAsset(model.image)}
+                  alt={`Fotografía oficial del lightstick ${model.name}`}
+                  class="model-real-img"
+                  loading="lazy"
+                  width="88"
+                  height="88"
+                />
+              </div>
+            )}
             <div class="model-year-badge">
               <span>{model.releaseYear}</span>
             </div>

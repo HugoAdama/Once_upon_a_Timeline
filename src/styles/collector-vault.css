@@ -552,10 +552,49 @@
 
 .card-hero-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 12px;
+}
+
+.model-meta-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.model-real-photo-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px;
+  box-shadow: 0 6px 18px rgba(66, 37, 57, 0.08);
+  border: 1px solid rgba(232, 62, 134, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .model-real-photo-wrap {
+  background: rgba(18, 9, 21, 0.92);
+  border-color: rgba(232, 62, 134, 0.32);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.model-real-photo-wrap:hover {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 10px 26px rgba(232, 62, 134, 0.28);
+}
+
+.model-real-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
 }
 
 .model-era-pill {

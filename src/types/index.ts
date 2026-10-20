@@ -199,6 +199,7 @@ export interface CandybongModel {
   funFact: string;
   defaultColor: string;
   shapeType: 'lollipop' | 'ring-z' | 'infinity-mirror';
+  image?: string;
 }
 
 export interface RarePhotocard {

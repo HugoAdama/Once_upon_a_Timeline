@@ -22,6 +22,7 @@ export const CANDYBONG_MODELS: CandybongModel[] = [
       '¡Incluía una base cuna que lo convertía en una lámpara de noche de escritorio para la habitación! Podías conectarlo a la corriente y tener la luz de TWICE mientras dormías.',
     defaultColor: '#e83e86',
     shapeType: 'lollipop',
+    image: '/assets/collector/candybong-v1.webp',
   },
   {
     id: 'candybong-z',
@@ -44,6 +45,7 @@ export const CANDYBONG_MODELS: CandybongModel[] = [
       'Fue el primer lightstick de TWICE capaz de iluminar individualmente el color oficial de cada una de las 9 chicas presionando una secuencia en su botón central.',
     defaultColor: '#f4a27e',
     shapeType: 'ring-z',
+    image: '/assets/collector/candybong-z.webp',
   },
   {
     id: 'candybong-infinity',
@@ -66,6 +68,7 @@ export const CANDYBONG_MODELS: CandybongModel[] = [
       'Posee una superficie táctil en el mango donde deslizar el dedo cambia la velocidad de la rotación estelar del túnel de luz en tiempo real.',
     defaultColor: '#ff6ea7',
     shapeType: 'infinity-mirror',
+    image: '/assets/collector/candybong-infinity.webp',
   },
 ];
 
@@ -88,7 +91,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$800 — $1,500+ USD',
     memberColor: '#005bac',
     holographicStyle: 'rainbow',
-    sampleFrontPhoto: '/assets/members/tzuyu.webp',
+    sampleFrontPhoto: '/assets/members/tzuyu-classic.webp',
   },
   {
     id: 'pc-superstar-jyp-momo',
@@ -108,7 +111,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$1,000 — $2,200+ USD',
     memberColor: '#ff6ea7',
     holographicStyle: 'gold-leaf',
-    sampleFrontPhoto: '/assets/members/momo.webp',
+    sampleFrontPhoto: '/assets/members/momo-classic.webp',
   },
   {
     id: 'pc-page-two-lenticular-mina',
@@ -128,7 +131,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$120 — $280 USD',
     memberColor: '#75c9be',
     holographicStyle: 'glass-shards',
-    sampleFrontPhoto: '/assets/members/mina.webp',
+    sampleFrontPhoto: '/assets/members/mina-classic.webp',
   },
   {
     id: 'pc-signal-secret-scratch-sana',
@@ -148,7 +151,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$90 — $220 USD',
     memberColor: '#9e7bb5',
     holographicStyle: 'glitter',
-    sampleFrontPhoto: '/assets/members/sana.webp',
+    sampleFrontPhoto: '/assets/members/sana-classic.webp',
   },
   {
     id: 'pc-twicetagram-insta-nayeon',
@@ -168,7 +171,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$85 — $190 USD',
     memberColor: '#5bc2e7',
     holographicStyle: 'rainbow',
-    sampleFrontPhoto: '/assets/members/nayeon.webp',
+    sampleFrontPhoto: '/assets/members/nayeon-classic.webp',
   },
   {
     id: 'pc-ready-to-be-stadium-jihyo',
@@ -188,6 +191,6 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$140 — $320 USD',
     memberColor: '#f4a27e',
     holographicStyle: 'gold-leaf',
-    sampleFrontPhoto: '/assets/members/jihyo.webp',
+    sampleFrontPhoto: '/assets/members/jihyo-current.webp',
   },
 ];
