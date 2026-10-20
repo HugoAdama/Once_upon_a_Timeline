@@ -1,5 +1,6 @@
 import { FAN_ACHIEVEMENTS, isAchievementUnlocked } from '../data/fan-achievements';
 import { RELEASES } from '../data/releases';
+import { resolveAsset } from '../utils/streaming';
 import { t } from './i18n';
 
 const STORAGE_KEY = 'once_physical_collection';
@@ -115,7 +116,9 @@ function checkAndNotifyAchievements(owned: Set<string>): void {
       if (isAchievementUnlocked(ach.id, owned, RELEASES)) {
         awarded.add(ach.id);
         newlyUnlocked.push(ach.id);
-        showAchievementToast(ach.title, ach.description);
+        const localizedTitle = t(`ach.${ach.key}.title`) || ach.title;
+        const localizedDesc = t(`ach.${ach.key}.desc`) || ach.description;
+        showAchievementToast(localizedTitle, localizedDesc);
       }
     }
   });
@@ -183,11 +186,16 @@ export function updatePhysicalShelfTrackerUI(): void {
 
       shelfGrid.innerHTML = ownedReleases
         .map((r) => {
-          const cover = r.cover || '/assets/twice-logo.svg';
+          const rawCover = r.cover || '/assets/twice-logo.svg';
+          const cover = resolveAsset(rawCover) || rawCover;
+          const fallback = resolveAsset('/assets/twice-logo.svg') || '/assets/twice-logo.svg';
           return `
             <div class="shelf-album-case" title="${r.title} (${r.year})">
-              <div class="case-spine"></div>
-              <img src="${cover}" alt="${r.title}" class="case-cover-img" loading="lazy" width="80" height="80" />
+              <div class="case-cover-wrapper">
+                <div class="case-jewel-sheen" aria-hidden="true"></div>
+                <div class="case-spine" aria-hidden="true"></div>
+                <img src="${cover}" alt="${r.title}" class="case-cover-img" loading="lazy" width="84" height="84" onerror="this.onerror=null;this.src='${fallback}';" />
+              </div>
               <span class="case-title">${r.title}</span>
             </div>
           `;
@@ -203,6 +211,16 @@ export function updatePhysicalShelfTrackerUI(): void {
   achievementsGrid.forEach((card) => {
     const achId = card.getAttribute('data-achievement-id');
     if (!achId) return;
+
+    const achObj = FAN_ACHIEVEMENTS.find((a) => a.id === achId);
+    if (achObj) {
+      const catEl = card.querySelector<HTMLElement>('.ach-category-tag');
+      const titleEl = card.querySelector<HTMLElement>('.ach-title');
+      const descEl = card.querySelector<HTMLElement>('.ach-desc');
+      if (catEl) catEl.textContent = t(`ach.${achObj.key}.category`) || achObj.categoryLabel;
+      if (titleEl) titleEl.textContent = t(`ach.${achObj.key}.title`) || achObj.title;
+      if (descEl) descEl.textContent = t(`ach.${achObj.key}.desc`) || achObj.description;
+    }
 
     const isUnlocked = isAchievementUnlocked(achId, owned, RELEASES);
     if (isUnlocked) {

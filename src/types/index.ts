@@ -224,6 +224,7 @@ export interface RarePhotocard {
 
 export interface FanAchievement {
   id: string;
+  key: string;
   title: string;
   description: string;
   category: 'milestone' | 'era' | 'market' | 'legendary';

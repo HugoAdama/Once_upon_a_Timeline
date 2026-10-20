@@ -3,6 +3,7 @@ import type { FanAchievement, Release } from '../types';
 export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   {
     id: 'ach-first-album',
+    key: 'firstAlbum',
     title: 'Primer Paso ONCE',
     description: 'Añade tu primer álbum físico (CD o Vinilo) a tu estante personal.',
     category: 'milestone',
@@ -12,6 +13,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-bronze-shelf',
+    key: 'bronzeShelf',
     title: 'Estante de Bronce',
     description: 'Colecciona al menos 5 álbumes físicos oficiales de TWICE.',
     category: 'milestone',
@@ -21,6 +23,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-silver-shelf',
+    key: 'silverShelf',
     title: 'Estante de Plata',
     description: 'Alcanza 15 álbumes físicos en tu colección privada.',
     category: 'milestone',
@@ -30,6 +33,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-gold-shelf',
+    key: 'goldShelf',
     title: 'Estante de Oro',
     description: 'Alcanza 30 álbumes físicos en tu santuario de TWICE.',
     category: 'milestone',
@@ -39,6 +43,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-grandmaster',
+    key: 'grandmaster',
     title: 'Gran Maestro ONCE',
     description: 'Colecciona 50 o más álbumes físicos. Eres un pilar legendario del fandom.',
     category: 'legendary',
@@ -48,6 +53,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-debut-nostalgia',
+    key: 'debutNostalgia',
     title: 'Nostalgia del Debut (2015-2016)',
     description: 'Posee en formato físico "The Story Begins" y "PAGE TWO".',
     category: 'era',
@@ -56,6 +62,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-daesang-trilogy',
+    key: 'daesangTrilogy',
     title: 'Trilogía de Daesangs (SOTY)',
     description: 'Posee los álbumes de los 3 Daesangs consecutivos: PAGE TWO, SIGNAL y What is Love?.',
     category: 'legendary',
@@ -64,6 +71,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-fancy-feel-special',
+    key: 'fancyFeelSpecial',
     title: 'Revolución FANCY (2019)',
     description: 'Posee en físico "FANCY YOU" y "Feel Special", la era de oro y madurez.',
     category: 'era',
@@ -72,6 +80,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-japan-dome',
+    key: 'japanDome',
     title: 'Conquistador de Japón',
     description: 'Colecciona al menos 3 álbumes japoneses físicos (BDZ, &TWICE, Perfect World, Celebrate, DIVE, etc.).',
     category: 'market',
@@ -81,8 +90,9 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-global-expansion',
+    key: 'globalExpansion',
     title: 'Frontera Global',
-    description: 'Posee al menos 1 lanzamiento internacional en formato físico (Ready to Be, With YOU-th, STRATEGY, etc.).',
+    description: 'Posee al menos 1 lanzamiento internacional en formato físico o global (The Feels, MOONLIGHT SUNRISE, Strategy Global, etc.).',
     category: 'market',
     categoryLabel: 'Global',
     iconType: 'flag',
@@ -90,6 +100,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-special-repackage',
+    key: 'specialRepackage',
     title: 'Tesoros Especiales',
     description: 'Posee al menos 1 álbum en versión Repackage o Especial (Merry & Happy, Summer Nights, Year of YES, etc.).',
     category: 'era',
@@ -99,6 +110,7 @@ export const FAN_ACHIEVEMENTS: FanAchievement[] = [
   },
   {
     id: 'ach-time-traveler',
+    key: 'timeTraveler',
     title: 'Viajero del Tiempo ONCE',
     description: 'Posee álbumes físicos pertenecientes a al menos 5 años diferentes de la historia de TWICE.',
     category: 'milestone',
@@ -155,13 +167,7 @@ export function isAchievementUnlocked(
     }
 
     case 'ach-global-expansion': {
-      const globalCount = ownedReleases.filter(
-        (r) =>
-          r.market === 'global' ||
-          r.title.toLowerCase().includes('ready to be') ||
-          r.title.toLowerCase().includes('with you-th') ||
-          r.title.toLowerCase().includes('strategy')
-      ).length;
+      const globalCount = ownedReleases.filter((r) => r.market === 'global').length;
       return globalCount >= 1;
     }
 

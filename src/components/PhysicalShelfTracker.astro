@@ -127,11 +127,11 @@ const musicUrl = resolveAsset('/musica');
 
           <div class="ach-badge-content">
             <div class="ach-header-row">
-              <span class="ach-category-tag">{ach.categoryLabel}</span>
+              <span class="ach-category-tag" data-i18n={`ach.${ach.key}.category`}>{ach.categoryLabel}</span>
               <span class="ach-status-pill" data-i18n="shelf.locked">Bloqueado</span>
             </div>
-            <strong class="ach-title">{ach.title}</strong>
-            <p class="ach-desc">{ach.description}</p>
+            <strong class="ach-title" data-i18n={`ach.${ach.key}.title`}>{ach.title}</strong>
+            <p class="ach-desc" data-i18n={`ach.${ach.key}.desc`}>{ach.description}</p>
           </div>
         </div>
       ))}

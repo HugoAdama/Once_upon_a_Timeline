@@ -8,11 +8,6 @@ export function getLanguage(): SupportedLang {
   if (saved && (saved === 'es' || saved === 'en' || saved === 'ko' || saved === 'ja')) {
     return saved;
   }
-  // Detección automática del navegador
-  const browserLang = (navigator.language || '').toLowerCase();
-  if (browserLang.startsWith('ko')) return 'ko';
-  if (browserLang.startsWith('ja')) return 'ja';
-  if (browserLang.startsWith('en')) return 'en';
   return 'es';
 }
 
