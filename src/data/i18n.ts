@@ -240,6 +240,7 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.headingExp': 'Experiencias',
     'footer.headingOfficial': 'Enlaces Oficiales',
     'footer.tagline': 'Archivo visual interactivo dedicado a las 9 integrantes de TWICE, su música y sus personajes oficiales.',
+    'footer.developedBy': 'Desarrollado por',
     'footer.disclaimer': 'Sitio no oficial creado con devoción por y para ONCE. TWICE y todos sus materiales son marca registrada de JYP Entertainment y Warner Music Japan.',
 
     // Cierre
@@ -475,6 +476,7 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.headingExp': 'Experiences',
     'footer.headingOfficial': 'Official Links',
     'footer.tagline': 'Interactive visual archive dedicated to the 9 members of TWICE, their music, and official characters.',
+    'footer.developedBy': 'Developed by',
     'footer.disclaimer': 'Unofficial fan tribute created for ONCE. TWICE and all associated materials are registered trademarks of JYP Entertainment and Warner Music Japan.',
 
     // Cierre
@@ -709,6 +711,7 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.headingExp': '체험하기',
     'footer.headingOfficial': '공식 링크',
     'footer.tagline': '트와이스 9명의 멤버와 음악, 공식 캐릭터를 위한 인터랙티브 비주얼 아카이브.',
+    'footer.developedBy': '개발:',
     'footer.disclaimer': '원스(ONCE) 팬들을 위한 비공식 디지털 아카이브입니다. TWICE와 관련된 모든 저작권은 JYP Entertainment 및 Warner Music Japan에 있습니다.',
 
     // Cierre
@@ -943,6 +946,7 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.headingExp': '体験',
     'footer.headingOfficial': '公式リンク',
     'footer.tagline': 'TWICE 9人のメンバー、その音楽、公式キャラクターに捧げるアーカイブ。',
+    'footer.developedBy': '開発:',
     'footer.disclaimer': 'ONCEのために制作された非公式ファンアーカイブです。TWICEおよび関連するすべての著作権はJYP EntertainmentおよびWarner Music Japanに帰属します。',
 
     // Cierre
