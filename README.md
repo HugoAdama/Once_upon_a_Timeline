@@ -11,8 +11,11 @@
   - **Inicio (`/`)**: Portada Hero, Photocards 3D de las 9 integrantes, vitrina de personajes (Lovelys y Tdoongz) y portales interactivos hacia los demás capítulos.
   - **Música & Videografía (`/musica`)**: Catálogo discográfico completo, buscador en vivo, reproductor de canciones, cronología histórica y Cinema MV Vault.
   - **Giras & Salón de la Fama (`/giras`)**: World Tour Odyssey (estadios y setlists) y vitrina de trofeos y récords históricos.
-  - **ONCE Fan Zone (`/fan-zone`)**: Test de Afinidad interactivo sincronizado en tiempo real con el Photocard Studio.
+  - **ONCE Fan Zone (`/fan-zone`)**: Test de Afinidad interactivo, Photocard Studio con Polco Deco y la Bóveda de Coleccionista (Trilogía Candybong & Santos Griales de Photocards 3D).
   - **Moda Escénica (`/moda`)**: Galería visual de alta resolución del Stage Wardrobe Archive con paletas cromáticas y siluetas clave.
+- **Bóveda de Coleccionista & Curiosidades (ONCE Vault)**:
+  - **Trilogía & Simulador Lumínico Candybong**: Cronología interactiva con los 3 modelos oficiales (*Candybong Ver. 1* 2016 con base lámpara de noche, *Candybong Z* 2019 de ingeniería circular para domos, y *Candybong ∞ Infinity* 2023 con cámara de espejos infinitos 3D bilaterales). Incluye simulador de concierto con ritmos (Fijo, Pulso, Rave), túnel estelar LED y selector interactivo con los 9 colores oficiales.
+  - **Santos Griales de Photocards 3D**: Cuadrícula de 6 cartas históricas ultra-raras de TWICE (Tzuyu Debut 2015, Momo SuperStar JYP 2017, Mina Page Two 3D Lenticular 2016, Sana Signal Secret Scratch 2017, Nayeon Likey Polaroid 2017 y Jihyo Ready to Be VIP 2023). Incorpora inclinación física reactiva al cursor (*fluid 3D tilt*), shaders de acabado reflectante (*Rainbow Prism*, *Gold Leaf*, *3D Lenticular Prisms*, *Cosmic Glitter*), toploader protector, filtro de rareza y giro 180° hacia el reverso histórico con cotizaciones del mercado de coleccionistas.
 - **Sistema de Photocards Coleccionables & Giro 3D**:
   - Retratos oficiales de las 9 integrantes con efecto reflectante holográfico (*shimmer*) e inclinación reactiva al cursor (*3D tilt*).
   - **Rotación Automática Cada 30 Segundos**: Efecto de ola en cascada donde las tarjetas giran 180° hacia el reverso holográfico y regresan al frente actualizando el retrato de la era.

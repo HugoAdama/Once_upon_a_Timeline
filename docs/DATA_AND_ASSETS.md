@@ -160,6 +160,53 @@ export interface FashionConcept {
 }
 ```
 
+### `CandybongModel` (Trilogía de Lightsticks)
+```typescript
+export interface CandybongModel {
+  id: string;             // ej: "candybong-infinity"
+  version: string;        // ej: "VER. 3"
+  name: string;           // ej: "Candybong ∞ (Infinity)"
+  releaseYear: string;    // ej: "2023"
+  eraName: string;        // ej: "Era Monumental · Ready to Be World Tour"
+  conceptTag: string;     // ej: "Dimensión Infinita & Estadios Globales"
+  description: string;
+  lightingSpecs: {
+    technology: string;   // Tecnología LED y difusores
+    batteryType: string;  // Especificación de alimentación
+    modes: string[];      // Modos interactivos
+    connectivity: string; // Bluetooth, radiofrecuencia DMX
+  };
+  stadiumLore: string;    // Contexto en conciertos masivos
+  funFact: string;        // Curiosidad técnica para coleccionistas
+  defaultColor: string;   // Color inicial de encendido
+  shapeType: 'lollipop' | 'ring-z' | 'infinity-mirror';
+  image?: string;         // Asset fotográfico oficial
+}
+```
+
+### `RarePhotocard` (Santos Griales de Photocards)
+```typescript
+export interface RarePhotocard {
+  id: string;             // ej: "pc-page-two-lenticular-mina"
+  title: string;          // ej: "Mina · Page Two 3D Lenticular Card"
+  member: string;         // ej: "Mina"
+  memberId: string;       // ej: "mina"
+  era: string;            // ej: "Page Two · Cheer Up (2016)"
+  year: string;           // ej: "2016"
+  rarity: 'mythic' | 'legendary' | 'rare';
+  rarityBadge: string;    // ej: "Legendaria Lenticular"
+  category: 'broadcast' | 'tournament' | 'special-album' | 'world-tour';
+  categoryLabel: string;  // ej: "Edición Limitada"
+  collectorLore: string;  // Historia y contexto de búsqueda
+  specialFinish: string;  // Acabado de imprenta (foil, lenticular, rascable)
+  estimatedRarityUnits: string; // Estimación de unidades supervivientes
+  marketPriceRange: string;     // Rango de cotización en el mercado
+  memberColor: string;          // Color representativo de la integrante
+  holographicStyle: 'rainbow' | 'glitter' | 'glass-shards' | 'gold-leaf';
+  sampleFrontPhoto: string;     // Fotografía auténtica de la era
+}
+```
+
 ---
 
 ## 2. Directorio de Assets Estáticos (`public/assets/`)
@@ -169,6 +216,9 @@ Los recursos multimedia se organizan de forma estructurada en formato `.webp` pa
 - **`public/assets/characters/`**:
   - `navely.webp`, `jeongvely.webp`, `movely.webp`, `savely.webp`, `jively.webp`, `mively.webp`, `davely.webp`, `chaengvely.webp`, `tzuvely.webp`.
   - `imnabong.webp`, `yubbuibbui.webp`, `mokuring.webp`, `shyam-shyam.webp`, `parkzyoni.webp`, `myodette.webp`, `dupnyangee.webp`, `sonchaetty.webp`, `tzukumi.webp`.
+- **`public/assets/collector/`**:
+  - Modelos oficiales de lightsticks en fondo oscuro con pedestal: `candybong-v1.webp`, `candybong-z.webp`, `candybong-infinity.webp`.
+  - Retratos oficiales y auténticos de los Santos Griales de photocards encuadrados para toploader: `pc-tzuyu-debut.webp`, `pc-momo-superstar.webp`, `pc-mina-cheerup.webp`, `pc-sana-signal.webp`, `pc-nayeon-likey.webp`, `pc-jihyo-readytobe.webp`.
 - **`public/assets/covers/`**:
   - Portadas oficiales cuadradas de toda la discografía en Corea, Japón y Global.
 - **`public/assets/members/`**:

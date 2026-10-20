@@ -96,6 +96,14 @@ npm run preview
 1. Abre [`src/data/hall-of-fame.ts`](file:///e:/Once_upon_a_Timeline/src/data/hall-of-fame.ts).
 2. Agrega la métrica verificada bajo su categoría correspondiente (`music-show`, `daesang`, `stadium`, `global-record`).
 
+### Añadir o Modificar Ítems en la Bóveda de Coleccionista (Collector's Vault)
+1. Abre [`src/data/collector-vault.ts`](file:///e:/Once_upon_a_Timeline/src/data/collector-vault.ts).
+2. Para añadir o actualizar una photocard en los Santos Griales, añade el objeto conforme a la interfaz `RarePhotocard`:
+   - Define el estilo de shader holográfico (`rainbow`, `glitter`, `glass-shards` o `gold-leaf`).
+   - Guarda el retrato auténtico de era encuadrado en `public/assets/collector/pc-{nombre}-{era}.webp`.
+   - Especifica la historia de búsqueda, acabado físico y cotización de coleccionista para el reverso.
+3. Para nuevos modelos de lightsticks, amplía el array `CANDYBONG_MODELS` con especificaciones de iluminación y lore de estadios.
+
 ---
 
 ## 4. Convenciones de Código y Estilo

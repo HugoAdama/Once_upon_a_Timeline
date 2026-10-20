@@ -32,6 +32,7 @@ Once_upon_a_Timeline/
 ├── public/
 │   ├── assets/
 │   │   ├── characters/      # Ilustraciones oficiales de Lovelys y TDOONGZ (.webp)
+│   │   ├── collector/       # Fotografía oficial de Candybongs y Santos Griales de Photocards (.webp)
 │   │   ├── covers/          # Portadas oficiales cuadradas de lanzamientos (.webp)
 │   │   ├── members/         # Retratos oficiales por era (current, between, classic)
 │   │   ├── tours/           # Fotografía de conciertos y logotipos oficiales de giras
@@ -47,18 +48,21 @@ Once_upon_a_Timeline/
 │   │   ├── CandyJukeboxControls.astro     # Controles, barra de progreso y volumen
 │   │   ├── CandyJukeboxLauncher.astro     # Botón flotante FAB con badge giratorio
 │   │   ├── CandyJukeboxPlaylist.astro     # Lista de canciones con indicador en vivo
+│   │   ├── CandybongEvolutionShowcase.astro # Trilogía Candybong & simulador lumínico interactivo
 │   │   ├── CharacterTile.astro            # Ficha atómica individual para personajes
 │   │   ├── CharactersSection.astro        # Orquestador del escaparate de Lovelys y TDOONGZ
 │   │   ├── ClosingSection.astro           # Banner de cierre con gradiente cósmico
+│   │   ├── CollectorVaultSection.astro    # Orquestador de la Bóveda de Coleccionista y curiosidades
 │   │   ├── DiscographyFilterBar.astro     # Buscador de discografía y barra de herramientas
 │   │   ├── DiscographyKillingParts.astro  # Chips de frases y Killing Parts icónicas
 │   │   ├── DiscographyQuickEras.astro     # Accesos directos a eras populares
 │   │   ├── DiscographySection.astro       # Orquestador conciso de la discografía
 │   │   ├── DiscographyViewControls.astro  # Conmutador de vistas Cuadrícula / Lista
-│   │   ├── FanZoneSection.astro           # Sección comunitaria ONCE (Quiz & Studio)
+│   │   ├── FanZoneSection.astro           # Sección comunitaria ONCE (Quiz, Studio & Vault)
 │   │   ├── FashionCard.astro              # Tarjeta de concepto y estilismo escénico
 │   │   ├── FashionSection.astro           # Orquestador de Stage Wardrobe Archive
 │   │   ├── Footer.astro                   # Pie de página estructurado y créditos
+│   │   ├── GrailPhotocardsShowcase.astro  # Vitrina 3D con shaders holográficos de photocards raras
 │   │   ├── HallOfFameSection.astro        # Vitrina de récords y salón de trofeos
 │   │   ├── Header.astro                   # Barra superior fija y navegación móvil
 │   │   ├── Hero.astro                     # Portada editorial y métricas destacadas
@@ -81,11 +85,12 @@ Once_upon_a_Timeline/
 │   │   ├── TourCard.astro                 # Ficha Bento de gira con estadios y setlist
 │   │   ├── TourOdysseySection.astro       # Navegación y vitrina de giras mundiales
 │   │   ├── TourPhotoGallery.astro         # Galería de conciertos con rotación cada 30s
-│   │   ├── TourRouteMap.astro             # Radar de rutas mundiales y balizas de estadios
+│   │   ├── TourRouteMap.astro             # Radar de rutas mundiales y baliceras de estadios
 │   │   ├── TourVenuesGrid.astro           # Cuadrícula de estadios y recintos históricos
 │   │   └── VirtualCandybong.astro         # Widget interactivo del lightstick Candybong Z
 │   ├── data/                  # Fuentes de verdad estáticas fuertemente tipadas
 │   │   ├── characters.ts      # Datos de Lovelys y TDOONGZ
+│   │   ├── collector-vault.ts # Modelos Candybong, especificaciones y Santos Griales de photocards
 │   │   ├── fan-zone.ts        # Preguntas y opciones del test de afinidad
 │   │   ├── fashion-archive.ts # Conceptos de vestuario y siluetas escénicas
 │   │   ├── hall-of-fame.ts    # Récords históricos, Daesangs y ventas
@@ -101,12 +106,13 @@ Once_upon_a_Timeline/
 │   │   ├── index.astro        # Inicio: Hero, Integrantes 3D, Personajes y Portales
 │   │   ├── musica.astro       # Discografía, Killing Parts, Cronología y Cinema MV Vault
 │   │   ├── giras.astro        # World Tour Odyssey, Mapa de Rutas y Salón de la Fama
-│   │   ├── fan-zone.astro     # Test de Afinidad conectado con Photocard Studio & Polco Deco
+│   │   ├── fan-zone.astro     # Test de Afinidad, Photocard Studio & Bóveda de Coleccionista
 │   │   └── moda.astro         # Stage Wardrobe Archive con galería de alta resolución
 │   ├── scripts/               # Lógica cliente TypeScript desacoplada
 │   │   ├── candy-jukebox.ts         # Mini reproductor de audio y visualizador canvas
 │   │   ├── candybong-sync.ts        # Sincronización cromática de lightstick y bias
 │   │   ├── characters-filter.ts     # Filtro por universo de personajes
+│   │   ├── collector-vault.ts       # Simulador lumínico Candybong, 3D tilt, filtros y shaders foil
 │   │   ├── discography-explorer.ts  # Búsqueda reactiva, killing parts, filtros y vista
 │   │   ├── fan-zone.ts              # Motor del quiz y sincronización con el estudio
 │   │   ├── fashion-gallery.ts       # Filtros y zoom de Stage Wardrobe Archive
@@ -127,6 +133,7 @@ Once_upon_a_Timeline/
 │       ├── candybong.css      # Modelo vectorial de Candybong Z, modos y ondas de choque
 │       ├── characters.css     # Estilos para personajes y mascotas
 │       ├── closing-footer.css # Estilos de cierre, pie de página y botón flotante
+│       ├── collector-vault.css # Estilos para simulador Candybong y photocards 3D con foil
 │       ├── discography.css    # Estilos para el explorador, killing parts y streaming
 │       ├── fan-zone.css       # Estilos para quiz, estudio de photocard y Polco Deco
 │       ├── fashion.css        # Estilos para archivo de moda y vestuarios
@@ -149,5 +156,5 @@ Once_upon_a_Timeline/
 1. **`/` (Inicio)**: Experiencia de presentación con el Hero editorial, las 9 integrantes con rotación 30s, vitrina de personajes LOVELYS y TDOONGZ, y los portales interactivos hacia los 4 capítulos temáticos.
 2. **`/musica` (Música)**: Discografía completa con 80+ lanzamientos, barra de Killing Parts populares, cronología interactiva 2015-2026 y Cinema MV Vault.
 3. **`/giras` (Giras)**: World Tour Odyssey con navegación de 5 giras mundiales, galería con temporizador de 30s, estadios históricos, radar cartográfico de rutas aéreas y vitrina del Salón de la Fama.
-4. **`/fan-zone` (Comunidad)**: Test de Afinidad de 5 preguntas sincronizado en vivo con el Photocard Studio & Polco Deco (stickers, holo glitter y descarga PNG de 600x900px).
+4. **`/fan-zone` (Comunidad)**: Test de Afinidad de 5 preguntas sincronizado en vivo con el Photocard Studio & Polco Deco (stickers, holo glitter y descarga PNG de 600x900px), más la **Bóveda de Coleccionista**: simulador interactivo de la Trilogía Candybong y escaparate 3D de los Santos Griales de Photocards con shaders reflectantes y cotizaciones de mercado.
 5. **`/moda` (Estilo)**: Stage Wardrobe Archive con análisis estético de 5 eras de vestuario, siluetas y paletas de color.

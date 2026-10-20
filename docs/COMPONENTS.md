@@ -148,8 +148,8 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `FanZoneSection.astro`
 - **Ruta**: `src/components/FanZoneSection.astro`
-- **Propósito**: Orquestador del espacio interactivo para ONCE. Contiene el test de afinidad ([`QuizCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/QuizCard.astro)) y el estudio de diseño ([`PhotocardStudio.astro`](file:///e:/Once_upon_a_Timeline/src/components/PhotocardStudio.astro)).
-- **Scripts asociados**: [`src/scripts/fan-zone.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fan-zone.ts).
+- **Propósito**: Orquestador del espacio interactivo para ONCE. Contiene el test de afinidad ([`QuizCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/QuizCard.astro)), el estudio de diseño ([`PhotocardStudio.astro`](file:///e:/Once_upon_a_Timeline/src/components/PhotocardStudio.astro)) y la Bóveda de Coleccionista ([`CollectorVaultSection.astro`](file:///e:/Once_upon_a_Timeline/src/components/CollectorVaultSection.astro)).
+- **Scripts asociados**: [`src/scripts/fan-zone.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fan-zone.ts) y [`src/scripts/collector-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/collector-vault.ts).
 
 ### `PhotocardStudio.astro`
 - **Ruta**: `src/components/PhotocardStudio.astro`
@@ -159,3 +159,44 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 - **Ruta**: `src/components/PhotocardDecoBar.astro`
 - **Propósito**: Barra de herramientas Polco Deco con selector de acabados holográficos (*Liso*, *Holo Glitter*, *Prisma Arcoíris*) y stickers conmutables (*Washi Tape*, *Sello 10th Aniversario*, *Insignia Candybong* y *Destellos*).
 - **Scripts asociados**: [`src/scripts/photocard-deco.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/photocard-deco.ts).
+
+---
+
+## 6. Componentes de la Bóveda de Coleccionista (Collector's Vault)
+
+### `CollectorVaultSection.astro`
+- **Ruta**: `src/components/CollectorVaultSection.astro`
+- **Propósito**: Orquestador de la bóveda de reliquias y curiosidades en `/fan-zone`. Dispone un conmutador de pestañas segmentadas que alterna entre la evolución de los lightsticks ([`CandybongEvolutionShowcase.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandybongEvolutionShowcase.astro)) y las tarjetas más codiciadas ([`GrailPhotocardsShowcase.astro`](file:///e:/Once_upon_a_Timeline/src/components/GrailPhotocardsShowcase.astro)).
+
+### `CandybongEvolutionShowcase.astro`
+- **Ruta**: `src/components/CandybongEvolutionShowcase.astro`
+- **Propósito**: Escaparate y simulador interactivo de los 3 modelos oficiales (*Candybong Ver. 1* 2016 con base dock de noche, *Candybong Z* 2019 con aro LED RGB para domos, y *Candybong ∞ Infinity* 2023 con túnel bilateral de espejos infinitos). Cuenta con un simulador lumínico reactivo con ritmos (Luz Fija, Pulso, Rave), paleta interactiva de los 9 colores oficiales, vitrina con pedestal giratorio y especificaciones técnicas oficiales.
+
+### `GrailPhotocardsShowcase.astro`
+- **Ruta**: `src/components/GrailPhotocardsShowcase.astro`
+- **Propósito**: Cuadrícula interactiva de los 6 Santos Griales de photocards de TWICE. Cada photocard cuenta con soporte toploader biselado, shaders holográficos dinámicos (*Rainbow Prism*, *Gold Leaf*, *3D Lenticular Prisms*, *Cosmic Glitter*) que reaccionan a la posición del cursor, selección activa con clic para admirar el acabado lumínico, filtro de rareza (*Mítico*, *Legendario*, *Raro*) y botón con animación de giro 3D de 180° hacia el reverso con cotizaciones de mercado y datos de coleccionista.
+- **Scripts asociados**: [`src/scripts/collector-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/collector-vault.ts).
+
+---
+
+## 7. Componentes de Moda Escénica y Videografía
+
+### `FashionSection.astro`
+- **Ruta**: `src/components/FashionSection.astro`
+- **Propósito**: Orquestador del archivo de vestuarios escénicos (*Stage Wardrobe Archive* en `/moda`). Presenta el lookbook interactivo con selector de conceptos, paletas de color y cuadrícula de tarjetas de estilismo ([`FashionCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/FashionCard.astro)).
+- **Scripts asociados**: [`src/scripts/fashion-gallery.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fashion-gallery.ts).
+
+### `FashionCard.astro`
+- **Ruta**: `src/components/FashionCard.astro`
+- **Props**: `concept: FashionConcept`
+- **Propósito**: Ficha Bento de moda con fotografía de alta fidelidad, desglose de piezas de vestuario, concepto estético y chips cromáticos de la paleta.
+
+### `MvVaultSection.astro`
+- **Ruta**: `src/components/MvVaultSection.astro`
+- **Propósito**: Galería cinematográfica de videos musicales oficiales en `/musica`. Incluye filtros por categoría (*Corea*, *Japón*, *Global*, *Solos & Subunidades*), tarjetas interactivas ([`MvCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/MvCard.astro)) y modal accesible de reproducción con iframe oficial de YouTube.
+- **Scripts asociados**: [`src/scripts/mv-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/mv-vault.ts).
+
+### `MvCard.astro`
+- **Ruta**: `src/components/MvCard.astro`
+- **Props**: `mv: MusicVideo`
+- **Propósito**: Tarjeta individual de video musical con miniatura de alta resolución, créditos de dirección, paleta cromática extraída del videoclip y botón de reproducción modal accesible.

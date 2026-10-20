@@ -81,6 +81,12 @@ El sistema de animación utiliza funciones de aceleración natural calibradas pa
 5. **Polco Deco & Acabados Holográficos**:
    - Capa de brillo reflectante *Holo Glitter* con desplazamiento de estrellas y partículas.
    - Capa de prisma cromático *Prism Sheen* con onda continua en 45°.
+6. **Shaders Holográficos de Photocards & Simulación Toploader (`.card-holographic-foil`)**:
+   - *Rainbow Prism*: Gradiente radial reactivo a `--holo-x` y `--holo-y` con descomposición espectral completa.
+   - *Gold Leaf*: Reflejo áurico y ámbar de alta densidad para ediciones de torneo y pases de estadio VIP.
+   - *3D Lenticular Prisms*: Fusión de gradiente radial de tonos menta/magenta con micro-prismas estriados a 110° (`repeating-linear-gradient`) simulando la superficie lenticular física.
+   - *Cosmic Glitter*: Destellos violetas y magentas con dispersión concentrada para tarjetas secretas.
+   - *Toploader Bevel & Color-Dodge*: Bisel acrílico con sombras internas de precisión y modo de fusión `color-dodge` que magnifica el resplandor de la tarjeta al interactuar o seleccionarla con un clic.
 
 ---
 
