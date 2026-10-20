@@ -1,0 +1,23 @@
+---
+/**
+ * FluidBackground.astro
+ * Fondo ambiental dinámico y fluido con orbes de plasma líquido acelerados por GPU.
+ * Incluye soporte nativo para los colores de TWICE, sincronización con Candybong Z
+ * y reducción de movimiento accesible (prefers-reduced-motion).
+ */
+---
+
+<div class="fluid-background" aria-hidden="true">
+  <!-- Malla aurora rotativa de fondo -->
+  <div class="fluid-aurora-mesh"></div>
+
+  <!-- Orbes de luz líquida flotante (Magenta, Apricot, Lavanda, Candybong, Celeste) -->
+  <div class="fluid-orb fluid-orb-1"></div>
+  <div class="fluid-orb fluid-orb-2"></div>
+  <div class="fluid-orb fluid-orb-3"></div>
+  <div class="fluid-orb fluid-orb-4"></div>
+  <div class="fluid-orb fluid-orb-5"></div>
+
+  <!-- Micro-textura cinematográfica de grano sutil para evitar banding en gradientes -->
+  <div class="fluid-grain-overlay"></div>
+</div>

@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import ScrollToTop from '../components/ScrollToTop.astro';
 import CandyJukebox from '../components/CandyJukebox.astro';
 import VirtualCandybong from '../components/VirtualCandybong.astro';
+import FluidBackground from '../components/FluidBackground.astro';
 import { resolveAsset } from '../utils/streaming';
 import '../styles/global.css';
 
@@ -112,6 +113,7 @@ const schemaData = {
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   </head>
   <body>
+    <FluidBackground />
     <div class="scroll-progress-bar" aria-hidden="true"></div>
     <a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
     <Header />

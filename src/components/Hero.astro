@@ -3,6 +3,7 @@ import { resolveAsset } from '../utils/streaming';
 import HeroVinylShowcase from './HeroVinylShowcase.astro';
 
 const logoSrc = resolveAsset('/assets/twice-logo.svg') || '/assets/twice-logo.svg';
+const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
 ---
 
 <section class="hero wrap" id="inicio">
@@ -14,7 +15,7 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg') || '/assets/twice-logo.sv
         <span class="issue-pulse-dot" aria-hidden="true"></span>
         <span class="issue-pill">ISSUE NO. 10</span>
         <span class="issue-divider" aria-hidden="true">/</span>
-        <span class="issue-era">2015 — 2025 · 10 YEARS</span>
+        <span class="issue-era">2015 — PRESENTE · 10 YEARS</span>
         <span class="issue-badge">ARCHIVO OFICIAL</span>
       </div>
 
@@ -24,7 +25,7 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg') || '/assets/twice-logo.sv
       </h1>
 
       <p class="hero-description">
-        Una retrospectiva visual y sonora de música, estética y cultura pop. Explora las 9 integrantes de TWICE, una década de discografía legendaria y los dos universos oficiales que acompañan su legado: Lovelys y TDOONGZ.
+        Una retrospectiva visual y sonora de música, estética y cultura pop. Explora a las 9 integrantes de TWICE, una década de discografía legendaria y los dos universos oficiales que acompañan su legado: Lovelys y TDOONGZ.
       </p>
 
       <div class="hero-actions">
@@ -34,7 +35,7 @@ const logoSrc = resolveAsset('/assets/twice-logo.svg') || '/assets/twice-logo.sv
             <path d="M7 17L17 7M17 7H7M17 7V17"/>
           </svg>
         </a>
-        <a class="hero-btn-secondary" href="#discografia">
+        <a class="hero-btn-secondary" href={`${base}/musica#discografia`}>
           <span>Ir a la discografía</span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>

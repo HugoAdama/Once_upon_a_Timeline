@@ -1,0 +1,256 @@
+/* ========================================================
+   FONDO FLUIDO Y AURORA AMBIENTAL (GPU-ACCELERATED MOTION)
+   Orbes de luz líquida, malla aurora y micro-textura que
+   respiran suavemente con los colores de TWICE.
+   ======================================================== */
+
+.fluid-background {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+  opacity: 0.95;
+  transition: opacity 0.5s ease;
+}
+
+/* ========================================================
+   ORBES DE LUZ LÍQUIDA (FLOATING PLASMA ORBS)
+   ======================================================== */
+.fluid-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  -webkit-filter: blur(80px);
+  will-change: transform;
+  mix-blend-mode: normal;
+}
+
+/* Orbe 1: Neon Magenta (Superior derecho) */
+.fluid-orb-1 {
+  top: -10%;
+  right: -5%;
+  width: clamp(380px, 45vw, 680px);
+  height: clamp(380px, 45vw, 680px);
+  background: radial-gradient(circle, rgba(232, 62, 134, 0.22) 0%, rgba(232, 62, 134, 0.07) 50%, transparent 70%);
+  animation: fluidFloat1 24s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+/* Orbe 2: Apricot Cálido (Inferior izquierdo) */
+.fluid-orb-2 {
+  bottom: 5%;
+  left: -8%;
+  width: clamp(360px, 42vw, 620px);
+  height: clamp(360px, 42vw, 620px);
+  background: radial-gradient(circle, rgba(244, 162, 126, 0.24) 0%, rgba(244, 162, 126, 0.08) 55%, transparent 72%);
+  animation: fluidFloat2 28s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  animation-delay: -4s;
+}
+
+/* Orbe 3: Púrpura / Lavanda Mística (Centro derecho) */
+.fluid-orb-3 {
+  top: 35%;
+  right: 15%;
+  width: clamp(300px, 36vw, 520px);
+  height: clamp(300px, 36vw, 520px);
+  background: radial-gradient(circle, rgba(140, 115, 168, 0.18) 0%, rgba(140, 115, 168, 0.05) 50%, transparent 70%);
+  animation: fluidFloat3 32s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  animation-delay: -8s;
+}
+
+/* Orbe 4: Resplandor Candybong Z & Melocotón (Superior izquierdo) */
+.fluid-orb-4 {
+  top: 15%;
+  left: 10%;
+  width: clamp(320px, 38vw, 540px);
+  height: clamp(320px, 38vw, 540px);
+  background: radial-gradient(circle, var(--candybong-glow, rgba(232, 62, 134, 0.18)) 0%, rgba(244, 162, 126, 0.06) 55%, transparent 70%);
+  animation: fluidFloat4 26s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  animation-delay: -12s;
+}
+
+/* Orbe 5: Toque Celeste / Menta Suave (Inferior derecho) */
+.fluid-orb-5 {
+  bottom: -10%;
+  right: 5%;
+  width: clamp(280px, 32vw, 480px);
+  height: clamp(280px, 32vw, 480px);
+  background: radial-gradient(circle, rgba(91, 194, 231, 0.14) 0%, rgba(232, 62, 134, 0.06) 50%, transparent 68%);
+  animation: fluidFloat5 30s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  animation-delay: -16s;
+}
+
+/* ========================================================
+   MALLA AURORA ONDULANTE (ROTATING MESH)
+   ======================================================== */
+.fluid-aurora-mesh {
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(232, 62, 134, 0.05) 0%, rgba(244, 162, 126, 0.06) 35%, transparent 70%);
+  animation: auroraMeshDrift 55s linear infinite;
+  transform-origin: 52% 48%;
+  filter: blur(90px);
+  -webkit-filter: blur(90px);
+  opacity: 0.85;
+  will-change: transform;
+}
+
+/* ========================================================
+   MICRO-TEXTURA EDITORIAL (FILM GRAIN / VINYL SHEEN)
+   ======================================================== */
+.fluid-grain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ========================================================
+   MODO OSCURO (DEEP COSMIC AURORA)
+   ======================================================== */
+[data-theme="dark"] .fluid-background {
+  opacity: 1;
+}
+
+[data-theme="dark"] .fluid-orb {
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+}
+
+[data-theme="dark"] .fluid-orb-1 {
+  background: radial-gradient(circle, rgba(232, 62, 134, 0.32) 0%, rgba(232, 62, 134, 0.1) 50%, transparent 70%);
+}
+
+[data-theme="dark"] .fluid-orb-2 {
+  background: radial-gradient(circle, rgba(244, 162, 126, 0.28) 0%, rgba(244, 162, 126, 0.08) 55%, transparent 72%);
+}
+
+[data-theme="dark"] .fluid-orb-3 {
+  background: radial-gradient(circle, rgba(159, 107, 181, 0.25) 0%, rgba(159, 107, 181, 0.07) 50%, transparent 70%);
+}
+
+[data-theme="dark"] .fluid-orb-4 {
+  background: radial-gradient(circle, var(--candybong-glow, rgba(232, 62, 134, 0.26)) 0%, rgba(244, 162, 126, 0.09) 55%, transparent 70%);
+}
+
+[data-theme="dark"] .fluid-orb-5 {
+  background: radial-gradient(circle, rgba(91, 194, 231, 0.2) 0%, rgba(232, 62, 134, 0.08) 50%, transparent 68%);
+}
+
+[data-theme="dark"] .fluid-aurora-mesh {
+  background: radial-gradient(ellipse at 50% 50%, rgba(232, 62, 134, 0.1) 0%, rgba(244, 162, 126, 0.08) 40%, transparent 70%);
+  opacity: 0.95;
+}
+
+[data-theme="dark"] .fluid-grain-overlay {
+  opacity: 0.35;
+}
+
+/* ========================================================
+   KEYFRAMES FLUIDOS (100% GPU COMPOSITED)
+   ======================================================== */
+@keyframes fluidFloat1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(-70px, 90px, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(40px, 150px, 0) scale(0.94);
+  }
+  100% {
+    transform: translate3d(-30px, 70px, 0) scale(1.06);
+  }
+}
+
+@keyframes fluidFloat2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  38% {
+    transform: translate3d(90px, -80px, 0) scale(1.14);
+  }
+  72% {
+    transform: translate3d(130px, -30px, 0) scale(0.92);
+  }
+  100% {
+    transform: translate3d(50px, -100px, 0) scale(1.08);
+  }
+}
+
+@keyframes fluidFloat3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+  }
+  45% {
+    transform: translate3d(-80px, -60px, 0) scale(1.12);
+  }
+  80% {
+    transform: translate3d(-40px, 50px, 0) scale(0.98);
+  }
+  100% {
+    transform: translate3d(50px, -70px, 0) scale(1.04);
+  }
+}
+
+@keyframes fluidFloat4 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  42% {
+    transform: translate3d(-60px, 80px, 0) scale(0.94);
+  }
+  78% {
+    transform: translate3d(70px, 50px, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(20px, -40px, 0) scale(0.98);
+  }
+}
+
+@keyframes fluidFloat5 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.94);
+  }
+  48% {
+    transform: translate3d(80px, 60px, 0) scale(1.1);
+  }
+  82% {
+    transform: translate3d(-50px, 30px, 0) scale(0.96);
+  }
+  100% {
+    transform: translate3d(-30px, -50px, 0) scale(1.02);
+  }
+}
+
+@keyframes auroraMeshDrift {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* ========================================================
+   ACCESIBILIDAD (PREFERS-REDUCED-MOTION)
+   ======================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .fluid-orb,
+  .fluid-aurora-mesh {
+    animation: none !important;
+    transform: none !important;
+  }
+}
