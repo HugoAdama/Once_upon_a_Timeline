@@ -1,15 +1,26 @@
 # Once Upon a Timeline — TWICE Fan Archive
 
-> **El archivo interactivo, musical y visual definitivo dedicado a TWICE.**  
+[![Versión](https://img.shields.io/badge/version-1.0.0_release-e83e86?style=for-the-badge&logo=astro&logoColor=white)](https://github.com/HugoAdama/Once_upon_a_Timeline)
+[![Licencia](https://img.shields.io/badge/fan_archive-non--commercial-f4a27e?style=for-the-badge)](https://github.com/HugoAdama/Once_upon_a_Timeline)
+[![Desarrollador](https://img.shields.io/badge/developer-Hugo_Adama-5bc2e7?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HugoAdama/Once_upon_a_Timeline)
+
+> **El archivo interactivo, musical y visual definitivo dedicado a TWICE — Versión 1.0 (V1 Final).**  
 > Recorre las 9 integrantes, sus eras musicales, el catálogo discográfico en Corea, Japón y el mundo, sus giras en estadios, salón de trofeos, videografía conceptual, moda escénica y las colecciones oficiales de personajes: **LOVELYS** y **TDOONGZ**.
 
 ---
 
-## Características Principales
+## Características Principales (V1.0)
 
+- **Modo Concierto (Candybong Night Mode) a 60 FPS**:
+  - Transición fluida cinematográfica acelerada al 100% por hardware (GPU) utilizando la **View Transitions API**.
+  - Expansión radial circular orgánica (`clip-path`) que nace directamente desde las coordenadas del botón en la cabecera.
+  - Animación continua con física *spring* para los iconos del sol y la luna (rotación y escala interpolada sin saltos bruscos).
+  - Micro-vibración háptica y fallback sincronizado con `prefers-reduced-motion`.
+- **Portales del Archivo (Capítulos de TWICE)**:
+  - 4 portales visuales con estética *Bento Glassmorphism* en la portada principal para acceso directo: *Discografía & MVs*, *Giras & Récords*, *ONCE Fan Zone* y *Moda Escénica*.
 - **Soporte Multi-Idioma Internacional (i18n)**:
   - Sistema reactivo en cliente con selector interactivo en la cabecera: **Español (`es`)**, **English (`en`)**, **한국어 (`ko`)** y **日本語 (`ja`)**.
-  - Detección automática del idioma del navegador, persistencia en `localStorage` (`once_preferred_lang`) y actualización dinámica de textos, atributos y placeholders sin necesidad de recargar la página.
+  - Detección automática del idioma del navegador, persistencia en `localStorage` (`once_preferred_lang`), protección de claves inexistentes y actualización dinámica de textos, atributos y placeholders sin necesidad de recargar la página.
 - **Estante de Álbumes Físicos & Sistema de Logros de Fan ONCE**:
   - **Coleccionismo Físico (CD / Vinilo)**: Permite a los fans marcar qué álbumes oficiales de TWICE poseen en formato físico directamente desde cada ficha de la discografía (`/musica`) o desde el estante virtual en la Fan Zone (`/fan-zone`).
   - **Panel de Estadísticas KPI**: Visualización en vivo del total de álbumes en posesión, porcentaje de completitud respecto al catálogo oficial de TWICE y desglose clasificado por mercados (Corea, Japón y Global).
@@ -23,6 +34,7 @@
   - **Moda Escénica (`/moda`)**: Galería visual de alta resolución del Stage Wardrobe Archive con paletas cromáticas y siluetas clave.
 - **Bóveda de Coleccionista & Curiosidades (ONCE Vault)**:
   - **Trilogía & Simulador Lumínico Candybong**: Cronología interactiva con los 3 modelos oficiales (*Candybong Ver. 1* 2016 con base lámpara de noche, *Candybong Z* 2019 de ingeniería circular para domos, y *Candybong ∞ Infinity* 2023 con cámara de espejos infinitos 3D bilaterales). Incluye simulador de concierto con ritmos (Fijo, Pulso, Rave), túnel estelar LED y selector interactivo con los 9 colores oficiales.
+  - **Santos Griales de Photocards 3D**: Cuadrícula de 6 cartas históricas ultra-raras de TWICE (Tzuyu Debut 2015, Momo SuperStar JYP 2017, Mina Page Two 3D Lenticular 2016, Sana Signal Secret Scratch 2017, Nayeon Likey Polaroid 2017 y Jihyo Ready to Be VIP 2023). Incorpora inclinación física reactiva al cursor (*fluid 3D tilt*), shaders de acabado reflectante (*Rainbow Prism*, *Gold Leaf*, *3D Lenticular Prisms*, *Cosmic Glitter*), toploader protector, filtro de rareza y giro 180° hacia el reverso histórico con cotizaciones del mercado de coleccionistas.
   - **Santos Griales de Photocards 3D**: Cuadrícula de 6 cartas históricas ultra-raras de TWICE (Tzuyu Debut 2015, Momo SuperStar JYP 2017, Mina Page Two 3D Lenticular 2016, Sana Signal Secret Scratch 2017, Nayeon Likey Polaroid 2017 y Jihyo Ready to Be VIP 2023). Incorpora inclinación física reactiva al cursor (*fluid 3D tilt*), shaders de acabado reflectante (*Rainbow Prism*, *Gold Leaf*, *3D Lenticular Prisms*, *Cosmic Glitter*), toploader protector, filtro de rareza y giro 180° hacia el reverso histórico con cotizaciones del mercado de coleccionistas.
 - **Sistema de Photocards Coleccionables & Giro 3D**:
   - Retratos oficiales de las 9 integrantes con efecto reflectante holográfico (*shimmer*) e inclinación reactiva al cursor (*3D tilt*).
@@ -117,3 +129,12 @@ Visita los canales oficiales de TWICE:
 - [TWICE Japan Oficial](https://www.twicejapan.com/)
 - [Canal Oficial de YouTube](https://www.youtube.com/@TWICE)
 - [JYP Online Store](https://jypj-store.com/)
+
+---
+
+## Créditos & Autoría
+
+- **Desarrollado y Diseñado por**: [Hugo Adama](https://github.com/HugoAdama)
+- **Repositorio Oficial**: [Once_upon_a_Timeline](https://github.com/HugoAdama/Once_upon_a_Timeline)
+- **Dedicado a**: **TWICE & ONCE Worldwide** (2015–2026) · *One in a Million*.
+

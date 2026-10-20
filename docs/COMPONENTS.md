@@ -8,8 +8,8 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `Header.astro`
 - **Ruta**: `src/components/Header.astro`
-- **Propósito**: Barra de navegación superior fija con efecto *glassmorphism*, logotipo oficial de TWICE, indicador de sincronización cromática Candybong con anillo de cuenta regresiva, botón de conmutación de modo concierto, 5 enlaces limpios de enrutamiento multi-página (`/`, `/musica`, `/giras`, `/fan-zone`, `/moda`) con indicador de página activa, y cajón móvil accesible.
-- **Scripts asociados**: [`src/scripts/navigation.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/navigation.ts), [`src/scripts/theme-toggle.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/theme-toggle.ts) y [`src/scripts/candybong-sync.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/candybong-sync.ts).
+- **Propósito**: Barra de navegación superior fija con efecto *glassmorphism*, logotipo oficial de TWICE, indicador de sincronización cromática Candybong con anillo de cuenta regresiva, botón de conmutación de modo concierto a 60 FPS (animación morphing de sol y luna con física *spring* y onda expansiva radial View Transitions), 5 enlaces limpios de enrutamiento multi-página (`/`, `/musica`, `/giras`, `/fan-zone`, `/moda`) con indicador de página activa, selector multi-idioma (ES/EN/KO/JA) y cajón móvil accesible.
+- **Scripts asociados**: [`src/scripts/navigation.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/navigation.ts), [`src/scripts/theme-toggle.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/theme-toggle.ts), [`src/scripts/candybong-sync.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/candybong-sync.ts) y [`src/scripts/i18n.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/i18n.ts).
 
 ### `Hero.astro`
 - **Ruta**: `src/components/Hero.astro`
@@ -21,7 +21,7 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `ArchiveHubSection.astro`
 - **Ruta**: `src/components/ArchiveHubSection.astro`
-- **Propósito**: Centro interactivo de exploración del archivo en la portada principal (`/`). Despliega 4 portales visuales en Bento Glassmorphic que dirigen directamente a los capítulos de Música, Giras, Fan Zone y Moda.
+- **Propósito**: Centro interactivo de exploración del archivo en la portada principal (`/`). Despliega 4 portales visuales en Bento Glassmorphic que dirigen directamente a los capítulos principales: *Explorar Discografía & MVs*, *Explorar Giras & Récords*, *Entrar a la Fan Zone* y *Explorar Moda Escénica*, con soporte integral de i18n y protección contra claves vacías.
 
 ### `CandyJukebox.astro`
 - **Ruta**: `src/components/CandyJukebox.astro`
@@ -39,7 +39,7 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `Footer.astro`
 - **Ruta**: `src/components/Footer.astro`
-- **Propósito**: Pie de página informativo con enlaces a las 6 secciones principales del archivo, canales oficiales de TWICE y descargo de responsabilidad fan no oficial.
+- **Propósito**: Pie de página institucional y accesible con navegación por los 4 capítulos del archivo, canales oficiales de TWICE, créditos de desarrollo y autoría (*Desarrollado por Hugo Adama* con enlace al repositorio de GitHub), píldora de estado (11 años · One in a Million) y descargo de responsabilidad fan no oficial.
 
 ### `ScrollToTop.astro`
 - **Ruta**: `src/components/ScrollToTop.astro`

@@ -120,14 +120,14 @@ Once_upon_a_Timeline/
 │   │   ├── discography-explorer.ts  # Búsqueda reactiva, killing parts, filtros y vista
 │   │   ├── fan-zone.ts              # Motor del quiz y sincronización con el estudio
 │   │   ├── fashion-gallery.ts       # Filtros y zoom de Stage Wardrobe Archive
-│   │   ├── i18n.ts                  # Motor reactivo multi-idioma con persistencia localStorage
+│   │   ├── i18n.ts                  # Motor reactivo multi-idioma (ES/EN/KO/JA), prevención de claves nulas y persistencia
 │   │   ├── member-era-filter.ts     # Rotación 30s con giro 3D e inclinación al cursor
 │   │   ├── mv-vault.ts              # Filtro de videografía y reproductor modal
 │   │   ├── navigation.ts            # Menú móvil desplegable y botón volver arriba
 │   │   ├── photocard-deco.ts        # Polco Deco: stickers, acabados holo y render Canvas HD
 │   │   ├── physical-collection.ts   # Gestor del estante físico, cálculo de KPIs y toasts de logros
 │   │   ├── scroll-reveal.ts         # Animaciones al entrar en viewport y barra de scroll
-│   │   ├── theme-toggle.ts          # Conmutador de modo claro / modo concierto
+│   │   ├── theme-toggle.ts          # Conmutador a 60 FPS con GPU View Transitions API y expansión radial
 │   │   ├── timeline-filter.ts       # Filtro por era cronológica y salto a discografía
 │   │   ├── tour-map.ts              # Controlador interactivo de balizas y vuelos
 │   │   ├── tour-odyssey.ts          # Controlador de galería fotográfica con rotación 30s

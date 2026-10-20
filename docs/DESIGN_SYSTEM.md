@@ -87,6 +87,10 @@ El sistema de animación utiliza funciones de aceleración natural calibradas pa
    - *3D Lenticular Prisms*: Fusión de gradiente radial de tonos menta/magenta con micro-prismas estriados a 110° (`repeating-linear-gradient`) simulando la superficie lenticular física.
    - *Cosmic Glitter*: Destellos violetas y magentas con dispersión concentrada para tarjetas secretas.
    - *Toploader Bevel & Color-Dodge*: Bisel acrílico con sombras internas de precisión y modo de fusión `color-dodge` que magnifica el resplandor de la tarjeta al interactuar o seleccionarla con un clic.
+7. **Transición del Modo Concierto / Dark Mode a 60 FPS (GPU View Transitions & Morphing)**:
+   - Expansión radial orgánica utilizando `clip-path: circle(...)` en el pseudo-elemento `::view-transition-new(root)` con duración de 440ms y curva `cubic-bezier(0.16, 1, 0.3, 1)`.
+   - Rotación continua interpolada de los iconos vectoriales del sol y la luna con física *spring* (`cubic-bezier(0.34, 1.56, 0.64, 1)`) y escala coordinada sin parpadeos.
+   - Fallback sincronizado a través de la clase temporal `html.theme-transitioning` y desactivación respetuosa ante `prefers-reduced-motion`.
 
 ---
 
