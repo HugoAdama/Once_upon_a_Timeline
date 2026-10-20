@@ -91,7 +91,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$800 — $1,500+ USD',
     memberColor: '#005bac',
     holographicStyle: 'rainbow',
-    sampleFrontPhoto: '/assets/members/tzuyu-classic.webp',
+    sampleFrontPhoto: '/assets/collector/pc-tzuyu-debut.webp',
   },
   {
     id: 'pc-superstar-jyp-momo',
@@ -111,7 +111,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$1,000 — $2,200+ USD',
     memberColor: '#ff6ea7',
     holographicStyle: 'gold-leaf',
-    sampleFrontPhoto: '/assets/members/momo-classic.webp',
+    sampleFrontPhoto: '/assets/collector/pc-momo-superstar.webp',
   },
   {
     id: 'pc-page-two-lenticular-mina',
@@ -131,7 +131,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$120 — $280 USD',
     memberColor: '#75c9be',
     holographicStyle: 'glass-shards',
-    sampleFrontPhoto: '/assets/members/mina-classic.webp',
+    sampleFrontPhoto: '/assets/collector/pc-mina-cheerup.webp',
   },
   {
     id: 'pc-signal-secret-scratch-sana',
@@ -151,7 +151,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$90 — $220 USD',
     memberColor: '#9e7bb5',
     holographicStyle: 'glitter',
-    sampleFrontPhoto: '/assets/members/sana-classic.webp',
+    sampleFrontPhoto: '/assets/collector/pc-sana-signal.webp',
   },
   {
     id: 'pc-twicetagram-insta-nayeon',
@@ -171,7 +171,7 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$85 — $190 USD',
     memberColor: '#5bc2e7',
     holographicStyle: 'rainbow',
-    sampleFrontPhoto: '/assets/members/nayeon-classic.webp',
+    sampleFrontPhoto: '/assets/collector/pc-nayeon-likey.webp',
   },
   {
     id: 'pc-ready-to-be-stadium-jihyo',
@@ -191,6 +191,6 @@ export const RARE_PHOTOCARDS: RarePhotocard[] = [
     marketPriceRange: '$140 — $320 USD',
     memberColor: '#f4a27e',
     holographicStyle: 'gold-leaf',
-    sampleFrontPhoto: '/assets/members/jihyo-current.webp',
+    sampleFrontPhoto: '/assets/collector/pc-jihyo-readytobe.webp',
   },
 ];

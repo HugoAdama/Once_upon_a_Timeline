@@ -147,6 +147,18 @@ export function initCollectorVault(): void {
       });
     }
 
+    // Permitir seleccionar/focalizar la photocard con click para admirar el brillo
+    wrapper.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('.btn-flip-card, .btn-flip-back')) return;
+      
+      const isAlreadySelected = wrapper.classList.contains('selected-card');
+      cardWrappers.forEach((w) => w.classList.remove('selected-card'));
+      if (!isAlreadySelected) {
+        wrapper.classList.add('selected-card');
+      }
+    });
+
     if (!card3d) return;
 
     // Solo activar cálculo de perspectiva si no está reducida la moción
@@ -177,8 +189,10 @@ export function initCollectorVault(): void {
     wrapper.addEventListener('mouseleave', () => {
       if (wrapper.classList.contains('flipped')) return;
       card3d.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-      wrapper.style.setProperty('--holo-x', '50%');
-      wrapper.style.setProperty('--holo-y', '50%');
+      if (!wrapper.classList.contains('selected-card')) {
+        wrapper.style.setProperty('--holo-x', '50%');
+        wrapper.style.setProperty('--holo-y', '50%');
+      }
     });
   });
 }
