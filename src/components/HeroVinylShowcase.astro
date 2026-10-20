@@ -8,6 +8,9 @@ const { logoSrc } = Astro.props;
 
 <div class="hero-showcase" role="img" aria-label="Vitrina de coleccionista con disco de vinilo y constelación de las 9 integrantes de TWICE">
   <div class="showcase-glass-card">
+    <!-- Luz especular superior de cristal líquido -->
+    <div class="card-specular-edge" aria-hidden="true"></div>
+
     <!-- Barra Superior de la Vitrina -->
     <div class="showcase-header">
       <div class="showcase-live-pill">
@@ -23,73 +26,94 @@ const { logoSrc } = Astro.props;
     <div class="showcase-stage">
       <div class="stage-ambient-aura" aria-hidden="true"></div>
 
-      <!-- Anillos concéntricos sutiles -->
+      <!-- Anillos concéntricos celestiales -->
       <div class="stage-orbit-ring inner" aria-hidden="true"></div>
       <div class="stage-orbit-ring outer" aria-hidden="true"></div>
+      <div class="stage-orbit-track" aria-hidden="true"></div>
 
       <!-- Constelación orbital con los 9 colores y tooltips interactivos -->
       <div class="stage-constellation" aria-hidden="true">
-        <div class="constellation-node" style="--c: #5bc2e7; --angle: 0deg;" data-member="Nayeon · Sky Blue">
+        <div class="constellation-node" style="--c: #5bc2e7; --angle: 0deg;" data-member="Nayeon" data-color="Sky Blue">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #a9d535; --angle: 40deg;" data-member="Jeongyeon · Lime Green">
+        <div class="constellation-node" style="--c: #a9d535; --angle: 40deg;" data-member="Jeongyeon" data-color="Lime Green">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #ff6ea7; --angle: 80deg;" data-member="Momo · Pink">
+        <div class="constellation-node" style="--c: #ff6ea7; --angle: 80deg;" data-member="Momo" data-color="Pink">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #9e7bb5; --angle: 120deg;" data-member="Sana · Purple">
+        <div class="constellation-node" style="--c: #9e7bb5; --angle: 120deg;" data-member="Sana" data-color="Purple">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #f4a27e; --angle: 160deg;" data-member="Jihyo · Apricot">
+        <div class="constellation-node" style="--c: #f4a27e; --angle: 160deg;" data-member="Jihyo" data-color="Apricot">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #75c9be; --angle: 200deg;" data-member="Mina · Mint">
+        <div class="constellation-node" style="--c: #75c9be; --angle: 200deg;" data-member="Mina" data-color="Mint">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #ffffff; --angle: 240deg;" data-member="Dahyun · White">
+        <div class="constellation-node" style="--c: #ffffff; --angle: 240deg;" data-member="Dahyun" data-color="Pure White">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #e02438; --angle: 280deg;" data-member="Chaeyoung · Red">
+        <div class="constellation-node" style="--c: #e02438; --angle: 280deg;" data-member="Chaeyoung" data-color="Red">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
-        <div class="constellation-node" style="--c: #005bac; --angle: 320deg;" data-member="Tzuyu · Navy Blue">
+        <div class="constellation-node" style="--c: #005bac; --angle: 320deg;" data-member="Tzuyu" data-color="Navy Blue">
+          <span class="node-halo"></span>
           <span class="node-dot"></span>
         </div>
       </div>
 
-      <!-- Vinilo Deluxe Coleccionista -->
+      <!-- Vinilo Deluxe Coleccionista con acetato reflectante y microsurcos -->
       <div class="deluxe-vinyl" aria-hidden="true">
-        <div class="vinyl-sheen-filter"></div>
+        <!-- Bisel exterior brillante del LP -->
+        <div class="vinyl-rim-bevel"></div>
+        <!-- Capa de surcos finos del LP -->
         <div class="vinyl-groove-layers"></div>
+        <!-- Surco de salida (run-out groove) -->
+        <div class="vinyl-leadout-groove"></div>
+        <!-- Destello de acetato / bowtie specular sheen -->
+        <div class="vinyl-sheen-filter"></div>
+        <div class="vinyl-specular-cross"></div>
+
+        <!-- Etiqueta central del disco -->
         <div class="vinyl-core-label">
+          <div class="label-inner-foil"></div>
           <span class="vinyl-hole"></span>
           <img src={logoSrc} alt="" class="vinyl-logo-asset" width="56" height="60" />
           <div class="vinyl-label-stamp">33 ⅓ RPM · TWICE</div>
+          <span class="vinyl-micro-spec">STEREO · 2015-2025</span>
         </div>
       </div>
 
-      <!-- Insignias flotantes de universo de personajes -->
+      <!-- Insignias flotantes de universo de personajes con cristal líquido -->
       <div class="stage-tag-badge tag-left" title="9 Lovelys Guardianes">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        <svg class="badge-icon-lovely" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
         <span>9 LOVELYS</span>
       </div>
 
       <div class="stage-tag-badge tag-right" title="Universo TDOONGZ">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg class="badge-icon-tdoongz" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
         </svg>
         <span>TDOONGZ</span>
       </div>
     </div>
 
-    <!-- Pie de la Vitrina: Caption Editorial -->
+    <!-- Pie de la Vitrina: Caption Editorial de Alta Fidelidad -->
     <div class="showcase-footer">
       <div class="footer-meta-block">
         <span class="footer-subhead">THE SOUNDTRACK OF A DECADE</span>
-        <span class="footer-main-quote">9 Voices · 10 Years of History</span>
+        <span class="footer-main-quote">9 Voices <span class="quote-bullet">·</span> <em>10 Years of History</em></span>
       </div>
       <div class="footer-edition-tag">
         <span class="edition-line"></span>

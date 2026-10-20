@@ -35,7 +35,7 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
             <path d="M7 17L17 7M17 7H7M17 7V17"/>
           </svg>
         </a>
-        <a class="hero-btn-secondary" href={`${base}/musica#discografia`}>
+        <a class="hero-btn-secondary hero-btn-liquid" href={`${base}/musica#discografia`}>
           <span>Ir a la discografía</span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -43,38 +43,38 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
         </a>
       </div>
 
-      <!-- Barra de Métricas y Paleta Editorial Glass Bento -->
-      <div class="hero-bento-strip" aria-label="Cifras clave del archivo y paleta oficial">
-        <div class="hero-metrics-row">
-          <div class="metric-cell">
+      <!-- Cuadrícula Bento de Métricas y Paleta Editorial Glass -->
+      <div class="hero-bento-container" aria-label="Cifras clave del archivo y paleta oficial">
+        <div class="hero-bento-metrics">
+          <div class="bento-metric-cell">
             <span class="metric-val">9</span>
             <span class="metric-key">Integrantes</span>
           </div>
-          <span class="metric-separator" aria-hidden="true"></span>
-          <div class="metric-cell">
+          <div class="bento-metric-cell">
             <span class="metric-val">10+</span>
             <span class="metric-key">Años</span>
           </div>
-          <span class="metric-separator" aria-hidden="true"></span>
-          <div class="metric-cell">
+          <div class="bento-metric-cell">
             <span class="metric-val">100+</span>
             <span class="metric-key">Obras</span>
           </div>
-          <span class="metric-separator" aria-hidden="true"></span>
-          <div class="metric-cell">
+          <div class="bento-metric-cell">
             <span class="metric-val">18</span>
             <span class="metric-key">Personajes</span>
           </div>
         </div>
 
-        <div class="hero-swatch-strip">
+        <div class="hero-bento-swatch">
           <div class="swatch-cluster" aria-hidden="true">
             <span class="swatch-bubble swatch-apricot" title="Apricot · #F4A27E"></span>
             <span class="swatch-bubble swatch-magenta" title="Neon Magenta · #E83E86"></span>
           </div>
           <div class="swatch-info">
-            <span class="swatch-title">Apricot &amp; Neon Magenta</span>
-            <span class="swatch-desc">Paleta oficial representativa de TWICE &amp; ONCE</span>
+            <div class="swatch-header-row">
+              <span class="swatch-title">Apricot &amp; Neon Magenta</span>
+              <span class="swatch-badge">OFICIAL</span>
+            </div>
+            <span class="swatch-desc">Paleta cromática representativa de TWICE &amp; ONCE</span>
           </div>
         </div>
       </div>
