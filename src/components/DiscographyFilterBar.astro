@@ -32,6 +32,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
         placeholder="Busca un álbum o canción… (ej. Kura Kura, Feel Special, TT, Strategy)"
         aria-label="Busca un álbum o canción"
         autocomplete="off"
+        data-i18n-placeholder="disco.searchPlaceholder"
       />
       <div class="search-badges" aria-hidden="true">
         <span class="search-kbd-hint" title="Presiona '/' para buscar">/</span>
@@ -41,7 +42,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
       </svg>
-      <span>Limpiar filtros</span>
+      <span data-i18n="disco.clearFilters">Limpiar filtros</span>
     </button>
   </div>
 

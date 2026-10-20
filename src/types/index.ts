@@ -221,3 +221,24 @@ export interface RarePhotocard {
   holographicStyle: 'rainbow' | 'glitter' | 'glass-shards' | 'gold-leaf';
   sampleFrontPhoto: string;
 }
+
+export interface FanAchievement {
+  id: string;
+  title: string;
+  description: string;
+  category: 'milestone' | 'era' | 'market' | 'legendary';
+  categoryLabel: string;
+  iconType: 'disc' | 'trophy' | 'crown' | 'sparkle' | 'flag' | 'star';
+  requiredCount?: number;
+}
+
+export interface PhysicalShelfStats {
+  totalOwned: number;
+  totalReleases: number;
+  percentage: number;
+  koreaCount: number;
+  japanCount: number;
+  globalCount: number;
+  achievementsUnlocked: number;
+  totalAchievements: number;
+}

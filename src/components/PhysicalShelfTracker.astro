@@ -1,0 +1,140 @@
+---
+import { FAN_ACHIEVEMENTS } from '../data/fan-achievements';
+import { resolveAsset } from '../utils/streaming';
+const musicUrl = resolveAsset('/musica');
+---
+
+<div class="physical-shelf-container" id="physical-shelf-tracker">
+  <!-- Encabezado de la Sección de Colección -->
+  <div class="shelf-header-box">
+    <div class="shelf-kicker-row">
+      <div class="shelf-kicker-group">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+        </svg>
+        <span class="shelf-kicker" data-i18n="shelf.eyebrow">Colección Personal &amp; Logros ONCE</span>
+      </div>
+      <span class="shelf-badge-counter">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span id="shelf-achievements-unlocked">0 / {FAN_ACHIEVEMENTS.length}</span>
+      </span>
+    </div>
+
+    <h3 class="shelf-heading" data-i18n="shelf.title">Mi Estante de Álbumes Físicos.</h3>
+    <p class="shelf-lead" data-i18n="shelf.desc">
+      Marca los álbumes que posees en formato físico (CD / Vinilo) en la sección de Música para desbloquear medallas exclusivas de coleccionista y seguir tu porcentaje de completitud.
+    </p>
+
+    <!-- Resumen de Métricas de Colección -->
+    <div class="shelf-metrics-grid">
+      <div class="shelf-metric-card primary">
+        <span class="metric-label" data-i18n="shelf.totalOwned">Álbumes en Posesión</span>
+        <div class="metric-value-row">
+          <span class="metric-big-val" id="shelf-owned-count">0 / 85</span>
+          <span class="metric-percent-pill" id="shelf-owned-percent">0%</span>
+        </div>
+        <div class="shelf-progress-track">
+          <div class="shelf-progress-fill" id="shelf-progress-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="shelf-metric-card">
+        <span class="metric-label" data-i18n="shelf.koreanCount">Corea (KR)</span>
+        <span class="metric-sub-val" id="shelf-kr-count">0</span>
+      </div>
+      <div class="shelf-metric-card">
+        <span class="metric-label" data-i18n="shelf.japanCount">Japón (JP)</span>
+        <span class="metric-sub-val" id="shelf-jp-count">0</span>
+      </div>
+      <div class="shelf-metric-card">
+        <span class="metric-label" data-i18n="shelf.globalCount">Global (EN)</span>
+        <span class="metric-sub-val" id="shelf-gl-count">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estante Físico 3D Virtual de Álbumes -->
+  <div class="shelf-display-panel">
+    <div class="shelf-surface-frame">
+      <div class="shelf-empty-state" id="physical-shelf-empty">
+        <div class="empty-shelf-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <strong class="empty-shelf-title" data-i18n="shelf.emptyTitle">Tu estante está esperando su primer álbum</strong>
+        <p class="empty-shelf-desc" data-i18n="shelf.emptyDesc">
+          Ve a la sección de Música y presiona el icono de disco en cualquier álbum para añadirlo a tu estante físico.
+        </p>
+        <a href={musicUrl} class="btn-shelf-action" data-i18n="shelf.goToMusic">
+          <span>Ir a la Discografía</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Cuadrícula Dinámica con Carátulas Estilo CD Case -->
+      <div class="shelf-albums-grid" id="physical-shelf-display" style="display: none;"></div>
+
+      <div class="shelf-wood-rim"></div>
+    </div>
+  </div>
+
+  <!-- Muro de Logros ONCE (Collector Badges) -->
+  <div class="achievements-section-block">
+    <div class="achievements-heading-row">
+      <h4 class="achievements-section-title" data-i18n="shelf.badgesTitle">Muro de Logros de Coleccionista</h4>
+    </div>
+
+    <div class="achievements-badges-grid">
+      {FAN_ACHIEVEMENTS.map((ach) => (
+        <div class="achievement-badge-card is-locked" data-achievement-id={ach.id}>
+          <div class="ach-badge-icon-box">
+            {ach.iconType === 'disc' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            )}
+            {ach.iconType === 'trophy' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>
+              </svg>
+            )}
+            {ach.iconType === 'crown' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14v2H5v-2z"/>
+              </svg>
+            )}
+            {ach.iconType === 'sparkle' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              </svg>
+            )}
+            {ach.iconType === 'flag' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+              </svg>
+            )}
+            {ach.iconType === 'star' && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            )}
+          </div>
+
+          <div class="ach-badge-content">
+            <div class="ach-header-row">
+              <span class="ach-category-tag">{ach.categoryLabel}</span>
+              <span class="ach-status-pill" data-i18n="shelf.locked">Bloqueado</span>
+            </div>
+            <strong class="ach-title">{ach.title}</strong>
+            <p class="ach-desc">{ach.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

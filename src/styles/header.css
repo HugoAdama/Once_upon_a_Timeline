@@ -177,6 +177,137 @@
   box-shadow: 0 4px 16px rgba(244, 162, 126, 0.35);
 }
 
+/* Selector de Idioma (i18n Dropdown) */
+.lang-selector-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  color: var(--ink);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(66, 37, 57, 0.05);
+}
+
+[data-theme="dark"] .lang-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.lang-toggle-btn:hover,
+.lang-toggle-btn[aria-expanded="true"] {
+  border-color: var(--magenta);
+  color: var(--magenta);
+  background: rgba(232, 62, 134, 0.08);
+  transform: translateY(-1px);
+}
+
+.globe-icon-svg {
+  color: var(--magenta);
+  flex-shrink: 0;
+}
+
+.current-lang-code {
+  font-family: var(--display);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.lang-arrow-svg {
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+.lang-toggle-btn[aria-expanded="true"] .lang-arrow-svg {
+  transform: rotate(180deg);
+}
+
+/* Menú Desplegable */
+.lang-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 135px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 62, 134, 0.25);
+  box-shadow: 0 12px 32px rgba(66, 37, 57, 0.15);
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 120;
+}
+
+[data-theme="dark"] .lang-dropdown-menu {
+  background: rgba(25, 12, 28, 0.96);
+  border-color: rgba(232, 62, 134, 0.35);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+}
+
+.lang-dropdown-menu.is-open {
+  display: flex;
+  animation: langDropdownFade 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes langDropdownFade {
+  from { opacity: 0; transform: translateY(-6px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lang-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 11px;
+  border-radius: 9px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  width: 100%;
+}
+
+.lang-option-btn small {
+  font-size: 0.62rem;
+  font-weight: 850;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.lang-option-btn:hover {
+  background: rgba(232, 62, 134, 0.1);
+  color: var(--magenta);
+}
+
+.lang-option-btn.active {
+  background: var(--magenta);
+  color: #ffffff;
+}
+
+.lang-option-btn.active small {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* Badge de sincronización dinámica Candybong (Lightstick en concierto) */
 .candybong-sync-badge {
   display: none;

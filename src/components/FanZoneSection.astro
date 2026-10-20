@@ -2,6 +2,7 @@
 import QuizCard from './QuizCard.astro';
 import PhotocardStudio from './PhotocardStudio.astro';
 import CollectorVault from './CollectorVault.astro';
+import PhysicalShelfTracker from './PhysicalShelfTracker.astro';
 ---
 
 <section class="section wrap fan-zone-section" id="fan-zone">
@@ -11,11 +12,11 @@ import CollectorVault from './CollectorVault.astro';
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
-        <span>08 · Espacio Interactivo de la Comunidad</span>
+        <span data-i18n="fanzone.eyebrow">08 · Espacio Interactivo de la Comunidad</span>
       </span>
-      <h2>ONCE Fan Zone.</h2>
+      <h2 data-i18n="fanzone.title">ONCE Fan Zone.</h2>
     </div>
-    <p>
+    <p data-i18n="fanzone.desc">
       El espacio interactivo para la comunidad ONCE: descubre qué integrante de TWICE coincide con tu personalidad, personaliza tu propia photocard de coleccionista y explora las reliquias más codiciadas del fandom.
     </p>
   </div>
@@ -27,15 +28,20 @@ import CollectorVault from './CollectorVault.astro';
 
   <!-- Bóveda del Coleccionista & Curiosidades (Evolución Candybong + Santos Griales) -->
   <CollectorVault />
+
+  <!-- Estante de Álbumes Físicos & Logros de Fan ONCE -->
+  <PhysicalShelfTracker />
 </section>
 
 <script>
   import { initFanZone } from '../scripts/fan-zone';
   import { initCollectorVault } from '../scripts/collector-vault';
+  import { initPhysicalCollection } from '../scripts/physical-collection';
 
   function setup() {
     initFanZone();
     initCollectorVault();
+    initPhysicalCollection();
   }
 
   if (document.readyState === 'loading') {

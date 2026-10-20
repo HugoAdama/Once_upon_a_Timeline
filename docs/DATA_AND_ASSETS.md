@@ -207,6 +207,28 @@ export interface RarePhotocard {
 }
 ```
 
+### `FanAchievement` (Logros de Colección Física)
+```typescript
+export interface FanAchievement {
+  id: string;             // ej: "ach-first-album", "ach-daesang-trilogy"
+  title: string;          // ej: "Primer Paso ONCE", "Trilogía de Daesangs"
+  description: string;    // ej: "Añade tu primer álbum físico a tu estante personal."
+  category: 'milestone' | 'era' | 'market' | 'legendary';
+  categoryLabel: string;  // ej: "Iniciación", "Era Clásica", "Mercado Global"
+  iconType: 'disc' | 'trophy' | 'star' | 'crown' | 'sparkle' | 'globe';
+  requiredCount?: number; // Para hitos basados en cantidad
+}
+
+export interface PhysicalShelfStats {
+  totalOwned: number;
+  totalCatalog: number;
+  percentage: number;
+  krOwned: number;
+  jpOwned: number;
+  globalOwned: number;
+}
+```
+
 ---
 
 ## 2. Directorio de Assets Estáticos (`public/assets/`)

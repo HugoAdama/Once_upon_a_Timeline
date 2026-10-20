@@ -148,8 +148,13 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `FanZoneSection.astro`
 - **Ruta**: `src/components/FanZoneSection.astro`
-- **Propósito**: Orquestador del espacio interactivo para ONCE. Contiene el test de afinidad ([`QuizCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/QuizCard.astro)), el estudio de diseño ([`PhotocardStudio.astro`](file:///e:/Once_upon_a_Timeline/src/components/PhotocardStudio.astro)) y la Bóveda de Coleccionista ([`CollectorVaultSection.astro`](file:///e:/Once_upon_a_Timeline/src/components/CollectorVaultSection.astro)).
-- **Scripts asociados**: [`src/scripts/fan-zone.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fan-zone.ts) y [`src/scripts/collector-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/collector-vault.ts).
+- **Propósito**: Orquestador del espacio interactivo para ONCE. Contiene el test de afinidad ([`QuizCard.astro`](file:///e:/Once_upon_a_Timeline/src/components/QuizCard.astro)), el estudio de diseño ([`PhotocardStudio.astro`](file:///e:/Once_upon_a_Timeline/src/components/PhotocardStudio.astro)), la Bóveda de Coleccionista ([`CollectorVaultSection.astro`](file:///e:/Once_upon_a_Timeline/src/components/CollectorVaultSection.astro)) y el Estante de Álbumes Físicos y Logros ([`PhysicalShelfTracker.astro`](file:///e:/Once_upon_a_Timeline/src/components/PhysicalShelfTracker.astro)).
+- **Scripts asociados**: [`src/scripts/fan-zone.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/fan-zone.ts), [`src/scripts/collector-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/collector-vault.ts) y [`src/scripts/physical-collection.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/physical-collection.ts).
+
+### `PhysicalShelfTracker.astro`
+- **Ruta**: `src/components/PhysicalShelfTracker.astro`
+- **Propósito**: Estante virtual 3D de álbumes físicos (CD / Vinilo) y muro de insignias de logros para fans ONCE. Presenta un panel de métricas KPI (total de álbumes físicos en posesión, porcentaje de completitud del catálogo oficial de TWICE, desglose por mercado KR/JP/Global), vitrina de cajas de CD con inclinación y lomo interactivo, y 12 medallas de logros desbloqueables en tiempo real con notificaciones toast doradas.
+- **Scripts asociados**: [`src/scripts/physical-collection.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/physical-collection.ts).
 
 ### `PhotocardStudio.astro`
 - **Ruta**: `src/components/PhotocardStudio.astro`

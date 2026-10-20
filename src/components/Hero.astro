@@ -16,7 +16,7 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
         <span class="issue-pill">ISSUE NO. 11</span>
         <span class="issue-divider" aria-hidden="true">/</span>
         <span class="issue-era">2015 — PRESENTE · 11 YEARS</span>
-        <span class="issue-badge">ARCHIVO OFICIAL</span>
+        <span class="issue-badge" data-i18n="hero.badge">ARCHIVO OFICIAL</span>
       </div>
 
       <h1 class="hero-title">
@@ -24,19 +24,19 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
         <span class="hero-title-italic">a Timeline.</span>
       </h1>
 
-      <p class="hero-description">
+      <p class="hero-description" data-i18n="hero.description">
         Una retrospectiva visual y sonora de música, estética y cultura pop. Explora a las 9 integrantes de TWICE, 11 años de discografía legendaria y los dos universos oficiales que acompañan su legado: Lovelys y TDOONGZ.
       </p>
 
       <div class="hero-actions">
         <a class="hero-btn-primary" href="#integrantes">
-          <span>Explorar integrantes</span>
+          <span data-i18n="hero.exploreMembers">Explorar integrantes</span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M7 17L17 7M17 7H7M17 7V17"/>
           </svg>
         </a>
         <a class="hero-btn-secondary hero-btn-liquid" href={`${base}/musica#discografia`}>
-          <span>Ir a la discografía</span>
+          <span data-i18n="hero.exploreMusic">Ir a la discografía</span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
@@ -48,15 +48,15 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
         <div class="hero-bento-metrics">
           <div class="bento-metric-cell">
             <span class="metric-val">9</span>
-            <span class="metric-key">Integrantes</span>
+            <span class="metric-key" data-i18n="hero.membersCount">Integrantes</span>
           </div>
           <div class="bento-metric-cell">
             <span class="metric-val">11+</span>
-            <span class="metric-key">Años</span>
+            <span class="metric-key" data-i18n="hero.yearsCount">Años</span>
           </div>
           <div class="bento-metric-cell">
             <span class="metric-val">100+</span>
-            <span class="metric-key">Obras</span>
+            <span class="metric-key" data-i18n="hero.releasesCount">Obras</span>
           </div>
           <div class="bento-metric-cell">
             <span class="metric-val">18</span>

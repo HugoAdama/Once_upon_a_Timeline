@@ -84,10 +84,16 @@ const allYears = getUniqueYears(RELEASES);
 
 <script>
   import { initDiscographyExplorer } from '../scripts/discography-explorer';
+  import { initPhysicalCollection } from '../scripts/physical-collection';
+
+  function setup() {
+    initDiscographyExplorer();
+    initPhysicalCollection();
+  }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDiscographyExplorer);
+    document.addEventListener('DOMContentLoaded', setup);
   } else {
-    initDiscographyExplorer();
+    setup();
   }
 </script>

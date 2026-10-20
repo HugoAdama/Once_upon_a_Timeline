@@ -76,8 +76,9 @@ Once_upon_a_Timeline/
 │   │   ├── MvVaultSection.astro           # Galería cinematográfica de MVs y modal
 │   │   ├── PhotocardDecoBar.astro         # Barra de herramientas Polco Deco y acabados holo
 │   │   ├── PhotocardStudio.astro          # Estudio interactivo de diseño de photocards
+│   │   ├── PhysicalShelfTracker.astro     # Estante de álbumes físicos (CD/Vinilo) y logros de fan
 │   │   ├── QuizCard.astro                 # Cuestionario interactivo de afinidad
-│   │   ├── ReleaseItem.astro              # Ficha de álbum estilo streaming con tracklist
+│   │   ├── ReleaseItem.astro              # Ficha de álbum estilo streaming con tracklist y botón de colección física
 │   │   ├── ScrollToTop.astro              # Botón flotante FAB para volver arriba
 │   │   ├── TimelineMilestoneCard.astro    # Tarjeta de hito histórico con vinilo deslizante
 │   │   ├── TimelineScrubber.astro         # Riel cronológico 2015-2026 con nodos de año
@@ -91,9 +92,11 @@ Once_upon_a_Timeline/
 │   ├── data/                  # Fuentes de verdad estáticas fuertemente tipadas
 │   │   ├── characters.ts      # Datos de Lovelys y TDOONGZ
 │   │   ├── collector-vault.ts # Modelos Candybong, especificaciones y Santos Griales de photocards
+│   │   ├── fan-achievements.ts # 12 logros de coleccionista físico y evaluación de desbloqueo
 │   │   ├── fan-zone.ts        # Preguntas y opciones del test de afinidad
 │   │   ├── fashion-archive.ts # Conceptos de vestuario y siluetas escénicas
 │   │   ├── hall-of-fame.ts    # Récords históricos, Daesangs y ventas
+│   │   ├── i18n.ts            # Diccionario completo en 4 idiomas (ES, EN, KO, JA)
 │   │   ├── killing-parts.ts   # Frases legendarias, integrantes y consultas de búsqueda
 │   │   ├── members.ts         # Datos de las 9 integrantes (bios, colores, eras)
 │   │   ├── music-videos.ts    # Videografía oficial completa con directores y paletas
@@ -106,7 +109,7 @@ Once_upon_a_Timeline/
 │   │   ├── index.astro        # Inicio: Hero, Integrantes 3D, Personajes y Portales
 │   │   ├── musica.astro       # Discografía, Killing Parts, Cronología y Cinema MV Vault
 │   │   ├── giras.astro        # World Tour Odyssey, Mapa de Rutas y Salón de la Fama
-│   │   ├── fan-zone.astro     # Test de Afinidad, Photocard Studio & Bóveda de Coleccionista
+│   │   ├── fan-zone.astro     # Test de Afinidad, Photocard Studio, Bóveda & Estante Físico
 │   │   └── moda.astro         # Stage Wardrobe Archive con galería de alta resolución
 │   ├── scripts/               # Lógica cliente TypeScript desacoplada
 │   │   ├── candy-jukebox.ts         # Mini reproductor de audio y visualizador canvas
@@ -116,10 +119,12 @@ Once_upon_a_Timeline/
 │   │   ├── discography-explorer.ts  # Búsqueda reactiva, killing parts, filtros y vista
 │   │   ├── fan-zone.ts              # Motor del quiz y sincronización con el estudio
 │   │   ├── fashion-gallery.ts       # Filtros y zoom de Stage Wardrobe Archive
+│   │   ├── i18n.ts                  # Motor reactivo multi-idioma con persistencia localStorage
 │   │   ├── member-era-filter.ts     # Rotación 30s con giro 3D e inclinación al cursor
 │   │   ├── mv-vault.ts              # Filtro de videografía y reproductor modal
 │   │   ├── navigation.ts            # Menú móvil desplegable y botón volver arriba
 │   │   ├── photocard-deco.ts        # Polco Deco: stickers, acabados holo y render Canvas HD
+│   │   ├── physical-collection.ts   # Gestor del estante físico, cálculo de KPIs y toasts de logros
 │   │   ├── scroll-reveal.ts         # Animaciones al entrar en viewport y barra de scroll
 │   │   ├── theme-toggle.ts          # Conmutador de modo claro / modo concierto
 │   │   ├── timeline-filter.ts       # Filtro por era cronológica y salto a discografía
@@ -138,6 +143,9 @@ Once_upon_a_Timeline/
 │       ├── fan-zone.css       # Estilos para quiz, estudio de photocard y Polco Deco
 │       ├── fashion.css        # Estilos para archivo de moda y vestuarios
 │       ├── global.css         # Manifiesto maestro que importa los módulos en cascada
+│       ├── header.css         # Cabecera fija, navegación, dropdown i18n y botón concierto
+│       ├── hero.css           # Portada, métricas y vinilo 3D con auras
+│       ├── physical-shelf.css # Estante de CD virtuales 3D, badges de logros y toast flotante
 │       ├── hall-of-fame.css   # Vitrina de récords, trofeos y métricas
 │       ├── header.css         # Barra superior fija, navegación y badge de sincronización
 │       ├── hero.css           # Portada, tipografía editorial, métricas y vinilo

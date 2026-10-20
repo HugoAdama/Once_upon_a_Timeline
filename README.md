@@ -7,11 +7,19 @@
 
 ## Características Principales
 
+- **Soporte Multi-Idioma Internacional (i18n)**:
+  - Sistema reactivo en cliente con selector interactivo en la cabecera: **Español (`es`)**, **English (`en`)**, **한국어 (`ko`)** y **日本語 (`ja`)**.
+  - Detección automática del idioma del navegador, persistencia en `localStorage` (`once_preferred_lang`) y actualización dinámica de textos, atributos y placeholders sin necesidad de recargar la página.
+- **Estante de Álbumes Físicos & Sistema de Logros de Fan ONCE**:
+  - **Coleccionismo Físico (CD / Vinilo)**: Permite a los fans marcar qué álbumes oficiales de TWICE poseen en formato físico directamente desde cada ficha de la discografía (`/musica`) o desde el estante virtual en la Fan Zone (`/fan-zone`).
+  - **Panel de Estadísticas KPI**: Visualización en vivo del total de álbumes en posesión, porcentaje de completitud respecto al catálogo oficial de TWICE y desglose clasificado por mercados (Corea, Japón y Global).
+  - **Vitrina Virtual 3D**: Estante de CD virtuales en perspectiva isométrica con lomos y carátulas interactivas.
+  - **Muro de 12 Logros Desbloqueables**: Medallas temáticas (*Primer Paso ONCE*, *Trilogía de Daesangs SOTY*, *Conquista de Domos Japoneses*, *Gran Maestro ONCE*, etc.) que se desbloquean instantáneamente con una notificación toast dorada y persistencia en `localStorage`.
 - **Arquitectura Multi-Página Enfocada (Eliminación de Scroll Masivo)**:
   - **Inicio (`/`)**: Portada Hero, Photocards 3D de las 9 integrantes, vitrina de personajes (Lovelys y Tdoongz) y portales interactivos hacia los demás capítulos.
-  - **Música & Videografía (`/musica`)**: Catálogo discográfico completo, buscador en vivo, reproductor de canciones, cronología histórica y Cinema MV Vault.
+  - **Música & Videografía (`/musica`)**: Catálogo discográfico completo con botón de posesión física en cada álbum, buscador en vivo, reproductor de canciones, cronología histórica y Cinema MV Vault.
   - **Giras & Salón de la Fama (`/giras`)**: World Tour Odyssey (estadios y setlists) y vitrina de trofeos y récords históricos.
-  - **ONCE Fan Zone (`/fan-zone`)**: Test de Afinidad interactivo, Photocard Studio con Polco Deco y la Bóveda de Coleccionista (Trilogía Candybong & Santos Griales de Photocards 3D).
+  - **ONCE Fan Zone (`/fan-zone`)**: Test de Afinidad interactivo, Photocard Studio con Polco Deco, la Bóveda de Coleccionista (Trilogía Candybong & Santos Griales de Photocards 3D) y el Estante de Álbumes Físicos con Muro de Logros.
   - **Moda Escénica (`/moda`)**: Galería visual de alta resolución del Stage Wardrobe Archive con paletas cromáticas y siluetas clave.
 - **Bóveda de Coleccionista & Curiosidades (ONCE Vault)**:
   - **Trilogía & Simulador Lumínico Candybong**: Cronología interactiva con los 3 modelos oficiales (*Candybong Ver. 1* 2016 con base lámpara de noche, *Candybong Z* 2019 de ingeniería circular para domos, y *Candybong ∞ Infinity* 2023 con cámara de espejos infinitos 3D bilaterales). Incluye simulador de concierto con ritmos (Fijo, Pulso, Rave), túnel estelar LED y selector interactivo con los 9 colores oficiales.

@@ -1,0 +1,574 @@
+/* ========================================================
+   ESTANTE DE COLECCIÓN FÍSICA & MURO DE LOGROS ONCE
+   ======================================================== */
+
+.physical-shelf-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 14px;
+}
+
+/* Cabecera y Resumen de Métricas */
+.shelf-header-box {
+  padding: 26px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 62, 134, 0.2);
+  box-shadow: 0 12px 32px rgba(66, 37, 57, 0.05);
+}
+
+[data-theme="dark"] .shelf-header-box {
+  background: rgba(26, 12, 30, 0.85);
+  border-color: rgba(232, 62, 134, 0.28);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.shelf-kicker-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.shelf-kicker-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--magenta);
+}
+
+.shelf-kicker {
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--magenta);
+}
+
+.shelf-badge-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 850;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(244, 162, 126, 0.15);
+  color: #c44f1c;
+  border: 1px solid rgba(244, 162, 126, 0.3);
+}
+
+[data-theme="dark"] .shelf-badge-counter {
+  background: rgba(244, 162, 126, 0.12);
+  color: #ffaa85;
+}
+
+.shelf-heading {
+  font-family: var(--serif);
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 4px 0 6px;
+}
+
+[data-theme="dark"] .shelf-heading {
+  color: #ffffff;
+}
+
+.shelf-lead {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 820px;
+  margin: 0 0 20px;
+}
+
+/* Grilla de Métricas */
+.shelf-metrics-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 800px) {
+  .shelf-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.shelf-metric-card {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(110, 75, 96, 0.06);
+  border: 1px solid rgba(110, 75, 96, 0.14);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+[data-theme="dark"] .shelf-metric-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.shelf-metric-card.primary {
+  background: linear-gradient(135deg, rgba(232, 62, 134, 0.1) 0%, rgba(244, 162, 126, 0.12) 100%);
+  border-color: rgba(232, 62, 134, 0.28);
+}
+
+.metric-label {
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.metric-value-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.metric-big-val {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+[data-theme="dark"] .metric-big-val {
+  color: #ffffff;
+}
+
+.metric-percent-pill {
+  font-size: 0.72rem;
+  font-weight: 850;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--magenta);
+  color: #ffffff;
+}
+
+.shelf-progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+[data-theme="dark"] .shelf-progress-track {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.shelf-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--gradient-twice);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.metric-sub-val {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+[data-theme="dark"] .metric-sub-val {
+  color: #ffffff;
+}
+
+/* Panel del Estante Físico 3D */
+.shelf-display-panel {
+  position: relative;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 20%, rgba(35, 16, 40, 0.98), #0c040d);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 28px 20px 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.shelf-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 36px 20px 24px;
+  color: #ffffff;
+}
+
+.empty-shelf-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(232, 62, 134, 0.15);
+  border: 1px solid rgba(232, 62, 134, 0.35);
+  color: var(--magenta);
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+}
+
+.empty-shelf-title {
+  font-size: 1.15rem;
+  font-weight: 850;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+
+.empty-shelf-desc {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #bfaab9;
+  max-width: 480px;
+  margin: 0 0 18px;
+}
+
+.btn-shelf-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--gradient-twice);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(232, 62, 134, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-shelf-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 62, 134, 0.55);
+}
+
+/* Grilla de Carátulas CD Case */
+.shelf-albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 16px;
+  align-items: end;
+  padding-bottom: 12px;
+}
+
+.shelf-album-case {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.shelf-album-case:hover {
+  transform: translateY(-8px) scale(1.08);
+  z-index: 5;
+}
+
+.case-cover-img {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.case-title {
+  font-size: 0.62rem;
+  font-weight: 750;
+  color: #dfd1dc;
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 88px;
+  text-align: center;
+}
+
+.shelf-wood-rim {
+  width: 100%;
+  height: 10px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #42202f 0%, #1c0a15 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  margin-top: 10px;
+}
+
+/* ========================================================
+   MURO DE LOGROS ONCE (BADGES)
+   ======================================================== */
+
+.achievements-section-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.achievements-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.achievements-section-title {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0;
+}
+
+[data-theme="dark"] .achievements-section-title {
+  color: #ffffff;
+}
+
+.achievements-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.achievement-badge-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(110, 75, 96, 0.16);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .achievement-badge-card {
+  background: rgba(25, 12, 28, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.achievement-badge-card.is-locked {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+  border-style: dashed;
+}
+
+.achievement-badge-card.is-unlocked {
+  border-color: rgba(244, 162, 126, 0.6);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(244, 162, 126, 0.12));
+  box-shadow: 0 8px 24px rgba(244, 162, 126, 0.2);
+}
+
+[data-theme="dark"] .achievement-badge-card.is-unlocked {
+  background: linear-gradient(135deg, rgba(35, 16, 40, 0.95), rgba(244, 162, 126, 0.15));
+  border-color: rgba(244, 162, 126, 0.45);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+.ach-badge-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(110, 75, 96, 0.1);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.achievement-badge-card.is-unlocked .ach-badge-icon-box {
+  background: var(--gradient-twice);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(232, 62, 134, 0.4);
+}
+
+.ach-badge-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ach-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.ach-category-tag {
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--magenta);
+}
+
+.ach-status-pill {
+  font-size: 0.58rem;
+  font-weight: 850;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--muted);
+}
+
+[data-theme="dark"] .ach-status-pill {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.achievement-badge-card.is-unlocked .ach-status-pill {
+  background: rgba(46, 204, 113, 0.15);
+  color: #27ae60;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.ach-title {
+  font-size: 0.88rem;
+  font-weight: 850;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .ach-title {
+  color: #ffffff;
+}
+
+.ach-desc {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ========================================================
+   BOTÓN EN ReleaseItem (.release-physical-btn)
+   ======================================================== */
+
+.release-physical-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(110, 75, 96, 0.2);
+  background: transparent;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.release-physical-btn:hover {
+  color: var(--magenta);
+  border-color: var(--magenta);
+  background: rgba(232, 62, 134, 0.1);
+  transform: scale(1.1);
+}
+
+.release-physical-btn.is-collected {
+  background: var(--gradient-twice);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(232, 62, 134, 0.4);
+  transform: scale(1.05);
+}
+
+/* ========================================================
+   TOAST DE NOTIFICACIÓN DE LOGRO DESBLOQUEADO
+   ======================================================== */
+
+.achievement-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.achievement-toast {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(20, 9, 22, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(244, 162, 126, 0.5);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(232, 62, 134, 0.3);
+  color: #ffffff;
+  max-width: 360px;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.achievement-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.toast-badge-glow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--gradient-twice);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px rgba(244, 162, 126, 0.6);
+  animation: toastGlowPulse 2s infinite alternate;
+}
+
+@keyframes toastGlowPulse {
+  from { transform: scale(0.95); box-shadow: 0 0 8px rgba(232, 62, 134, 0.4); }
+  to { transform: scale(1.1); box-shadow: 0 0 18px rgba(244, 162, 126, 0.8); }
+}
+
+.toast-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toast-kicker {
+  font-size: 0.62rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--apricot);
+}
+
+.toast-title {
+  font-size: 0.88rem;
+  font-weight: 850;
+  color: #ffffff;
+}
+
+.toast-desc {
+  font-size: 0.74rem;
+  color: #dfd1dc;
+  margin: 0;
+  line-height: 1.35;
+}
