@@ -8,7 +8,7 @@ export function initMemberEraFilter(): void {
   const memberCards = document.querySelectorAll<HTMLElement>('.member-card');
 
   const ERA_LABELS: Record<string, string> = {
-    current: 'Actual (2023-2025)',
+    current: 'Actual (2023-2026)',
     between: 'BETWEEN (2021-2022)',
     classic: 'Debut (2015-2018)',
   };
