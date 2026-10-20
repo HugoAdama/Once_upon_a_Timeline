@@ -14,7 +14,7 @@ export function getLanguage(): SupportedLang {
 export function t(key: string, lang?: SupportedLang): string {
   const activeLang = lang || getLanguage();
   const dict = I18N_DICTIONARY[activeLang] || I18N_DICTIONARY.es;
-  return dict[key] || I18N_DICTIONARY.es[key] || key;
+  return dict[key] || I18N_DICTIONARY.es[key] || '';
 }
 
 export function applyTranslations(lang?: SupportedLang): void {
@@ -27,7 +27,7 @@ export function applyTranslations(lang?: SupportedLang): void {
     const key = el.getAttribute('data-i18n');
     if (key) {
       const translation = t(key, currentLang);
-      if (translation) {
+      if (translation && translation !== key) {
         el.textContent = translation;
       }
     }
@@ -37,19 +37,28 @@ export function applyTranslations(lang?: SupportedLang): void {
   const placeholderElements = document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-i18n-placeholder]');
   placeholderElements.forEach((el) => {
     const key = el.getAttribute('data-i18n-placeholder');
-    if (key) el.placeholder = t(key, currentLang);
+    if (key) {
+      const val = t(key, currentLang);
+      if (val) el.placeholder = val;
+    }
   });
 
   const titleElements = document.querySelectorAll<HTMLElement>('[data-i18n-title]');
   titleElements.forEach((el) => {
     const key = el.getAttribute('data-i18n-title');
-    if (key) el.title = t(key, currentLang);
+    if (key) {
+      const val = t(key, currentLang);
+      if (val) el.title = val;
+    }
   });
 
   const ariaElements = document.querySelectorAll<HTMLElement>('[data-i18n-aria]');
   ariaElements.forEach((el) => {
     const key = el.getAttribute('data-i18n-aria');
-    if (key) el.setAttribute('aria-label', t(key, currentLang));
+    if (key) {
+      const val = t(key, currentLang);
+      if (val) el.setAttribute('aria-label', val);
+    }
   });
 
   // 3. Actualizar etiqueta visible del selector en Header

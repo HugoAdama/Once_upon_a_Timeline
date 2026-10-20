@@ -17,6 +17,34 @@
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Transición circular a 60 FPS del Modo Concierto / Dark Mode */
+html.theme-transitioning::view-transition-old(root),
+html.theme-transitioning::view-transition-new(root) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
+}
+
+html.theme-transitioning::view-transition-old(root) {
+  z-index: 1;
+}
+
+html.theme-transitioning::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Fallback fluido para navegadores sin soporte de View Transitions */
+html.theme-transitioning:not(:has(::view-transition-new(root))),
+html.theme-transitioning:not(:has(::view-transition-new(root))) body,
+html.theme-transitioning:not(:has(::view-transition-new(root))) header,
+html.theme-transitioning:not(:has(::view-transition-new(root))) footer,
+html.theme-transitioning:not(:has(::view-transition-new(root))) .section,
+html.theme-transitioning:not(:has(::view-transition-new(root))) .archive-hub-card {
+  transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
 /* ========================================================
    2. BARRA DE PROGRESO DE LECTURA (SCROLL-DRIVEN PROGRESS)
    ======================================================== */

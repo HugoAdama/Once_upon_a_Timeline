@@ -215,6 +215,14 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
+[data-theme="dark"] .archive-hub-card-action {
+  color: #ff9bc7;
+}
+
+[data-theme="dark"] .archive-hub-card:hover .archive-hub-card-action {
+  color: #ffd1e4;
+}
+
 /* ========================================================
    RESPONSIVE DESIGN (SIN TARJETAS HUÉRFANAS)
    ======================================================== */

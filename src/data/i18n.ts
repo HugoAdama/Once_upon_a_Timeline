@@ -243,6 +243,23 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.developedBy': 'Desarrollado por',
     'footer.disclaimer': 'Sitio no oficial creado con devoción por y para ONCE. TWICE y todos sus materiales son marca registrada de JYP Entertainment y Warner Music Japan.',
 
+    // Portales del Archivo (Archive Hub)
+    'hub.kicker': '03 · PORTALES DEL ARCHIVO',
+    'hub.heading': 'Capítulos del Archivo de TWICE',
+    'hub.desc': 'Navega de forma ágil y enfocada por los diferentes universos del legado de TWICE: música completa, hitos globales en estadios, comunidad interactiva y evolución de moda.',
+    'hub.musicTitle': 'Música, Eras & MVs',
+    'hub.musicDesc': 'Explora la discografía coreana, japonesa y global, busca pistas por álbum y disfruta de los videoclips conceptuales en el Cinema Vault.',
+    'hub.musicAction': 'Explorar Discografía & MVs',
+    'hub.toursTitle': 'Giras & Hall of Fame',
+    'hub.toursDesc': 'El periplo por estadios masivos como SoFi Stadium y Nissan Stadium, la cumbre THIS IS FOR y el salón de trofeos Daesang y récords globales.',
+    'hub.toursAction': 'Explorar Giras & Récords',
+    'hub.fanzoneTitle': 'ONCE Fan Zone',
+    'hub.fanzoneDesc': 'Descubre qué integrante de TWICE comparte tu esencia con el test de afinidad y diseña tu photocard de coleccionista en alta definición.',
+    'hub.fanzoneAction': 'Entrar a la Fan Zone',
+    'hub.fashionTitle': 'Moda Escénica',
+    'hub.fashionDesc': 'La evolución conceptual del vestuario de TWICE: desde las chaquetas varsity de Cheer Up y el terciopelo de FANCY hasta la opulencia de Feel Special y la alta costura de Strategy.',
+    'hub.fashionAction': 'Explorar Moda Escénica',
+
     // Cierre
     'closing.eyebrow': 'Siguiente parada',
     'closing.title': '¿Qué era quieres volver a vivir?',
@@ -479,6 +496,23 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.developedBy': 'Developed by',
     'footer.disclaimer': 'Unofficial fan tribute created for ONCE. TWICE and all associated materials are registered trademarks of JYP Entertainment and Warner Music Japan.',
 
+    // Portales del Archivo (Archive Hub)
+    'hub.kicker': '03 · ARCHIVE PORTALS',
+    'hub.heading': 'Chapters of the TWICE Archive',
+    'hub.desc': 'Navigate smoothly and deliberately through the different universes of TWICE’s legacy: complete music catalog, global stadium milestones, interactive community, and fashion evolution.',
+    'hub.musicTitle': 'Music, Eras & MVs',
+    'hub.musicDesc': 'Explore the Korean, Japanese, and global discography, search tracks by album, and enjoy concept music videos in the Cinema Vault.',
+    'hub.musicAction': 'Explore Discography & MVs',
+    'hub.toursTitle': 'Tours & Hall of Fame',
+    'hub.toursDesc': 'The journey through massive stadiums like SoFi Stadium and Nissan Stadium, the THIS IS FOR summit, and the trophy room of Daesangs and global records.',
+    'hub.toursAction': 'Explore Tours & Records',
+    'hub.fanzoneTitle': 'ONCE Fan Zone',
+    'hub.fanzoneDesc': 'Discover which TWICE member shares your spirit with the affinity quiz and design your high-definition collector photocard.',
+    'hub.fanzoneAction': 'Enter Fan Zone',
+    'hub.fashionTitle': 'Stage Fashion',
+    'hub.fashionDesc': 'The conceptual evolution of TWICE’s wardrobe: from Cheer Up’s varsity jackets and FANCY’s velvet to Feel Special’s opulence and Strategy’s haute couture.',
+    'hub.fashionAction': 'Explore Stage Fashion',
+
     // Cierre
     'closing.eyebrow': 'Next stop',
     'closing.title': 'Which era do you want to relive?',
@@ -714,6 +748,23 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.developedBy': '개발:',
     'footer.disclaimer': '원스(ONCE) 팬들을 위한 비공식 디지털 아카이브입니다. TWICE와 관련된 모든 저작권은 JYP Entertainment 및 Warner Music Japan에 있습니다.',
 
+    // Portales del Archivo (Archive Hub)
+    'hub.kicker': '03 · 아카이브 포털',
+    'hub.heading': '트와이스 아카이브 챕터',
+    'hub.desc': '음악 전곡, 글로벌 스타디움 대기록, 인터랙티브 커뮤니티, 무대 패션 변천사까지 트와이스의 빛나는 유산을 한눈에 살펴보세요.',
+    'hub.musicTitle': '음악, 시대 & MV',
+    'hub.musicDesc': '한국, 일본 및 글로벌 디스코그래피를 탐색하고, 앨범별 수록곡을 검색하며 시네마 볼트에서 콘셉트 MV를 감상하세요.',
+    'hub.musicAction': '디스코그래피 & MV 탐색',
+    'hub.toursTitle': '투어 & 명예의 전당',
+    'hub.toursDesc': 'SoFi 스타디움과 닛산 스타디움 등 대형 스타디움 투어의 여정, THIS IS FOR 서밋, 그리고 대상 트로피와 글로벌 신기록의 전당.',
+    'hub.toursAction': '투어 & 기록 탐색',
+    'hub.fanzoneTitle': 'ONCE 팬존',
+    'hub.fanzoneDesc': '성향 테스트로 나와 가장 닮은 트와이스 멤버를 찾고, 고해상도 나만의 컬렉터 포토카드를 꾸며보세요.',
+    'hub.fanzoneAction': '팬존 입장하기',
+    'hub.fashionTitle': '무대 패션',
+    'hub.fashionDesc': 'Cheer Up의 바시티 재킷과 FANCY의 벨벳부터 Feel Special의 화려함과 Strategy의 오트 쿠튀르까지, 트와이스의 콘셉트 무대 의상 변천사.',
+    'hub.fashionAction': '무대 패션 탐색',
+
     // Cierre
     'closing.eyebrow': '다음 여정',
     'closing.title': '어떤 시대를 다시 경험하고 싶으신가요?',
@@ -948,6 +999,23 @@ export const I18N_DICTIONARY: Record<SupportedLang, Record<string, string>> = {
     'footer.tagline': 'TWICE 9人のメンバー、その音楽、公式キャラクターに捧げるアーカイブ。',
     'footer.developedBy': '開発:',
     'footer.disclaimer': 'ONCEのために制作された非公式ファンアーカイブです。TWICEおよび関連するすべての著作権はJYP EntertainmentおよびWarner Music Japanに帰属します。',
+
+    // Portales del Archivo (Archive Hub)
+    'hub.kicker': '03 · アーカイブポータル',
+    'hub.heading': 'TWICEアーカイブのチャプター',
+    'hub.desc': '全楽曲、スタジアムでの世界的偉業、インタラクティブコミュニティ、ステージ衣装の進化まで、TWICEの輝かしいレガシーを巡る旅へ。',
+    'hub.musicTitle': '音楽、時代＆MV',
+    'hub.musicDesc': '日韓およびグローバルディスコグラフィを探索し、アルバム別にトラックを検索、シネマヴォルトでコンセプトMVをお楽しみください。',
+    'hub.musicAction': 'ディスコグラフィ＆MVを見る',
+    'hub.toursTitle': 'ツアー＆殿堂',
+    'hub.toursDesc': 'SoFiスタジアムや日産スタジアムなど巨大スタジアムツアーの軌跡、THIS IS FORサミット、大賞トロフィーと世界的記録の殿堂。',
+    'hub.toursAction': 'ツアー＆記録を見る',
+    'hub.fanzoneTitle': 'ONCEファンゾーン',
+    'hub.fanzoneDesc': '親密度テストで自分に似ているTWICEメンバーを見つけ、高解像度のコレクターフォトカードをデザインしましょう。',
+    'hub.fanzoneAction': 'ファンゾーンへ行く',
+    'hub.fashionTitle': 'ステージファッション',
+    'hub.fashionDesc': 'Cheer UpのバーシティジャケットやFANCYのベルベットから、Feel Specialの絢爛さ、Strategyのオートクチュールまで、TWICEのステージ衣装の進化。',
+    'hub.fashionAction': 'ステージファッションを見る',
 
     // Cierre
     'closing.eyebrow': '次の目的地',
