@@ -28,7 +28,8 @@ Once_upon_a_Timeline/
 │   ├── COMPONENTS.md        # Catálogo y APIs de componentes Astro
 │   ├── CONTRIBUTING.md      # Guía para desarrolladores y estándares
 │   ├── DATA_AND_ASSETS.md   # Modelos TypeScript y gestión de assets
-│   └── DESIGN_SYSTEM.md     # Tokens, paleta oficial, curvas de animación y accesibilidad
+│   ├── DESIGN_SYSTEM.md     # Tokens, paleta oficial, curvas de animación y accesibilidad
+│   └── ROADMAP_V2.md        # Visión estratégica y propuestas técnicas para la V2
 ├── public/
 │   ├── assets/
 │   │   ├── characters/      # Ilustraciones oficiales de Lovelys y TDOONGZ (.webp)

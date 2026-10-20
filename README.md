@@ -77,6 +77,7 @@ La documentación técnica y de diseño completa se encuentra disponible en la c
 3. [**Catálogo de Componentes** (`docs/COMPONENTS.md`)](./docs/COMPONENTS.md): API y documentación de cada componente Astro y Layout.
 4. [**Datos y Assets** (`docs/DATA_AND_ASSETS.md`)](./docs/DATA_AND_ASSETS.md): Modelos de datos TypeScript, resolución de rutas y manejo de imágenes.
 5. [**Guía de Contribución** (`docs/CONTRIBUTING.md`)](./docs/CONTRIBUTING.md): Puesta en marcha local, cómo añadir nuevos lanzamientos e hitos.
+6. [**Visión y Roadmap V2** (`docs/ROADMAP_V2.md`)](./docs/ROADMAP_V2.md): Hoja de ruta, nuevas experiencias y propuestas para la versión 2.0.
 
 ---
 

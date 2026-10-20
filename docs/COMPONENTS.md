@@ -182,6 +182,11 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 - **Propósito**: Cuadrícula interactiva de los 6 Santos Griales de photocards de TWICE. Cada photocard cuenta con soporte toploader biselado, shaders holográficos dinámicos (*Rainbow Prism*, *Gold Leaf*, *3D Lenticular Prisms*, *Cosmic Glitter*) que reaccionan a la posición del cursor, selección activa con clic para admirar el acabado lumínico, filtro de rareza (*Mítico*, *Legendario*, *Raro*) y botón con animación de giro 3D de 180° hacia el reverso con cotizaciones de mercado y datos de coleccionista.
 - **Scripts asociados**: [`src/scripts/collector-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/collector-vault.ts).
 
+### `PhysicalShelfTracker.astro`
+- **Ruta**: `src/components/PhysicalShelfTracker.astro`
+- **Propósito**: Estante virtual interactivo de álbumes físicos (CD / Vinilo) y muro de 12 logros coleccionables de la comunidad ONCE. Muestra el porcentaje de completitud respecto al catálogo oficial, desglose por mercados (KR/JP/Global), estante 3D con perspectiva isométrica y badges desbloqueables persistidos en `localStorage`.
+- **Scripts asociados**: [`src/scripts/physical-collection.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/physical-collection.ts).
+
 ---
 
 ## 7. Componentes de Moda Escénica y Videografía
