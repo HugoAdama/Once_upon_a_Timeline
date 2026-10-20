@@ -10,13 +10,13 @@ import { resolveAsset } from '../utils/streaming';
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
       </svg>
-      <span class="filter-lead">Filtrar por nivel de rareza:</span>
+      <span class="filter-lead" data-i18n="vault.filterLabel">Filtrar por nivel de rareza:</span>
     </div>
     <div class="grail-filter-chips" role="group" aria-label="Filtro de rareza de photocards">
-      <button type="button" class="grail-chip active" data-rarity-filter="all">Todas (6)</button>
-      <button type="button" class="grail-chip" data-rarity-filter="mythic">Grial Mítico</button>
-      <button type="button" class="grail-chip" data-rarity-filter="legendary">Legendaria</button>
-      <button type="button" class="grail-chip" data-rarity-filter="rare">Tesoros Raros</button>
+      <button type="button" class="grail-chip active" data-rarity-filter="all" data-i18n="vault.filterAll">Todas (6)</button>
+      <button type="button" class="grail-chip" data-rarity-filter="mythic" data-i18n="vault.filterMythic">Grial Mítico</button>
+      <button type="button" class="grail-chip" data-rarity-filter="legendary" data-i18n="vault.filterLegendary">Legendaria</button>
+      <button type="button" class="grail-chip" data-rarity-filter="rare" data-i18n="vault.filterRare">Tesoros Raros</button>
     </div>
   </div>
 
@@ -66,12 +66,12 @@ import { resolveAsset } from '../utils/streaming';
                 <p class="card-subhead">{card.era}</p>
 
                 <div class="card-value-preview">
-                  <span class="val-label">Valor de Colección:</span>
+                  <span class="val-label" data-i18n="vault.marketValue">Valor de Colección:</span>
                   <span class="val-number">{card.marketPriceRange}</span>
                 </div>
 
                 <button type="button" class="btn-flip-card" aria-label={`Ver historia y detalles de ${card.title}`}>
-                  <span>Ver historia de coleccionista</span>
+                  <span data-i18n="vault.viewLore">Ver historia de coleccionista</span>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
                   </svg>
@@ -117,7 +117,7 @@ import { resolveAsset } from '../utils/streaming';
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 .57-8.38L-2.44 1.52"/>
                 </svg>
-                <span>Volver a la photocard</span>
+                <span data-i18n="vault.flipBack">Volver a la photocard</span>
               </button>
             </div>
           </div>

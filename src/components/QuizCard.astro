@@ -4,7 +4,7 @@ import { FAN_QUIZ_QUESTIONS } from '../data/fan-zone';
 
 <div class="quiz-card scroll-reveal">
   <div class="quiz-header">
-    <span class="quiz-kicker">Test de Identidad</span>
+    <span class="quiz-kicker" data-i18n="quiz.kicker">Test de Identidad</span>
     <span class="quiz-progress-pill" id="quiz-counter-text">1 / {FAN_QUIZ_QUESTIONS.length}</span>
   </div>
 
@@ -34,7 +34,7 @@ import { FAN_QUIZ_QUESTIONS } from '../data/fan-zone';
 
   <!-- Vista de Resultados del Quiz -->
   <div class="quiz-result-view" id="quiz-result-view">
-    <span class="quiz-result-badge">Afinidad ONCE Detectada</span>
+    <span class="quiz-result-badge" data-i18n="quiz.resultBadge">Afinidad ONCE Detectada</span>
     <h3 class="quiz-result-title" id="result-member-title">Tu esencia</h3>
     <p class="quiz-result-desc" id="result-member-desc">Cargando afinidad...</p>
 
@@ -51,9 +51,9 @@ import { FAN_QUIZ_QUESTIONS } from '../data/fan-zone';
             <path d="M12 20h9"/>
             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
           </svg>
-          <span id="quiz-apply-btn-label">Personalizar mi Photocard</span>
+          <span id="quiz-apply-btn-label" data-i18n="quiz.applyStudio">Personalizar mi Photocard</span>
         </button>
-        <button type="button" class="quiz-reset-btn" id="quiz-reset-btn">
+        <button type="button" class="quiz-reset-btn" id="quiz-reset-btn" data-i18n="quiz.repeat">
           Repetir Test
         </button>
       </div>

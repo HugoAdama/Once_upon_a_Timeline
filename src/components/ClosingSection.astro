@@ -28,20 +28,20 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
 
     <div class="closing-layout-grid">
       <div class="closing-content">
-        <span class="eyebrow closing-eyebrow">Siguiente parada</span>
-        <h2>¿Qué era quieres volver a vivir?</h2>
-        <p>
+        <span class="eyebrow closing-eyebrow" data-i18n="closing.eyebrow">Siguiente parada</span>
+        <h2 data-i18n="closing.title">¿Qué era quieres volver a vivir?</h2>
+        <p data-i18n="closing.desc">
           Explora la discografía interactiva, descubre canciones ocultas de sus álbumes en Corea y Japón, o revive los 11 años de historia de TWICE desde su debut en 2015.
         </p>
         <div class="closing-actions">
           <a class="button closing-btn-primary" href={`${base}/musica`}>
-            <span>Explorar discografía</span>
+            <span data-i18n="closing.exploreMusic">Explorar discografía</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M7 17L17 7M7 7h10v10"/>
             </svg>
           </a>
           <a class="button light closing-btn-secondary" href="https://twice.jype.com/" target="_blank" rel="noreferrer">
-            <span>Sitio oficial de TWICE ↗</span>
+            <span data-i18n="closing.officialSite">Sitio oficial de TWICE ↗</span>
           </a>
         </div>
       </div>

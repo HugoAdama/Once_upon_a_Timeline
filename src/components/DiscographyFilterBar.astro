@@ -61,7 +61,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
           <svg class="tab-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
-          <span>Eras Destacadas</span>
+          <span data-i18n="disco.quickErasTab">Eras Destacadas</span>
           <span class="tab-badge">7</span>
         </button>
 
@@ -78,11 +78,11 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
             <circle cx="6" cy="18" r="3"></circle>
             <circle cx="18" cy="16" r="3"></circle>
           </svg>
-          <span>Killing Parts & Frases</span>
+          <span data-i18n="disco.killingPartsTab">Killing Parts & Frases</span>
           <span class="tab-badge">8</span>
         </button>
       </div>
-      <span class="discovery-hint">Haz clic en una era o frase para filtrar al instante</span>
+      <span class="discovery-hint" data-i18n="disco.quickHint">Haz clic en una era o frase para filtrar al instante</span>
     </div>
 
     <div class="discovery-tab-panels">
@@ -111,10 +111,10 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
   <div class="filter-controls-row">
     <!-- Columna Izquierda: Filtros de mercado con iconos SVG -->
     <div class="filter-controls-markets">
-      <span class="filter-label" id="label-market">Mercado:</span>
+      <span class="filter-label" id="label-market" data-i18n="disco.marketLabel">Mercado:</span>
       <div class="filter-chips" role="radiogroup" aria-labelledby="label-market">
         <button type="button" class="chip-btn active" data-filter-market="all" role="radio" aria-checked="true">
-          <span>Todos</span>
+          <span data-i18n="disco.marketAll">Todos</span>
         </button>
 
         <button type="button" class="chip-btn" data-filter-market="korea" role="radio" aria-checked="false">
@@ -123,7 +123,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
             <circle cx="8" cy="6" r="3" fill="#cd2e3a"/>
             <path d="M5 6a3 3 0 0 0 6 0c0 1.657-1.343 3-3 3A3 3 0 0 1 5 6z" fill="#0047a0"/>
           </svg>
-          <span>Corea</span>
+          <span data-i18n="disco.marketKorea">Corea</span>
           <span class="chip-count">({koreaCount})</span>
         </button>
 
@@ -132,7 +132,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
             <rect width="16" height="12" rx="2" fill="#ffffff" stroke="#e0d5db" stroke-width="0.75"/>
             <circle cx="8" cy="6" r="3" fill="#bc002d"/>
           </svg>
-          <span>Japón</span>
+          <span data-i18n="disco.marketJapan">Japón</span>
           <span class="chip-count">({japanCount})</span>
         </button>
 
@@ -142,7 +142,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
             <line x1="21" y1="12" x2="3" y2="12"/>
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           </svg>
-          <span>Global</span>
+          <span data-i18n="disco.marketGlobal">Global</span>
           <span class="chip-count">({globalCount})</span>
         </button>
 
@@ -158,7 +158,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
           <svg class="fav-filter-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
           </svg>
-          <span>Mis Favoritos</span>
+          <span data-i18n="disco.myFavorites">Mis Favoritos</span>
           <span class="chip-count" id="favs-counter">(0)</span>
         </button>
       </div>
@@ -167,10 +167,10 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
     <!-- Columna Derecha: Selectores combinados (Año y Formato) -->
     <div class="filter-controls-dropdowns">
       <div class="filter-select-field">
-        <label for="filter-year" class="filter-label">Año:</label>
+        <label for="filter-year" class="filter-label" data-i18n="disco.yearLabel">Año:</label>
         <div class="select-wrapper">
           <select id="filter-year" class="filter-select" aria-label="Filtrar por año de lanzamiento">
-            <option value="all">Todos los años</option>
+            <option value="all" data-i18n="disco.allYears">Todos los años</option>
             {allYears.map((yr) => (
               <option value={yr}>{yr}</option>
             ))}
@@ -182,7 +182,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
       </div>
 
       <div class="filter-select-field">
-        <label for="filter-format" class="filter-label">Formato:</label>
+        <label for="filter-format" class="filter-label" data-i18n="disco.formatLabel">Formato:</label>
         <div class="select-wrapper">
           <select id="filter-format" class="filter-select" aria-label="Filtrar por formato de lanzamiento">
             {FORMAT_OPTIONS.map((opt) => (
@@ -213,7 +213,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
 
 <!-- MENSAJE DE COINCIDENCIAS NO ENCONTRADAS -->
 <div id="no-results-msg" class="no-results-msg" role="status" aria-live="polite">
-  <h4>No se encontraron coincidencias</h4>
-  <p>No hay lanzamientos ni canciones que coincidan con los filtros y término de búsqueda actuales.</p>
-  <button class="button small" id="reset-empty-btn" type="button">Restablecer filtros</button>
+  <h4 data-i18n="disco.noMatchesTitle">No se encontraron coincidencias</h4>
+  <p data-i18n="disco.noMatchesDesc">No hay lanzamientos ni canciones que coincidan con los filtros y término de búsqueda actuales.</p>
+  <button class="button small" id="reset-empty-btn" type="button" data-i18n="disco.resetEmpty">Restablecer filtros</button>
 </div>

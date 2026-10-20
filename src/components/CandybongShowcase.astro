@@ -13,11 +13,11 @@ import { resolveAsset } from '../utils/streaming';
           <circle cx="12" cy="12" r="10"/>
           <path d="M12 6v6l4 2"/>
         </svg>
-        <span class="stage-kicker">SIMULADOR LUMÍNICO EN VIVO</span>
+        <span class="stage-kicker" data-i18n="candybong.kicker">SIMULADOR LUMÍNICO EN VIVO</span>
       </div>
       <span class="stage-status-badge">
         <span class="status-live-dot" aria-hidden="true"></span>
-        <span>BLUETOOTH ACTIVO</span>
+        <span data-i18n="candybong.status">BLUETOOTH ACTIVO</span>
       </span>
     </div>
 
@@ -61,7 +61,7 @@ import { resolveAsset } from '../utils/streaming';
 
     <!-- Controles de Color de Integrante -->
     <div class="candybong-color-controls">
-      <span class="controls-label">Selecciona el color del concierto:</span>
+      <span class="controls-label" data-i18n="candybong.selectColor">Selecciona el color del concierto:</span>
       <div class="color-bubbles-grid" role="group" aria-label="Colores oficiales de integrantes">
         <button
           type="button"
@@ -94,15 +94,15 @@ import { resolveAsset } from '../utils/streaming';
     <div class="candybong-rhythm-controls">
       <button type="button" class="rhythm-btn active" data-light-mode="steady">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
-        <span>Luz Continua</span>
+        <span data-i18n="candybong.modeSteady">Luz Continua</span>
       </button>
       <button type="button" class="rhythm-btn" data-light-mode="pulse">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <span>Pulso Estadio</span>
+        <span data-i18n="candybong.modePulse">Pulso Estadio</span>
       </button>
       <button type="button" class="rhythm-btn" data-light-mode="rave">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        <span>Modo Fiesta</span>
+        <span data-i18n="candybong.modeRave">Modo Fiesta</span>
       </button>
     </div>
   </div>

@@ -6,10 +6,10 @@ import MemberCard from './MemberCard.astro';
 <section class="section wrap" id="integrantes">
   <div class="section-heading scroll-reveal">
     <div>
-      <span class="eyebrow">01 · Integrantes y colores</span>
-      <h2>Nueve tonos, nueve identidades.</h2>
+      <span class="eyebrow" data-i18n="members.eyebrow">01 · Integrantes y colores</span>
+      <h2 data-i18n="members.title">Nueve tonos, nueve identidades.</h2>
     </div>
-    <p>
+    <p data-i18n="members.desc">
       Cada tarjeta interactiva celebra la identidad de las nueve integrantes, vinculándolas con su Lovely y su personaje TDOONGZ.
       Selecciona una era musical para apreciar su evolución de estilo y fotografías oficiales a lo largo del tiempo.
     </p>
@@ -22,10 +22,10 @@ import MemberCard from './MemberCard.astro';
         <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
         <circle cx="12" cy="13" r="4"/>
       </svg>
-      <span>Filtrar era fotográfica:</span>
+      <span data-i18n="members.eraLabel">Filtrar era fotográfica:</span>
       <span class="era-auto-badge" title="Cambio automático cada 30 segundos">
         <span class="auto-pulse-dot" aria-hidden="true"></span>
-        <span>Auto 30s</span>
+        <span data-i18n="members.eraAuto">Auto 30s</span>
       </span>
     </span>
     <div class="era-chip-group" role="radiogroup" aria-label="Seleccionar era de las integrantes">
@@ -37,7 +37,7 @@ import MemberCard from './MemberCard.astro';
         aria-checked="true"
       >
         <span class="era-chip-dot current"></span>
-        <span>Actual &amp; Giras (2023-2026)</span>
+        <span data-i18n="members.eraCurrent">Actual &amp; Giras (2023-2026)</span>
       </button>
 
       <button
@@ -48,7 +48,7 @@ import MemberCard from './MemberCard.astro';
         aria-checked="false"
       >
         <span class="era-chip-dot between"></span>
-        <span>BETWEEN 1&amp;2 (2021-2022)</span>
+        <span data-i18n="members.eraBetween">BETWEEN 1&amp;2 (2021-2022)</span>
       </button>
 
       <button
@@ -59,7 +59,7 @@ import MemberCard from './MemberCard.astro';
         aria-checked="false"
       >
         <span class="era-chip-dot classic"></span>
-        <span>Debut &amp; Clásica (2015-2018)</span>
+        <span data-i18n="members.eraClassic">Debut Clásico (2015-2018)</span>
       </button>
     </div>
   </div>
@@ -71,7 +71,7 @@ import MemberCard from './MemberCard.astro';
   </div>
 
   <p class="palette-note">
-    <strong>Nota de diseño y accesibilidad:</strong> Apricot y Neon Magenta son los colores oficiales del grupo. Los nueve tonos individuales son acentos representativos para distinguir las tarjetas; cada uno cuenta con su etiqueta de texto visible. Los marcadores gráficos distintivos diferencian claramente las colecciones Lovelys y TDOONGZ.
+    <strong data-i18n="members.paletteNoteStrong">Nota de diseño y accesibilidad:</strong> <span data-i18n="members.paletteNoteText">Apricot y Neon Magenta son los colores oficiales del grupo. Los nueve tonos individuales son acentos representativos para distinguir las tarjetas; cada uno cuenta con su etiqueta de texto visible. Los marcadores gráficos distintivos diferencian claramente las colecciones Lovelys y TDOONGZ.</span>
   </p>
 </section>
 

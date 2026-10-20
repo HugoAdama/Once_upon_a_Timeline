@@ -11,11 +11,11 @@ import MvCard from './MvCard.astro';
           <polygon points="23 7 16 12 23 17 23 7"/>
           <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
         </svg>
-        <span>05 · Videografía &amp; Concept Cinema</span>
+        <span data-i18n="mv.eyebrow">05 · Videografía &amp; Concept Cinema</span>
       </span>
-      <h2>Cinema MV Vault.</h2>
+      <h2 data-i18n="mv.title">Cinema MV Vault.</h2>
     </div>
-    <p>
+    <p data-i18n="mv.desc">
       Una década de videoclips legendarios: desde los clásicos que revolucionaron el pop surcoreano hasta producciones globales en estadios, conceptos japoneses y proyectos solistas.
     </p>
   </div>
@@ -28,23 +28,23 @@ import MvCard from './MvCard.astro';
         <polyline points="2 17 12 22 22 17"/>
         <polyline points="2 12 12 17 22 12"/>
       </svg>
-      <span>Catálogo:</span>
+      <span data-i18n="mv.catalog">Catálogo:</span>
     </span>
 
     <div class="mv-filter-group" role="tablist">
       <button type="button" class="mv-filter-tab active" data-mv-filter="all" role="tab" aria-selected="true">
-        Todos ({MUSIC_VIDEOS.length})
+        <span data-i18n="mv.all">Todos</span> ({MUSIC_VIDEOS.length})
       </button>
-      <button type="button" class="mv-filter-tab" data-mv-filter="group-kr" role="tab" aria-selected="false">
+      <button type="button" class="mv-filter-tab" data-mv-filter="group-kr" role="tab" aria-selected="false" data-i18n="mv.korea">
         Corea
       </button>
-      <button type="button" class="mv-filter-tab" data-mv-filter="group-jp" role="tab" aria-selected="false">
+      <button type="button" class="mv-filter-tab" data-mv-filter="group-jp" role="tab" aria-selected="false" data-i18n="mv.japan">
         Japón
       </button>
-      <button type="button" class="mv-filter-tab" data-mv-filter="group-en" role="tab" aria-selected="false">
+      <button type="button" class="mv-filter-tab" data-mv-filter="group-en" role="tab" aria-selected="false" data-i18n="mv.global">
         Global
       </button>
-      <button type="button" class="mv-filter-tab" data-mv-filter="solo-sub" role="tab" aria-selected="false">
+      <button type="button" class="mv-filter-tab" data-mv-filter="solo-sub" role="tab" aria-selected="false" data-i18n="mv.solos">
         Solos &amp; Subunidades
       </button>
     </div>

@@ -7,10 +7,10 @@ import CharacterTile from './CharacterTile.astro';
   <div class="wrap">
     <div class="section-heading scroll-reveal">
       <div>
-        <span class="eyebrow">02 · Personajes</span>
-        <h2>Dos colecciones, un mismo universo.</h2>
+        <span class="eyebrow" data-i18n="characters.eyebrow">02 · Personajes</span>
+        <h2 data-i18n="characters.title">Dos colecciones, un mismo universo.</h2>
       </div>
-      <p>
+      <p data-i18n="characters.desc">
         Descubre a las mascotas oficiales de TWICE: los entrañables Lovelys y la divertida colección TDOONGZ de Dream Attic. Explora cada personaje para conocer su personalidad y a la integrante que representa.
       </p>
     </div>
@@ -23,7 +23,7 @@ import CharacterTile from './CharacterTile.astro';
           <polyline points="2 17 12 22 22 17"/>
           <polyline points="2 12 12 17 22 12"/>
         </svg>
-        <span>Colección:</span>
+        <span data-i18n="characters.collectionLabel">Colección:</span>
       </span>
       <div class="char-filter-group">
         <button
@@ -33,7 +33,7 @@ import CharacterTile from './CharacterTile.astro';
           role="tab"
           aria-selected="true"
         >
-          <span>Ambas colecciones (18)</span>
+          <span data-i18n="characters.all">Ambas colecciones (18)</span>
         </button>
         <button
           type="button"

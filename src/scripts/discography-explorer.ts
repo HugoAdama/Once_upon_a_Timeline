@@ -1,4 +1,5 @@
 import { normalizar } from '../utils/text';
+import { t } from './i18n';
 
 const FAV_STORAGE_KEY = 'once-favorite-releases';
 const VIEW_STORAGE_KEY = 'once-releases-view-mode';
@@ -507,11 +508,20 @@ export function initDiscographyExplorer(): void {
       });
 
       if (toggleAllText) {
-        toggleAllText.textContent = allExpanded ? 'Colapsar todo' : 'Expandir todo';
+        const key = allExpanded ? 'disco.collapseAll' : 'disco.expandAll';
+        toggleAllText.setAttribute('data-i18n', key);
+        toggleAllText.textContent = t(key);
       }
       if (toggleExpandIcon && toggleCollapseIcon) {
         toggleExpandIcon.style.display = allExpanded ? 'none' : 'block';
         toggleCollapseIcon.style.display = allExpanded ? 'block' : 'none';
+      }
+    });
+
+    window.addEventListener('once:lang-changed', () => {
+      if (toggleAllText) {
+        const key = allExpanded ? 'disco.collapseAll' : 'disco.expandAll';
+        toggleAllText.textContent = t(key);
       }
     });
   }

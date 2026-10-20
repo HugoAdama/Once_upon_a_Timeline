@@ -9,7 +9,7 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
 <div class="customizer-card scroll-reveal" id="photocard-studio-card">
   <div class="customizer-header">
     <div class="customizer-title-row">
-      <h3 class="customizer-title">Photocard Studio &amp; Polco Deco</h3>
+      <h3 class="customizer-title" data-i18n="studio.title">Photocard Studio &amp; Polco Deco</h3>
       <span class="studio-sync-pill" id="studio-sync-pill" style="display: none;">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="20 6 9 17 4 12"/>
@@ -17,7 +17,7 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
         <span id="studio-sync-pill-text">Afinidad Sincronizada</span>
       </span>
     </div>
-    <p class="customizer-subtitle">Diseña tu photocard oficial de colección con stickers Polco Deco, acabados holográficos y descarga en PNG de alta resolución (600x900px).</p>
+    <p class="customizer-subtitle" data-i18n="studio.subtitle">Diseña tu photocard oficial de colección con stickers Polco Deco, acabados holográficos y descarga en PNG de alta resolución (600x900px).</p>
   </div>
 
   <div class="customizer-workspace">
@@ -78,19 +78,20 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
     <!-- Controles de personalización -->
     <div class="customizer-controls">
       <div class="control-field">
-        <label for="custom-fan-name" class="control-label">Tu Nombre o Alias de Fan:</label>
+        <label for="custom-fan-name" class="control-label" data-i18n="studio.fanAliasLabel">Tu Nombre o Alias de Fan:</label>
         <input
           type="text"
           id="custom-fan-name"
           class="control-input"
           placeholder="Escribe tu nombre..."
+          data-i18n-placeholder="studio.fanAliasPlaceholder"
           maxlength="20"
           value="ONCE Oficial"
         />
       </div>
 
       <div class="control-field">
-        <label for="custom-member-select" class="control-label">Tu Bias / Integrante:</label>
+        <label for="custom-member-select" class="control-label" data-i18n="studio.biasLabel">Tu Bias / Integrante:</label>
         <select id="custom-member-select" class="control-select">
           {MEMBERS.map((m) => (
             <option
@@ -106,7 +107,7 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
       </div>
 
       <div class="control-field">
-        <span class="control-label">Color del Marco Holográfico:</span>
+        <span class="control-label" data-i18n="studio.frameColorLabel">Color del Marco Holográfico:</span>
         <div class="color-picker-row">
           <button type="button" class="palette-btn active" data-frame-color="#e83e86" style="--c: #e83e86;" title="Neon Magenta" aria-label="Neon Magenta"></button>
           <button type="button" class="palette-btn" data-frame-color="#f4a27e" style="--c: #f4a27e;" title="Apricot" aria-label="Apricot"></button>
@@ -129,7 +130,7 @@ const initialPhoto = resolveAsset(MEMBERS[0].photo);
           <polyline points="7 10 12 15 17 10"/>
           <line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
-        <span>Descargar Photocard (PNG)</span>
+        <span data-i18n="studio.downloadBtn">Descargar Photocard (PNG)</span>
       </button>
     </div>
   </div>

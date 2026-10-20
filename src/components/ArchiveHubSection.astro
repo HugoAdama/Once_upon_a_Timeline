@@ -9,8 +9,11 @@ const portals = [
     href: `${base}/musica`,
     pill: '250+ Canciones · 14 MVs',
     title: 'Música, Eras & MVs',
+    titleKey: 'hub.musicTitle',
     desc: 'Explora la discografía coreana, japonesa y global, busca pistas por álbum y disfruta de los videoclips conceptuales en el Cinema Vault.',
+    descKey: 'hub.musicDesc',
     actionText: 'Explorar Música & MVs',
+    actionKey: 'hub.musicAction',
     image: '/assets/hub/portal-musica.webp',
     iconType: 'music',
   },
@@ -19,8 +22,11 @@ const portals = [
     href: `${base}/giras`,
     pill: '5 Giras · 8 Hitos Históricos',
     title: 'Giras & Hall of Fame',
+    titleKey: 'hub.toursTitle',
     desc: 'El periplo por estadios masivos como SoFi Stadium y Nissan Stadium, la cumbre THIS IS FOR y el salón de trofeos Daesang y récords globales.',
+    descKey: 'hub.toursDesc',
     actionText: 'Ver Giras & Récords',
+    actionKey: 'hub.toursAction',
     image: '/assets/hub/portal-giras.webp',
     iconType: 'globe',
   },
@@ -29,8 +35,11 @@ const portals = [
     href: `${base}/fan-zone`,
     pill: 'Test de Afinidad · Photocard',
     title: 'ONCE Fan Zone',
+    titleKey: 'hub.fanzoneTitle',
     desc: 'Descubre qué integrante de TWICE comparte tu esencia con el test de afinidad y diseña tu photocard de coleccionista en alta definición.',
+    descKey: 'hub.fanzoneDesc',
     actionText: 'Entrar a la Fan Zone',
+    actionKey: 'hub.fanzoneAction',
     image: '/assets/hub/portal-fan-zone.webp',
     iconType: 'user',
   },
@@ -39,8 +48,11 @@ const portals = [
     href: `${base}/moda`,
     pill: '6 Eras · Alta Costura',
     title: 'Moda Escénica',
+    titleKey: 'hub.fashionTitle',
     desc: 'La evolución conceptual del vestuario de TWICE: desde las chaquetas varsity de Cheer Up y el terciopelo de FANCY hasta la opulencia de Feel Special y la alta costura de Strategy.',
+    descKey: 'hub.fashionDesc',
     actionText: 'Descubrir Moda',
+    actionKey: 'hub.fashionAction',
     image: '/assets/hub/portal-moda.webp',
     iconType: 'shirt',
   },
@@ -50,9 +62,9 @@ const portals = [
 <section class="section archive-hub-section" id="portales" aria-labelledby="hub-heading">
   <div class="wrap">
     <div class="section-head scroll-reveal">
-      <span class="section-kicker">03 · PORTALES DEL ARCHIVO</span>
-      <h2 id="hub-heading">Capítulos del Archivo de TWICE</h2>
-      <p class="section-desc">
+      <span class="section-kicker" data-i18n="hub.kicker">03 · PORTALES DEL ARCHIVO</span>
+      <h2 id="hub-heading" data-i18n="hub.heading">Capítulos del Archivo de TWICE</h2>
+      <p class="section-desc" data-i18n="hub.desc">
         Navega de forma ágil y enfocada por los diferentes universos del legado de TWICE: música completa, hitos globales en estadios, comunidad interactiva y evolución de moda.
       </p>
     </div>
@@ -107,10 +119,10 @@ const portals = [
 
           <!-- Cuerpo Informativo del Portal -->
           <div class="archive-hub-body">
-            <h3 class="archive-hub-card-title">{portal.title}</h3>
-            <p class="archive-hub-card-desc">{portal.desc}</p>
+            <h3 class="archive-hub-card-title" data-i18n={portal.titleKey}>{portal.title}</h3>
+            <p class="archive-hub-card-desc" data-i18n={portal.descKey}>{portal.desc}</p>
             <span class="archive-hub-card-action">
-              <span>{portal.actionText}</span>
+              <span data-i18n={portal.actionKey}>{portal.actionText}</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
