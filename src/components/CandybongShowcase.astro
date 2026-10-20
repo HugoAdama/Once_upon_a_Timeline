@@ -8,8 +8,17 @@ import { resolveAsset } from '../utils/streaming';
   <!-- Columna Izquierda: Simulador de Luz en Concierto -->
   <div class="candybong-stage-card">
     <div class="stage-kicker-row">
-      <span class="stage-kicker">SIMULADOR LUMÍNICO EN VIVO</span>
-      <span class="stage-status-badge">BLUETOOTH VIRTUAL ACTIVO</span>
+      <div class="stage-kicker-group">
+        <svg class="kicker-pulse-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        <span class="stage-kicker">SIMULADOR LUMÍNICO EN VIVO</span>
+      </div>
+      <span class="stage-status-badge">
+        <span class="status-live-dot" aria-hidden="true"></span>
+        <span>BLUETOOTH ACTIVO</span>
+      </span>
     </div>
 
     <!-- Escenario Visual del Lightstick -->
@@ -25,7 +34,9 @@ import { resolveAsset } from '../utils/streaming';
             <span class="tunnel-ring r1"></span>
             <span class="tunnel-ring r2"></span>
             <span class="tunnel-ring r3"></span>
-            <span class="tunnel-center-sparkle">✦</span>
+            <svg class="tunnel-center-sparkle-svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+            </svg>
           </div>
           <div class="silhouette-outer-rim"></div>
         </div>
@@ -37,6 +48,8 @@ import { resolveAsset } from '../utils/streaming';
           <span class="silhouette-grip-line"></span>
           <span class="silhouette-brand-text">TWICE</span>
         </div>
+        <!-- Reflejo en el suelo del escenario -->
+        <div class="silhouette-floor-reflection"></div>
       </div>
 
       <!-- Nombre del modo de color activo -->
@@ -79,9 +92,18 @@ import { resolveAsset } from '../utils/streaming';
 
     <!-- Selector de Ritmo Lumínico -->
     <div class="candybong-rhythm-controls">
-      <button type="button" class="rhythm-btn active" data-light-mode="steady">Luz Continua</button>
-      <button type="button" class="rhythm-btn" data-light-mode="pulse">Pulso Estadio</button>
-      <button type="button" class="rhythm-btn" data-light-mode="rave">Modo Fiesta</button>
+      <button type="button" class="rhythm-btn active" data-light-mode="steady">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/></svg>
+        <span>Luz Continua</span>
+      </button>
+      <button type="button" class="rhythm-btn" data-light-mode="pulse">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Pulso Estadio</span>
+      </button>
+      <button type="button" class="rhythm-btn" data-light-mode="rave">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Modo Fiesta</span>
+      </button>
     </div>
   </div>
 
@@ -111,62 +133,81 @@ import { resolveAsset } from '../utils/streaming';
           id={`model-card-${model.id}`}
           data-model-id={model.id}
         >
+          <!-- Fila Superior de Identificación -->
           <div class="card-hero-row">
             <div class="model-meta-info">
               <span class="model-era-pill">{model.eraName}</span>
               <h3 class="model-title">{model.name}</h3>
               <span class="model-concept-tag">{model.conceptTag}</span>
             </div>
-            {model.image && (
-              <div class="model-real-photo-wrap" title={`Fotografía oficial de ${model.name}`}>
-                <img
-                  src={resolveAsset(model.image)}
-                  alt={`Fotografía oficial del lightstick ${model.name}`}
-                  class="model-real-img"
-                  loading="lazy"
-                  width="88"
-                  height="88"
-                />
-              </div>
-            )}
             <div class="model-year-badge">
               <span>{model.releaseYear}</span>
             </div>
           </div>
 
-          <p class="model-description">{model.description}</p>
+          <!-- Escaparate Central Bento: Fotografía Real Oficial + Especificaciones -->
+          <div class="model-showcase-split">
+            {model.image && (
+              <div class="model-real-pedestal" title={`Fotografía oficial de ${model.name}`}>
+                <div class="pedestal-halo" aria-hidden="true"></div>
+                <img
+                  src={resolveAsset(model.image)}
+                  alt={`Fotografía oficial del lightstick ${model.name}`}
+                  class="model-real-img"
+                  loading="lazy"
+                  width="140"
+                  height="140"
+                />
+                <span class="pedestal-tag">FOTO OFICIAL JYP</span>
+              </div>
+            )}
 
-          <!-- Especificaciones Técnicas de Ingeniería -->
-          <div class="specs-grid">
-            <div class="spec-cell">
-              <span class="spec-label">Tecnología Lumínica</span>
-              <span class="spec-val">{model.lightingSpecs.technology}</span>
-            </div>
-            <div class="spec-cell">
-              <span class="spec-label">Alimentación</span>
-              <span class="spec-val">{model.lightingSpecs.batteryType}</span>
-            </div>
-            <div class="spec-cell">
-              <span class="spec-label">Conectividad</span>
-              <span class="spec-val">{model.lightingSpecs.connectivity}</span>
-            </div>
-            <div class="spec-cell">
-              <span class="spec-label">Modos de Luz</span>
-              <span class="spec-val">{model.lightingSpecs.modes.join(' · ')}</span>
+            <div class="model-content-side">
+              <p class="model-description">{model.description}</p>
+
+              <!-- Especificaciones Técnicas de Ingeniería -->
+              <div class="specs-grid">
+                <div class="spec-cell">
+                  <span class="spec-label">Tecnología Lumínica</span>
+                  <span class="spec-val">{model.lightingSpecs.technology}</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="spec-label">Alimentación</span>
+                  <span class="spec-val">{model.lightingSpecs.batteryType}</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="spec-label">Conectividad</span>
+                  <span class="spec-val">{model.lightingSpecs.connectivity}</span>
+                </div>
+                <div class="spec-cell">
+                  <span class="spec-label">Modos de Luz</span>
+                  <span class="spec-val">{model.lightingSpecs.modes.join(' · ')}</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Datos Curiosos & Lore de Conciertos -->
+          <!-- Datos Curiosos & Lore de Conciertos con Iconos SVG -->
           <div class="lore-box">
             <div class="lore-item">
-              <span class="lore-icon" aria-hidden="true">🏟️</span>
+              <span class="lore-icon-svg" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+              </span>
               <div class="lore-text">
                 <strong>Momento Histórico en Estadios:</strong>
                 <span>{model.stadiumLore}</span>
               </div>
             </div>
             <div class="lore-item">
-              <span class="lore-icon" aria-hidden="true">💡</span>
+              <span class="lore-icon-svg" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                  <circle cx="12" cy="12" r="4"/>
+                </svg>
+              </span>
               <div class="lore-text">
                 <strong>Curiosidad de Coleccionista:</strong>
                 <span>{model.funFact}</span>
