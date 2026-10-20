@@ -341,6 +341,46 @@ export function initDiscographyExplorer(): void {
     });
   });
 
+  // Pestañas de Descubrimiento (Eras Destacadas vs Killing Parts)
+  const tabQuickEras = document.getElementById('tab-quick-eras') as HTMLButtonElement | null;
+  const tabKillingParts = document.getElementById('tab-killing-parts') as HTMLButtonElement | null;
+  const panelQuickEras = document.getElementById('panel-quick-eras') as HTMLElement | null;
+  const panelKillingParts = document.getElementById('panel-killing-parts') as HTMLElement | null;
+
+  function setDiscoveryTab(activeTab: 'eras' | 'killing'): void {
+    const isEras = activeTab === 'eras';
+    if (tabQuickEras && tabKillingParts && panelQuickEras && panelKillingParts) {
+      tabQuickEras.classList.toggle('active', isEras);
+      tabQuickEras.setAttribute('aria-selected', String(isEras));
+      tabKillingParts.classList.toggle('active', !isEras);
+      tabKillingParts.setAttribute('aria-selected', String(!isEras));
+
+      panelQuickEras.classList.toggle('active', isEras);
+      panelQuickEras.hidden = !isEras;
+      panelKillingParts.classList.toggle('active', !isEras);
+      panelKillingParts.hidden = isEras;
+    }
+  }
+
+  tabQuickEras?.addEventListener('click', () => setDiscoveryTab('eras'));
+  tabKillingParts?.addEventListener('click', () => setDiscoveryTab('killing'));
+
+  tabQuickEras?.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      tabKillingParts?.focus();
+      setDiscoveryTab('killing');
+    }
+  });
+
+  tabKillingParts?.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      tabQuickEras?.focus();
+      setDiscoveryTab('eras');
+    }
+  });
+
   const quickEraButtons = document.querySelectorAll<HTMLButtonElement>('[data-search-preset]');
   quickEraButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
