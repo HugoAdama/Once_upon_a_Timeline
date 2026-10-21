@@ -48,10 +48,10 @@ import { resolveAsset } from '../utils/streaming';
         </div>
 
         <div class="hof-card-body">
-          <span class="hof-category-tag">{item.categoryLabel}</span>
-          <div class="hof-metric-display">{item.metric}</div>
-          <h3 class="hof-title">{item.title}</h3>
-          <p class="hof-description">{item.description}</p>
+          <span class="hof-category-tag" data-i18n={`hof.${item.id}.cat`}>{item.categoryLabel}</span>
+          <div class="hof-metric-display" data-i18n={`hof.${item.id}.metric`}>{item.metric}</div>
+          <h3 class="hof-title" data-i18n={`hof.${item.id}.title`}>{item.title}</h3>
+          <p class="hof-description" data-i18n={`hof.${item.id}.desc`}>{item.description}</p>
         </div>
       </article>
     ))}

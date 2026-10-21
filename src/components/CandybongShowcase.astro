@@ -55,7 +55,7 @@ import { resolveAsset } from '../utils/streaming';
       <!-- Nombre del modo de color activo -->
       <div class="stage-color-readout" id="stage-color-readout">
         <span class="readout-dot" id="readout-dot"></span>
-        <span class="readout-label" id="readout-label">Neon Magenta · Paleta Oficial</span>
+        <span class="readout-label" id="readout-label" data-i18n="candybong.defaultReadout">Neon Magenta · Paleta Oficial</span>
       </div>
     </div>
 
@@ -68,6 +68,7 @@ import { resolveAsset } from '../utils/streaming';
           class="color-bubble active"
           data-candy-color="#e83e86"
           data-candy-color-sec="#f4a27e"
+          data-color-name-key="candybong.colorTwice"
           data-color-name="Apricot &amp; Magenta · TWICE Oficial"
           title="TWICE Oficial · Apricot &amp; Neon Magenta"
           style="background: linear-gradient(135deg, #e83e86, #f4a27e);"
@@ -136,9 +137,9 @@ import { resolveAsset } from '../utils/streaming';
           <!-- Fila Superior de Identificación -->
           <div class="card-hero-row">
             <div class="model-meta-info">
-              <span class="model-era-pill">{model.eraName}</span>
+              <span class="model-era-pill" data-i18n={`candybong.${model.id}.era`}>{model.eraName}</span>
               <h3 class="model-title">{model.name}</h3>
-              <span class="model-concept-tag">{model.conceptTag}</span>
+              <span class="model-concept-tag" data-i18n={`candybong.${model.id}.concept`}>{model.conceptTag}</span>
             </div>
             <div class="model-year-badge">
               <span>{model.releaseYear}</span>
@@ -158,30 +159,30 @@ import { resolveAsset } from '../utils/streaming';
                   width="140"
                   height="140"
                 />
-                <span class="pedestal-tag">FOTO OFICIAL JYP</span>
+                <span class="pedestal-tag" data-i18n="candybong.photoOfficial">FOTO OFICIAL JYP</span>
               </div>
             )}
 
             <div class="model-content-side">
-              <p class="model-description">{model.description}</p>
+              <p class="model-description" data-i18n={`candybong.${model.id}.desc`}>{model.description}</p>
 
               <!-- Especificaciones Técnicas de Ingeniería -->
               <div class="specs-grid">
                 <div class="spec-cell">
-                  <span class="spec-label">Tecnología Lumínica</span>
-                  <span class="spec-val">{model.lightingSpecs.technology}</span>
+                  <span class="spec-label" data-i18n="candybong.specLighting">Tecnología Lumínica</span>
+                  <span class="spec-val" data-i18n={`candybong.${model.id}.specLighting`}>{model.lightingSpecs.technology}</span>
                 </div>
                 <div class="spec-cell">
-                  <span class="spec-label">Alimentación</span>
-                  <span class="spec-val">{model.lightingSpecs.batteryType}</span>
+                  <span class="spec-label" data-i18n="candybong.specBattery">Alimentación</span>
+                  <span class="spec-val" data-i18n={`candybong.${model.id}.specBattery`}>{model.lightingSpecs.batteryType}</span>
                 </div>
                 <div class="spec-cell">
-                  <span class="spec-label">Conectividad</span>
-                  <span class="spec-val">{model.lightingSpecs.connectivity}</span>
+                  <span class="spec-label" data-i18n="candybong.specConnectivity">Conectividad</span>
+                  <span class="spec-val" data-i18n={`candybong.${model.id}.specConnectivity`}>{model.lightingSpecs.connectivity}</span>
                 </div>
                 <div class="spec-cell">
-                  <span class="spec-label">Modos de Luz</span>
-                  <span class="spec-val">{model.lightingSpecs.modes.join(' · ')}</span>
+                  <span class="spec-label" data-i18n="candybong.specModes">Modos de Luz</span>
+                  <span class="spec-val" data-i18n={`candybong.${model.id}.specModes`}>{model.lightingSpecs.modes.join(' · ')}</span>
                 </div>
               </div>
             </div>
@@ -197,8 +198,8 @@ import { resolveAsset } from '../utils/streaming';
                 </svg>
               </span>
               <div class="lore-text">
-                <strong>Momento Histórico en Estadios:</strong>
-                <span>{model.stadiumLore}</span>
+                <strong data-i18n="candybong.stadiumLoreTitle">Momento Histórico en Estadios:</strong>
+                <span data-i18n={`candybong.${model.id}.stadiumLore`}>{model.stadiumLore}</span>
               </div>
             </div>
             <div class="lore-item">
@@ -209,8 +210,8 @@ import { resolveAsset } from '../utils/streaming';
                 </svg>
               </span>
               <div class="lore-text">
-                <strong>Curiosidad de Coleccionista:</strong>
-                <span>{model.funFact}</span>
+                <strong data-i18n="candybong.funFactTitle">Curiosidad de Coleccionista:</strong>
+                <span data-i18n={`candybong.${model.id}.funFact`}>{model.funFact}</span>
               </div>
             </div>
           </div>

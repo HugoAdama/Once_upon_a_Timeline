@@ -52,18 +52,18 @@ import { resolveAsset } from '../utils/streaming';
                 <div class="card-badges-row">
                   <span class={`rarity-tag tag-${card.rarity}`}>
                     <span class="rarity-dot" aria-hidden="true"></span>
-                    <span>{card.rarityBadge}</span>
+                    <span data-i18n={`photocard.rarity_${card.rarity}`}>{card.rarityBadge}</span>
                   </span>
-                  <span class="category-tag">{card.categoryLabel}</span>
+                  <span class="category-tag" data-i18n={`photocard.cat_${card.category}`}>{card.categoryLabel}</span>
                 </div>
               </div>
 
               <div class="card-meta">
                 <div class="card-title-row">
-                  <h4 class="card-title">{card.title}</h4>
+                  <h4 class="card-title" data-i18n={`photocard.${card.id}.title`}>{card.title}</h4>
                   <span class="card-year">{card.year}</span>
                 </div>
-                <p class="card-subhead">{card.era}</p>
+                <p class="card-subhead" data-i18n={`photocard.${card.id}.era`}>{card.era}</p>
 
                 <div class="card-value-preview">
                   <span class="val-label" data-i18n="vault.marketValue">Valor de Colección:</span>
@@ -88,26 +88,26 @@ import { resolveAsset } from '../utils/streaming';
                   </svg>
                   <span class="back-edition-seal">TWICE ARCHIVE</span>
                 </div>
-                <span class={`back-rarity-pill tag-${card.rarity}`}>{card.rarityBadge}</span>
+                <span class={`back-rarity-pill tag-${card.rarity}`} data-i18n={`photocard.rarity_${card.rarity}`}>{card.rarityBadge}</span>
               </div>
 
               <div class="back-body">
                 <div class="back-lore-block">
-                  <span class="lore-title">Historia de la Carta:</span>
-                  <p class="lore-desc">{card.collectorLore}</p>
+                  <span class="lore-title" data-i18n="vault.cardStoryTitle">Historia de la Carta:</span>
+                  <p class="lore-desc" data-i18n={`photocard.${card.id}.lore`}>{card.collectorLore}</p>
                 </div>
 
                 <div class="back-stats-grid">
                   <div class="back-stat-cell">
-                    <span class="stat-name">Acabado Físico</span>
-                    <span class="stat-value">{card.specialFinish}</span>
+                    <span class="stat-name" data-i18n="vault.statFinish">Acabado Físico</span>
+                    <span class="stat-value" data-i18n={`photocard.${card.id}.finish`}>{card.specialFinish}</span>
                   </div>
                   <div class="back-stat-cell">
-                    <span class="stat-name">Tirada Conocida</span>
-                    <span class="stat-value">{card.estimatedRarityUnits}</span>
+                    <span class="stat-name" data-i18n="vault.statPrint">Tirada Conocida</span>
+                    <span class="stat-value" data-i18n={`photocard.${card.id}.print`}>{card.estimatedRarityUnits}</span>
                   </div>
                   <div class="back-stat-cell full-width">
-                    <span class="stat-name">Cotización de Mercado</span>
+                    <span class="stat-name" data-i18n="vault.statPrice">Cotización de Mercado</span>
                     <span class="stat-value highlight">{card.marketPriceRange}</span>
                   </div>
                 </div>

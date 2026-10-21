@@ -4,6 +4,8 @@
  * Persiste la elección del usuario en localStorage y dispara celebraciones visuales fluidas.
  */
 
+import { t } from './i18n';
+
 export interface CandybongMember {
   id: string;
   name: string;
@@ -118,7 +120,7 @@ function updateBiasUI(): void {
     btn.setAttribute('aria-pressed', String(isSelected));
     const label = btn.querySelector('.bias-btn-label');
     if (label) {
-      label.textContent = isSelected ? 'Mi Bias ★' : 'Mi Bias';
+      label.textContent = isSelected ? (t('members.myBiasActive') || 'Mi Bias ★') : (t('members.myBias') || 'Mi Bias');
     }
   });
 
@@ -319,4 +321,9 @@ export function initCandybongSync(): void {
   });
 
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  // 6. Actualizar textos de UI al cambiar el idioma
+  window.addEventListener('once:lang-changed', () => {
+    updateBiasUI();
+  });
 }

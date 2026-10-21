@@ -169,17 +169,17 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ## 6. Componentes de la Bóveda de Coleccionista (Collector's Vault)
 
-### `CollectorVaultSection.astro`
-- **Ruta**: `src/components/CollectorVaultSection.astro`
-- **Propósito**: Orquestador de la bóveda de reliquias y curiosidades en `/fan-zone`. Dispone un conmutador de pestañas segmentadas que alterna entre la evolución de los lightsticks ([`CandybongEvolutionShowcase.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandybongEvolutionShowcase.astro)) y las tarjetas más codiciadas ([`GrailPhotocardsShowcase.astro`](file:///e:/Once_upon_a_Timeline/src/components/GrailPhotocardsShowcase.astro)).
+### `CollectorVault.astro`
+- **Ruta**: `src/components/CollectorVault.astro`
+- **Propósito**: Orquestador de la bóveda de reliquias y curiosidades en `/fan-zone`. Dispone un conmutador de pestañas segmentadas que alterna entre la evolución de los lightsticks ([`CandybongShowcase.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandybongShowcase.astro)) y las tarjetas más codiciadas ([`GrailPhotocardsShowcase.astro`](file:///e:/Once_upon_a_Timeline/src/components/GrailPhotocardsShowcase.astro)). Totalmente integrado con el motor i18n reactivo en ES, EN, KO y JA.
 
-### `CandybongEvolutionShowcase.astro`
-- **Ruta**: `src/components/CandybongEvolutionShowcase.astro`
-- **Propósito**: Escaparate y simulador interactivo de los 3 modelos oficiales (*Candybong Ver. 1* 2016 con base dock de noche, *Candybong Z* 2019 con aro LED RGB para domos, y *Candybong ∞ Infinity* 2023 con túnel bilateral de espejos infinitos). Cuenta con un simulador lumínico reactivo con ritmos (Luz Fija, Pulso, Rave), paleta interactiva de los 9 colores oficiales, vitrina con pedestal giratorio y especificaciones técnicas oficiales.
+### `CandybongShowcase.astro`
+- **Ruta**: `src/components/CandybongShowcase.astro`
+- **Propósito**: Escaparate y simulador interactivo de los 3 modelos oficiales (*Candybong Ver. 1* 2016 con base dock de noche, *Candybong Z* 2019 con aro LED RGB para domos, y *Candybong ∞ Infinity* 2023 con túnel bilateral de espejos infinitos). Cuenta con un simulador lumínico reactivo con ritmos (Luz Fija, Pulso, Rave), paleta interactiva de los 9 colores oficiales, vitrina con pedestal giratorio, especificaciones técnicas de ingeniería y lore histórico de estadios 100% traducidos en los 4 idiomas oficiales.
 
 ### `GrailPhotocardsShowcase.astro`
 - **Ruta**: `src/components/GrailPhotocardsShowcase.astro`
-- **Propósito**: Cuadrícula interactiva de los 6 Santos Griales de photocards de TWICE. Cada photocard cuenta con soporte toploader biselado, shaders holográficos dinámicos (*Rainbow Prism*, *Gold Leaf*, *3D Lenticular Prisms*, *Cosmic Glitter*) que reaccionan a la posición del cursor, selección activa con clic para admirar el acabado lumínico, filtro de rareza (*Mítico*, *Legendario*, *Raro*) y botón con animación de giro 3D de 180° hacia el reverso con cotizaciones de mercado y datos de coleccionista.
+- **Propósito**: Cuadrícula interactiva de los 6 Santos Griales de photocards de TWICE. Cada photocard cuenta con soporte toploader biselado, shaders holográficos dinámicos (*Rainbow Prism*, *Gold Leaf*, *3D Lenticular Prisms*, *Cosmic Glitter*) que reaccionan a la posición del cursor, selección activa con clic para admirar el acabado lumínico, filtro de rareza (*Mítico*, *Legendario*, *Raro*) y botón con animación de giro 3D de 180° hacia el reverso con cotizaciones de mercado, especificaciones físicas y datos de coleccionista completamente localizados (`data-i18n`).
 - **Scripts asociados**: [`src/scripts/collector-vault.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/collector-vault.ts).
 
 ### `PhysicalShelfTracker.astro`

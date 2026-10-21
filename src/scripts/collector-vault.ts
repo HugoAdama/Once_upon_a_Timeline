@@ -4,6 +4,8 @@
  * y las tarjetas 3D interactivas con brillo holográfico de las photocards más raras.
  */
 
+import { t } from './i18n';
+
 export function initCollectorVault(): void {
   const container = document.getElementById('boveda-coleccionista');
   if (!container) return;
@@ -49,6 +51,7 @@ export function initCollectorVault(): void {
       colorBubbles.forEach((b) => b.classList.remove('active'));
       bubble.classList.add('active');
 
+      const colorKey = bubble.getAttribute('data-color-name-key');
       const color = bubble.getAttribute('data-candy-color') || '#e83e86';
       const colorSec = bubble.getAttribute('data-candy-color-sec') || color;
       const colorName = bubble.getAttribute('data-color-name') || 'Color Oficial';
@@ -61,7 +64,13 @@ export function initCollectorVault(): void {
         readoutDot.style.backgroundColor = color;
       }
       if (readoutLabel) {
-        readoutLabel.textContent = colorName;
+        if (colorKey) {
+          readoutLabel.setAttribute('data-i18n', colorKey);
+          readoutLabel.textContent = t(colorKey) || colorName;
+        } else {
+          readoutLabel.removeAttribute('data-i18n');
+          readoutLabel.textContent = colorName;
+        }
       }
     });
   });

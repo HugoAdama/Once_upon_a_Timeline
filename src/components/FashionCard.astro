@@ -34,6 +34,7 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
             type="button"
             class={`fashion-gallery-pill ${idx === 0 ? 'active' : ''}`}
             data-src={resolveAsset(look.url)}
+            data-caption-key={idx === 0 ? 'fashion.mainLook' : 'fashion.stageDetail'}
             data-caption={look.label}
             aria-selected={idx === 0 ? 'true' : 'false'}
             role="tab"
@@ -46,8 +47,8 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
   </div>
 
   <div class="fashion-card-body">
-    <h3 class="fashion-title">{concept.title}</h3>
-    <div class="fashion-style-tag">{concept.style}</div>
+    <h3 class="fashion-title" data-i18n={`fashion.${concept.id}.title`}>{concept.title}</h3>
+    <div class="fashion-style-tag" data-i18n={`fashion.${concept.id}.style`}>{concept.style}</div>
 
     <!-- Indicador de detalle de estilo activo -->
     <div class="fashion-lookbook-indicator" data-caption-target>
@@ -56,10 +57,10 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
         <circle cx="8.5" cy="8.5" r="1.5"/>
         <polyline points="21 15 16 10 5 21"/>
       </svg>
-      <span class="fashion-indicator-text">{gallery[0]?.label || 'Look Principal'}</span>
+      <span class="fashion-indicator-text" data-i18n="fashion.mainLook">{gallery[0]?.label || 'Look Principal'}</span>
     </div>
 
-    <p class="fashion-description">{concept.description}</p>
+    <p class="fashion-description" data-i18n={`fashion.${concept.id}.desc`}>{concept.description}</p>
 
     <div class="fashion-palette-block">
       <span class="fashion-palette-label" data-i18n="fashion.conceptPalette">Paleta Conceptual</span>
@@ -78,8 +79,8 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
         <span data-i18n="fashion.keyPiecesTitle">Prendas &amp; Siluetas Clave:</span>
       </div>
       <ul class="fashion-pieces-list">
-        {concept.keyPieces.map((piece) => (
-          <li>{piece}</li>
+        {concept.keyPieces.map((piece, pIdx) => (
+          <li data-i18n={`fashion.${concept.id}.piece.${pIdx}`}>{piece}</li>
         ))}
       </ul>
     </div>
@@ -90,7 +91,7 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
         <line x1="12" y1="8" x2="12" y2="12"/>
         <line x1="12" y1="16" x2="12.01" y2="16"/>
       </svg>
-      <span>{concept.conceptMood}</span>
+      <span data-i18n={`fashion.${concept.id}.mood`}>{concept.conceptMood}</span>
     </div>
   </div>
 </article>

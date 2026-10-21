@@ -15,7 +15,9 @@ export function initFashionGalleries(): void {
     pills.forEach((pill) => {
       const switchImage = () => {
         const targetSrc = pill.getAttribute('data-src');
-        const targetCaption = pill.getAttribute('data-caption');
+        const captionKey = pill.getAttribute('data-caption-key');
+        const pillSpan = pill.querySelector('span');
+        const targetCaption = pillSpan?.textContent || pill.getAttribute('data-caption') || '';
         if (!targetSrc || mainImg.src.endsWith(targetSrc)) return;
 
         // Feedback visual en las pastillas selectoras
@@ -36,8 +38,13 @@ export function initFashionGalleries(): void {
           mainImg.src = targetSrc;
           mainImg.style.opacity = '1';
           mainImg.style.transform = 'scale(1)';
-          if (captionEl && targetCaption) {
-            captionEl.textContent = targetCaption;
+          if (captionEl) {
+            if (captionKey) {
+              captionEl.setAttribute('data-i18n', captionKey);
+            }
+            if (targetCaption) {
+              captionEl.textContent = targetCaption;
+            }
           }
         };
         tempImg.src = targetSrc;

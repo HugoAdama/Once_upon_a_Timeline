@@ -20,7 +20,7 @@ const thumbUrl = `https://img.youtube.com/vi/${mv.youtubeId}/hqdefault.jpg`;
       width="480"
       height="270"
     />
-    <span class="mv-category-badge">{mv.categoryLabel}</span>
+    <span class="mv-category-badge" data-i18n={`mv.cat_${mv.category}`}>{mv.categoryLabel}</span>
     <span class="mv-views-pill">{mv.viewsEstimate}</span>
 
     <div
@@ -47,7 +47,7 @@ const thumbUrl = `https://img.youtube.com/vi/${mv.youtubeId}/hqdefault.jpg`;
     </div>
 
     <h3 class="mv-title">{mv.title}</h3>
-    <p class="mv-description">{mv.description}</p>
+    <p class="mv-description" data-i18n={`mv.${mv.id}.desc`}>{mv.description}</p>
 
     <div class="mv-palette-row">
       <div class="mv-palette-dots" title="Paleta visual del video">
