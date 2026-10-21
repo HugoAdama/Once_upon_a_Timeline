@@ -61,7 +61,21 @@ export function applyTranslations(lang?: SupportedLang): void {
     }
   });
 
-  // 3. Actualizar etiqueta visible del selector en Header
+  // 3. Actualizar opciones de miembros en Photocard Studio si existen
+  const memberSelect = document.querySelector<HTMLSelectElement>('#custom-member-select');
+  if (memberSelect) {
+    Array.from(memberSelect.options).forEach((opt) => {
+      const memberId = opt.getAttribute('data-id');
+      if (memberId) {
+        const roleTrans = t(`member.member-${memberId}.role`, currentLang);
+        if (roleTrans) {
+          opt.textContent = `${opt.value} (${roleTrans})`;
+        }
+      }
+    });
+  }
+
+  // 4. Actualizar etiqueta visible del selector en Header
   const langLabel = document.querySelector<HTMLElement>('#current-lang-code');
   if (langLabel) {
     langLabel.textContent = currentLang.toUpperCase();

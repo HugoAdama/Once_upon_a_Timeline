@@ -22,25 +22,25 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
         </p>
         <div class="footer-status-pill">
           <span class="status-dot" aria-hidden="true"></span>
-          <span>11 Años · One in a Million</span>
+          <span data-i18n="footer.statusPill">11 Años · One in a Million</span>
         </div>
       </div>
 
       <div class="footer-links-col">
         <h4 class="footer-heading" data-i18n="footer.headingExplore">Exploración</h4>
         <nav class="footer-nav" aria-label="Navegación del archivo">
-          <a href={`${base}/`}>01 · Inicio &amp; Integrantes</a>
-          <a href={`${base}/#personajes`}>02 · Personajes (Lovelys &amp; Tdoongz)</a>
-          <a href={`${base}/musica`}>03 · Música, Eras &amp; MVs</a>
+          <a href={`${base}/`} data-i18n="footer.linkHome">01 · Inicio &amp; Integrantes</a>
+          <a href={`${base}/#personajes`} data-i18n="footer.linkChars">02 · Personajes (Lovelys &amp; Tdoongz)</a>
+          <a href={`${base}/musica`} data-i18n="footer.linkMusic">03 · Música, Eras &amp; MVs</a>
         </nav>
       </div>
 
       <div class="footer-links-col">
         <h4 class="footer-heading" data-i18n="footer.headingExp">Experiencias</h4>
         <nav class="footer-nav" aria-label="Experiencias interactivas">
-          <a href={`${base}/giras`}>04 · Giras &amp; Hall of Fame</a>
-          <a href={`${base}/fan-zone`}>05 · ONCE Fan Zone</a>
-          <a href={`${base}/moda`}>06 · Moda Escénica</a>
+          <a href={`${base}/giras`} data-i18n="footer.linkTours">04 · Giras &amp; Hall of Fame</a>
+          <a href={`${base}/fan-zone`} data-i18n="footer.linkFanzone">05 · ONCE Fan Zone</a>
+          <a href={`${base}/moda`} data-i18n="footer.linkFashion">06 · Moda Escénica</a>
         </nav>
       </div>
 
@@ -48,19 +48,19 @@ const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
         <h4 class="footer-heading" data-i18n="footer.headingOfficial">Enlaces Oficiales</h4>
         <nav class="footer-nav" aria-label="Enlaces oficiales de TWICE">
           <a href="https://twice.jype.com/" target="_blank" rel="noreferrer">
-            <span>JYP TWICE Oficial</span>
+            <span data-i18n="footer.linkJypTwice">JYP TWICE Oficial</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
           <a href="https://www.twicejapan.com/" target="_blank" rel="noreferrer">
-            <span>TWICE Japan</span>
+            <span data-i18n="footer.linkTwiceJapan">TWICE Japan</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
           <a href="https://jypj-store.com/collections/twice-lovelys" target="_blank" rel="noreferrer">
-            <span>Tienda JYP Lovelys</span>
+            <span data-i18n="footer.linkJypStore">Tienda JYP Lovelys</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
           <a href="https://www.youtube.com/@TWICE" target="_blank" rel="noreferrer">
-            <span>YouTube Oficial</span>
+            <span data-i18n="footer.linkYoutube">YouTube Oficial</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </nav>

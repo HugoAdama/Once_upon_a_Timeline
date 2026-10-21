@@ -303,3 +303,26 @@ export function resolveAsset(path?: string | null): string | null {
    </div>
    ```
    Si una imagen no pudiera cargarse, se oculta limpiamente y se muestra una ficha de respaldo estilizada con el símbolo del personaje o de la integrante.
+
+---
+
+## 5. Modelo de Datos de Internacionalización (`src/data/i18n.ts`)
+
+El archivo [`src/data/i18n.ts`](file:///e:/Once_upon_a_Timeline/src/data/i18n.ts) centraliza las cadenas de texto del sitio en cuatro idiomas principales:
+
+```typescript
+export type Lang = 'es' | 'en' | 'ko' | 'ja';
+export type TranslationKey = keyof typeof translations.es;
+```
+
+### Espacios de Nombres y Cobertura:
+- **`nav.*`**: Navegación principal, accesibilidad e indicador de idioma.
+- **`hero.*`**: Portada, badge oficial, descripción, métricas numéricas y badge de coleccionista del vinilo.
+- **`members.*`**: Pestañas de eras, etiquetas de photocard (*Ficha*, *Girar*, *Volver*), selector de bias y notas de diseño.
+- **`member.<id>.*`**: Roles, fechas de nacimiento, nombres de color, bios y descripciones de Lovelys y TDOONGZ para las 9 integrantes (`member-nayeon` hasta `member-tzuyu`).
+- **`characters.*`**: Pestañas de universo (*Ambas colecciones*, *TWICE LOVELYS*, *TDOONGZ Dream Attic*), encabezados editoriales, prefijos y botones oficiales.
+- **`char.<id>.*`**: Lemas y descripciones personalizadas de las 18 mascotas y avatares.
+- **`hub.*`**: Títulos, descripciones y píldoras métricas de los 4 portales principales del archivo.
+- **`footer.*`**: Píldora de estado de 11 años, enlaces de navegación, canales oficiales, créditos de autoría y descargo legal.
+- **`discography.*`, `market.*`, `tours.*`, `fashion.*`, `fanZone.*`, `quiz.*`, `photocard.*`, `jukebox.*`**: Subtítulos, herramientas, controles de reproducción y leyendas de las páginas interiores.
+

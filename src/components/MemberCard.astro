@@ -23,7 +23,7 @@ const photoSrc = resolveAsset(member.photo || null);
           <span class="member-number">{member.number} · MEMBER</span>
           <span class="member-hangul-sub">{member.hangul}</span>
         </div>
-        <span class="member-expand-hint" aria-hidden="true">Ficha</span>
+        <span class="member-expand-hint" aria-hidden="true" data-i18n="members.cardFicha">Ficha</span>
       </div>
 
       <h3 class="member-title">{member.name}</h3>
@@ -31,7 +31,7 @@ const photoSrc = resolveAsset(member.photo || null);
       <div class="member-color-row">
         <span class="member-color-tag">
           <i aria-hidden="true" style={`background-color: ${member.colorHex};`}></i>
-          <span>{member.colorName}</span>
+          <span data-i18n={`member.${member.id}.colorName`}>{member.colorName}</span>
         </span>
         <button
           type="button"
@@ -43,7 +43,7 @@ const photoSrc = resolveAsset(member.photo || null);
           <svg class="bias-star-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
-          <span class="bias-btn-label">Mi Bias</span>
+          <span class="bias-btn-label" data-i18n="members.myBias">Mi Bias</span>
         </button>
         {member.instagram && (
           <a

@@ -56,7 +56,7 @@ const ariaLabel = isLovely
   </div>
   <figcaption>
     <span class="mascot-name">{character.name}</span>
-    <small class="mascot-member-tag">de {character.member}</small>
-    <span class="mascot-tagline">{character.tagline}</span>
+    <small class="mascot-member-tag"><span data-i18n="characters.ofMemberPrefix">de</span> {character.member}</small>
+    <span class="mascot-tagline" data-i18n={`char.${character.id}.tagline`}>{character.tagline}</span>
   </figcaption>
 </figure>

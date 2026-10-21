@@ -167,3 +167,23 @@ Once_upon_a_Timeline/
 3. **`/giras` (Giras)**: World Tour Odyssey con navegación de 5 giras mundiales, galería con temporizador de 30s, estadios históricos, radar cartográfico de rutas aéreas y vitrina del Salón de la Fama.
 4. **`/fan-zone` (Comunidad)**: Test de Afinidad de 5 preguntas sincronizado en vivo con el Photocard Studio & Polco Deco (stickers, holo glitter y descarga PNG de 600x900px), más la **Bóveda de Coleccionista**: simulador interactivo de la Trilogía Candybong y escaparate 3D de los Santos Griales de Photocards con shaders reflectantes y cotizaciones de mercado.
 5. **`/moda` (Estilo)**: Stage Wardrobe Archive con análisis estético de 5 eras de vestuario, siluetas y paletas de color.
+
+---
+
+## 4. Motor de Internacionalización Reactiva (i18n)
+
+El proyecto cuenta con un sistema integral de localización del lado del cliente diseñado para responder inmediatamente sin recargas de página:
+
+1. **Fuente de verdad tipada (`src/data/i18n.ts`)**:
+   - Diccionario en 4 idiomas: Español (`es`), Inglés (`en`), Coreano (`ko`), Japonés (`ja`).
+   - Más de 200 claves organizadas por módulos: `nav.*`, `hero.*`, `members.*`, `member.<id>.*`, `characters.*`, `char.<id>.*`, `hub.*`, `footer.*`, `discography.*`, `market.*`, `tours.*`, `fashion.*`, `quiz.*`, `photocard.*`, `jukebox.*`.
+2. **Enlace declarativo en el DOM (`data-i18n`)**:
+   - Cada componente `.astro` estático etiqueta sus textos traducibles con el atributo `data-i18n="clave"`.
+   - La función `applyTranslations(lang)` recorre todos los nodos coincidentes y actualiza su contenido de forma instantánea.
+3. **Arquitectura basada en eventos (`once:lang-changed`)**:
+   - Al seleccionar un nuevo idioma desde la cabecera, `src/scripts/i18n.ts` emite el evento global `window.dispatchEvent(new CustomEvent('once:lang-changed', { detail: { lang } }))`.
+   - Componentes dinámicos como [`src/scripts/member-era-filter.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/member-era-filter.ts) y los selectores accesibles de miembros (`#custom-member-select`) escuchan este evento para refrescar insignias y opciones de inmediato.
+4. **Persistencia y fallback**:
+   - El idioma elegido se preserva en `localStorage.getItem('once_lang')`.
+   - En ausencia de preferencia previa, se toma el idioma del navegador o el predeterminado (`es`).
+

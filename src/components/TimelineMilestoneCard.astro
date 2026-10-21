@@ -109,7 +109,7 @@ const category = milestone.category || 'all';
       <div class="milestone-sound-bars" aria-hidden="true">
         <span></span><span></span><span></span>
       </div>
-      <span class="milestone-highlight-label">Himno de la era:</span>
+      <span class="milestone-highlight-label" data-i18n="disco.eraAnthem">Himno de la era:</span>
       <strong class="milestone-highlight-name">{milestone.highlightTrack}</strong>
     </div>
   )}
@@ -124,7 +124,7 @@ const category = milestone.category || 'all';
       href={`#${milestone.releaseId}`}
       aria-label={`Ver lanzamiento ${milestone.title} (${milestone.year}) y desplegar canciones en la discografía`}
     >
-      <span>Ver álbum y canciones</span>
+      <span data-i18n="disco.viewAlbumSongs">Ver álbum y canciones</span>
       <svg class="jump-arrow-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <line x1="7" y1="17" x2="17" y2="7"/>
         <polyline points="7 7 17 7 17 17"/>

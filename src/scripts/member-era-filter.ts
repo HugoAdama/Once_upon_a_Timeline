@@ -1,3 +1,5 @@
+import { t } from './i18n';
+
 /**
  * Inicializa el filtro de eras fotográficas de las integrantes de TWICE
  * con rotación automática cada 30 segundos, transición de giro 3D (Flip & Reveal)
@@ -7,10 +9,10 @@ export function initMemberEraFilter(): void {
   const eraButtons = document.querySelectorAll<HTMLButtonElement>('[data-member-era-filter]');
   const memberCards = document.querySelectorAll<HTMLElement>('.member-card');
 
-  const ERA_LABELS: Record<string, string> = {
-    current: 'Actual (2023-2026)',
-    between: 'BETWEEN (2021-2022)',
-    classic: 'Debut (2015-2018)',
+  const ERA_I18N_KEYS: Record<string, string> = {
+    current: 'members.eraBadgeCurrent',
+    between: 'members.eraBadgeBetween',
+    classic: 'members.eraBadgeClassic',
   };
 
   const ERAS = ['current', 'between', 'classic'];
@@ -63,7 +65,9 @@ export function initMemberEraFilter(): void {
         setTimeout(() => {
           img.src = newSrc;
           if (badge) {
-            badge.textContent = ERA_LABELS[era] || 'Era Actual';
+            const eraKey = ERA_I18N_KEYS[era] || 'members.eraBadgeCurrent';
+            badge.setAttribute('data-i18n', eraKey);
+            badge.textContent = t(eraKey);
           }
         }, 360);
 
@@ -152,6 +156,17 @@ export function initMemberEraFilter(): void {
   interactivePills.forEach((el) => {
     el.addEventListener('click', (e) => {
       e.stopPropagation();
+    });
+  });
+
+  // Re-aplicar etiquetas de era traducidas al cambiar el idioma
+  window.addEventListener('once:lang-changed', () => {
+    const currentEra = ERAS[currentEraIndex] || 'current';
+    const eraKey = ERA_I18N_KEYS[currentEra] || 'members.eraBadgeCurrent';
+    const badges = document.querySelectorAll<HTMLElement>('[data-member-era-badge]');
+    badges.forEach((b) => {
+      b.setAttribute('data-i18n', eraKey);
+      b.textContent = t(eraKey);
     });
   });
 }

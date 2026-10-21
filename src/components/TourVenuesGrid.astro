@@ -16,9 +16,9 @@ const venuesCount = venues.length;
         <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
         <circle cx="12" cy="10" r="3"/>
       </svg>
-      <span>Estadios y Sedes Históricas</span>
+      <span data-i18n="tours.venuesTitle">Estadios y Sedes Históricas</span>
     </h4>
-    <span class="tour-venues-count-badge">{venuesCount} Recintos Emblemáticos</span>
+    <span class="tour-venues-count-badge">{venuesCount} <span data-i18n="tours.venuesBadge">Recintos Emblemáticos</span></span>
   </div>
 
   <div class={`tour-venues-grid venues-count-${venuesCount}`}>

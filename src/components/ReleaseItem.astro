@@ -100,8 +100,8 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
 
     <div class="track-list-panel">
       <div class="track-list-header">
-        <span class="track-list-label">Tracklist oficial · {trackCountLabel}</span>
-        <span class="streaming-hint">Escuchar en plataformas:</span>
+        <span class="track-list-label"><span data-i18n="disco.tracklistOfficial">Tracklist oficial</span> · {trackCountLabel}</span>
+        <span class="streaming-hint" data-i18n="disco.listenPlatforms">Escuchar en plataformas:</span>
       </div>
 
       <ol class="track-list">
@@ -115,7 +115,7 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
                 <span class="track-num" aria-label={`Pista ${idx + 1}`}>{trackNum}</span>
                 <span class="track-title">{track.title}</span>
                 {isLeadSingle && (
-                  <span class="title-track-pill" title="Canción principal / Lead Single de la era">
+                  <span class="title-track-pill" title="Canción principal / Lead Single de la era" data-i18n-title="disco.leadSingleHint">
                     <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                     </svg>

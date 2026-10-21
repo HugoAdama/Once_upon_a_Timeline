@@ -38,7 +38,7 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
             aria-selected={idx === 0 ? 'true' : 'false'}
             role="tab"
           >
-            <span>{idx === 0 ? 'Look Principal' : 'Detalle Escénico'}</span>
+            <span data-i18n={idx === 0 ? 'fashion.mainLook' : 'fashion.stageDetail'}>{idx === 0 ? 'Look Principal' : 'Detalle Escénico'}</span>
           </button>
         ))}
       </div>
@@ -62,7 +62,7 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
     <p class="fashion-description">{concept.description}</p>
 
     <div class="fashion-palette-block">
-      <span class="fashion-palette-label">Paleta Conceptual</span>
+      <span class="fashion-palette-label" data-i18n="fashion.conceptPalette">Paleta Conceptual</span>
       <div class="fashion-swatches">
         {concept.colorPalette.map((color) => (
           <span class="fashion-swatch-dot" style={`background-color: ${color};`} title={color} />
@@ -75,7 +75,7 @@ const gallery = concept.gallery && concept.gallery.length > 0 ? concept.gallery 
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="20 6 9 17 4 12"/>
         </svg>
-        <span>Prendas &amp; Siluetas Clave:</span>
+        <span data-i18n="fashion.keyPiecesTitle">Prendas &amp; Siluetas Clave:</span>
       </div>
       <ul class="fashion-pieces-list">
         {concept.keyPieces.map((piece) => (

@@ -33,7 +33,7 @@ const slidesData = tour.gallery.map((item) => ({
       <div class="tour-meta-column">
         <div class="tour-title-wrap">
           <div class="tour-kicker-bar">
-            <span class="tour-kicker">Gira Mundial Oficial</span>
+            <span class="tour-kicker" data-i18n="tours.officialTour">Gira Mundial Oficial</span>
             {tour.logo && (
               <div class="tour-logo-badge">
                 <img
@@ -60,7 +60,7 @@ const slidesData = tour.gallery.map((item) => ({
             </div>
             <div class="tour-stat-body">
               <span class="tour-stat-num">{tour.totalShows}</span>
-              <span class="tour-stat-label">Conciertos en Vivo</span>
+              <span class="tour-stat-label" data-i18n="tours.liveShows">Conciertos en Vivo</span>
             </div>
           </div>
 
@@ -74,7 +74,7 @@ const slidesData = tour.gallery.map((item) => ({
             </div>
             <div class="tour-stat-body">
               <span class="tour-stat-num">{tour.attendance}</span>
-              <span class="tour-stat-label">Asistencia Acumulada</span>
+              <span class="tour-stat-label" data-i18n="tours.accumulatedAttendance">Asistencia Acumulada</span>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@ const slidesData = tour.gallery.map((item) => ({
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
-            <span class="tour-setlist-title">Setlist de la Gira ({tour.setlistHighlights.length} canciones)</span>
+            <span class="tour-setlist-title"><span data-i18n="tours.setlistTitle">Setlist de la Gira</span> ({tour.setlistHighlights.length} canciones)</span>
           </div>
           <div class="tour-setlist-pills">
             {tour.setlistHighlights.map((song) => (

@@ -17,15 +17,15 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `HeroVinylShowcase.astro`
 - **Ruta**: `src/components/HeroVinylShowcase.astro`
-- **Propósito**: Vitrina de vinilo audiófilo con simulación de disco analógico interactivo, constelación de 9 auras cromáticas oficiales de las integrantes y tooltips interactivos con animaciones físicas elásticas.
+- **Propósito**: Vitrina de vinilo audiófilo con simulación de disco analógico interactivo, constelación de 9 auras cromáticas oficiales de las integrantes, insignia de edición coleccionista localizada dinámicamente (`hero.vinylBadge`) y tooltips interactivos con animaciones físicas elásticas.
 
 ### `ArchiveHubSection.astro`
 - **Ruta**: `src/components/ArchiveHubSection.astro`
-- **Propósito**: Centro interactivo de exploración del archivo en la portada principal (`/`). Despliega 4 portales visuales en Bento Glassmorphic que dirigen directamente a los capítulos principales: *Explorar Discografía & MVs*, *Explorar Giras & Récords*, *Entrar a la Fan Zone* y *Explorar Moda Escénica*, con soporte integral de i18n y protección contra claves vacías.
+- **Propósito**: Centro interactivo de exploración del archivo en la portada principal (`/`). Despliega 4 portales visuales en Bento Glassmorphic que dirigen directamente a los capítulos principales: *Explorar Discografía & MVs*, *Explorar Giras & Récords*, *Entrar a la Fan Zone* y *Explorar Moda Escénica*, con soporte integral de i18n en títulos, descripciones y píldoras métricas (`hub.*`).
 
 ### `CandyJukebox.astro`
 - **Ruta**: `src/components/CandyJukebox.astro`
-- **Propósito**: Orquestador del mini reproductor de audio flotante interactivo. Ensambla de forma modular el botón lanzador ([`CandyJukeboxLauncher.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxLauncher.astro)), la lista de reproducción ([`CandyJukeboxPlaylist.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxPlaylist.astro)) y los controles de audio ([`CandyJukeboxControls.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxControls.astro)).
+- **Propósito**: Orquestador del mini reproductor de audio flotante interactivo. Ensambla de forma modular el botón lanzador ([`CandyJukeboxLauncher.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxLauncher.astro)), la lista de reproducción ([`CandyJukeboxPlaylist.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxPlaylist.astro)) y los controles de audio ([`CandyJukeboxControls.astro`](file:///e:/Once_upon_a_Timeline/src/components/CandyJukeboxControls.astro)), con traducción de estados y controles vía `jukebox.*`.
 - **Scripts asociados**: [`src/scripts/candy-jukebox.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/candy-jukebox.ts).
 
 ### `VirtualCandybong.astro`
@@ -39,7 +39,7 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `Footer.astro`
 - **Ruta**: `src/components/Footer.astro`
-- **Propósito**: Pie de página institucional y accesible con navegación por los 4 capítulos del archivo, canales oficiales de TWICE, créditos de desarrollo y autoría (*Desarrollado por Hugo Adama* con enlace al repositorio de GitHub), píldora de estado (11 años · One in a Million) y descargo de responsabilidad fan no oficial.
+- **Propósito**: Pie de página institucional y accesible con navegación localizada (`footer.linkHome`, `footer.linkChars`, etc.), canales oficiales de TWICE, créditos de autoría (*Desarrollado por Hugo Adama* con enlace al repositorio de GitHub), píldora de estado reactiva (`footer.statusPill`) y descargo de responsabilidad fan no oficial.
 
 ### `ScrollToTop.astro`
 - **Ruta**: `src/components/ScrollToTop.astro`
@@ -51,33 +51,33 @@ Este documento describe cada componente del proyecto, sus propiedades (`Props`),
 
 ### `MembersSection.astro`
 - **Ruta**: `src/components/MembersSection.astro`
-- **Propósito**: Orquestador de la sección de integrantes. Renderiza el encabezado editorial, la barra de herramientas de filtrado de eras con indicador `Auto 30s` y la cuadrícula de 9 tarjetas de miembros.
+- **Propósito**: Orquestador de la sección de integrantes. Renderiza el encabezado editorial localizado, la barra de herramientas de filtrado de eras con indicador `Auto 30s` y la cuadrícula de 9 tarjetas de miembros.
 - **Scripts asociados**: [`src/scripts/member-era-filter.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/member-era-filter.ts).
 
 ### `MemberCard.astro`
 - **Ruta**: `src/components/MemberCard.astro`
 - **Props**: `member: Member`
-- **Propósito**: Orquestador individual de la photocard coleccionable. Delega la cara fotográfica 3D en [`MemberPhotocard.astro`](file:///e:/Once_upon_a_Timeline/src/components/MemberPhotocard.astro) y el cajón biográfico expandible en [`MemberDrawer.astro`](file:///e:/Once_upon_a_Timeline/src/components/MemberDrawer.astro).
+- **Propósito**: Orquestador individual de la photocard coleccionable. Cuenta con etiquetas y botones localizados (`members.cardFicha`, `members.myBias`, `member.<id>.colorName`) y delega la cara fotográfica 3D en [`MemberPhotocard.astro`](file:///e:/Once_upon_a_Timeline/src/components/MemberPhotocard.astro) y el cajón biográfico expandible en [`MemberDrawer.astro`](file:///e:/Once_upon_a_Timeline/src/components/MemberDrawer.astro).
 
 ### `MemberPhotocard.astro`
 - **Ruta**: `src/components/MemberPhotocard.astro`
 - **Props**: `member: Member`, `initialPhoto: string`
-- **Propósito**: Cara frontal y dorso de la photocard coleccionable. Gestiona la inclinación física 3D reactiva a la posición del cursor (*fluid 3D tilt*), la rotación automática en cascada cada 30 segundos, el botón de fijación de Bias con feedback de celebración y los sellos de firma.
+- **Propósito**: Cara frontal y dorso de la photocard coleccionable. Gestiona la inclinación física 3D reactiva a la posición del cursor (*fluid 3D tilt*), la rotación automática en cascada cada 30 segundos con badge de era dinámico reactivo al idioma (`members.eraBadgeCurrent`), botones de giro y regreso (`members.flip`, `members.back`) y sellos de firma coleccionista.
 
 ### `MemberDrawer.astro`
 - **Ruta**: `src/components/MemberDrawer.astro`
 - **Props**: `member: Member`
-- **Propósito**: Cajón biográfico expandible que despliega los datos personales de la integrante, rol en el grupo, fecha de nacimiento, Hangul, biografía y enlaces a sus personajes oficiales (Lovelys y TDOONGZ).
+- **Propósito**: Cajón biográfico expandible que despliega los datos personales traducidos de la integrante (`members.fullNameLabel`, `members.birthdateLabel`, `members.roleLabel`), fecha de nacimiento, rol, Hangul, biografía localizada y descripciones completas de sus mascotas asociadas (`member.<id>.lovelyDesc`, `member.<id>.tdoongzDesc`).
 
 ### `CharactersSection.astro`
 - **Ruta**: `src/components/CharactersSection.astro`
-- **Propósito**: Orquesta las dos colecciones oficiales de mascotas de TWICE: los clásicos **LOVELYS** y los nuevos **TDOONGZ** de *Dream Attic*, con selector de pestañas segmentado.
+- **Propósito**: Orquesta las dos colecciones oficiales de mascotas de TWICE: los clásicos **LOVELYS** y los nuevos **TDOONGZ** de *Dream Attic*, con selector de pestañas segmentado (`characters.tabLovelys`, `characters.tabTdoongz`), encabezados, descripciones editoriales y botones a tiendas oficiales.
 - **Subcomponentes**: Delega cada mascota en [`CharacterTile.astro`](file:///e:/Once_upon_a_Timeline/src/components/CharacterTile.astro).
 
 ### `CharacterTile.astro`
 - **Ruta**: `src/components/CharacterTile.astro`
 - **Props**: `character: CharacterItem`, `galleryType?: 'lovely' | 'tdoongz'`
-- **Propósito**: Tarjeta atómica individual con halo resplandeciente en el color del personaje, animación hover de levitación elástica y detalles de personalidad.
+- **Propósito**: Tarjeta atómica individual con halo resplandeciente en el color del personaje, animación hover de levitación elástica, prefijo de integrante (`characters.ofMemberPrefix`) y lemas de personalidad dinámicos (`char.<id>.tagline`).
 
 ---
 

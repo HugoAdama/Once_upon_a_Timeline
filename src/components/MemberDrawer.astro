@@ -11,16 +11,16 @@ const { member } = Astro.props;
 <div class="member-details-drawer">
   <div class="member-meta-grid">
     <div class="member-meta-item">
-      <small>Nombre completo</small>
+      <small data-i18n="members.fullNameLabel">Nombre completo</small>
       <strong>{member.fullName} ({member.hangul})</strong>
     </div>
     <div class="member-meta-item">
-      <small>Nacimiento</small>
-      <strong>{member.birthdate}</strong>
+      <small data-i18n="members.birthdateLabel">Nacimiento</small>
+      <strong data-i18n={`member.${member.id}.birthdate`}>{member.birthdate}</strong>
     </div>
     {member.instagram && (
       <div class="member-meta-item">
-        <small>Instagram Oficial</small>
+        <small data-i18n="members.instagramLabel">Instagram Oficial</small>
         <strong>
           <a href={member.instagram.url} target="_blank" rel="noreferrer noopener" class="meta-social-link">
             <span>{member.instagram.handle}</span>
@@ -30,12 +30,12 @@ const { member } = Astro.props;
       </div>
     )}
     <div class="member-meta-item full-width">
-      <small>Posición y rol en TWICE</small>
-      <strong>{member.role}</strong>
+      <small data-i18n="members.roleLabel">Posición y rol en TWICE</small>
+      <strong data-i18n={`member.${member.id}.role`}>{member.role}</strong>
     </div>
   </div>
 
-  <p class="member-bio">{member.bio}</p>
+  <p class="member-bio" data-i18n={`member.${member.id}.bio`}>{member.bio}</p>
 
   <div class="character-bio-cards">
     <div class="char-bio-item lovely-bio">
@@ -45,7 +45,7 @@ const { member } = Astro.props;
         </svg>
         <span>LOVELY</span>
       </span>
-      <p><strong>{member.lovely.name}:</strong> {member.lovely.description}</p>
+      <p><strong>{member.lovely.name}:</strong> <span data-i18n={`member.${member.id}.lovelyDesc`}>{member.lovely.description}</span></p>
     </div>
     <div class="char-bio-item tdoongz-bio">
       <span class="char-bio-badge">
@@ -54,7 +54,7 @@ const { member } = Astro.props;
         </svg>
         <span>TDOONGZ</span>
       </span>
-      <p><strong>{member.tdoongz.name}:</strong> {member.tdoongz.description}</p>
+      <p><strong>{member.tdoongz.name}:</strong> <span data-i18n={`member.${member.id}.tdoongzDesc`}>{member.tdoongz.description}</span></p>
     </div>
   </div>
 </div>
