@@ -186,7 +186,7 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
         <div class="select-wrapper">
           <select id="filter-format" class="filter-select" aria-label="Filtrar por formato de lanzamiento">
             {FORMAT_OPTIONS.map((opt) => (
-              <option value={opt.value}>{opt.label}</option>
+              <option value={opt.value} data-i18n={`disco.format_${opt.value}`}>{opt.label}</option>
             ))}
           </select>
           <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -200,10 +200,10 @@ const { totalCount, koreaCount, japanCount, globalCount, allYears } = Astro.prop
   <!-- Fila 4: Barra de Estado y Acciones de Vista -->
   <div class="filter-status-row">
     <div class="filter-status-info">
-      <span id="results-counter" class="results-counter" aria-live="polite">
+      <span id="results-counter" class="results-counter" aria-live="polite" data-total-count={totalCount}>
         Mostrando {totalCount} lanzamientos
       </span>
-      <span class="filter-tip">Tip: presiona <kbd>/</kbd> para buscar en cualquier momento.</span>
+      <span class="filter-tip" data-i18n="disco.searchTip">Tip: presiona / para buscar en cualquier momento.</span>
     </div>
 
     <!-- Controles de Vista y Colapso -->

@@ -1,5 +1,6 @@
 import { resolveAsset } from '../utils/streaming';
 import { initPhotocardDeco, drawDecoOnCanvas } from './photocard-deco';
+import { t } from './i18n';
 
 /**
  * Inicializa la ONCE Fan Zone: Quiz de afinidad y Generador de Photocard personalizada
@@ -232,13 +233,50 @@ export function initFanZone(): void {
     });
 
     const info = MEMBER_DATA[maxMember] || MEMBER_DATA.nayeon;
-    if (resultTitle) resultTitle.textContent = info.title;
-    if (resultDesc) resultDesc.textContent = info.desc;
-    if (applyBtnLabel) applyBtnLabel.textContent = `Personalizar Photocard de ${info.name}`;
+    const titleTrans = t(`quiz.result.${maxMember}.title`);
+    const descTrans = t(`quiz.result.${maxMember}.desc`);
+
+    if (resultTitle) {
+      resultTitle.textContent = titleTrans || info.title;
+      resultTitle.setAttribute('data-i18n', `quiz.result.${maxMember}.title`);
+    }
+    if (resultDesc) {
+      resultDesc.textContent = descTrans || info.desc;
+      resultDesc.setAttribute('data-i18n', `quiz.result.${maxMember}.desc`);
+    }
+    if (applyBtnLabel) {
+      const applyTpl = t('quiz.applyStudio');
+      applyBtnLabel.textContent = applyTpl ? `${applyTpl} (${info.name})` : `Personalizar Photocard de ${info.name}`;
+    }
 
     // Sincronizar inmediatamente el Photocard Studio
     syncStudioWithMember(maxMember, true);
   }
+
+  // Actualizar textos del resultado de quiz activo al cambiar idioma
+  window.addEventListener('once:lang-changed', () => {
+    if (resultView && resultView.classList.contains('active') && userPicks.length > 0) {
+      const counts: Record<string, number> = {};
+      let maxM = userPicks[0] || 'nayeon';
+      let maxC = 0;
+      userPicks.forEach((m) => {
+        counts[m] = (counts[m] || 0) + 1;
+        if (counts[m] > maxC) {
+          maxC = counts[m];
+          maxM = m;
+        }
+      });
+      const titleTrans = t(`quiz.result.${maxM}.title`);
+      const descTrans = t(`quiz.result.${maxM}.desc`);
+      const info = MEMBER_DATA[maxM] || MEMBER_DATA.nayeon;
+      if (resultTitle) resultTitle.textContent = titleTrans || info.title;
+      if (resultDesc) resultDesc.textContent = descTrans || info.desc;
+      if (applyBtnLabel) {
+        const applyTpl = t('quiz.applyStudio');
+        applyBtnLabel.textContent = applyTpl ? `${applyTpl} (${info.name})` : `Personalizar Photocard de ${info.name}`;
+      }
+    }
+  });
 
   if (applyStudioBtn) {
     applyStudioBtn.addEventListener('click', () => {

@@ -19,12 +19,12 @@ const { marketKey, kicker, title, description, groups, totalReleases, defaultOpe
 <details class="release-market scroll-reveal" open={defaultOpen} data-market-panel={marketKey}>
   <summary>
     <span class="market-heading">
-      <span class="market-kicker" data-i18n={marketKey === 'korea' ? 'disco.kickerKorea' : marketKey === 'japan' ? 'disco.kickerJapan' : 'disco.kickerGlobal'}>{kicker}</span>
-      <strong data-i18n={marketKey === 'korea' ? 'disco.marketKorea' : marketKey === 'japan' ? 'disco.marketJapan' : 'disco.marketGlobal'}>{title}</strong>
-      <small data-i18n={marketKey === 'korea' ? 'disco.koreaDesc' : marketKey === 'japan' ? 'disco.japanDesc' : 'disco.globalDesc'}>{description}</small>
+      <span class="market-kicker" data-i18n={marketKey === 'korea' ? 'market.kickerKorea' : marketKey === 'japan' ? 'market.kickerJapan' : 'market.kickerGlobal'}>{kicker}</span>
+      <strong data-i18n={marketKey === 'korea' ? 'market.titleKorea' : marketKey === 'japan' ? 'market.titleJapan' : 'market.titleGlobal'}>{title}</strong>
+      <small data-i18n={marketKey === 'korea' ? 'market.descKorea' : marketKey === 'japan' ? 'market.descJapan' : 'market.descGlobal'}>{description}</small>
     </span>
-    <span class="market-count" {...{ [`data-market-count-${marketKey}`]: true }}>
-      {totalReleases} <span data-i18n="disco.marketCount">registros</span>
+    <span class="market-count" data-market-panel-count={marketKey} data-count={totalReleases} {...{ [`data-market-count-${marketKey}`]: true }}>
+      {totalReleases} registros
     </span>
   </summary>
   <div class="release-years">
@@ -32,7 +32,7 @@ const { marketKey, kicker, title, description, groups, totalReleases, defaultOpe
       <section class="release-year" data-year-section={group.year}>
         <h3>
           {group.year}
-          <small>{group.releases.length} <span data-i18n={group.releases.length === 1 ? 'disco.releaseCountSingular' : 'disco.releaseCountPlural'}>{group.releases.length === 1 ? 'lanzamiento' : 'lanzamientos'}</span></small>
+          <small><span data-year-release-count={group.releases.length}>{group.releases.length} {group.releases.length === 1 ? 'lanzamiento' : 'lanzamientos'}</span></small>
         </h3>
         <ul class="release-list">
           {group.releases.map((release) => (

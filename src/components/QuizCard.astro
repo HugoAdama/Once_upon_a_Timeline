@@ -15,7 +15,7 @@ import { FAN_QUIZ_QUESTIONS } from '../data/fan-zone';
   <div id="quiz-body">
     {FAN_QUIZ_QUESTIONS.map((q, idx) => (
       <div class="quiz-question-step" style={idx === 0 ? '' : 'display: none;'}>
-        <h3 class="quiz-prompt">{q.prompt}</h3>
+        <h3 class="quiz-prompt" data-i18n={`quiz.q${q.id}.prompt`}>{q.prompt}</h3>
         <div class="quiz-options-list">
           {q.options.map((opt, optIdx) => (
             <button
@@ -24,7 +24,7 @@ import { FAN_QUIZ_QUESTIONS } from '../data/fan-zone';
               data-quiz-choice={opt.memberId}
             >
               <span class="option-bullet" aria-hidden="true">{String.fromCharCode(65 + optIdx)}</span>
-              <span>{opt.text}</span>
+              <span data-i18n={`quiz.q${q.id}.opt${optIdx}`}>{opt.text}</span>
             </button>
           ))}
         </div>

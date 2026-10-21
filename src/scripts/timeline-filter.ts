@@ -1,3 +1,5 @@
+import { t } from './i18n';
+
 /**
  * Filtrado interactivo de hitos en la Cronología histórica de TWICE,
  * riel cronológico rápido y sinergia inteligente para auto-desplegar la ficha
@@ -9,8 +11,11 @@ export function initTimelineFilter(): void {
   const counterEl = document.getElementById('timeline-results-count');
   const scrubberNodes = document.querySelectorAll<HTMLButtonElement>('.scrubber-node-btn');
 
+  let currentCategory = 'all';
+
   // Función para aplicar filtro por categoría
   function applyCategoryFilter(category: string): void {
+    currentCategory = category;
     let visibleCount = 0;
 
     // Actualizar botones de filtro
@@ -47,9 +52,14 @@ export function initTimelineFilter(): void {
 
     // Actualizar contador accesible
     if (counterEl) {
-      counterEl.textContent = `Mostrando ${visibleCount} de ${milestoneCards.length} momentos`;
+      const tpl = t('timeline.resultsCount') || 'Mostrando {shown} de {total} momentos';
+      counterEl.textContent = tpl.replace('{shown}', String(visibleCount)).replace('{total}', String(milestoneCards.length));
     }
   }
+
+  window.addEventListener('once:lang-changed', () => {
+    applyCategoryFilter(currentCategory);
+  });
 
   // Eventos de los botones de filtro
   if (filterBtns.length && milestoneCards.length) {

@@ -7,33 +7,33 @@
     <div class="tour-map-title-row">
       <span class="tour-map-pill">
         <span class="radar-live-dot" aria-hidden="true"></span>
-        <span>Telemetría en Vivo · 12 Sedes Históricas</span>
+        <span data-i18n="tours.mapPill">Telemetría en Vivo · 12 Sedes Históricas</span>
       </span>
-      <h3 class="tour-map-title">Ruta Mundial de Estadios &amp; Vuelos</h3>
+      <h3 class="tour-map-title" data-i18n="tours.mapTitle">Ruta Mundial de Estadios &amp; Vuelos</h3>
     </div>
-    <p class="tour-map-subtitle">
+    <p class="tour-map-subtitle" data-i18n="tours.mapSubtitle">
       Cartografía interactiva del récord mundial de TWICE: los trayectos transcontinentales que unieron a más de 2.5 millones de ONCEs en los recintos más legendarios de América, Asia, Europa y Oceanía.
     </p>
 
     <!-- Píldoras de telemetría de gira -->
     <div class="map-stats-strip">
       <span class="map-stat-badge">
-        <strong>5</strong> Continentes
+        <strong>5</strong> <span data-i18n="tours.continents">Continentes</span>
       </span>
       <span class="map-stat-badge">
-        <strong>12</strong> Estadios Emblema
+        <strong>12</strong> <span data-i18n="tours.emblemStadiums">Estadios Emblema</span>
       </span>
       <span class="map-stat-badge highlight">
-        <strong>+2.5M</strong> Asistentes en Vivo
+        <strong>+2.5M</strong> <span data-i18n="tours.liveAttendees">Asistentes en Vivo</span>
       </span>
-      <span class="map-stat-hint">Pasa el cursor o pulsa cualquier estadio para ver detalles</span>
+      <span class="map-stat-hint" data-i18n="tours.mapHint">Pasa el cursor o pulsa cualquier estadio para ver detalles</span>
     </div>
   </div>
 
   <div class="tour-map-stage-wrap">
     <!-- Tooltip flotante interactivo -->
     <div class="map-venue-tooltip" id="map-venue-tooltip" role="tooltip" aria-hidden="true">
-      <div class="tooltip-badge">ESTADIO HISTÓRICO</div>
+      <div class="tooltip-badge" data-i18n="tours.historicStadiumBadge">ESTADIO HISTÓRICO</div>
       <div class="tooltip-venue-name" id="tt-venue-name">SoFi Stadium</div>
       <div class="tooltip-city" id="tt-venue-city">Los Ángeles · Estados Unidos</div>
       <div class="tooltip-highlight" id="tt-venue-highlight">Primer grupo femenino de K-pop en agotar el SoFi Stadium</div>
@@ -115,62 +115,62 @@
 
       <!-- Balizas de estadios históricos con pulsos radar -->
       <g class="map-beacons">
-        <g class="map-beacon" tabindex="0" data-venue="KSPO Dome" data-city="Seúl · Corea del Sur" data-highlight="Epicentro y cuna de inicio de cada gira mundial histórica de TWICE">
+        <g class="map-beacon" tabindex="0" data-beacon-id="kspo" data-venue="KSPO Dome" data-city="Seúl · Corea del Sur" data-highlight="Epicentro y cuna de inicio de cada gira mundial histórica de TWICE">
           <circle cx="798" cy="205" r="14" class="beacon-pulse"/>
           <circle cx="798" cy="205" r="5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Tokyo Dome & Nissan Stadium" data-city="Tokio · Japón" data-highlight="Primer grupo femenino extranjero en llenar el mítico Nissan Stadium ante 150.000 fans">
+        <g class="map-beacon" tabindex="0" data-beacon-id="tokyo" data-venue="Tokyo Dome & Nissan Stadium" data-city="Tokio · Japón" data-highlight="Primer grupo femenino extranjero en llenar el mítico Nissan Stadium ante 150.000 fans">
           <circle cx="836" cy="208" r="16" class="beacon-pulse"/>
           <circle cx="836" cy="208" r="5.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="SoFi Stadium" data-city="Los Ángeles · EE.UU." data-highlight="Primera agrupación femenina de K-pop en agotar los 50.000 asientos del SoFi Stadium">
+        <g class="map-beacon" tabindex="0" data-beacon-id="sofi" data-venue="SoFi Stadium" data-city="Los Ángeles · EE.UU." data-highlight="Primera agrupación femenina de K-pop en agotar los 50.000 asientos del SoFi Stadium">
           <circle cx="182" cy="212" r="16" class="beacon-pulse"/>
           <circle cx="182" cy="212" r="5.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Globe Life Field" data-city="Dallas · EE.UU." data-highlight="Concierto apoteósico en estadio de béisbol con más de 45.000 entradas vendidas">
+        <g class="map-beacon" tabindex="0" data-beacon-id="dallas" data-venue="Globe Life Field" data-city="Dallas · EE.UU." data-highlight="Concierto apoteósico en estadio de béisbol con más de 45.000 entradas vendidas">
           <circle cx="248" cy="235" r="11" class="beacon-pulse"/>
           <circle cx="248" cy="235" r="4.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Truist Park" data-city="Atlanta · EE.UU." data-highlight="Hito histórico de estadio con boletería agotada en minutos">
+        <g class="map-beacon" tabindex="0" data-beacon-id="atlanta" data-venue="Truist Park" data-city="Atlanta · EE.UU." data-highlight="Hito histórico de estadio con boletería agotada en minutos">
           <circle cx="282" cy="230" r="11" class="beacon-pulse"/>
           <circle cx="282" cy="230" r="4.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="MetLife Stadium" data-city="Nueva York · EE.UU." data-highlight="Primer grupo femenino de K-pop en llenar el templo de los NY Giants ante 50.000 personas">
+        <g class="map-beacon" tabindex="0" data-beacon-id="metlife" data-venue="MetLife Stadium" data-city="Nueva York · EE.UU." data-highlight="Primer grupo femenino de K-pop en llenar el templo de los NY Giants ante 50.000 personas">
           <circle cx="314" cy="186" r="16" class="beacon-pulse"/>
           <circle cx="314" cy="186" r="5.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Foro Sol" data-city="Ciudad de México · México" data-highlight="Doble fecha multitudinaria con 115.000 ONCEs coreando cada himno generacional">
+        <g class="map-beacon" tabindex="0" data-beacon-id="forosol" data-venue="Foro Sol" data-city="Ciudad de México · México" data-highlight="Doble fecha multitudinaria con 115.000 ONCEs coreando cada himno generacional">
           <circle cx="238" cy="270" r="15" class="beacon-pulse"/>
           <circle cx="238" cy="270" r="5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Allianz Parque" data-city="São Paulo · Brasil" data-highlight="Debut monumental en Sudamérica ante más de 90.000 personas en dos noches">
+        <g class="map-beacon" tabindex="0" data-beacon-id="allianz" data-venue="Allianz Parque" data-city="São Paulo · Brasil" data-highlight="Debut monumental en Sudamérica ante más de 90.000 personas en dos noches">
           <circle cx="376" cy="396" r="15" class="beacon-pulse"/>
           <circle cx="376" cy="396" r="5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="The O2 Arena" data-city="Londres · Reino Unido" data-highlight="Conquista del recinto techado más concurrido y prestigioso de Europa">
+        <g class="map-beacon" tabindex="0" data-beacon-id="o2" data-venue="The O2 Arena" data-city="Londres · Reino Unido" data-highlight="Conquista del recinto techado más concurrido y prestigioso de Europa">
           <circle cx="478" cy="158" r="13" class="beacon-pulse"/>
           <circle cx="478" cy="158" r="4.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Accor Arena" data-city="París · Francia" data-highlight="Noche inolvidable en la capital francesa con todas las localidades agotadas">
+        <g class="map-beacon" tabindex="0" data-beacon-id="accor" data-venue="Accor Arena" data-city="París · Francia" data-highlight="Noche inolvidable en la capital francesa con todas las localidades agotadas">
           <circle cx="488" cy="172" r="12" class="beacon-pulse"/>
           <circle cx="488" cy="172" r="4.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Jakarta Int. Stadium" data-city="Yakarta · Indonesia" data-highlight="Concierto de escala colosal ante más de 40.000 asistentes en el archipiélago">
+        <g class="map-beacon" tabindex="0" data-beacon-id="jakarta" data-venue="Jakarta Int. Stadium" data-city="Yakarta · Indonesia" data-highlight="Concierto de escala colosal ante más de 40.000 asistentes en el archipiélago">
           <circle cx="756" cy="344" r="12" class="beacon-pulse"/>
           <circle cx="756" cy="344" r="4.5" class="beacon-core"/>
         </g>
 
-        <g class="map-beacon" tabindex="0" data-venue="Marvel Stadium" data-city="Melbourne · Australia" data-highlight="Primer grupo femenino de K-pop en encabezar un estadio completo en Australia">
+        <g class="map-beacon" tabindex="0" data-beacon-id="melbourne" data-venue="Marvel Stadium" data-city="Melbourne · Australia" data-highlight="Primer grupo femenino de K-pop en encabezar un estadio completo en Australia">
           <circle cx="846" cy="442" r="14" class="beacon-pulse"/>
           <circle cx="846" cy="442" r="5" class="beacon-core"/>
         </g>

@@ -61,19 +61,19 @@ import { CANDYBONG_MEMBERS } from '../scripts/candybong-sync';
     <!-- Modos de Luz -->
     <div class="light-modes-row" role="radiogroup" aria-label="Modos del Candybong">
       <button type="button" class="mode-chip active" data-light-mode="sync" role="radio" aria-checked="true">
-        <span>Concierto</span>
+        <span data-i18n="virtualCandybong.concert">Concierto</span>
       </button>
       <button type="button" class="mode-chip" data-light-mode="party" role="radio" aria-checked="false">
-        <span>Party Beat</span>
+        <span data-i18n="virtualCandybong.party">Party Beat</span>
       </button>
       <button type="button" class="mode-chip" data-light-mode="rainbow" role="radio" aria-checked="false">
-        <span>Arcoíris</span>
+        <span data-i18n="virtualCandybong.rainbow">Arcoíris</span>
       </button>
     </div>
 
     <!-- Selector de Bias Rápido -->
     <div class="cb-bias-selector">
-      <span class="cb-bias-label">Sincronizar a tu Bias:</span>
+      <span class="cb-bias-label" data-i18n="virtualCandybong.syncBias">Sincronizar a tu Bias:</span>
       <div class="cb-bias-grid">
         {CANDYBONG_MEMBERS.map((m) => (
           <button
@@ -97,7 +97,7 @@ import { CANDYBONG_MEMBERS } from '../scripts/candybong-sync';
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
       </svg>
-      <span>¡Vitorear a TWICE! (Cheer)</span>
+      <span data-i18n="virtualCandybong.cheerBtn">¡Vitorear a TWICE! (Cheer)</span>
     </button>
   </div>
 </aside>

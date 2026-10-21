@@ -61,7 +61,121 @@ export function applyTranslations(lang?: SupportedLang): void {
     }
   });
 
-  // 3. Actualizar opciones de miembros en Photocard Studio si existen
+  // 3. Fechas dinámicas (data-date)
+  const dateElements = document.querySelectorAll<HTMLElement>('[data-date]');
+  const dateLocale = currentLang === 'ja' ? 'ja-JP' : currentLang === 'ko' ? 'ko-KR' : currentLang === 'en' ? 'en-US' : 'es-ES';
+  dateElements.forEach((el) => {
+    const dateStr = el.getAttribute('data-date');
+    if (dateStr) {
+      try {
+        const d = new Date(dateStr + 'T00:00:00');
+        if (!isNaN(d.getTime())) {
+          el.textContent = d.toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' });
+        }
+      } catch (_) {}
+    }
+  });
+
+  // 4. Badges de formato de lanzamiento (data-format-badge)
+  const formatBadges = document.querySelectorAll<HTMLElement>('[data-format-badge]');
+  formatBadges.forEach((el) => {
+    const fmt = el.getAttribute('data-format-badge');
+    if (fmt) {
+      const trans = t(`disco.format_${fmt}`, currentLang);
+      if (trans) el.textContent = trans;
+    }
+  });
+
+  // 5. Conteo de canciones (data-track-count)
+  const trackCountElements = document.querySelectorAll<HTMLElement>('[data-track-count]');
+  trackCountElements.forEach((el) => {
+    const rawCount = el.getAttribute('data-track-count');
+    if (rawCount) {
+      const count = parseInt(rawCount, 10);
+      if (currentLang === 'ja') el.textContent = `${count}曲`;
+      else if (currentLang === 'ko') el.textContent = `${count}곡`;
+      else if (currentLang === 'en') el.textContent = count === 1 ? '1 song' : `${count} songs`;
+      else el.textContent = count === 1 ? '1 canción' : `${count} canciones`;
+    }
+  });
+
+  // 6. Conteo de canciones en setlist de gira (data-setlist-count)
+  const setlistElements = document.querySelectorAll<HTMLElement>('[data-setlist-count]');
+  setlistElements.forEach((el) => {
+    const rawCount = el.getAttribute('data-setlist-count');
+    if (rawCount) {
+      const count = parseInt(rawCount, 10);
+      if (currentLang === 'ja') el.textContent = `(${count}曲)`;
+      else if (currentLang === 'ko') el.textContent = `(${count}곡)`;
+      else if (currentLang === 'en') el.textContent = `(${count} songs)`;
+      else el.textContent = `(${count} canciones)`;
+    }
+  });
+
+  // 7. Conteo de lanzamientos anuales (data-year-release-count)
+  const yearCountElements = document.querySelectorAll<HTMLElement>('[data-year-release-count]');
+  yearCountElements.forEach((el) => {
+    const rawCount = el.getAttribute('data-year-release-count');
+    if (rawCount) {
+      const count = parseInt(rawCount, 10);
+      if (currentLang === 'ja') el.textContent = `${count}作品`;
+      else if (currentLang === 'ko') el.textContent = `${count}개 발매작`;
+      else if (currentLang === 'en') el.textContent = count === 1 ? '1 release' : `${count} releases`;
+      else el.textContent = count === 1 ? '1 lanzamiento' : `${count} lanzamientos`;
+    }
+  });
+
+  // 8. Conteo de registros por mercado (data-market-panel-count)
+  const marketCountElements = document.querySelectorAll<HTMLElement>('[data-market-panel-count]');
+  marketCountElements.forEach((el) => {
+    const rawCount = el.getAttribute('data-count');
+    if (rawCount) {
+      const count = parseInt(rawCount, 10);
+      if (currentLang === 'ja') el.textContent = `${count}件の記録`;
+      else if (currentLang === 'ko') el.textContent = `${count}개 기록`;
+      else if (currentLang === 'en') el.textContent = count === 1 ? '1 record' : `${count} records`;
+      else el.textContent = count === 1 ? '1 registro' : `${count} registros`;
+    }
+  });
+
+  // 9. Contador inicial de resultados en discografía
+  const resultsCounter = document.querySelector<HTMLElement>('#results-counter');
+  if (resultsCounter) {
+    const rawTotal = resultsCounter.getAttribute('data-total-count');
+    if (rawTotal) {
+      const tpl = t('disco.showingResults', currentLang);
+      if (tpl) resultsCounter.textContent = tpl.replace('{count}', rawTotal);
+    }
+  }
+
+  // 10. Opciones del selector de formatos (#filter-format)
+  const formatSelect = document.querySelector<HTMLSelectElement>('#filter-format');
+  if (formatSelect) {
+    Array.from(formatSelect.options).forEach((opt) => {
+      const val = opt.value;
+      const trans = t(`disco.format_${val}`, currentLang);
+      if (trans) opt.textContent = trans;
+    });
+  }
+
+  // 11. Opción "Todos los años" (#filter-year)
+  const yearAllOption = document.querySelector<HTMLOptionElement>('#filter-year option[value="all"]');
+  if (yearAllOption) {
+    const allYearsTrans = t('disco.allYears', currentLang);
+    if (allYearsTrans) yearAllOption.textContent = allYearsTrans;
+  }
+
+  // 12. Nombre por defecto en Photocard Studio
+  const fanInput = document.querySelector<HTMLInputElement>('#custom-fan-name');
+  if (fanInput) {
+    const defaultVal = fanInput.value;
+    if (!defaultVal || defaultVal === 'ONCE Oficial' || defaultVal === 'Official ONCE' || defaultVal === '공식 ONCE' || defaultVal === '公式 ONCE') {
+      const defaultName = t('studio.defaultFanName', currentLang);
+      if (defaultName) fanInput.value = defaultName;
+    }
+  }
+
+  // 13. Actualizar opciones de miembros en Photocard Studio si existen
   const memberSelect = document.querySelector<HTMLSelectElement>('#custom-member-select');
   if (memberSelect) {
     Array.from(memberSelect.options).forEach((opt) => {
@@ -75,7 +189,7 @@ export function applyTranslations(lang?: SupportedLang): void {
     });
   }
 
-  // 4. Actualizar etiqueta visible del selector en Header
+  // 14. Actualizar etiqueta visible del selector en Header
   const langLabel = document.querySelector<HTMLElement>('#current-lang-code');
   if (langLabel) {
     langLabel.textContent = currentLang.toUpperCase();

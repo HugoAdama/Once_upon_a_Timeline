@@ -46,7 +46,7 @@ const slidesData = tour.gallery.map((item) => ({
             )}
           </div>
           <h3 class="tour-name">{tour.name}</h3>
-          <p class="tour-tagline">{tour.tagline}</p>
+          <p class="tour-tagline" data-i18n={`tour.${tour.id}.tagline`}>{tour.tagline}</p>
         </div>
 
         <!-- Métricas Bento -->
@@ -73,7 +73,7 @@ const slidesData = tour.gallery.map((item) => ({
               </svg>
             </div>
             <div class="tour-stat-body">
-              <span class="tour-stat-num">{tour.attendance}</span>
+              <span class="tour-stat-num" data-i18n={`tour.${tour.id}.attendance`}>{tour.attendance}</span>
               <span class="tour-stat-label" data-i18n="tours.accumulatedAttendance">Asistencia Acumulada</span>
             </div>
           </div>
@@ -85,18 +85,19 @@ const slidesData = tour.gallery.map((item) => ({
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
-            <span class="tour-setlist-title"><span data-i18n="tours.setlistTitle">Setlist de la Gira</span> ({tour.setlistHighlights.length} canciones)</span>
+            <span class="tour-setlist-title"><span data-i18n="tours.setlistTitle">Setlist de la Gira</span> <span class="tour-setlist-count" data-setlist-count={tour.setlistHighlights.length}>({tour.setlistHighlights.length} canciones)</span></span>
           </div>
           <div class="tour-setlist-pills">
-            {tour.setlistHighlights.map((song) => (
-              <span class="tour-setlist-pill">{song}</span>
-            ))}
+            {tour.setlistHighlights.map((song) => {
+              const i18nKey = song.includes('MISAMO') ? 'tour.setlist.units_solos' : song.includes('Ruleta') ? 'tour.setlist.encore_wheel' : '';
+              return <span class="tour-setlist-pill" data-i18n={i18nKey || undefined}>{song}</span>;
+            })}
           </div>
         </div>
       </div>
     </div>
 
     <!-- Sección Inferior: Estadios y Sedes Históricas con Distribución Equilibrada -->
-    <TourVenuesGrid venues={tour.keyVenues} />
+    <TourVenuesGrid venues={tour.keyVenues} tourId={tour.id} />
   </div>
 </div>

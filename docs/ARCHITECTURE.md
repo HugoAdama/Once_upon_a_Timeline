@@ -175,15 +175,23 @@ Once_upon_a_Timeline/
 El proyecto cuenta con un sistema integral de localización del lado del cliente diseñado para responder inmediatamente sin recargas de página:
 
 1. **Fuente de verdad tipada (`src/data/i18n.ts`)**:
-   - Diccionario en 4 idiomas: Español (`es`), Inglés (`en`), Coreano (`ko`), Japonés (`ja`).
-   - Más de 200 claves organizadas por módulos: `nav.*`, `hero.*`, `members.*`, `member.<id>.*`, `characters.*`, `char.<id>.*`, `hub.*`, `footer.*`, `discography.*`, `market.*`, `tours.*`, `fashion.*`, `quiz.*`, `photocard.*`, `jukebox.*`.
-2. **Enlace declarativo en el DOM (`data-i18n`)**:
-   - Cada componente `.astro` estático etiqueta sus textos traducibles con el atributo `data-i18n="clave"`.
-   - La función `applyTranslations(lang)` recorre todos los nodos coincidentes y actualiza su contenido de forma instantánea.
+   - Diccionario completo en 4 idiomas: Español (`es`), Inglés (`en`), Coreano (`ko`), Japonés (`ja`).
+   - Cobertura exhaustiva por dominios: navegación (`nav.*`), portales (`hub.*`), discografía y mercados (`disco.*`, `market.*`), cronología (`timeline.*`), giras y telemetría (`tours.*`, `tour.*`, `map.beacon.*`), Fan Zone y quiz de afinidad (`quiz.*`, `studio.*`, `vault.*`, `virtualCandybong.*`), moda escénica (`fashion.*`), e integrantes y personajes (`members.*`, `characters.*`).
+2. **Enlace declarativo en el DOM (`data-i18n`) y formateo dinámico**:
+   - Atributos estándar: `data-i18n` (texto), `data-i18n-placeholder`, `data-i18n-title`, `data-i18n-aria`.
+   - Fechas localizadas nativas (`data-date`): Formatea fechas ISO (`YYYY-MM-DD`) automáticamente al estándar cultural de cada idioma (`10 oct.` / `Oct 10` / `10월 10일` / `10月10日`).
+   - Formatos discográficos (`data-format-badge`): Adapta insignias y etiquetas de formato (`Mini álbum`, `Studio Album`, `정규 앨범`, `フルアルバム`).
+   - Contadores y métricas dinámicas (`data-track-count`, `data-setlist-count`, `data-year-release-count`, `data-market-panel-count`): Formateo gramatical y plurales automáticos (`10 canciones`, `10 songs`, `10곡`, `10曲`).
+   - Controles de formulario (`#filter-format`, `#filter-year`, `#custom-member-select`, `#custom-fan-name`): Actualización dinámica de etiquetas y placeholders.
 3. **Arquitectura basada en eventos (`once:lang-changed`)**:
    - Al seleccionar un nuevo idioma desde la cabecera, `src/scripts/i18n.ts` emite el evento global `window.dispatchEvent(new CustomEvent('once:lang-changed', { detail: { lang } }))`.
-   - Componentes dinámicos como [`src/scripts/member-era-filter.ts`](file:///e:/Once_upon_a_Timeline/src/scripts/member-era-filter.ts) y los selectores accesibles de miembros (`#custom-member-select`) escuchan este evento para refrescar insignias y opciones de inmediato.
+   - Módulos reactivos que reaccionan inmediatamente al evento:
+     - `discography-explorer.ts`: Re-ejecuta filtros y actualiza contadores de resultados en vivo.
+     - `timeline-filter.ts`: Actualiza contadores de momentos históricos visibles.
+     - `tour-odyssey.ts`: Actualiza subtítulos y ubicaciones de la galería activa.
+     - `tour-map.ts`: Provee telemetría y reseñas de estadios en el idioma activo.
+     - `fan-zone.ts`: Traduce en caliente el resultado del quiz de afinidad y el Photocard Studio.
 4. **Persistencia y fallback**:
-   - El idioma elegido se preserva en `localStorage.getItem('once_lang')`.
-   - En ausencia de preferencia previa, se toma el idioma del navegador o el predeterminado (`es`).
+   - El idioma elegido se preserva en `localStorage.getItem('once_preferred_lang')`.
+   - En ausencia de preferencia previa, se toma el idioma predeterminado (`es`).
 

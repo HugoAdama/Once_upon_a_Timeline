@@ -54,19 +54,19 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
       </div>
 
       <div class="release-date-col">
-        <time datetime={release.date}>{formattedDate}</time>
+        <time datetime={release.date} data-date={release.date}>{formattedDate}</time>
         <span class="release-year-pill">{release.year}</span>
       </div>
 
       <div class="release-copy">
         <strong class="release-name">{release.title}</strong>
         <div class="release-meta-row">
-          <span class={`release-type-badge format-${release.format}`}>{release.formatLabel}</span>
+          <span class={`release-type-badge format-${release.format}`} data-format-badge={release.format}>{release.formatLabel}</span>
           <span class="release-tracks-badge">
             <svg class="track-icon-svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M10 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V6l10-2v7.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V2l-12 2.4z"/>
             </svg>
-            <span>{trackCountLabel}</span>
+            <span data-track-count={trackCount}>{trackCountLabel}</span>
           </span>
         </div>
       </div>
@@ -100,7 +100,7 @@ const trackCountLabel = trackCount === 1 ? '1 canción' : `${trackCount} cancion
 
     <div class="track-list-panel">
       <div class="track-list-header">
-        <span class="track-list-label"><span data-i18n="disco.tracklistOfficial">Tracklist oficial</span> · {trackCountLabel}</span>
+        <span class="track-list-label"><span data-i18n="disco.tracklistOfficial">Tracklist oficial</span> · <span data-track-count={trackCount}>{trackCountLabel}</span></span>
         <span class="streaming-hint" data-i18n="disco.listenPlatforms">Escuchar en plataformas:</span>
       </div>
 

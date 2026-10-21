@@ -1,6 +1,5 @@
-/**
- * World Tour Odyssey & Route Map — Controlador interactivo de balizas y vuelos
- */
+import { t } from './i18n';
+
 export { initTourOdyssey } from './tour-odyssey';
 
 export function initTourMap(): void {
@@ -14,11 +13,15 @@ export function initTourMap(): void {
   if (!mapCard || !tooltip) return;
 
   beacons.forEach((beacon) => {
+    const beaconId = beacon.getAttribute('data-beacon-id') || '';
     const venue = beacon.getAttribute('data-venue') || '';
-    const city = beacon.getAttribute('data-city') || '';
-    const highlight = beacon.getAttribute('data-highlight') || '';
+    const rawCity = beacon.getAttribute('data-city') || '';
+    const rawHighlight = beacon.getAttribute('data-highlight') || '';
 
     const showTooltip = (e: MouseEvent | FocusEvent) => {
+      const city = beaconId ? (t(`map.beacon.${beaconId}.city`) || rawCity) : rawCity;
+      const highlight = beaconId ? (t(`map.beacon.${beaconId}.highlight`) || rawHighlight) : rawHighlight;
+
       if (ttVenue) ttVenue.textContent = venue;
       if (ttCity) ttCity.textContent = city;
       if (ttHighlight) ttHighlight.textContent = highlight;

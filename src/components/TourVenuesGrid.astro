@@ -3,9 +3,10 @@ import type { TourVenue } from '../types';
 
 interface Props {
   venues: TourVenue[];
+  tourId?: string;
 }
 
-const { venues } = Astro.props;
+const { venues, tourId = 'tour-this-is-for' } = Astro.props;
 const venuesCount = venues.length;
 ---
 
@@ -30,10 +31,10 @@ const venuesCount = venues.length;
             <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
             <path d="M2 12h20"/>
           </svg>
-          <span>{venue.city}, {venue.country}</span>
+          <span data-i18n={`tour.${tourId}.venue.${vIdx}.loc`}>{venue.city}, {venue.country}</span>
         </div>
         <div class="venue-name">{venue.name}</div>
-        <p class="venue-highlight">{venue.highlight}</p>
+        <p class="venue-highlight" data-i18n={`tour.${tourId}.venue.${vIdx}.highlight`}>{venue.highlight}</p>
       </div>
     ))}
   </div>

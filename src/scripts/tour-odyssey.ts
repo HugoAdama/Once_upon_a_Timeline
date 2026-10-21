@@ -1,3 +1,5 @@
+import { t } from './i18n';
+
 /**
  * World Tour Odyssey — Navegación entre giras y rotación automática de fotografías
  * de conciertos cada 30 segundos con barra de progreso, controles manuales y pausas dinámicas.
@@ -94,11 +96,16 @@ export function initTourOdyssey(): void {
           }, 180);
         }
 
+        const locTrans = t(`tour.${tourId}.gallery.${this.currentIndex}.loc`);
+        const capTrans = t(`tour.${tourId}.gallery.${this.currentIndex}.caption`);
+
         if (this.locationEl) {
-          this.locationEl.textContent = slide.location;
+          this.locationEl.textContent = locTrans || slide.location;
+          this.locationEl.setAttribute('data-i18n', `tour.${tourId}.gallery.${this.currentIndex}.loc`);
         }
         if (this.captionEl) {
-          this.captionEl.textContent = slide.caption;
+          this.captionEl.textContent = capTrans || slide.caption;
+          this.captionEl.setAttribute('data-i18n', `tour.${tourId}.gallery.${this.currentIndex}.caption`);
         }
 
         this.dots.forEach((dot, idx) => {
@@ -227,4 +234,16 @@ export function initTourOdyssey(): void {
   if (initialTourId && controllers.has(initialTourId)) {
     controllers.get(initialTourId)!.start();
   }
+
+  // Actualizar subtítulos al cambiar de idioma
+  window.addEventListener('once:lang-changed', () => {
+    controllers.forEach((ctrl) => {
+      const slide = ctrl.slides[ctrl.currentIndex];
+      if (!slide) return;
+      const locTrans = t(`tour.${ctrl.tourId}.gallery.${ctrl.currentIndex}.loc`);
+      const capTrans = t(`tour.${ctrl.tourId}.gallery.${ctrl.currentIndex}.caption`);
+      if (ctrl.locationEl) ctrl.locationEl.textContent = locTrans || slide.location;
+      if (ctrl.captionEl) ctrl.captionEl.textContent = capTrans || slide.caption;
+    });
+  });
 }

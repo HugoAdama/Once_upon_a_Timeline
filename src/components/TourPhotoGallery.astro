@@ -38,7 +38,7 @@ const initialSlide = slidesData[0] || { url: '', caption: '', location: '' };
           <span class="tour-pulse-core"></span>
           <span class="tour-pulse-wave"></span>
         </div>
-        <span class="tour-auto-label">CAMBIO CADA 30S</span>
+        <span class="tour-auto-label" data-i18n="tours.auto30s">CAMBIO CADA 30S</span>
       </div>
     </div>
 
@@ -71,9 +71,9 @@ const initialSlide = slidesData[0] || { url: '', caption: '', location: '' };
           <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
           <circle cx="12" cy="10" r="3"/>
         </svg>
-        <span class="tour-location-text">{initialSlide.location}</span>
+        <span class="tour-location-text" data-i18n={`tour.${tourId}.gallery.0.loc`}>{initialSlide.location}</span>
       </div>
-      <div class="tour-caption-text">{initialSlide.caption}</div>
+      <div class="tour-caption-text" data-i18n={`tour.${tourId}.gallery.0.caption`}>{initialSlide.caption}</div>
     </div>
 
     <!-- Barra de Progreso de 30 Segundos -->

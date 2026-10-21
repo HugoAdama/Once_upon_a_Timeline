@@ -243,7 +243,9 @@ export function initDiscographyExplorer(): void {
 
       const countEl = panel.querySelector(`[data-market-count-${marketKey}]`);
       if (countEl) {
-        countEl.textContent = `${visibleInMarket} ${visibleInMarket === 1 ? 'registro' : 'registros'}`;
+        const singleText = t('disco.recordSingle');
+        const countTpl = t('disco.recordsCount');
+        countEl.textContent = visibleInMarket === 1 && singleText ? singleText : (countTpl ? countTpl.replace('{count}', String(visibleInMarket)) : `${visibleInMarket} registros`);
       }
 
       if (normalizedQuery !== '' || selectedYear !== 'all' || selectedFormat !== 'all' || selectedMarket !== 'all' || filterOnlyFavs) {
@@ -257,13 +259,14 @@ export function initDiscographyExplorer(): void {
 
     if (resultsCounter) {
       if (visibleCount === 0) {
-        resultsCounter.textContent = 'No se encontraron lanzamientos';
+        resultsCounter.textContent = t('disco.noResults') || 'No se encontraron lanzamientos';
         if (noResultsMsg) noResultsMsg.style.display = 'block';
       } else if (visibleCount === 1) {
-        resultsCounter.textContent = 'Mostrando 1 lanzamiento';
+        resultsCounter.textContent = t('disco.showingOne') || 'Mostrando 1 lanzamiento';
         if (noResultsMsg) noResultsMsg.style.display = 'none';
       } else {
-        resultsCounter.textContent = `Mostrando ${visibleCount} lanzamientos`;
+        const tpl = t('disco.showingResults') || 'Mostrando {count} lanzamientos';
+        resultsCounter.textContent = tpl.replace('{count}', String(visibleCount));
         if (noResultsMsg) noResultsMsg.style.display = 'none';
       }
     }
@@ -523,6 +526,7 @@ export function initDiscographyExplorer(): void {
         const key = allExpanded ? 'disco.collapseAll' : 'disco.expandAll';
         toggleAllText.textContent = t(key);
       }
+      applyFilters();
     });
   }
 
