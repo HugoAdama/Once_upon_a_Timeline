@@ -406,3 +406,24 @@
   background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.08), transparent 70%),
     linear-gradient(180deg, rgba(10, 4, 12, 0.4), rgba(10, 4, 12, 0.8));
 }
+
+/* ========================================================
+   RESPONSIVE DESIGN (MÓVILES & TABLETS)
+   ======================================================== */
+@media (max-width: 640px) {
+  .candybong-widget-container {
+    bottom: 74px;
+    right: 16px;
+  }
+
+  .candybong-launcher-btn {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .candybong-panel {
+    width: min(290px, calc(100vw - 32px));
+    right: 0;
+  }
+}

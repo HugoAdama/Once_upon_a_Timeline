@@ -361,7 +361,7 @@
   position: relative;
   min-height: 540px;
   border-radius: 32px;
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1137,6 +1137,42 @@
   .stage-tag-badge {
     padding: 6px 12px;
     font-size: 0.64rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .showcase-glass-card {
+    min-height: 400px;
+    padding: 14px 12px;
+    border-radius: 20px;
+  }
+
+  .deluxe-vinyl {
+    width: 168px;
+  }
+
+  .stage-constellation,
+  .stage-orbit-ring.inner,
+  .stage-orbit-track {
+    width: 218px;
+    height: 218px;
+  }
+
+  .stage-orbit-ring.outer {
+    width: 246px;
+    height: 246px;
+  }
+
+  .constellation-node {
+    transform: rotate(var(--angle)) translate(105px) rotate(calc(-1 * var(--angle)));
+  }
+
+  .hero-metric-tile {
+    padding: 10px 8px;
+  }
+
+  .metric-count {
+    font-size: 1.25rem;
   }
 }
 

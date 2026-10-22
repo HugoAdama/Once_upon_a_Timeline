@@ -420,6 +420,15 @@
   box-shadow: 0 12px 30px rgba(232, 62, 134, 0.55);
 }
 
+@media (max-width: 640px) {
+  .back-to-top-fab {
+    bottom: 20px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
 /* ========================================================
    MODO OSCURO (SECCIÓN DE CIERRE Y FOOTER)
    ======================================================== */

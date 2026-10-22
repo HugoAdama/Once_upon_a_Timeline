@@ -102,3 +102,22 @@ El sistema de animación utiliza funciones de aceleración natural calibradas pa
   - Desactiva giros continuos de discos de vinilo, ondas de choque, rotaciones de photocards y animaciones de radar.
   - Reemplaza transiciones complejas por transiciones inmediatas o de opacidad estática.
 - **Cero Emojis**: Todo icono es un gráfico vectorial SVG inline con `aria-hidden="true"` y texto accesible para lectores de pantalla.
+
+---
+
+## 5. Arquitectura Responsiva y Puntos de Quiebre (Responsive Breakpoints)
+
+El diseño del sitio es totalmente adaptable y móvil-primero con degradación elegante, estructurado a través de los siguientes rangos de pantalla:
+
+| Breakpoint | Dispositivos Destino | Comportamiento del Layout |
+| :--- | :--- | :--- |
+| **`<= 380px`** | Móviles ultracompactos (iPhone SE, Galaxy Fold cerrado) | Escalamiento de escenario vinilo a 168px, órbitas reducidas a 246px/218px, `.wrap` con margen dinámico `calc(100% - 24px)`. |
+| **`<= 480px`** | Smartphones estándar en vertical (iPhone 13-16, Pixel) | Menú superior compacto (oculta subtítulo de marca y nombres de integrante en badge Candybong), discografía en fila simple con portada compacta (42px), métricas de repisa física a 1 columna. |
+| **`<= 640px`** | Smartphones grandes y phablets | Barras de filtros (`.members-era-toolbar`, `.characters-filter-bar`) apiladas verticalmente con esquinas adaptadas (14px), widgets flotantes alineados simétricamente (Jukebox a la izquierda, Back-to-Top y Candybong a la derecha sin colisiones). |
+| **`<= 840px`** | Tablets en vertical y pantallas intermedias | Activación de botón hamburguesa accesible con cajón móvil animado y scroll interior seguro (`max-height: calc(100vh - 72px)`), colapso de grillas a 2 columnas. |
+| **`<= 1100px`** | Tablets en horizontal y laptops pequeñas | Transición de grillas principales (integrantes, giras, cronología histórica) de 3-4 columnas a 2 columnas equilibradas sin tarjetas huérfanas. |
+| **`> 1100px`** | Escritorio y monitores panorámicos | Grillas multi-columna completas con ancho contenido en `.wrap` (`max-width: 1180px`). |
+
+### Prevención de Desbordamiento y Desplazamiento Seguro
+- **`overflow-x: clip`**: Implementado en `html` y `body` en lugar de `overflow-x: hidden`, suprimiendo desbordamientos horizontales por animaciones o sombras mientras mantiene inalterado el comportamiento de `position: sticky`.
+- **Modales Seguros para Viewports Móviles**: Todos los diálogos (`.mv-modal`, `.candybong-panel`, `.bias-toast`) emplean `max-width: calc(100vw - 32px)` y padding contenido para garantizar accesibilidad táctil completa.

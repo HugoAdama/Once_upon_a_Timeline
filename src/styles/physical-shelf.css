@@ -100,6 +100,13 @@
   }
 }
 
+@media (max-width: 480px) {
+  .shelf-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 .shelf-metric-card {
   padding: 14px 16px;
   border-radius: 16px;

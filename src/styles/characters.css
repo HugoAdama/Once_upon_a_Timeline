@@ -95,7 +95,45 @@
 
 .char-universe-tab.active .universe-tab-dot {
   background: #ffffff;
-  box-shadow: 0 0 6px #ffffff;
+  box-shadow: 0 0 8px #ffffff;
+}
+
+@media (max-width: 640px) {
+  .characters-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  .char-filter-label {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .char-filter-group {
+    border-radius: 14px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .char-universe-tab {
+    justify-content: center;
+    width: 100%;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mascot-name {
+    font-size: 0.74rem;
+  }
+  .mascot-tagline {
+    font-size: 0.65rem;
+  }
 }
 
 .character-intros {

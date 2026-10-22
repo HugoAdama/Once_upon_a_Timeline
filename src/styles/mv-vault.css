@@ -426,4 +426,24 @@
   .mv-grid {
     grid-template-columns: 1fr;
   }
+
+  .mv-modal {
+    padding: 12px 10px;
+  }
+
+  .mv-modal-dialog {
+    border-radius: 18px;
+  }
+
+  .mv-modal-header {
+    padding: 12px 14px;
+  }
+
+  .mv-modal-title {
+    font-size: 0.95rem;
+    max-width: calc(100% - 38px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
